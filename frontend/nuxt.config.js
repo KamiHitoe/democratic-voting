@@ -66,5 +66,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  server: {
+    port: 8080
+  },
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api/': { target: 'https://api.example.com/', pathRewrite: {'^/api/': ''}, changeOrigin: true }
   }
 }
