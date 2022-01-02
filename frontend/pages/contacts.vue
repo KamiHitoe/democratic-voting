@@ -26,12 +26,10 @@ export default Vue.extend({
       console.log(res.data);
       this.contacts = res.data;
     })
-    .catch(e => {
-      console.log(e);
+    .catch((e) => {
       this.errors.push(e);
+      console.log(this.errors);
     })
-
-    console.log("result is", this.contacts);
   }
 })
 </script>

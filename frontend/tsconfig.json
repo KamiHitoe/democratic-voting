@@ -12,6 +12,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "strictNullChecks": false, // don't validate never type
     "noEmit": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
