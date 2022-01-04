@@ -5,6 +5,7 @@ WORKDIR /app
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
 
+# copy host files to container
 ADD package.json /app/package.json
 ADD package-lock.json /app/package-lock.json
 
@@ -25,4 +26,4 @@ RUN yarn build
 
 EXPOSE 8080
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start", "-H", "0.0.0.0"]
