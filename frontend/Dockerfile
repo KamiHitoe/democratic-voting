@@ -2,14 +2,14 @@ FROM node:14.3
 
 WORKDIR /app
 
-ENV LANG C.UTF-8
-ENV TZ Asia/Tokyo
+ENV LANG C.UTF-8 \
+    TZ Asia/Tokyo
 
-# copy host files to container
+# first, copy package to container
 ADD package.json /app/package.json
 ADD package-lock.json /app/package-lock.json
 
-# run command
+# install nuxt dependencies
 RUN apt-get update -y && \
     apt-get upgrade -y && \
     npm install -g npm@8.1.3 && \
@@ -19,11 +19,13 @@ RUN apt-get update -y && \
     npm install -g defu@3.1.0 && \
     npm install -g typescript
 
+# copy whole app
 ADD . /app
 
-# use yarn
+# create build files
 RUN yarn build
 
 EXPOSE 8080
 
+# start prod with host specified
 CMD ["yarn", "start", "-H", "0.0.0.0"]

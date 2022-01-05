@@ -29,4 +29,5 @@
 /config/master.key
 
 # ID/PW
-database.yml
+.env
+
