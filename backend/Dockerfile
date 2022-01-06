@@ -18,3 +18,6 @@ RUN apt-get update -qq && \
 
 # copy the whole app
 ADD . /app
+
+# run app
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
