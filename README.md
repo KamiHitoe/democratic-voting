@@ -9,3 +9,13 @@
 - Test
   - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
 
+
+### つまった点
+
+- Rails x PostgreSQL
+  1. write correct host in database.yml
+  2. run rails db:create
+  3. run rails db:migrate
+  - AWS
+    - you can specify public access SG that allow all source(0.0.0.0)
+

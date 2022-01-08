@@ -20,15 +20,15 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['POSTGRESQL_USERNAME'] %>
-  password: <%= ENV['POSTGRESQL_PASSWORD'] %>
-  host: <%= ENV['POSTGRESQL_HOST'] %>
-  # host: ''
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  # if you deploy on localhost, you have to comment out below line
+  host: <%= ENV['POSTGRES_HOST'] %>
   port: 5432
 
 development:
   <<: *default
-  database: backend_development
+  database: weworld_database_development
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -54,13 +54,13 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 
-staging:
-  <<: *default
-  database: <%= ENV['POSTGRESQL_DB'] %>
+# staging:
+#   <<: *default
+#   database: weworld_database_staging
 
 test:
   <<: *default
-  database: backend_test
+  database: weworld_database_test
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -84,7 +84,5 @@ test:
 
 production:
   <<: *default
-  database: backend_production
-  username: backend
-  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+  database: weworld_database_production
 
