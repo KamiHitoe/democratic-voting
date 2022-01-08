@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  test-db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports: 
+      - 5432:5432
+
+  test-backend:
+    image: weworld-backend:v1.0.9
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=test-db
+    ports:
+      - 3000:3000
+    tty: true
+    depends_on:
+      - test-db
+
+  test-frontend:
+    image: weworld-frontend:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - test-backend
+
+
