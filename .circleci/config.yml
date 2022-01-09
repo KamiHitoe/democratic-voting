@@ -28,6 +28,13 @@ jobs:
           paths:
             - node_modules
 
+      # run test code
+      - run:
+          name: run-test-frontend-by-jest
+          command: npm run test
+          working_directory: ~/cicd/frontend
+
+
   build-and-push-image-frontend:
     machine:
       image: ubuntu-2004:202010-01
@@ -51,9 +58,22 @@ workflows:
           filters:
             branches:
               only: master
+      # push frontend-docker-image to ECR
       - build-and-push-image-frontend:
           requires:
             - test-frontend
+          filters:
+            branches:
+              only: master
+      # deploy frontend image to ECS Fargate
+      - aws-ecs/deploy-service-update;
+          # task-definition family name
+          family: frontend-cicd-td
+          cluster-name: weworld-cluster
+          service-name: weworld-frontend-service
+          container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
+          requires:
+            - build-and-push-image-frontend
           filters:
             branches:
               only: master
