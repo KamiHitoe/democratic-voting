@@ -1,5 +1,41 @@
 version: 2.1
+
 orbs:
+  aws-ecr: circleci/aws-ecr@7.3.0
+  aws-ecs: circleci/aws-ecs@2.2.1
+  aws-cli: circleci/aws-cli@2.0.6
+
 jobs:
+  test-frontend:
+    docker:
+      - image: cimg/node:17.3.0
+        environment:
+          NODE_ENV: test
+    working_directory: ~/cicd
+
+    steps:
+      - checkout
+      # save cache and install package via npm
+      - restore_cache:
+          keys:
+            - v1-deps-{{ checksum "~/cicd/frontend/package.json" }}
+      - run:
+          name: install-packages
+          command: npm install
+          working_directory: ~/cicd/frontend
+      - save_cache:
+          key: v1-deps-{{ checksum "~/cicd/frontend/package.json" }}
+          paths:
+            - node_modules
+
+
+
 workflows:
+  version: 2
+  test:
+    jobs:
+      - test-frontend:
+          filters:
+            branches:
+              only: master
 
