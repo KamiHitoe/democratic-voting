@@ -17,14 +17,14 @@ RUN apt-get update -y && \
     npm install -g nuxt@2.15.8 && \
     npm install -g create-nuxt-app@2.15.0 &&\
     npm install -g defu@3.1.0 && \
-    npm install -g typescript
+    npm install -g typescript && \
+    npm install
 
 # copy whole app
 ADD . /app
 
 # create build files
-# RUN yarn build
-RUN npm run build
+RUN yarn build
 
 EXPOSE 8080
 
