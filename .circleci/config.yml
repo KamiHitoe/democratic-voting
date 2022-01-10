@@ -69,7 +69,7 @@ workflows:
       - aws-ecs/deploy-service-update:
           # task-definition family name
           family: weworld-frontend-td
-          cluster-name: weworld-cluster
+          cluster-name: test-backend
           service-name: weworld-frontend-service
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
