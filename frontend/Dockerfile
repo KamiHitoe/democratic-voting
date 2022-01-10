@@ -23,7 +23,8 @@ RUN apt-get update -y && \
 ADD . /app
 
 # create build files
-RUN yarn build
+# RUN yarn build
+RUN npm run build
 
 EXPOSE 8080
 
