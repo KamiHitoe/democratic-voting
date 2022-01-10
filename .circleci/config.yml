@@ -45,7 +45,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           repo: "weworld/frontend"
-          region: AWS_REGION
+          region: AWS_DEFAULT_REGION
           tag: "${CIRCLE_SHA1}"
           path: "./frontend"
           dockerfile: Dockerfile
