@@ -68,7 +68,7 @@ workflows:
       # deploy frontend image to ECS Fargate
       - aws-ecs/deploy-service-update:
           # task-definition family name
-          family: frontend-cicd-td
+          family: weworld-frontend-td
           cluster-name: weworld-cluster
           service-name: weworld-frontend-service
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
