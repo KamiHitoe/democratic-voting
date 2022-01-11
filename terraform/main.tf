@@ -13,7 +13,7 @@ resource "aws_vpc" "weworld-vpc" {
   }
 }
 
-# internet gateway that allow user can access to resouces
+# internet gateway that allows user access to resouces
 resource "aws_internet_gateway" "weworld-igw" {
   vpc_id = aws_vpc.weworld-vpc.id
 
@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "weworld-igw" {
   }
 }
 
-# subnets you have to create a couple subnets every resouce
+# subnets you have to create a couple of subnets every resouce
 resource "aws_subnet" "weworld-frontend-1a" {
   vpc_id                  = aws_vpc.weworld-vpc.id
   cidr_block              = "10.0.0.0/24"
