@@ -74,38 +74,38 @@ export default {
         {
           icon: 'mdi-home',
           title: 'Home',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-magnify',
           title: 'Search',
-          // to: '/'
-          to: '/test'
+          to: '/search',
         },
         {
           icon: 'mdi-email',
           title: 'Messages',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-pencil',
           title: 'About',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-bell',
           title: 'Notifications',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-account-multiple',
           title: 'Matches',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-cog',
           title: 'Setting',
-          to: '/'
+          // to: '/',
+          to: '/test',
         },
       ],
       miniVariant: false,
