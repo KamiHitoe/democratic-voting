@@ -1,16 +1,16 @@
 <template>
   <v-app>
     <!-- adjust height -->
-
       <v-app-bar
-        color="deep-purple"
+        class="deep-purple"
         dark
+        app
         max-height="60px"
       >
         <!-- render icon -->
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
-        <v-toolbar-title>Menu</v-toolbar-title>
+        <v-toolbar-title>{{ title }}</v-toolbar-title>
       </v-app-bar>
 
       <v-navigation-drawer
@@ -20,7 +20,7 @@
       >
 
         <v-list
-          color="deep-purple"
+          class="deep-purple"
           dark
           nav
         >
@@ -46,7 +46,9 @@
 
 
     <v-main>
-      <v-container>
+      <v-container
+        fluid
+      >
         <Nuxt />
       </v-container>
     </v-main>
@@ -70,45 +72,44 @@ export default {
       fixed: false,
       navItems: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-magnify',
           title: 'Search',
-          to: '/'
+          // to: '/'
+          to: '/test'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-email',
           title: 'Messages',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-pencil',
           title: 'About',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-bell',
           title: 'Notifications',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-account-multiple',
           title: 'Matches',
           to: '/'
         },
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-cog',
           title: 'Setting',
           to: '/'
         },
       ],
       miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Menu'
     }
   }
 }
