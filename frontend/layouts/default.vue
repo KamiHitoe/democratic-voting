@@ -84,17 +84,17 @@ export default {
         {
           icon: 'mdi-email',
           title: 'Messages',
-          to: '/',
+          to: '/messages',
         },
         {
           icon: 'mdi-pencil',
           title: 'About',
-          to: '/',
+          to: '/about',
         },
         {
           icon: 'mdi-bell',
           title: 'Notifications',
-          to: '/',
+          to: '/notifications',
         },
         {
           icon: 'mdi-account-multiple',
@@ -104,8 +104,7 @@ export default {
         {
           icon: 'mdi-cog',
           title: 'Setting',
-          // to: '/',
-          to: '/test',
+          to: '/',
         },
       ],
       miniVariant: false,
