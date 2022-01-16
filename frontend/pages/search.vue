@@ -1,91 +1,58 @@
 <template>
-  <main>
-    <form @submit.prevent="submit" class="flex-form">
-      <v-text-field
-        append-icon="mdi-magnify"
-        label="Search User"
-        placeholder="please input"
-        height="48px"
-        solo
-        required
-      ></v-text-field>
-      <v-btn
-        class="deep-purple"
-        type="submit"
-        dark
-      >search</v-btn>
-    </form>
+  <section>
+    <div class="contents">
+      <h4>キーワードかカテゴリーからお題を検索しよう！</h4>
+      <v-divider></v-divider>
+      <div class="d-flex flex-row">
+        <v-select
+          :items="optionItems"
+          label="新着順"
+          solo
+          dense
+          background-color="amber lighten-4"
+        ></v-select>
+        <v-select
+          :items="optionItems"
+          label="1年以内"
+          solo
+          dense
+          background-color="amber lighten-4"
+        ></v-select>
+      </div>
+    </div>
 
-    <v-container v-if="userItems" class="search-result">
-        <v-row>
-          <v-col v-for="(user, i) in userItems" :key=i cols="4">
-            <v-card>
-              <v-list-item-avatar>
-                <v-img src="https://avatars.githubusercontent.com/u/46081776?v=4">
-                </v-img>
-              </v-list-item-avatar>
-              <v-list-item-title>
-                {{user.username}}
-              </v-list-item-title>
-            </v-card>
-          </v-col>
-        </v-row>
-    </v-container>
+    <CategoryList />
 
-  </main>
+  </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import CategoryList from '../components/CategoryList.vue'
+
 export default Vue.extend({
-  name: 'IndexPage',
+  components: {
+    CategoryList,
+  },
   data() {
     return {
-      userItems: [
-        {
-        username: 'foo',
-        description: "I'm foo",
-        },
-        {
-        username: 'bar',
-        description: "I'm bar",
-        },
-        {
-        username: 'bar',
-        description: "I'm bar",
-        },
-        {
-        username: 'bar',
-        description: "I'm bar",
-        },
-        {
-        username: 'bar',
-        description: "I'm bar",
-        },
-        {
-        username: 'bar',
-        description: "I'm bar",
-        },
-      ]
+      optionItems: ['foo', 'bar', 'hoge'],
     }
   },
 })
 </script>
 
 <style lang="scss" scoped>
-.flex-form {
-  display: flex;
-  .v-btn {
-    height: 48px;
-    margin: 0 0 0.5rem 1rem;
-  }
+h4 {
+  text-align: left;
+  color: #FFC107;
 }
-.v-text-field {
-  max-width: 50rem;
-  margin: auto 0;
+.contents {
+  padding: 1rem;
+  background-color: #fff;
 }
-.search-result {
-  text-align: center;
-  margin-top: 3rem;
+.v-select {
+  max-width: 150px;
+  margin: 1rem 2rem 0 0;
 }
 </style>

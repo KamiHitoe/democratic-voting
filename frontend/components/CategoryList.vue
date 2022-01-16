@@ -36,5 +36,6 @@ section {
 }
 .contents {
   padding: 1rem;
+  margin-top: 2rem;
 }
 </style>

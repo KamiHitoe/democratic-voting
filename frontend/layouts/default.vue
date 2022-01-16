@@ -2,10 +2,10 @@
   <v-app>
     <header>
       <div class="d-flex flex-row justify-space-between amber">
-        <div class="d-flex flex-row header-title">
+        <NuxtLink class="d-flex flex-row header-title" to="/">
           <h1>　みんなの投票箱</h1>
           <v-icon color="white" large>mdi-mailbox</v-icon>
-        </div>
+        </NuxtLink>
         <v-menu
           left
           bottom
@@ -16,7 +16,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-menu</v-icon>
+              <v-icon large color="white">mdi-menu</v-icon>
             </v-btn>
           </template>
 
@@ -58,6 +58,19 @@
       </v-container>
     </v-main>
 
+    <v-btn
+      id="scroll-to-top"
+      color="amber"
+      dark
+      fixed
+      bottom
+      right
+      fab
+      @click="moveTop"
+    >
+      ∧
+    </v-btn>
+
     <v-footer
       :absolute="!fixed"
       app
@@ -74,54 +87,17 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      navItems: [
-        {
-          icon: 'mdi-home',
-          title: 'Home',
-          to: '/',
-        },
-        {
-          icon: 'mdi-magnify',
-          title: 'Search',
-          to: '/search',
-        },
-        {
-          icon: 'mdi-email',
-          title: 'Messages',
-          to: '/messages',
-        },
-        {
-          icon: 'mdi-pencil',
-          title: 'About',
-          to: '/about',
-        },
-        {
-          icon: 'mdi-bell',
-          title: 'Notifications',
-          to: '/notifications',
-        },
-        {
-          icon: 'mdi-account-multiple',
-          title: 'Matches',
-          to: '/',
-        },
-        {
-          icon: 'mdi-cog',
-          title: 'Setting',
-          to: '/',
-        },
-      ],
-      miniVariant: false,
-      title: 'Menu'
+      title: 'Menu',
     }
   },
   methods: {
     searchByKeyword() {
       console.log('search by keyword');
-    }
+    },
+    moveTop() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    },
   }
 }
 </script>
@@ -132,8 +108,11 @@ export default {
 }
 header {
   .header-title {
-    color: #FFF8E1;
     margin-bottom: 0.3rem;
+    text-decoration: none;
+    h1 {
+      color: #FFF8E1;
+    }
   }
   h4 {
     margin-top: 0.3rem;
@@ -144,10 +123,7 @@ header {
   margin: 0.5rem 1rem 0;
 }
 .v-main {
-  margin: 0 1rem;
-}
-.footer-text {
-  text-align: center;
+  margin: 0 1rem 3rem;
 }
 .search-bar {
   max-width: 30rem;
