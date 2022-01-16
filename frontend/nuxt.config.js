@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'WeWorld',
+    title: 'DemocraticVoting',
     // titleTemplate: '%s - frontend',
     htmlAttrs: {
       lang: 'en'
