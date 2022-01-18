@@ -22,11 +22,11 @@
 
           <v-list>
             <v-list-item
-              v-for="n in 5"
-              :key="n"
+              v-for="(menu, i) in menuList"
+              :key="i"
               @click="() => {}"
             >
-              <v-list-item-title>Option {{ n }}</v-list-item-title>
+              <v-list-item-title>{{ menu }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -38,7 +38,8 @@
           v-model="keyword"
           :append-icon="'mdi-magnify'"
           class="search-bar"
-          label="search"
+          color="amber"
+          label="お題を検索する"
           outlined
           dense
           type="text"
@@ -87,11 +88,13 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
+      menuList: ['ユーザー登録', 'ログイン'],
     }
   },
   methods: {
     searchByKeyword() {
       console.log('search by keyword');
+      window.location.replace('/search')
     },
     moveTop() {
       document.body.scrollTop = 0; // For Safari

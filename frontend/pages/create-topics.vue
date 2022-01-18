@@ -29,7 +29,7 @@
             <v-select
               v-model="sex"
               :items="sexItems"
-              label="性別"
+              label="性別の特定"
               color="amber"
               data-vv-name="select"
               required
@@ -39,7 +39,7 @@
             <v-select
               v-model="age"
               :items="ageItems"
-              label="年代"
+              label="年代の特定"
               color="amber"
               data-vv-name="select"
               required
@@ -47,15 +47,26 @@
           </v-col>
         </v-row>
 
-        <v-textarea
-          class="md-6"
-          v-model="description"
-          auto-grow
-          filled
-          color="amber"
-          label="内容説明"
-          rows="1"
-        ></v-textarea>
+        <v-row>
+          <v-col>
+              <v-file-input
+                label="画像を選択"
+                filled
+                prepend-icon="mdi-camera"
+              ></v-file-input>
+          </v-col>
+          <v-col>
+            <v-textarea
+              class=""
+              v-model="description"
+              auto-grow
+              filled
+              color="amber"
+              label="内容説明"
+              rows="5"
+            ></v-textarea>
+          </v-col>
+        </v-row>
 
         <v-row>
           <v-col cols="3">
@@ -103,7 +114,7 @@
         </v-row>
 
         <v-btn
-          class="mr-4"
+          class="submit-btn"
           color="amber"
           dark
           type="submit"
@@ -125,15 +136,15 @@ export default Vue.extend({
       title: '',
       category: '',
       sex: '',
-      age: 0,
+      age: '',
       description: '',
       option_1: '',
       option_2: '',
       option_3: '',
       option_4: '',
       categoryItems: ['恋愛', 'アニメ', '趣味'],
-      sexItems: ['男性', '女性'],
-      ageItems: [10, 20, 30],
+      sexItems: ['なし', '男性', '女性'],
+      ageItems: ['なし', '10代', '20代', '30代'],
     }
   },
 })
@@ -141,6 +152,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 section {
+  text-align: center;
   @extend %section-body;
   .subtitle {
     @extend %subtitle;
