@@ -14,8 +14,8 @@
       <p class="comment-text data-margin">{{ comment.text }}</p>
       <div class="d-flex flex-row">
         <NuxtLink class="replied-messages d-flex flex-row" to="#">
-          <h4 class="reply_num">{{ comment.reply_num }}件の返信</h4>
-          <v-icon color="white">mdi-message</v-icon>
+          <h5 class="reply_num">{{ comment.reply_num }}件の返信</h5>
+          <v-icon color="white" small>mdi-message</v-icon>
         </NuxtLink>
         <div class="like-btn d-flex flex-row ml-auto">
             <v-btn

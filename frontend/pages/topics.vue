@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="vote-contents">
-      <h4 class="subtitle">トップ　＞　{category}　＞　<span class="change-color">{title}</span></h4>
+      <h4 class="subtitle">トップ　＞　{category}</h4>
       <v-divider></v-divider>
       <div class="vote-body d-flex flex-row">
         <img class="topics-img" :src="topics.imgPath">
@@ -14,9 +14,10 @@
           <h2 class="topics-title">{{ topics.title }}</h2>
         </div>
       </div>
+      <p class="topics-description">{{ topics.description }}</p>
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
-
+      <v-btn class="vote-btn" color="amber" to="#" dark>投票する</v-btn>
     </section>
 
     <section class="comment-contents">
@@ -61,6 +62,7 @@ export default {
         created_at: '2022/01/03',
         category: 'アニメ・漫画',
         title: '最強の百合漫画',
+        description: '最強の百合漫画を決めるスレッドです。今宵、史上最強の百合カップリングを決めましょう',
         optionList: ['やがて君になる', 'マリア様がみてる', 'ゆるゆり', 'Citrus'],
       },
       commentList: commentList,
@@ -104,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topics-title {
+.subtitle, .topics-title, .topics-description {
   text-align: left;
 }
 .change-color, .comment-subtitle {
@@ -113,8 +115,12 @@ export default {
 .vote-contents {
   padding: 1rem;
   background-color: #fff;
+  text-align: center;
   .vote-body {
     margin-top: 1rem;
+  }
+  .vote-btn {
+    margin: 1rem 0;
   }
 }
 .comment-contents {
@@ -129,5 +135,8 @@ export default {
 }
 .data-margin {
   margin-right: 1rem;
+}
+.topics-description {
+  margin: 2rem 0;
 }
 </style>
