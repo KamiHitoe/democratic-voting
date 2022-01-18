@@ -1,16 +1,14 @@
 <template>
   <section>
-    <div class="contents">
-      <h4>カテゴリー一覧</h4>
-      <v-divider></v-divider>
-      <v-container>
-        <v-row>
-          <v-col v-for="(category, i) in categories" :key=i cols="4">
-            {{ category }}
-          </v-col>
-        </v-row>
-      </v-container>
-    </div>
+    <h4 class="subtitle">カテゴリー一覧</h4>
+    <v-divider></v-divider>
+    <v-container>
+      <v-row>
+        <v-col v-for="(category, i) in categories" :key=i cols="4">
+          {{ category }}
+        </v-col>
+      </v-row>
+    </v-container>
 
   </section>
 </template>
@@ -29,13 +27,11 @@ export default Vue.extend({
 <style lang="scss" scoped>
 section {
   background-color: #fff;
-  h4 {
+  padding: 1rem;
+  margin-top: 2rem;
+  .subtitle {
     text-align: left;
     color: #FFC107;
   }
-}
-.contents {
-  padding: 1rem;
-  margin-top: 2rem;
 }
 </style>

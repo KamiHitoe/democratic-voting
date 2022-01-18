@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="contents">
-      <h4>トップ　＞　{category}　＞　<span class="change-color">{title}</span></h4>
+      <h4 class="subtitle">トップ　＞　{category}　＞　<span class="change-color">{title}</span></h4>
       <v-divider></v-divider>
       <div class="contents d-flex flex-row">
         <img class="topics-img" :src="topics.imgPath">
@@ -20,6 +20,7 @@
 
     </div>
 
+    <Comments />
     <CategoryList />
 
   </section>
@@ -29,10 +30,12 @@
 // import Vue from 'vue'
 import Chart from 'chart.js'
 import CategoryList from '../components/CategoryList.vue'
+import Comments from '../components/Comments.vue'
 
 export default {
   components: {
     CategoryList,
+    Comments,
   },
   data() {
     return {
