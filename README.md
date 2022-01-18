@@ -2,6 +2,8 @@
 
 ## Reference
 
+- Backend
+  - [Build a RESTful JSON API With Rails 5 - Part One](https://www.digitalocean.com/community/tutorials/build-a-restful-json-api-with-rails-5-part-one)
 - Infra
   - [AWS — Deploying Vue.js With NodeJS Backend On ECS](https://medium.com/bb-tutorials-and-thoughts/aws-deploying-vue-js-with-nodejs-backend-on-ecs-cd3c3740b0a)
   - [More than "Hello World" in Docker: Build Rails + Sidekiq web apps in Docker](https://dev.to/raphael_jambalos/more-than-hello-world-in-docker-run-rails-sidekiq-web-apps-in-docker-1b37)

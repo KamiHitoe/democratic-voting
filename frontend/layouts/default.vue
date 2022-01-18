@@ -2,7 +2,7 @@
   <v-app>
     <header>
       <div class="d-flex flex-row justify-space-between amber">
-        <NuxtLink class="d-flex flex-row header-title" to="/">
+        <NuxtLink class="header-title d-flex flex-row" to="/">
           <h1>　みんなの投票箱</h1>
           <v-icon color="white" large>mdi-mailbox</v-icon>
         </NuxtLink>
@@ -104,14 +104,14 @@ export default {
 
 <style lang="scss">
 .v-application--wrap {
-  background-color: #FFF8E1;
+  background-color: $amber-lighten-5;
 }
 header {
   .header-title {
     margin-bottom: 0.3rem;
     text-decoration: none;
     h1 {
-      color: #FFF8E1;
+      color: $amber-lighten-5;
     }
   }
   h4 {
@@ -119,7 +119,7 @@ header {
   }
 }
 .header-subtitle {
-  color: #FFC107;
+  color: $amber;
   margin: 0.5rem 1rem 0;
 }
 .v-main {

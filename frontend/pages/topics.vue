@@ -1,13 +1,12 @@
 <template>
-  <section>
-    <div class="contents">
+  <main>
+    <section class="vote-contents">
       <h4 class="subtitle">トップ　＞　{category}　＞　<span class="change-color">{title}</span></h4>
       <v-divider></v-divider>
-      <div class="contents d-flex flex-row">
+      <div class="vote-body d-flex flex-row">
         <img class="topics-img" :src="topics.imgPath">
         <div class="topics-contents d-flex flex-column">
           <div class="d-flex flex-row">
-            <p class="id data-margin">{{ topics.id }}</p>
             <p class="data-margin">{{ topics.comments }} comments</p>
             <p class="data-margin">{{ topics.created_at }}</p>
             <p class="data-margin change-color">{{ topics.category }}</p>
@@ -18,12 +17,21 @@
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
 
-    </div>
+    </section>
 
-    <Comments />
+    <section class="comment-contents">
+      <h4 class="comment-subtitle">コメント</h4>
+      <v-divider></v-divider>
+      <Comments
+        v-for="comment in commentList"
+        :key="comment.id"
+        :comment=comment
+      />
+    </section>
+
     <CategoryList />
 
-  </section>
+  </main>
 </template>
 
 <script>
@@ -48,6 +56,29 @@ export default {
         title: '最強の百合漫画',
         optionList: ['やがて君になる', 'マリア様がみてる', 'ゆるゆり', 'Citrus'],
       },
+      commentList: [
+        {
+          id: 1,
+          created_at: '2022/01/18',
+          text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
+          reply_num: 4,
+          like_num: 81,
+        },
+        {
+          id: 2,
+          created_at: '2022/01/18',
+          text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
+          reply_num: 3,
+          like_num: 27,
+        },
+        {
+          id: 3,
+          created_at: '2022/01/18',
+          text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
+          reply_num: 2,
+          like_num: 9,
+        },
+      ]
     }
   },
   mounted() {
@@ -91,12 +122,21 @@ export default {
 .topics-title {
   text-align: left;
 }
-.change-color {
-  color: #FFC107;
+.change-color, .comment-subtitle {
+  color: $amber;
 }
-.contents {
+.vote-contents {
   padding: 1rem;
   background-color: #fff;
+  .vote-body {
+    margin-top: 1rem;
+  }
+}
+.comment-contents {
+  margin-top: 2rem;
+  background-color: #fff;
+  padding: 1rem;
+  margin-top: 2rem;
 }
 .topics-img {
   width: 100px;

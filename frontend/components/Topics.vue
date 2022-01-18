@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="contents d-flex flex-row">
-      <img class="topics-img" :src="topics.imgPath">
+      <img class="topics-img" :src="topics.img_path">
       <div class="topics-contents d-flex flex-column">
         <div class="d-flex flex-row">
           <p class="id data-margin">{{ topics.id }}</p>
