@@ -31,7 +31,7 @@ section {
   margin-top: 2rem;
   .subtitle {
     text-align: left;
-    color: #FFC107;
+    color: $amber;
   }
 }
 </style>

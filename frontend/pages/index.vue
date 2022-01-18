@@ -1,6 +1,6 @@
 <template>
   <main>
-    <v-btn class="create-topics" color="amber" to="/test" dark>新しくお題を作成する</v-btn>
+    <v-btn class="create-topics" color="amber" to="#" dark>新しくお題を作成する</v-btn>
     <br>
 
     <v-tabs

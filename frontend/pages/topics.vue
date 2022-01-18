@@ -27,6 +27,7 @@
         :key="comment.id"
         :comment=comment
       />
+      <CommentBox />
     </section>
 
     <CategoryList />
@@ -39,11 +40,13 @@
 import Chart from 'chart.js'
 import CategoryList from '../components/CategoryList.vue'
 import Comments from '../components/Comments.vue'
+import CommentBox from '../components/CommentBox.vue'
 
 export default {
   components: {
     CategoryList,
     Comments,
+    CommentBox,
   },
   data() {
     return {
