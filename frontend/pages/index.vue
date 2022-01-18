@@ -1,18 +1,28 @@
 <template>
   <main>
-    <v-btn color="amber" to="/test" dark>新しくお題を作成する</v-btn>
+    <v-btn class="create-topics" color="amber" to="/test" dark>新しくお題を作成する</v-btn>
     <br>
 
+    <v-tabs
+      v-model="tab"
+      color="amber"
+      slider-color="amber"
+      centered
+      fixed-tabs  
+    >
+      <v-tab v-for="(item, i) in tabItems" :key=i>
+        {{ item.title }}
+      </v-tab>
+    </v-tabs>
     <Topics 
       v-for="topics in topicsList"
       :key="topics.id"
       :topics=topics
     />
 
-
-    <img src="https://images-na.ssl-images-amazon.com/images/I/61jxhHI6a9L.jpg">
-    <p>we want to connect with each other. It's time to connect with all over the world</p>
     <CategoryList />
+
+
 
   </main>
 </template>
@@ -30,6 +40,12 @@ export default Vue.extend({
   },
   data() {
     return {
+      tab: null,
+      tabItems: [
+        {title: '急上昇中のお題'},
+        {title: '新着のお題'},
+        {title: '殿堂入りのお題'},
+      ],
       topicsList: [
         {
           imgPath: "https://images-na.ssl-images-amazon.com/images/I/61jxhHI6a9L.jpg",
@@ -71,5 +87,8 @@ main {
 img {
   max-height: 30rem;
   padding: 30px 0;
+}
+.create-topics {
+  margin-bottom: 2rem;
 }
 </style>
