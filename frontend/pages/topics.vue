@@ -11,7 +11,7 @@
             <p class="data-margin">{{ topics.created_at }}</p>
             <p class="data-margin change-color">{{ topics.category }}</p>
           </div>
-          <h4 class="topics-title">{{ topics.title }}</h4>
+          <h2 class="topics-title">{{ topics.title }}</h2>
         </div>
       </div>
 
@@ -30,6 +30,7 @@
       <CommentBox />
     </section>
 
+    <RelatedTopics />
     <CategoryList />
 
   </main>
@@ -41,12 +42,15 @@ import Chart from 'chart.js'
 import CategoryList from '../components/CategoryList.vue'
 import Comments from '../components/Comments.vue'
 import CommentBox from '../components/CommentBox.vue'
+import RelatedTopics from '../components/RelatedTopics.vue'
+import { commentList } from '../data/data'
 
 export default {
   components: {
     CategoryList,
     Comments,
     CommentBox,
+    RelatedTopics,
   },
   data() {
     return {
@@ -59,29 +63,7 @@ export default {
         title: '最強の百合漫画',
         optionList: ['やがて君になる', 'マリア様がみてる', 'ゆるゆり', 'Citrus'],
       },
-      commentList: [
-        {
-          id: 1,
-          created_at: '2022/01/18',
-          text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
-          reply_num: 4,
-          like_num: 81,
-        },
-        {
-          id: 2,
-          created_at: '2022/01/18',
-          text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
-          reply_num: 3,
-          like_num: 27,
-        },
-        {
-          id: 3,
-          created_at: '2022/01/18',
-          text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
-          reply_num: 2,
-          like_num: 9,
-        },
-      ]
+      commentList: commentList,
     }
   },
   mounted() {
@@ -139,7 +121,6 @@ export default {
   margin-top: 2rem;
   background-color: #fff;
   padding: 1rem;
-  margin-top: 2rem;
 }
 .topics-img {
   width: 100px;

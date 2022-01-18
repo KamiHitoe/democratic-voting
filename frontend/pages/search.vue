@@ -19,6 +19,11 @@
           background-color="amber lighten-4"
         ></v-select>
       </div>
+      <Topics 
+        v-for="topics in topicsList"
+        :key="topics.id"
+        :topics=topics
+      />
     </div>
 
     <CategoryList />
@@ -28,15 +33,19 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { topicsList } from '../data/data'
 import CategoryList from '../components/CategoryList.vue'
+import Topics from '../components/Topics.vue'
 
 export default Vue.extend({
   components: {
     CategoryList,
+    Topics,
   },
   data() {
     return {
       optionItems: ['foo', 'bar', 'hoge'],
+      topicsList: topicsList,
     }
   },
 })
