@@ -34,8 +34,7 @@ export default Vue.extend({
   padding: 1rem;
   margin-top: 2rem;
   .subtitle {
-    text-align: left;
-    color: $amber;
+    @extend %subtitle;
   }
 }
 </style>

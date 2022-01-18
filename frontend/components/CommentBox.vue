@@ -27,8 +27,7 @@ section {
   text-align: center;
   margin-top: 1rem;
   .subtitle {
-    text-align: left;
-    color: $amber;
+    @extend %subtitle;
   }
   .post-comment {
     margin-bottom: 0.3rem;

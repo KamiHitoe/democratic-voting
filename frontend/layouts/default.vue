@@ -3,7 +3,7 @@
     <header>
       <div class="d-flex flex-row justify-space-between amber">
         <NuxtLink class="header-title d-flex flex-row" to="/">
-          <h1>　みんなの投票箱</h1>
+          <h1>みんなの投票箱</h1>
           <v-icon color="white" large>mdi-mailbox</v-icon>
         </NuxtLink>
         <v-menu
@@ -31,13 +31,13 @@
           </v-list>
         </v-menu>
       </div>
+      
       <div class="d-flex flex-row justify-space-between header-subtitle">
-        <h4>気になることをみんなの投票で決めよう！</h4>
+        <h4 class="subtitle">気になることをみんなの投票で決めよう！</h4>
         <v-text-field
           v-model="keyword"
           :append-icon="'mdi-magnify'"
           class="search-bar"
-          height="28px"
           label="search"
           outlined
           dense
@@ -87,7 +87,6 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      title: 'Menu',
     }
   },
   methods: {
@@ -112,9 +111,10 @@ header {
     text-decoration: none;
     h1 {
       color: $amber-lighten-5;
+      margin-left: 0.5rem;
     }
   }
-  h4 {
+  .subtitle {
     margin-top: 0.3rem;
   }
 }

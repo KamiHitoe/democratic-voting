@@ -26,12 +26,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 section {
-  background-color: #fff;
-  padding: 1rem;
-  margin-top: 2rem;
+  @extend %section-body;
   .subtitle {
-    text-align: left;
-    color: $amber;
+    @extend %subtitle;
   }
 }
 </style>

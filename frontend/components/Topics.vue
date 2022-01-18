@@ -35,14 +35,12 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-section {
-  background-color: #fff;
-}
 .contents {
-  padding: 1rem;
+  @extend %section-body;
+  margin-top: 0;
 }
 .change-color {
-  color: #FFC107;
+  color: $amber;
 }
 .topics-img {
   width: 100px;
@@ -60,7 +58,7 @@ section {
 }
 .id {
   color: #fff;
-  background-color: #FFC107;
+  background-color: $amber;
   width: 22px;
   height: 22px;
   text-align: center;
