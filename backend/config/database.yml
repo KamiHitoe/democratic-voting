@@ -28,7 +28,7 @@ default: &default
 
 development:
   <<: *default
-  database: weworld_database_development
+  database: democratic_voting_development
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -56,11 +56,11 @@ development:
 
 # staging:
 #   <<: *default
-#   database: weworld_database_staging
+#   database: democratic_voting_staging
 
 test:
   <<: *default
-  database: weworld_database_test
+  database: democratic_voting_test
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -84,5 +84,5 @@ test:
 
 production:
   <<: *default
-  database: weworld_database_production
+  database: democratic_voting_production
 
