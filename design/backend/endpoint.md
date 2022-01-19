@@ -1,5 +1,5 @@
 
-Method Endpoint Functionality
+Method|Endpoint|Functionality
 
 - auth(Firebase Auth)
 POST /v1/signup user sign up

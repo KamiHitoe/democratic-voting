@@ -69,10 +69,15 @@ export default {
   server: {
     port: 8080
   },
+
+  // you can get endpoint URL as $axios in any vue files
   axios: {
-    proxy: true
+    baseURL: process.env.NODE_ENV === 'production'
+      ? 'https://api_endpoint.com'
+      : 'http://localhost:3000',
   },
-  proxy: {
-    '/api/': { target: 'https://api.example.com/', pathRewrite: {'^/api/': ''}, changeOrigin: true }
-  }
+
+  // proxy: {
+  //   '/api/': { target: 'https://api.example.com/', pathRewrite: {'^/api/': ''}, changeOrigin: true }
+  // },
 }
