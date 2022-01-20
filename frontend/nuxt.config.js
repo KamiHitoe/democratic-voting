@@ -1,4 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
+// import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -43,6 +43,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -74,7 +75,7 @@ export default {
   axios: {
     baseURL: process.env.NODE_ENV === 'production'
       ? 'https://api_endpoint.com'
-      : 'http://localhost:3000',
+      : 'http://localhost:3000/v1',
   },
 
   // proxy: {

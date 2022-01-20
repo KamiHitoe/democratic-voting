@@ -1,30 +1,28 @@
 <template>
   <main>
-    <h3>show contacts below</h3>
-    <div v-for="(contact, index) in contacts" :key="contact.id">
-      <p>{{contact.name}} is my {{contact.age}}</p>
+    <h3>show topics below</h3>
+    <div v-for="(topic, i) in topics" :key="i">
+      <p>{{ topic }}</p>
     </div>
   </main>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default Vue.extend({
   data() {
     return {
-      contacts: [],
-      name: [],
-      age: [],
+      topics: [],
       errors: [],
     }
   },
   created() {
-    axios.get('http://localhost:3000/contacts')
+    this.$axios.get('/topics')
     .then(res => {
       console.log(res.data);
-      this.contacts = res.data;
+      this.topics = res.data;
     })
     .catch((e) => {
       this.errors.push(e);
@@ -35,11 +33,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.jump {
-  background: pink;
-  &:hover {
-    background: green;
-  }
-}
+
 
 </style>
