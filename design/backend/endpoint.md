@@ -7,9 +7,9 @@ POST /v1/auth/login user log in
 GET /v1/auth/logout user log out
 
 - users
-GET /v1/users/:id get user's infos
-POST /v1/users/:id set user's infos
-PUT /v1/users/:id update user's infos
+POST /v1/users/ set the user's infos
+PUT /v1/users/:id update the user's infos
+GET /v1/users/:id get the user's infos
 
 - topics
 GET /v1/topics get all topics by searching
