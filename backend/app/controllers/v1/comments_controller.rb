@@ -2,21 +2,21 @@
 module V1
   class CommentsController < ApplicationController
     # run below function before the action run
-    before_action :get_comment, only: :show
+    before_action :get_topic
+    before_action :get_topic_comment, only: :show
 
-    # GET /comments
+    # GET /topics/:topic_id/comments
     def index
-      @comments = Comment.all
-      json_response(@comments)
+      json_response(@topic.comment)
     end
 
-    # POST /comments
+    # POST /topics/:topic_id/comments
     def create
-      @comment = Comment.create!(comment_params)
-      json_response(@comment, :created)
+      @topic.comment.create!(comment_params)
+      json_response(@topic, :created)
     end
 
-    # GET /comments/:id
+    # GET /topics/:topic_id/comments/:id
     def show
       json_response(@comment)
     end
@@ -25,11 +25,15 @@ module V1
 
     def comment_params
       # whitelist params
-      params.permit(:text, :like_num)
+      params.permit(:user_id, :text, :like_num)
     end
 
-    def get_comment
-      @comment = Comment.find(params[:id])
+    def get_topic
+      @topic = Topic.find(params[:topic_id])
+    end
+
+    def get_topic_comment
+      @comment = @topic.comment.find_by!(id: params[:id]) if @topic
     end
   end
 end
