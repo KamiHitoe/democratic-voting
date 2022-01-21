@@ -1,7 +1,7 @@
 <template>
   <section>
     <h4 class="subtitle">気になることを聞いてみよう！</h4>
-    <form id="topics-form" @submit.prevent="submit">
+    <form id="topics-form" ref="form" @submit.prevent="submit">
       <v-container>
 
         <v-text-field
@@ -21,7 +21,8 @@
               :items="categoryItems"
               label="カテゴリー"
               color="amber"
-              data-vv-name="select"
+              item-value=null
+              :rules="[(v) => !!v || 'Item is required']"
               required
             ></v-select>
           </v-col>
@@ -51,7 +52,6 @@
           <v-col>
               <v-file-input
                 label="画像を選択"
-                filled
                 prepend-icon="mdi-camera"
               ></v-file-input>
           </v-col>
@@ -60,10 +60,10 @@
               class=""
               v-model="description"
               auto-grow
-              filled
               color="amber"
               label="内容説明"
               rows="5"
+              required
             ></v-textarea>
           </v-col>
         </v-row>
@@ -145,8 +145,20 @@ export default Vue.extend({
       categoryItems: ['恋愛', 'アニメ', '趣味'],
       sexItems: ['なし', '男性', '女性'],
       ageItems: ['なし', '10代', '20代', '30代'],
+      categoryRules: [v => !!v || 'this item is required'],
     }
   },
+  methods: {
+    submit() {
+      this.$refs.form[0].validate();
+      const topicsInputs = document.getElementById('topics-form').elements;
+      for (let e of topicsInputs) {
+        console.log(e);
+        console.log(!!e);
+        console.log(e.value);
+      }
+    }
+  }
 })
 </script>
 
