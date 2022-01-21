@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_21_092313) do
+ActiveRecord::Schema.define(version: 2022_01_21_164215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 2022_01_21_092313) do
     t.string "option_2"
     t.string "option_3"
     t.string "option_4"
-    t.string "option_1_num"
-    t.string "option_2_num"
-    t.string "option_3_num"
-    t.string "option_4_num"
+    t.integer "option_1_num"
+    t.integer "option_2_num"
+    t.integer "option_3_num"
+    t.integer "option_4_num"
     t.string "img_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

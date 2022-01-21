@@ -15,12 +15,22 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { CategoryList } from '../data/data'
+
 export default Vue.extend({
   data() {
     return {
-      categories: ['アニメ', '恋愛', '悩み', '仕事', 'a', 'a', 'a', 'a', 'end'],
+      orgCategories: CategoryList,
+      categories: [],
     }
   },
+  created() {
+    for (let i in this.orgCategories) {
+      if (i != 0) {
+        this.categories.push(this.orgCategories[i][i]);
+      }
+    }
+  }
 })
 </script>
 

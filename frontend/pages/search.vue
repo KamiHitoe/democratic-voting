@@ -26,7 +26,7 @@
       />
     </div>
 
-    <CategoryList />
+    <CategorySection />
 
   </section>
 </template>
@@ -34,12 +34,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { topicsList } from '../data/data'
-import CategoryList from '../components/CategoryList.vue'
+import CategorySection from '../components/CategorySection.vue'
 import Topics from '../components/Topics.vue'
 
 export default Vue.extend({
   components: {
-    CategoryList,
+    CategorySection,
     Topics,
   },
   data() {

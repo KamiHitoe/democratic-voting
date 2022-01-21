@@ -32,7 +32,7 @@
     </section>
 
     <RelatedTopics />
-    <CategoryList />
+    <CategorySection />
 
   </main>
 </template>
@@ -40,7 +40,7 @@
 <script>
 // import Vue from 'vue'
 import Chart from 'chart.js'
-import CategoryList from '../components/CategoryList.vue'
+import CategorySection from '../components/CategorySection.vue'
 import Comments from '../components/Comments.vue'
 import CommentBox from '../components/CommentBox.vue'
 import RelatedTopics from '../components/RelatedTopics.vue'
@@ -48,7 +48,7 @@ import { commentList } from '../data/data'
 
 export default {
   components: {
-    CategoryList,
+    CategorySection,
     Comments,
     CommentBox,
     RelatedTopics,

@@ -20,7 +20,7 @@
       :topics=topics
     />
 
-    <CategoryList />
+    <CategorySection />
 
 
 
@@ -30,13 +30,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import { topicsList } from '../data/data'
-import CategoryList from '../components/CategoryList.vue'
+import CategorySection from '../components/CategorySection.vue'
 import Topics from '../components/Topics.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
   components: {
-    CategoryList,
+    CategorySection,
     Topics,
   },
   data() {
@@ -47,7 +47,20 @@ export default Vue.extend({
         {title: '新着のお題'},
         {title: '殿堂入りのお題'},
       ],
-      topicsList: topicsList,
+      topicsList: null,
+    }
+  },
+  created() {
+    this.getTopics();
+  },
+  methods: {
+    async getTopics() {
+      const res = await this.$axios.get('/topics')
+      console.log(res.data);
+      for (let record of res.data) {
+        console.log(record.title);
+      }
+      this.topicsList = res.data;
     }
   },
 })

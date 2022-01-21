@@ -7,13 +7,14 @@
           <p class="id data-margin">{{ topics.id }}</p>
           <p class="data-margin">{{ topics.comments }} comments</p>
           <p class="data-margin">{{ topics.created_at }}</p>
-          <p class="data-margin change-color">{{ topics.category }}</p>
+          <p class="data-margin change-color">{{ CategoryList[topics.category_id][topics.category_id] }}</p>
         </div>
         <h4 class="topics-title">{{ topics.title }}</h4>
         <div class="d-flex flex-row">
-          <h6 class="data-margin" v-for="(option, i) in topics.optionList" :key="i">
-            {{ option }}
-          </h6>
+          <h6 class="data-margin">{{ topics.option_1 }}</h6>
+          <h6 class="data-margin">{{ topics.option_2 }}</h6>
+          <h6 class="data-margin">{{ topics.option_3 }}</h6>
+          <h6 class="data-margin">{{ topics.option_4 }}</h6>
         </div>
       </div>
     </div>
@@ -23,9 +24,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { CategoryList } from '../data/data'
+
 export default Vue.extend({
   data() {
     return {
+      CategoryList: CategoryList,
     }
   },
   props: {

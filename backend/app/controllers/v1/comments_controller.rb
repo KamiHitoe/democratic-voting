@@ -31,7 +31,7 @@ module V1
 
     def comment_params
       # whitelist params
-      params.permit(:user_id, :text, :like_num)
+      params.permit(:user_id, :parent_id, :text, :like_num)
     end
 
     def get_topic

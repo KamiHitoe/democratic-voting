@@ -1,4 +1,14 @@
 
+const CategoryList = [
+  {},
+  {1: 'アニメ・漫画'},
+  {2: 'テクノロジー'},
+  {3: '恋愛'},
+  {4: '仕事'},
+  {5: 'ライフスタイル'},
+  {6: '悩み'},
+];
+
 const topicsList = [
   {
     img_path: "https://images-na.ssl-images-amazon.com/images/I/61jxhHI6a9L.jpg",
@@ -53,4 +63,4 @@ const commentList = [
   },
 ];
 
-export { topicsList, commentList };
+export { CategoryList, topicsList, commentList };
