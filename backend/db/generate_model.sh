@@ -6,6 +6,6 @@ option_1_num:string option_2_num:string option_3_num:string option_4_num:string 
 img_path:string
 
 rails generate model Comment ^
-user_id:integer text:text like_num:integer ^
+user_id:integer parent_id:integer text:text like_num:integer ^
 topic:references
 

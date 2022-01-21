@@ -2,7 +2,7 @@
 module V1
   class TopicsController < ApplicationController
     # run below function before the action run
-    before_action :get_topic, only: :show
+    before_action :get_topic, only: [:show, :destroy]
 
     # GET /topics
     def index
@@ -19,6 +19,12 @@ module V1
     # GET /topics/:id
     def show
       json_response(@topic)
+    end
+
+    # DELETE /topics/:id
+    def destroy
+      @topic.destroy
+      head :no_content
     end
 
     private

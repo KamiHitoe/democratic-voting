@@ -3,22 +3,28 @@ module V1
   class CommentsController < ApplicationController
     # run below function before the action run
     before_action :get_topic
-    before_action :get_topic_comment, only: :show
+    before_action :get_topic_comment, only: [:show, :destroy]
 
     # GET /topics/:topic_id/comments
     def index
-      json_response(@topic.comment)
+      json_response(@topic.comments)
     end
 
     # POST /topics/:topic_id/comments
     def create
-      @topic.comment.create!(comment_params)
+      @topic.comments.create!(comment_params)
       json_response(@topic, :created)
     end
 
     # GET /topics/:topic_id/comments/:id
     def show
       json_response(@comment)
+    end
+
+    # DELETE /topics/:topic_id/comments/:id
+    def destroy
+      @comment.destroy
+      head :no_content
     end
 
     private
@@ -33,7 +39,7 @@ module V1
     end
 
     def get_topic_comment
-      @comment = @topic.comment.find_by!(id: params[:id]) if @topic
+      @comment = @topic.comments.find_by!(id: params[:id]) if @topic
     end
   end
 end

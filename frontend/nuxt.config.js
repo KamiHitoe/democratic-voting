@@ -43,6 +43,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // you can use axios as this.$axios in any vue files
     '@nuxtjs/axios',
   ],
 

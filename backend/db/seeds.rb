@@ -20,6 +20,6 @@ Topic.create(user_id: 3, category_id: 3, title: "third topic", description: "thi
              img_path: "there")
 
 Comment.create(user_id: 1, text: "first comment about topic 1", like_num: 1, topic_id: 1)
-Comment.create(user_id: 2, text: "second comment about topic 1", like_num: 2, topic_id: 2)
+Comment.create(user_id: 2, parent_id: 1, text: "second comment about topic 1", like_num: 2, topic_id: 2)
 Comment.create(user_id: 1, text: "first comment about topic 2", like_num: 1, topic_id: 1)
 
