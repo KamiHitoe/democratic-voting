@@ -2,6 +2,9 @@ class Topic < ApplicationRecord
   # model association
   has_many :comments, dependent: :destroy
 
+  # set default value
+  after_initialize :set_defaults, unless: :persisted?
+
   # validate presence
   validates(:user_id,
             :category_id,
@@ -26,4 +29,12 @@ class Topic < ApplicationRecord
               maximum: 500,
               message: 'this description is too long',
             }})
+
+  def set_defaults
+    timestamp = Time.now.to_formatted_s(:db)
+    timestamp = timestamp.scan(/\d{4}-\d{2}-\d{2}\s\d+:\d+/)[0]
+    timestamp = timestamp.gsub(/-/, '/')
+    self.timestamp ||= timestamp
+  end
+
 end
