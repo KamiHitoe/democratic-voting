@@ -6,8 +6,8 @@
         <div class="d-flex flex-row">
           <p class="id data-margin">{{ topics.id }}</p>
           <p class="data-margin">{{ topics.option_1_num + topics.option_2_num + topics.option_3_num + topics.option_4_num }} votes</p>
-          <p class="data-margin">{{ topics.created_at }}</p>
-          <p class="data-margin change-color">{{ CategoryList[topics.category_id][topics.category_id] }}</p>
+          <p class="data-margin">{{ topics.timestamp }}</p>
+          <p class="data-margin change-color">{{ CategoryList[topics.category_id].category }}</p>
         </div>
         <h4 class="topics-title">{{ topics.title }}</h4>
         <div class="d-flex flex-row">
