@@ -1,15 +1,15 @@
 <template>
   <main>
     <section class="vote-contents">
-      <h4 class="subtitle">トップ　＞　{category}</h4>
+      <h4 class="subtitle">トップ　＞　{{ categoryList[topics.category_id].category }}</h4>
       <v-divider></v-divider>
       <div class="vote-body d-flex flex-row">
-        <img class="topics-img" :src="topics.imgPath">
+        <img class="topics-img" :src="topics.img_path">
         <div class="topics-contents d-flex flex-column">
           <div class="d-flex flex-row">
-            <p class="data-margin">{{ topics.comments }} comments</p>
-            <p class="data-margin">{{ topics.created_at }}</p>
-            <p class="data-margin change-color">{{ topics.category }}</p>
+            <p class="data-margin">{{ topics.option_1_num + topics.option_2_num + topics.option_3_num + topics.option_4_num }} votes</p>
+            <p class="data-margin">{{ topics.timestamp }}</p>
+            <p class="data-margin change-color">{{ categoryList[topics.category_id].category }}</p>
           </div>
           <h2 class="topics-title">{{ topics.title }}</h2>
         </div>
@@ -27,8 +27,11 @@
         v-for="comment in commentList"
         :key="comment.id"
         :comment=comment
+        :topic_id=topics.id
       />
-      <CommentBox />
+      <CommentBox 
+        :topic_id=topics.id
+      />
     </section>
 
     <RelatedTopics />
@@ -44,7 +47,7 @@ import CategorySection from '../components/CategorySection.vue'
 import Comments from '../components/Comments.vue'
 import CommentBox from '../components/CommentBox.vue'
 import RelatedTopics from '../components/RelatedTopics.vue'
-import { commentList } from '../data/data'
+import { categoryList } from '../data/data'
 
 export default {
   components: {
@@ -56,32 +59,33 @@ export default {
   data() {
     return {
       topics: {
-        imgPath: "https://images-na.ssl-images-amazon.com/images/I/61jxhHI6a9L.jpg",
-        id: 1,
-        comments: 128,
-        created_at: '2022/01/03',
-        category: 'アニメ・漫画',
-        title: '最強の百合漫画',
-        description: '最強の百合漫画を決めるスレッドです。今宵、史上最強の百合カップリングを決めましょう',
-        optionList: ['やがて君になる', 'マリア様がみてる', 'ゆるゆり', 'Citrus'],
+        category_id: 0,
       },
-      commentList: commentList,
+      commentList: [],
+      categoryList: categoryList,
     }
   },
-  mounted() {
+  async mounted() {
+    await this.getTopics();
+    await this.getComments();
     const ctx = document.getElementById('resultChart');
     new Chart(ctx, {
       type: 'pie',
       data: {
         labels: [
-          this.topics.optionList[0],
-          this.topics.optionList[1],
-          this.topics.optionList[2],
-          this.topics.optionList[3],
+          this.topics.option_1,
+          this.topics.option_2,
+          this.topics.option_3,
+          this.topics.option_4,
         ],
         datasets: [{
           label: 'My First Dataset',
-          data: [50, 80, 70, 30],
+          data: [
+            this.topics.option_1_num,
+            this.topics.option_2_num,
+            this.topics.option_3_num,
+            this.topics.option_4_num,
+          ],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
@@ -101,6 +105,18 @@ export default {
         }
       },
     })
+  },
+  methods: {
+    async getTopics() {
+      const res = await this.$axios.get('/topics/1')
+      this.topics = res.data
+      console.log(this.topics);
+    },
+    async getComments() {
+      const res = await this.$axios.get(`/topics/1/comments`);
+      this.commentList = res.data;
+      console.log(res.data);
+    }
   },
 }
 </script>

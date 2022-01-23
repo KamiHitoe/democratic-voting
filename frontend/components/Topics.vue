@@ -7,7 +7,7 @@
           <p class="id data-margin">{{ topics.id }}</p>
           <p class="data-margin">{{ topics.option_1_num + topics.option_2_num + topics.option_3_num + topics.option_4_num }} votes</p>
           <p class="data-margin">{{ topics.timestamp }}</p>
-          <p class="data-margin change-color">{{ CategoryList[topics.category_id].category }}</p>
+          <p class="data-margin change-color">{{ categoryList[topics.category_id].category }}</p>
         </div>
         <h4 class="topics-title">{{ topics.title }}</h4>
         <div class="d-flex flex-row">
@@ -24,17 +24,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { CategoryList } from '../data/data'
+import { categoryList } from '../data/data'
 
 export default Vue.extend({
   data() {
     return {
-      CategoryList: CategoryList,
+      categoryList: categoryList,
     }
   },
   props: {
     topics: Object,
-  }
+  },
 })
 </script>
 
