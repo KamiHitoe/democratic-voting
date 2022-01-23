@@ -3,9 +3,10 @@
     <h4 class="subtitle">関連するお題</h4>
     <v-divider></v-divider>
     <Topics 
-      v-for="topics in topicsList"
+      v-for="(topics, i) in topicsList"
       :key="topics.id"
-      :topics=topics
+      :topics="topics"
+      :order="i+1"
     />
 
   </section>
