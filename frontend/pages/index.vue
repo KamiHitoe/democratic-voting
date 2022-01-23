@@ -15,9 +15,10 @@
       </v-tab>
     </v-tabs>
     <Topics 
-      v-for="topics in topicsList"
+      v-for="(topics, i) in topicsList"
       :key="topics.id"
       :topics=topics
+      :order=i+1
     />
 
     <CategorySection />

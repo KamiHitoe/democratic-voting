@@ -131,4 +131,7 @@ header {
 .search-bar {
   max-width: 30rem;
 }
+a {
+  text-decoration: none;
+}
 </style>

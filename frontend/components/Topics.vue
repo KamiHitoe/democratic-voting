@@ -1,10 +1,10 @@
 <template>
   <section>
-    <div class="contents d-flex flex-row">
+    <nuxt-link class="contents d-flex flex-row" to="#" :topic_id="topics.id">
       <img class="topics-img" :src="topics.img_path">
       <div class="topics-contents d-flex flex-column">
         <div class="d-flex flex-row">
-          <p class="id data-margin">{{ topics.id }}</p>
+          <p class="id data-margin">{{ order }}</p>
           <p class="data-margin">{{ topics.option_1_num + topics.option_2_num + topics.option_3_num + topics.option_4_num }} votes</p>
           <p class="data-margin">{{ topics.timestamp }}</p>
           <p class="data-margin change-color">{{ categoryList[topics.category_id].category }}</p>
@@ -17,7 +17,7 @@
           <h6 class="data-margin">{{ topics.option_4 }}</h6>
         </div>
       </div>
-    </div>
+    </nuxt-link>
     <v-divider></v-divider>
   </section>
 </template>
@@ -34,6 +34,7 @@ export default Vue.extend({
   },
   props: {
     topics: Object,
+    order: Number,
   },
 })
 </script>
@@ -42,6 +43,7 @@ export default Vue.extend({
 .contents {
   @extend %section-body;
   margin-top: 0;
+  color: #000;
 }
 .change-color {
   color: $amber;

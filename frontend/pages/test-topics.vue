@@ -123,12 +123,13 @@ export default {
   },
   methods: {
     async getTopics() {
-      const res = await this.$axios.get('/topics/1')
-      this.topics = res.data
+      console.log(this.topic_id);
+      const res = await this.$axios.get('1');
+      this.topics = res.data;
       console.log(this.topics);
     },
     async getComments() {
-      const res = await this.$axios.get(`/topics/1/comments`);
+      const res = await this.$axios.get('1/comments');
       this.commentList = res.data;
       console.log(res.data);
     },
