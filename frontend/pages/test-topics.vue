@@ -17,7 +17,19 @@
       <p class="topics-description">{{ topics.description }}</p>
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
-      <v-btn class="vote-btn" color="amber" to="#" dark>投票する</v-btn>
+      <v-btn
+        class="vote-btn"
+        color="amber"
+        dark
+        @click="openVoting"
+        v-if="!voting"
+        >投票する
+      </v-btn>
+
+      <Voting
+        v-if="voting"
+        :topics=topics
+      />
     </section>
 
     <section class="comment-contents">
@@ -47,6 +59,7 @@ import CategorySection from '../components/CategorySection.vue'
 import Comments from '../components/Comments.vue'
 import CommentBox from '../components/CommentBox.vue'
 import RelatedTopics from '../components/RelatedTopics.vue'
+import Voting from '../components/Voting.vue'
 import { categoryList } from '../data/data'
 
 export default {
@@ -55,6 +68,7 @@ export default {
     Comments,
     CommentBox,
     RelatedTopics,
+    Voting,
   },
   data() {
     return {
@@ -63,6 +77,7 @@ export default {
       },
       commentList: [],
       categoryList: categoryList,
+      voting: false,
     }
   },
   async mounted() {
@@ -116,6 +131,9 @@ export default {
       const res = await this.$axios.get(`/topics/1/comments`);
       this.commentList = res.data;
       console.log(res.data);
+    },
+    openVoting() {
+      this.voting = true;
     }
   },
 }
