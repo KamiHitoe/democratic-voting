@@ -15,19 +15,19 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { CategoryList } from '../data/data'
+import { categoryList } from '../data/data'
 
 export default Vue.extend({
   data() {
     return {
-      orgCategories: CategoryList,
+      orgCategories: categoryList,
       categories: [],
     }
   },
   created() {
     for (let i in this.orgCategories) {
-      if (i != 0) {
-        this.categories.push(this.orgCategories[i][i]);
+      if (i !== '0') {
+        this.categories.push(this.orgCategories[i].category);
       }
     }
   }

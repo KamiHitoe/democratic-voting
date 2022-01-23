@@ -5,7 +5,7 @@
       <div class="comment-info d-flex flex-row">
         <p class="data-margin">{{ comment.id }}.</p>
         <p class="data-margin">名無しさん</p>
-        <p class="data-margin">{{ comment.created_at }}</p>
+        <p class="data-margin">{{ comment.timestamp }}</p>
         <button class="reply-btn d-flex flex-row ml-auto">
           <v-icon color="amber">mdi-reply</v-icon>
           <p>返信</p>
@@ -42,7 +42,7 @@ export default Vue.extend({
   },
   props: {
     comment: Object,
-  }
+  },
 })
 </script>
 

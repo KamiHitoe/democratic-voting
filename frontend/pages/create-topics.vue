@@ -11,20 +11,23 @@
           dense
           color="amber"
           type="text"
+          maxlength="100"
           required
         ></v-text-field>
 
         <v-row>
           <v-col cols="3">
-            <select v-model="category_id" required>
+            <label for="category">カテゴリー</label>
+            <select id="category" v-model="category_id" required>
               <option class="hidden" value="">カテゴリー</option>
-              <option v-for="category in CategoryList" v-bind:value="category.id">
+              <option v-for="category in categoryList" v-bind:value="category.id">
                 {{ category.category }}
               </option>
             </select>
           </v-col>
           <v-col cols="3">
-            <select v-model="sex">
+            <label for="sex">性別の特定</label>
+            <select id="sex" v-model="sex">
               <option class="hidden" value="">性別の特定</option>
               <option v-for="sex in sexItems" v-bind:value="sex.value">
                 {{ sex.item }}
@@ -32,7 +35,8 @@
             </select>
           </v-col>
           <v-col cols="3">
-            <select v-model="age">
+            <label for="age">年代の特定</label>
+            <select id="age" v-model="age">
               <option class="hidden" value="">年代の特定</option>
               <option v-for="age in ageItems" v-bind:value="age.value">
                 {{ age.item }}
@@ -57,6 +61,7 @@
               color="amber"
               label="内容説明"
               rows="5"
+              max-length="500"
               required
             ></v-textarea>
           </v-col>
@@ -71,6 +76,7 @@
               dense
               color="amber"
               type="text"
+              max-length="100"
               required
             ></v-text-field>
           </v-col>
@@ -82,6 +88,7 @@
               dense
               color="amber"
               type="text"
+              max-length="100"
               required
             ></v-text-field>
           </v-col>
@@ -93,6 +100,7 @@
               dense
               color="amber"
               type="text"
+              max-length="100"
             ></v-text-field>
           </v-col>
           <v-col cols="3">
@@ -103,6 +111,7 @@
               dense
               color="amber"
               type="text"
+              max-length="100"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -124,7 +133,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { CategoryList } from '../data/data'
+import { categoryList } from '../data/data'
 
 export default Vue.extend({
   data() {
@@ -152,20 +161,21 @@ export default Vue.extend({
     }
   },
   computed: {
-    CategoryList: () => {
-      CategoryList.shift()
-      return CategoryList
+    categoryList: (): any => {
+      categoryList.shift()
+      return categoryList
     },
   },
   methods: {
-    submitTopics() {
-      const topicsInputs = document.getElementById('topics-form').elements;
+    async submitTopics() {
+      const topicsForm: any = document.getElementById('topics-form');
+      const topicsInputs = topicsForm.elements;
       for (let e of topicsInputs) {
         // console.log(e);
         console.log(e.value);
       }
-      console.log(this.title, this.description, this.option_1, this.category);
-      this.$axios.post('/topics', {
+      console.log(this.title, this.description, this.option_1);
+      await this.$axios.post('/topics', {
         user_id: 1,
         category_id: this.category_id,
         title: this.title,
@@ -174,11 +184,9 @@ export default Vue.extend({
         option_2: this.option_2,
         option_3: this.option_3,
         option_4: this.option_4,
-        option_1_num: 0,
-        option_2_num: 0,
-        option_3_num: 0,
-        option_4_num: 0,
       })
+      alert('post topic success!');
+      window.location.replace('/');
     }
   }
 })

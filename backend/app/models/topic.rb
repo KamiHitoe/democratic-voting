@@ -35,6 +35,10 @@ class Topic < ApplicationRecord
     timestamp = timestamp.scan(/\d{4}-\d{2}-\d{2}\s\d+:\d+/)[0]
     timestamp = timestamp.gsub(/-/, '/')
     self.timestamp ||= timestamp
+    self.option_1_num ||= 0
+    self.option_2_num ||= 0
+    self.option_3_num ||= 0
+    self.option_4_num ||= 0
   end
 
 end

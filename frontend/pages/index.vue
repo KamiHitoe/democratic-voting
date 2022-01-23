@@ -46,7 +46,7 @@ export default Vue.extend({
         {title: '新着のお題'},
         {title: '殿堂入りのお題'},
       ],
-      topicsList: null,
+      topicsList: [],
     }
   },
   created() {
