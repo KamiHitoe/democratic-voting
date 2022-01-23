@@ -28,7 +28,7 @@
 
       <Voting
         v-if="voting"
-        :topics=topics
+        :topics="topics"
       />
     </section>
 
@@ -36,13 +36,14 @@
       <h4 class="comment-subtitle">コメント</h4>
       <v-divider></v-divider>
       <Comments
-        v-for="comment in commentList"
+        v-for="(comment, i) in commentList"
         :key="comment.id"
-        :comment=comment
-        :topic_id=topics.id
+        :comment="comment"
+        :topic_id="topics.id"
+        :order="i+1"
       />
       <CommentBox 
-        :topic_id=topics.id
+        :topic_id="topics.id"
       />
     </section>
 
@@ -124,12 +125,12 @@ export default {
   methods: {
     async getTopics() {
       console.log(this.topic_id);
-      const res = await this.$axios.get('1');
+      const res = await this.$axios.get('/topics/1');
       this.topics = res.data;
       console.log(this.topics);
     },
     async getComments() {
-      const res = await this.$axios.get('1/comments');
+      const res = await this.$axios.get('/topics/1/comments');
       this.commentList = res.data;
       console.log(res.data);
     },

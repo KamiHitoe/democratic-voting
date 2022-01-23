@@ -3,7 +3,7 @@
 
     <div class="contents">
       <div class="comment-info d-flex flex-row">
-        <p class="data-margin">{{ comment.id }}.</p>
+        <p class="data-margin">{{ order }}.</p>
         <p class="data-margin">名無しさん</p>
         <p class="data-margin">{{ comment.timestamp }}</p>
         <button class="reply-btn d-flex flex-row ml-auto">
@@ -42,6 +42,7 @@ export default Vue.extend({
   },
   props: {
     comment: Object,
+    order: Number,
   },
 })
 </script>
