@@ -5,10 +5,10 @@
       <v-divider></v-divider>
       <p>一人一票しか投票できないので、注意して投票してね！</p>
       <v-radio-group v-model="chosenOption">
-        <v-radio :label="topics.option_1" :value="topics.option_1" color="amber"></v-radio>
-        <v-radio :label="topics.option_2" :value="topics.option_2" color="amber"></v-radio>
-        <v-radio :label="topics.option_3" :value="topics.option_3" color="amber" v-if="topics.option_3"></v-radio>
-        <v-radio :label="topics.option_4" :value="topics.option_4" color="amber" v-if="topics.option_4"></v-radio>
+        <v-radio :label="topics.option_1" value="option_1_num" color="amber"></v-radio>
+        <v-radio :label="topics.option_2" value="option_2_num" color="amber"></v-radio>
+        <v-radio :label="topics.option_3" value="option_3_num" color="amber" v-if="topics.option_3"></v-radio>
+        <v-radio :label="topics.option_4" value="option_4_num" color="amber" v-if="topics.option_4"></v-radio>
       </v-radio-group>
     </div>
     <v-btn class="vote-btn" color="amber" dark @click="submitVoting">投票する</v-btn>
@@ -27,8 +27,13 @@ export default Vue.extend({
     topics: Object,
   },
   methods: {
-    submitVoting() {
-      console.log('submit');
+    async submitVoting() {
+      if (this.chosenOption !== null) {
+        await this.$axios.put(`/topics/${this.topics.id}`, {
+          chosen_option: this.chosenOption,
+        });
+        window.location.reload();
+      }
     }
   }
 })

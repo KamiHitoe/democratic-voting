@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     
     # create related endpoint URI
     resources :users, only: %i[create show update]
-    resources :topics, only: %i[index create show] do
-      resources :comments, only: %i[index create show]
+    resources :topics, only: %i[index create show update] do
+      resources :comments, only: %i[index create show update]
     end
 
   end

@@ -2,7 +2,7 @@
 module V1
   class TopicsController < ApplicationController
     # run below function before the action run
-    before_action :get_topic, only: [:show, :destroy]
+    before_action :get_topic, only: [:show, :update, :destroy]
 
     # GET /topics
     def index
@@ -19,6 +19,13 @@ module V1
     # GET /topics/:id
     def show
       json_response(@topic)
+    end
+
+    # PUT /topics/:id
+    def update
+      chosen_option = params[:chosen_option]
+      @topic.increment!(chosen_option)
+      head :no_content
     end
 
     # DELETE /topics/:id
