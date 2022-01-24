@@ -1,6 +1,6 @@
 <template>
   <section>
-    <nuxt-link class="contents d-flex flex-row" to="#" :topic_id="topics.id">
+    <nuxt-link class="contents d-flex flex-row" :to="`/topics/${topics.id}`" :topic_id="topics.id">
       <img class="topics-img" :src="topics.img_path">
       <div class="topics-contents d-flex flex-column">
         <div class="d-flex flex-row">
@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { categoryList } from '../data/data'
+import { categoryList } from '@/data/data'
 
 export default Vue.extend({
   data() {

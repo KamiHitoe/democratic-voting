@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import CategorySection from '../components/CategorySection.vue'
-import Topics from '../components/Topics.vue'
+import CategorySection from '@/components/CategorySection.vue'
+import Topics from '@/components/Topics.vue'
 
 export default Vue.extend({
   name: 'IndexPage',

@@ -133,7 +133,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { categoryList } from '../data/data'
+import { categoryList } from '@/data/data'
 
 export default Vue.extend({
   data() {
