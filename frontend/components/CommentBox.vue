@@ -14,7 +14,8 @@
       color="amber"
       dark
       @click="submitComment"
-      >コメントを投稿する</v-btn>
+      >コメントを投稿する
+    </v-btn>
 
   </section>
 </template>

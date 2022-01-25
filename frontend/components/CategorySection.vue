@@ -5,7 +5,7 @@
     <v-container>
       <v-row>
         <v-col v-for="(category, i) in categories" :key=i cols="4">
-          {{ category }}
+          <p>{{ category }}</p>
         </v-col>
       </v-row>
     </v-container>
@@ -25,9 +25,14 @@ export default Vue.extend({
     }
   },
   created() {
-    for (let i in this.orgCategories) {
-      if (i !== '0') {
-        this.categories.push(this.orgCategories[i].category);
+    this.removeZero();
+  },
+  methods: {
+    removeZero() {
+      for (let i in this.orgCategories) {
+        if (i !== '0') {
+          this.categories.push(this.orgCategories[i].category);
+        }
       }
     }
   }
