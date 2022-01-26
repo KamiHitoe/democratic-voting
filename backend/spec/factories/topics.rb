@@ -8,9 +8,7 @@ FactoryBot.define do
     option_2 { 'test op2' }
     option_3 { 'test op3' }
     option_4 { 'test op4' }
-    option_1_num { 10 }
-    option_2_num { 20 }
-    option_3_num { 30 }
-    option_4_num { 40 }
+
   end
+
 end
