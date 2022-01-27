@@ -18,7 +18,7 @@ describe('unit test Comments Component', () => {
   it('render comment object', () => {
     // check contents
     console.log(wrapper.text());
-    expect(wrapper.html().text()).toContain(time);
+    expect(wrapper.text()).toContain(String(time));
     expect(wrapper.text()).toContain('test text');
     
     // check props
