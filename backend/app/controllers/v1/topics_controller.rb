@@ -2,7 +2,7 @@
 module V1
   class TopicsController < ApplicationController
     # run below function before the action run
-    before_action :get_topic, only: [:show, :update, :destroy]
+    before_action :get_topic, only: %i[show update destroy]
 
     # GET /topics
     def index
@@ -25,20 +25,21 @@ module V1
     def update
       chosen_option = params[:chosen_option]
       @topic.increment!(chosen_option)
-      head :no_content
+      head(:no_content)
     end
 
     # DELETE /topics/:id
     def destroy
       @topic.destroy
-      head :no_content
+      head(:no_content)
     end
 
     private
 
     def topic_params
       # whitelist params
-      params.permit(:user_id, :category_id, :title, :description, :option_1, :option_2, :option_3, :option_4, :option_1_num, :option_2_num, :option_3_num, :option_4_num, :img_path)
+      params.permit(:user_id, :category_id, :title, :description, :option_1,
+                    :option_2, :option_3, :option_4, :option_1_num, :option_2_num, :option_3_num, :option_4_num, :img_path)
     end
 
     def get_topic

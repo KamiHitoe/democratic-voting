@@ -3,7 +3,7 @@ module V1
   class CommentsController < ApplicationController
     # run below function before the action run
     before_action :get_topic
-    before_action :get_topic_comment, only: [:show, :update, :destroy]
+    before_action :get_topic_comment, only: %i[show update destroy]
 
     # GET /topics/:topic_id/comments
     def index
@@ -24,13 +24,13 @@ module V1
     # PUT /topics/:topic_id/comments/:id
     def update
       @comment.update(comment_params)
-      head :no_content
+      head(:no_content)
     end
 
     # DELETE /topics/:topic_id/comments/:id
     def destroy
       @comment.destroy
-      head :no_content
+      head(:no_content)
     end
 
     private
