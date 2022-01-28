@@ -9,6 +9,8 @@
 - Test
   - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
   - [Guide to Unit Testing Vue Components](https://testdriven.io/blog/vue-unit-testing/)
+- Format
+  - [How to properly set up Nuxt with ESLint and Prettier in VSCode](https://medium.com/@gogl.alex/how-to-properly-set-up-eslint-with-prettier-for-vue-or-nuxt-in-vscode-e42532099a9c)
 
 
 ### つまった点
