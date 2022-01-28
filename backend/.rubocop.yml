@@ -234,36 +234,43 @@ Metrics/PerceivedComplexity:
 
 # ============== Style ================
 
+# 複数のアクセサを統一する
 Style/AccessorGrouping:
   Enabled: true
 
-Style/ArrayCoercion:
-  Enabled: true
+# Style/ArrayCoercion:
+#   Enabled: true
 
 # 日本語のコメントを許可する
 Style/AsciiComments:
   Enabled: false
 
+# プロセスを使うブロックのクロージャ ex, File.open()
 Style/AutoResourceCleanup:
   Enabled: true
 
+# アクセサのreader, writerを統一
 Style/BisectedAttrAccessor:
   Enabled: true
 
-Style/CaseLikeIf:
-  Enabled: true
+# Style/CaseLikeIf:
+#   Enabled: true
 
+# 子クラスにおけるインデント
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Style/CollectionMethods:
-  Enabled: true
+# Style/CollectionMethods:
+#   Enabled: true
 
+# 重複ループを統一
 Style/CombinableLoops:
   Enabled: true
 
+# 文字列リテラルの使用
 Style/CommandLiteral:
-  EnforcedStyle: percent_x
+  Enabled: true
+  # EnforcedStyle: percent_x
 
 Style/ConstantVisibility:
   Enabled: true
@@ -276,14 +283,15 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
-Style/ExplicitBlockArgument:
-  Enabled: true
+# Style/ExplicitBlockArgument:
+#   Enabled: true
 
-Style/GlobalStdStream:
-  Enabled: true
+# Style/GlobalStdStream:
+#   Enabled: true
 
+# Hashのeachメソッドを許可する
 Style/HashEachMethods:
-  Enabled: true
+  Enabled: false
 
 Style/HashLikeCase:
   Enabled: true
@@ -294,11 +302,13 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+# raise文にErrorObjectを返す
 Style/ImplicitRuntimeError:
   Enabled: true
 
+# コメント文は行を分けなくてもよい
 Style/InlineComment:
-  Enabled: true
+  Enabled: false
 
 Style/IpAddresses:
   Enabled: true
@@ -309,8 +319,9 @@ Style/KeywordParametersOrder:
 Style/MethodCallWithArgsParentheses:
   Enabled: true
 
+# elseがなくてもよい
 Style/MissingElse:
-  Enabled: true
+  Enabled: false
 
 Style/MultilineMethodSignature:
   Enabled: true
@@ -318,6 +329,7 @@ Style/MultilineMethodSignature:
 Style/OptionalBooleanParameter:
   Enabled: true
 
+# 変数の再定義を禁止
 Style/RedundantAssignment:
   Enabled: true
 
@@ -330,12 +342,14 @@ Style/RedundantFetchBlock:
 Style/RedundantFileExtensionInRequire:
   Enabled: true
 
+# 右辺に自変数をもつ代入を許可する
 Style/RedundantSelfAssignment:
-  Enabled: true
+  Enabled: false
 
-Style/SingleArgumentDig:
-  Enabled: true
+# Style/SingleArgumentDig:
+#   Enabled: true
 
+# 文字列の変数代入は#{}を使わなくてもよい
 Style/StringConcatenation:
-  Enabled: true
+  Enabled: false
 
