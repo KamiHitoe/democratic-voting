@@ -4,39 +4,38 @@
     <v-divider></v-divider>
     <v-container>
       <v-row>
-        <v-col v-for="(category, i) in categories" :key=i cols="4">
+        <v-col v-for="(category, i) in categories" :key="i" cols="4">
           <p>{{ category }}</p>
         </v-col>
       </v-row>
     </v-container>
-
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { categoryList } from '@/data/data'
+import Vue from "vue";
+import { categoryList } from "@/data/data";
 
 export default Vue.extend({
   data() {
     return {
       orgCategories: categoryList,
       categories: [],
-    }
+    };
   },
   created() {
     this.removeZero();
   },
   methods: {
     removeZero() {
-      for (let i in this.orgCategories) {
-        if (i !== '0') {
+      for (const i in this.orgCategories) {
+        if (i !== "0") {
           this.categories.push(this.orgCategories[i].category);
         }
       }
-    }
-  }
-})
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>

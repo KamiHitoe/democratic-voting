@@ -1,6 +1,5 @@
 <template>
   <section>
-
     <div class="contents">
       <div class="comment-info d-flex flex-row">
         <p class="data-margin">{{ order }}.</p>
@@ -18,33 +17,29 @@
           <v-icon color="white" small>mdi-message</v-icon>
         </NuxtLink>
         <div class="like-btn d-flex flex-row ml-auto">
-            <v-btn
-              icon
-              color="pink"
-            >
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
+          <v-btn icon color="pink">
+            <v-icon>mdi-heart</v-icon>
+          </v-btn>
           <p>{{ comment.like_num }}</p>
         </div>
       </div>
     </div>
-    
+
     <v-divider></v-divider>
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-  data() {
-    return {
-    }
-  },
   props: {
     comment: Object,
     order: Number,
   },
-})
+  data() {
+    return {};
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +51,8 @@ export default Vue.extend({
   .data-margin {
     margin-right: 0.5rem;
   }
-  .reply-btn, .like-btn {
+  .reply-btn,
+  .like-btn {
     margin: auto 0;
     .v-icon {
       margin-right: 0.3rem;
@@ -66,10 +62,10 @@ export default Vue.extend({
     }
   }
   .reply-btn {
-    color:$amber;
+    color: $amber;
   }
   .like-btn {
-    color:$pink;
+    color: $pink;
   }
   .comment-text {
     margin-bottom: 2rem;

@@ -1,13 +1,10 @@
-import RelatedTopics from '@/components/RelatedTopics.vue'
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount } from "@vue/test-utils";
+import RelatedTopics from "@/components/RelatedTopics.vue";
 
-describe('unit test RelatedTopics Component', () => {
+describe("unit test RelatedTopics Component", () => {
   const wrapper = shallowMount(RelatedTopics);
 
-  it('find subtitle', () => {
-    expect(wrapper.find('.subtitle').text()).toMatch('関連するお題');
-  })
-
+  it("find subtitle", () => {
+    expect(wrapper.find(".subtitle").text()).toMatch("関連するお題");
+  });
 });
-
-

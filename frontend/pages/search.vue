@@ -19,23 +19,18 @@
           background-color="amber lighten-4"
         ></v-select>
       </div>
-      <Topics 
-        v-for="topics in topicsList"
-        :key="topics.id"
-        :topics=topics
-      />
+      <Topics v-for="topics in topicsList" :key="topics.id" :topics="topics" />
     </div>
 
     <CategorySection />
-
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { topicsList } from '@/data/data'
-import CategorySection from '@/components/CategorySection.vue'
-import Topics from '@/components/Topics.vue'
+import Vue from "vue";
+import { topicsList } from "@/data/data";
+import CategorySection from "@/components/CategorySection.vue";
+import Topics from "@/components/Topics.vue";
 
 export default Vue.extend({
   components: {
@@ -44,17 +39,17 @@ export default Vue.extend({
   },
   data() {
     return {
-      optionItems: ['foo', 'bar', 'hoge'],
-      topicsList: topicsList,
-    }
+      optionItems: ["foo", "bar", "hoge"],
+      topicsList,
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
 h4 {
   text-align: left;
-  color: #FFC107;
+  color: #ffc107;
 }
 .contents {
   padding: 1rem;

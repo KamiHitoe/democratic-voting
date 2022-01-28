@@ -9,28 +9,23 @@
       placeholder="コメントを投稿してみよう！"
     >
     </v-textarea>
-    <v-btn
-      class="post-comment"
-      color="amber"
-      dark
-      @click="submitComment"
+    <v-btn class="post-comment" color="amber" dark @click="submitComment"
       >コメントを投稿する
     </v-btn>
-
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
+  props: {
+    topic_id: Number,
+  },
   data() {
     return {
       text: null,
       parent_id: null,
-    }
-  },
-  props: {
-    topic_id: Number,
+    };
   },
   methods: {
     async submitComment() {
@@ -38,12 +33,12 @@ export default Vue.extend({
         user_id: 1,
         text: this.text,
         parent_id: this.parent_id,
-      })
+      });
       // alert('post comment success!');
       window.location.reload();
-    }
+    },
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

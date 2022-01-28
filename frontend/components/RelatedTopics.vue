@@ -2,20 +2,19 @@
   <section class="related-topics">
     <h4 class="subtitle">関連するお題</h4>
     <v-divider></v-divider>
-    <Topics 
+    <Topics
       v-for="(topics, i) in topicsList"
       :key="topics.id"
       :topics="topics"
-      :order="i+1"
+      :order="i + 1"
     />
-
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { topicsList } from '@/data/data'
-import Topics from '@/components/Topics.vue'
+import Vue from "vue";
+import { topicsList } from "@/data/data";
+import Topics from "@/components/Topics.vue";
 
 export default Vue.extend({
   components: {
@@ -23,10 +22,10 @@ export default Vue.extend({
   },
   data() {
     return {
-      topicsList: topicsList,
-    }
+      topicsList,
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>
