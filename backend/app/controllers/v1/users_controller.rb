@@ -2,7 +2,7 @@
 module V1
   class UsersController < ApplicationController
     # run below function before the action run
-    before_action :get_user, only: [:show, :update]
+    before_action :get_user, only: %i[show update]
 
     # POST /users
     def create
@@ -18,7 +18,7 @@ module V1
     # PUT /users/:id
     def update
       @user.update(user_params)
-      head :no_content
+      head(:no_content)
     end
 
     private

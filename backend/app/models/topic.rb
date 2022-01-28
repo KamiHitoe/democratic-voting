@@ -20,15 +20,17 @@ class Topic < ApplicationRecord
             :option_2,
             :option_3,
             :option_4,
-            {length: {
+            { length: {
               maximum: 100,
-              message: 'this text is too long',
-            }})
+              message: 'this text is too long'
+            }
+})
   validates(:description,
-            {length: {
+            { length: {
               maximum: 500,
-              message: 'this description is too long',
-            }})
+              message: 'this description is too long'
+            }
+})
 
   def set_defaults
     timestamp = Time.now.to_formatted_s(:db)
@@ -40,5 +42,4 @@ class Topic < ApplicationRecord
     self.option_3_num ||= 0
     self.option_4_num ||= 0
   end
-
 end

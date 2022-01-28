@@ -12,10 +12,11 @@ class Comment < ApplicationRecord
 
   # validate string length
   validates(:text,
-    {length: {
-      maximum: 1000,
-      message: 'this comment is too long',
-    }})
+            { length: {
+              maximum: 1000,
+              message: 'this comment is too long'
+            }
+})
 
   def set_defaults
     timestamp = Time.now.to_formatted_s(:db)
@@ -24,5 +25,4 @@ class Comment < ApplicationRecord
     self.timestamp ||= timestamp
     self.like_num ||= 0
   end
-
 end

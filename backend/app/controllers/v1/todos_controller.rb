@@ -1,7 +1,7 @@
 # start URI from /v1/
 module V1
   class TodosController < ApplicationController
-    before_action :set_todo, only: [:show, :update, :destroy]
+    before_action :set_todo, only: %i[show update destroy]
 
     # GET /todos
     def index
@@ -23,13 +23,13 @@ module V1
     # PUT /todos/:id
     def update
       @todo.update(todo_params)
-      head :no_content
+      head(:no_content)
     end
 
     # DELETE /todos/:id
     def destroy
       @todo.destroy
-      head :no_content
+      head(:no_content)
     end
 
     private
