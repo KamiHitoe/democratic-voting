@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 // import axios from 'axios'
 
 export default Vue.extend({
@@ -16,23 +16,21 @@ export default Vue.extend({
     return {
       topics: [],
       errors: [],
-    }
+    };
   },
   created() {
-    this.$axios.get('/topics')
-    .then(res => {
-      console.log(res.data);
-      this.topics = res.data;
-    })
-    .catch((e) => {
-      this.errors.push(e);
-      console.log(this.errors);
-    })
-  }
-})
+    this.$axios
+      .get("/topics")
+      .then((res) => {
+        console.log(res.data);
+        this.topics = res.data;
+      })
+      .catch((e) => {
+        this.errors.push(e);
+        console.log(this.errors);
+      });
+  },
+});
 </script>
 
-<style lang="scss" scoped>
-
-
-</style>
+<style lang="scss" scoped></style>

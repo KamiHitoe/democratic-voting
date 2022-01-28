@@ -3,7 +3,6 @@
     <h4 class="subtitle">気になることを聞いてみよう！</h4>
     <form id="topics-form" action="#" @submit.prevent="submitTopics">
       <v-container>
-
         <v-text-field
           v-model="title"
           label="タイトル"
@@ -20,7 +19,7 @@
             <label for="category">カテゴリー</label>
             <select id="category" v-model="category_id" required>
               <option class="hidden" value="">カテゴリー</option>
-              <option v-for="category in categoryList" v-bind:value="category.id">
+              <option v-for="category in categoryList" :value="category.id">
                 {{ category.category }}
               </option>
             </select>
@@ -29,7 +28,7 @@
             <label for="sex">性別の特定</label>
             <select id="sex" v-model="sex">
               <option class="hidden" value="">性別の特定</option>
-              <option v-for="sex in sexItems" v-bind:value="sex.value">
+              <option v-for="sex in sexItems" :value="sex.value">
                 {{ sex.item }}
               </option>
             </select>
@@ -38,7 +37,7 @@
             <label for="age">年代の特定</label>
             <select id="age" v-model="age">
               <option class="hidden" value="">年代の特定</option>
-              <option v-for="age in ageItems" v-bind:value="age.value">
+              <option v-for="age in ageItems" :value="age.value">
                 {{ age.item }}
               </option>
             </select>
@@ -47,16 +46,16 @@
 
         <v-row>
           <v-col>
-              <v-file-input
-                color="amber"
-                label="画像を選択"
-                prepend-icon="mdi-camera"
-              ></v-file-input>
+            <v-file-input
+              color="amber"
+              label="画像を選択"
+              prepend-icon="mdi-camera"
+            ></v-file-input>
           </v-col>
           <v-col>
             <v-textarea
-              class=""
               v-model="description"
+              class=""
               auto-grow
               color="amber"
               label="内容説明"
@@ -116,24 +115,17 @@
           </v-col>
         </v-row>
 
-        <v-btn
-          class="submit-btn"
-          color="amber"
-          dark
-          type="submit"
-        >
+        <v-btn class="submit-btn" color="amber" dark type="submit">
           お題を作成する
         </v-btn>
       </v-container>
-
     </form>
-
   </section>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { categoryList } from '@/data/data'
+import Vue from "vue";
+import { categoryList } from "@/data/data";
 
 export default Vue.extend({
   data() {
@@ -148,34 +140,34 @@ export default Vue.extend({
       option_3: null,
       option_4: null,
       sexItems: [
-        { value: null, item: 'なし' },
-        { value: false, item: '男性' },
-        { value: true, item: '女性' },
+        { value: null, item: "なし" },
+        { value: false, item: "男性" },
+        { value: true, item: "女性" },
       ],
       ageItems: [
-        { value: null, item: 'なし' },
-        { value: 10, item: '10代' },
-        { value: 20, item: '20代' },
-        { value: 30, item: '30代' },
+        { value: null, item: "なし" },
+        { value: 10, item: "10代" },
+        { value: 20, item: "20代" },
+        { value: 30, item: "30代" },
       ],
-    }
+    };
   },
   computed: {
     categoryList: (): any => {
-      categoryList.shift()
-      return categoryList
+      categoryList.shift();
+      return categoryList;
     },
   },
   methods: {
     async submitTopics() {
-      const topicsForm: any = document.getElementById('topics-form');
+      const topicsForm: any = document.getElementById("topics-form");
       const topicsInputs = topicsForm.elements;
-      for (let e of topicsInputs) {
+      for (const e of topicsInputs) {
         // console.log(e);
         console.log(e.value);
       }
       console.log(this.title, this.description, this.option_1);
-      await this.$axios.post('/topics', {
+      await this.$axios.post("/topics", {
         user_id: 1,
         category_id: this.category_id,
         title: this.title,
@@ -184,12 +176,12 @@ export default Vue.extend({
         option_2: this.option_2,
         option_3: this.option_3,
         option_4: this.option_4,
-      })
-      alert('post topic success!');
-      window.location.replace('/');
-    }
-  }
-})
+      });
+      alert("post topic success!");
+      window.location.replace("/");
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -202,7 +194,7 @@ section {
 }
 
 select {
-	@extend %select-validation;
+  @extend %select-validation;
 }
 label {
   color: $gray;

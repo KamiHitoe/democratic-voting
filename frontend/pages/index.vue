@@ -1,40 +1,39 @@
 <template>
   <main>
-    <v-btn class="create-topics" color="amber" to="/create-topics" dark>新しくお題を作成する</v-btn>
-    <br>
+    <v-btn class="create-topics" color="amber" to="/create-topics" dark
+      >新しくお題を作成する</v-btn
+    >
+    <br />
 
     <v-tabs
       v-model="tab"
       color="amber"
       slider-color="amber"
       centered
-      fixed-tabs  
+      fixed-tabs
     >
-      <v-tab v-for="(item, i) in tabItems" :key=i>
+      <v-tab v-for="(item, i) in tabItems" :key="i">
         {{ item.title }}
       </v-tab>
     </v-tabs>
-    <Topics 
+    <Topics
       v-for="(topics, i) in topicsList"
       :key="topics.id"
       :topics="topics"
-      :order="i+1"
+      :order="i + 1"
     />
 
     <CategorySection />
-
-
-
   </main>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import CategorySection from '@/components/CategorySection.vue'
-import Topics from '@/components/Topics.vue'
+import Vue from "vue";
+import CategorySection from "@/components/CategorySection.vue";
+import Topics from "@/components/Topics.vue";
 
 export default Vue.extend({
-  name: 'IndexPage',
+  name: "IndexPage",
   components: {
     CategorySection,
     Topics,
@@ -43,31 +42,31 @@ export default Vue.extend({
     return {
       tab: null,
       tabItems: [
-        {title: '急上昇中のお題'},
-        {title: '新着のお題'},
-        {title: '殿堂入りのお題'},
+        { title: "急上昇中のお題" },
+        { title: "新着のお題" },
+        { title: "殿堂入りのお題" },
       ],
       topicsList: [],
-    }
+    };
   },
   created() {
     this.getTopics();
   },
   methods: {
     async getTopics() {
-      const res = await this.$axios.get('/topics')
+      const res = await this.$axios.get("/topics");
       const reBar = /-/g;
       const reT = /T/g;
       const reDate = /\d{4}-\d{2}-\d{2}T\d+:\d+/g;
       console.log(res.data);
-      for (let record of res.data) {
+      for (const record of res.data) {
         console.log(record.created_at);
         console.log(typeof record.created_at);
       }
       this.topicsList = res.data;
-    }
+    },
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

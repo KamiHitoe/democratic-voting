@@ -1,15 +1,27 @@
 <template>
   <main>
     <section class="vote-contents">
-      <h4 class="subtitle">トップ　＞　{{ categoryList[topics.category_id].category }}</h4>
+      <h4 class="subtitle">
+        トップ　＞　{{ categoryList[topics.category_id].category }}
+      </h4>
       <v-divider></v-divider>
       <div class="vote-body d-flex flex-row">
-        <img class="topics-img" :src="topics.img_path">
+        <img class="topics-img" :src="topics.img_path" />
         <div class="topics-contents d-flex flex-column">
           <div class="d-flex flex-row">
-            <p class="data-margin">{{ topics.option_1_num + topics.option_2_num + topics.option_3_num + topics.option_4_num }} votes</p>
+            <p class="data-margin">
+              {{
+                topics.option_1_num +
+                topics.option_2_num +
+                topics.option_3_num +
+                topics.option_4_num
+              }}
+              votes
+            </p>
             <p class="data-margin">{{ topics.timestamp }}</p>
-            <p class="data-margin change-color">{{ categoryList[topics.category_id].category }}</p>
+            <p class="data-margin change-color">
+              {{ categoryList[topics.category_id].category }}
+            </p>
           </div>
           <h2 class="topics-title">{{ topics.title }}</h2>
         </div>
@@ -18,18 +30,15 @@
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
       <v-btn
+        v-if="!voting"
         class="vote-btn"
         color="amber"
         dark
         @click="openVoting"
-        v-if="!voting"
         >投票する
       </v-btn>
 
-      <Voting
-        v-if="voting"
-        :topics="topics"
-      />
+      <Voting v-if="voting" :topics="topics" />
     </section>
 
     <section class="comment-contents">
@@ -40,28 +49,25 @@
         :key="comment.id"
         :comment="comment"
         :topic_id="topics.id"
-        :order="i+1"
+        :order="i + 1"
       />
-      <CommentBox 
-        :topic_id="topics.id"
-      />
+      <CommentBox :topic_id="topics.id" />
     </section>
 
     <RelatedTopics />
     <CategorySection />
-
   </main>
 </template>
 
 <script>
 // import Vue from 'vue'
-import Chart from 'chart.js'
-import CategorySection from '@/components/CategorySection.vue'
-import Comments from '@/components/Comments.vue'
-import CommentBox from '@/components/CommentBox.vue'
-import RelatedTopics from '@/components/RelatedTopics.vue'
-import Voting from '@/components/Voting.vue'
-import { categoryList } from '@/data/data'
+import Chart from "chart.js";
+import CategorySection from "@/components/CategorySection.vue";
+import Comments from "@/components/Comments.vue";
+import CommentBox from "@/components/CommentBox.vue";
+import RelatedTopics from "@/components/RelatedTopics.vue";
+import Voting from "@/components/Voting.vue";
+import { categoryList } from "@/data/data";
 
 export default {
   components: {
@@ -78,16 +84,16 @@ export default {
         category_id: 0,
       },
       commentList: [],
-      categoryList: categoryList,
+      categoryList,
       voting: false,
-    }
+    };
   },
   async mounted() {
     await this.getTopics();
     await this.getComments();
-    const ctx = document.getElementById('resultChart');
+    const ctx = document.getElementById("resultChart");
     new Chart(ctx, {
-      type: 'pie',
+      type: "pie",
       data: {
         labels: [
           this.topics.option_1,
@@ -95,33 +101,35 @@ export default {
           this.topics.option_3,
           this.topics.option_4,
         ],
-        datasets: [{
-          label: 'My First Dataset',
-          data: [
-            this.topics.option_1_num,
-            this.topics.option_2_num,
-            this.topics.option_3_num,
-            this.topics.option_4_num,
-          ],
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(255, 5, 86)',
-          ],
-          hoverOffset: 4
-        }]
+        datasets: [
+          {
+            label: "My First Dataset",
+            data: [
+              this.topics.option_1_num,
+              this.topics.option_2_num,
+              this.topics.option_3_num,
+              this.topics.option_4_num,
+            ],
+            backgroundColor: [
+              "rgb(255, 99, 132)",
+              "rgb(54, 162, 235)",
+              "rgb(255, 205, 86)",
+              "rgb(255, 5, 86)",
+            ],
+            hoverOffset: 4,
+          },
+        ],
       },
       options: {
         plugins: {
           legend: {
             display: true,
-            position: 'right',
-            align: 'left',
-          }
-        }
+            position: "right",
+            align: "left",
+          },
+        },
       },
-    })
+    });
   },
   methods: {
     async getTopics() {
@@ -139,14 +147,17 @@ export default {
       this.voting = true;
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.subtitle, .topics-title, .topics-description {
+.subtitle,
+.topics-title,
+.topics-description {
   text-align: left;
 }
-.change-color, .comment-subtitle {
+.change-color,
+.comment-subtitle {
   color: $amber;
 }
 .vote-contents {

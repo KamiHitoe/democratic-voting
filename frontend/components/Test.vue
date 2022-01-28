@@ -6,15 +6,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-  data() {
-    return {
-      // message: null,
-    }
-  },
   props: {
     message: String,
   },
-})
+  data() {
+    return {
+      // message: null,
+    };
+  },
+});
 </script>

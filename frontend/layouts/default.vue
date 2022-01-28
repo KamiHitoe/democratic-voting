@@ -6,16 +6,9 @@
           <h1>みんなの投票箱</h1>
           <v-icon color="white" large>mdi-mailbox</v-icon>
         </NuxtLink>
-        <v-menu
-          left
-          bottom
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              icon
-              v-bind="attrs"
-              v-on="on"
-            >
+        <v-menu left bottom>
+          <template #activator="{ on, attrs }">
+            <v-btn icon v-bind="attrs" v-on="on">
               <v-icon large color="white">mdi-menu</v-icon>
             </v-btn>
           </template>
@@ -31,7 +24,7 @@
           </v-list>
         </v-menu>
       </div>
-      
+
       <div class="d-flex flex-row justify-space-between header-subtitle">
         <h4 class="subtitle">気になることをみんなの投票で決めよう！</h4>
         <v-text-field
@@ -47,14 +40,10 @@
           @click:append="searchByKeyword"
         ></v-text-field>
       </div>
-
     </header>
 
-
     <v-main>
-      <v-container
-        fluid
-      >
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
@@ -72,36 +61,33 @@
       ∧
     </v-btn>
 
-    <v-footer
-      :absolute="!fixed"
-      app
-      color="amber"
-      dark
-    >
-      <span class="footer-text">DemocraticVoting.com &copy; {{ new Date().getFullYear() }}</span>
+    <v-footer :absolute="!fixed" app color="amber" dark>
+      <span class="footer-text"
+        >DemocraticVoting.com &copy; {{ new Date().getFullYear() }}</span
+      >
     </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  name: 'DefaultLayout',
-  data () {
+  name: "DefaultLayout",
+  data() {
     return {
-      menuList: ['ユーザー登録', 'ログイン'],
-    }
+      menuList: ["ユーザー登録", "ログイン"],
+    };
   },
   methods: {
     searchByKeyword() {
-      console.log('search by keyword');
-      window.location.replace('/search')
+      console.log("search by keyword");
+      window.location.replace("/search");
     },
     moveTop() {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
