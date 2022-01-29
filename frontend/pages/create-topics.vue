@@ -125,20 +125,21 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { CategoryObj } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
   data() {
     return {
-      title: null,
-      category_id: null,
-      sex: null,
-      age: null,
-      description: null,
-      option_1: null,
-      option_2: null,
-      option_3: null,
-      option_4: null,
+      title: null as string,
+      category_id: null as number,
+      sex: null as boolean,
+      age: null as number,
+      description: null as string,
+      option_1: null as string,
+      option_2: null as string,
+      option_3: null as string,
+      option_4: null as string,
       sexItems: [
         { value: null, item: "なし" },
         { value: false, item: "男性" },
@@ -153,7 +154,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    categoryList: (): any => {
+    categoryList: (): CategoryObj[] => {
       categoryList.shift();
       return categoryList;
     },
@@ -161,7 +162,7 @@ export default Vue.extend({
   methods: {
     async submitTopics() {
       const topicsForm: any = document.getElementById("topics-form");
-      const topicsInputs = topicsForm.elements;
+      const topicsInputs: any = topicsForm.elements;
       for (const e of topicsInputs) {
         // console.log(e);
         console.log(e.value);

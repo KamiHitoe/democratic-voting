@@ -16,24 +16,27 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import { Comment } from "@/types";
+
 export default Vue.extend({
   props: {
-    topic_id: Number,
+    topic_id: { type: Number },
   },
   data() {
     return {
-      text: null,
-      parent_id: null,
+      text: null as string,
+      parent_id: null as number,
     };
   },
   methods: {
     async submitComment() {
-      await this.$axios.post(`/topics/${this.topic_id}/comments`, {
+      let comment: Comment = {
         user_id: 1,
         text: this.text,
         parent_id: this.parent_id,
-      });
+      }
+      await this.$axios.post(`/topics/${this.topic_id}/comments`, comment);
       // alert('post comment success!');
       window.location.reload();
     },

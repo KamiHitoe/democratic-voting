@@ -35,14 +35,16 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import { Topic } from "@/types";
+
 export default Vue.extend({
   props: {
-    topics: Object,
+    topics: { type: Object as PropType<Topic> },
   },
   data() {
     return {
-      chosenOption: null,
+      chosenOption: null as string,
     };
   },
   methods: {
