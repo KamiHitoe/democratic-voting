@@ -33,7 +33,7 @@ import CategorySection from "@/components/CategorySection.vue";
 import Topics from "@/components/Topics.vue";
 
 export default Vue.extend({
-  name: "IndexPage",
+  // name: "IndexPage",
   components: {
     CategorySection,
     Topics,
@@ -55,14 +55,10 @@ export default Vue.extend({
   methods: {
     async getTopics() {
       const res = await this.$axios.get("/topics");
-      const reBar = /-/g;
-      const reT = /T/g;
-      const reDate = /\d{4}-\d{2}-\d{2}T\d+:\d+/g;
-      console.log(res.data);
-      for (const record of res.data) {
-        console.log(record.created_at);
-        console.log(typeof record.created_at);
-      }
+      // for (const record of res.data) {
+      //   console.log(record.created_at);
+      //   console.log(typeof record.created_at);
+      // }
       this.topicsList = res.data;
     },
   },

@@ -30,11 +30,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import { Comment } from "@/types";
+
 export default Vue.extend({
   props: {
-    comment: Object,
-    order: Number,
+    comment: { type: Object as PropType<Comment> },
+    order: { type: Number },
   },
   data() {
     return {};

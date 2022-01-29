@@ -10,8 +10,10 @@
   - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
   - [Guide to Unit Testing Vue Components](https://testdriven.io/blog/vue-unit-testing/)
 - Format
+  - [How To Use TypeScript with Vue Single File Components](https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue)
   - [How to properly set up Nuxt with ESLint and Prettier in VSCode](https://medium.com/@gogl.alex/how-to-properly-set-up-eslint-with-prettier-for-vue-or-nuxt-in-vscode-e42532099a9c)
   - [Rubocop Configuration Files for Rails](https://prabinpoudel.com.np/articles/rubocop-configuration-files-for-rails/)
+
 
 ### つまった点
 

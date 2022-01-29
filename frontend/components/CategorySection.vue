@@ -14,13 +14,14 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { CategoryObj } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
   data() {
     return {
-      orgCategories: categoryList,
-      categories: [],
+      orgCategories: categoryList as CategoryObj[],
+      categories: [] as string[],
     };
   },
   created() {

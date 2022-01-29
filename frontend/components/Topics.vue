@@ -37,17 +37,18 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropType } from "vue";
+import { Topic, CategoryObj } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
   props: {
-    topics: Object,
-    order: Number,
+    topics: { type: Object as PropType<Topic> },
+    order: { type: Number },
   },
   data() {
     return {
-      categoryList,
+      categoryList: categoryList as CategoryObj[],
     };
   },
 });
