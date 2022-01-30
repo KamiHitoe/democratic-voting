@@ -1,6 +1,8 @@
 class Topic < ApplicationRecord
   # model association
+  belongs_to :user
   has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   # set default value
   after_initialize :set_defaults, unless: :persisted?

@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.create(username: 'hitoe', age: 26, sex: false)
+User.create(username: 'miyuki', age: 14, sex: true)
+User.create(username: 'noiru', age: 16, sex: true)
+
 Topic.create(user_id: 1, category_id: 1, title: '最強の百合漫画', description: '最強の百合漫画を決めるスレッドです。今宵、史上最強の百合カップリングを決めましょう',
              option_1: 'やがて君になる', option_2: 'マリア様がみてる', option_3: 'ゆるゆり', option_4: 'Citrus',
              option_1_num: 50, option_2_num: 70, option_3_num: 60, option_4_num: 40,

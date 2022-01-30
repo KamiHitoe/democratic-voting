@@ -1,7 +1,6 @@
 class CreateTopics < ActiveRecord::Migration[7.0]
   def change
     create_table :topics do |t|
-      t.integer :user_id
       t.integer :category_id
       t.string :title
       t.text :description
@@ -14,6 +13,8 @@ class CreateTopics < ActiveRecord::Migration[7.0]
       t.integer :option_3_num
       t.integer :option_4_num
       t.string :img_path
+      t.string :timestamp
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

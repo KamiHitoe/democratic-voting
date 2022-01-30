@@ -27,6 +27,6 @@ export interface Topic {
 
 export interface CategoryObj {
   id: number;
-  category: string;
+  category: null | string;
 }
 
