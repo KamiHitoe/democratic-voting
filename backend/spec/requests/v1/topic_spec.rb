@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe(Topic, type: :request) do
   describe 'test Topic request' do
     before(:each) do
+      @user = create(:user)
       @topic = create(:topic)
     end
 
@@ -22,7 +23,7 @@ RSpec.describe(Topic, type: :request) do
     it 'create a new topic' do
       expect do
         post('/v1/topics', params: {
-               user_id: 5,
+               user_id: @user.id,
                category_id: 5,
                title: 'new title',
                description: 'new description',

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe(Comment, type: :request) do
   describe 'test Comment request' do
     before(:each) do
+      @user = create(:user)
       @topic = create(:topic)
       @comment = create(:comment, topic_id: @topic.id)
     end
@@ -23,7 +24,7 @@ RSpec.describe(Comment, type: :request) do
     it 'create a new comment' do
       expect do
         post("/v1/topics/#{@topic.id}/comments", params: {
-               user_id: 5,
+               user_id: @user.id,
                text: 'new text'
              })
       end.to(change(Comment, :count).by(1))

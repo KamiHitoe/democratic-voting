@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :comment do
-    # belong_to
+    # belongs_to
+    association :user
     association :topic
-    sequence(:user_id) { |n| n.to_s }
+    # sequence(:user_id) { |n| n.to_s }
     text { 'test comment' }
   end
 end

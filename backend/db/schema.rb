@@ -10,65 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_123_080_202) do
+ActiveRecord::Schema.define(version: 2022_01_30_015235) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'comments', force: :cascade do |t|
-    t.integer('user_id')
-    t.integer('parent_id')
-    t.text('text')
-    t.integer('like_num')
-    t.bigint('topic_id', null: false)
-    t.datetime('created_at', precision: 6, null: false)
-    t.datetime('updated_at', precision: 6, null: false)
-    t.string('timestamp')
-    t.index(['topic_id'], name: 'index_comments_on_topic_id')
+  create_table "comments", force: :cascade do |t|
+    t.integer "parent_id"
+    t.text "text"
+    t.integer "like_num"
+    t.string "timestamp"
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_comments_on_topic_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table 'items', force: :cascade do |t|
-    t.string('name')
-    t.boolean('done')
-    t.bigint('todo_id', null: false)
-    t.datetime('created_at', precision: 6, null: false)
-    t.datetime('updated_at', precision: 6, null: false)
-    t.index(['todo_id'], name: 'index_items_on_todo_id')
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table 'todos', force: :cascade do |t|
-    t.string('title')
-    t.string('created_by')
-    t.datetime('created_at', precision: 6, null: false)
-    t.datetime('updated_at', precision: 6, null: false)
+  create_table "topics", force: :cascade do |t|
+    t.integer "category_id"
+    t.string "title"
+    t.text "description"
+    t.string "option_1"
+    t.string "option_2"
+    t.string "option_3"
+    t.string "option_4"
+    t.integer "option_1_num"
+    t.integer "option_2_num"
+    t.integer "option_3_num"
+    t.integer "option_4_num"
+    t.string "img_path"
+    t.string "timestamp"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
-  create_table 'topics', force: :cascade do |t|
-    t.integer('user_id')
-    t.integer('category_id')
-    t.string('title')
-    t.text('description')
-    t.string('option_1')
-    t.string('option_2')
-    t.string('option_3')
-    t.string('option_4')
-    t.integer('option_1_num')
-    t.integer('option_2_num')
-    t.integer('option_3_num')
-    t.integer('option_4_num')
-    t.string('img_path')
-    t.datetime('created_at', precision: 6, null: false)
-    t.datetime('updated_at', precision: 6, null: false)
-    t.string('timestamp')
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.integer "age"
+    t.boolean "sex"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string('username')
-    t.integer('age')
-    t.boolean('sex')
-    t.datetime('created_at', precision: 6, null: false)
-    t.datetime('updated_at', precision: 6, null: false)
+  create_table "votes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_votes_on_topic_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  add_foreign_key 'comments', 'topics'
-  add_foreign_key 'items', 'todos'
+  add_foreign_key "comments", "topics"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "comments"
+  add_foreign_key "likes", "users"
+  add_foreign_key "topics", "users"
+  add_foreign_key "votes", "topics"
+  add_foreign_key "votes", "users"
 end
