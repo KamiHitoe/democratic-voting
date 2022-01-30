@@ -6,9 +6,8 @@ RSpec.describe(Topic, type: :model) do
       @topic = create(:topic)
     end
 
-    it 'create topic by factory_bot' do
+    it 'valid topic object' do
       expect(@topic).to(be_valid)
-      # expect(topic.option_1_num).to eq(10)
     end
 
     it 'topic has default values' do
