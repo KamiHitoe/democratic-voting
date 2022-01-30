@@ -6,7 +6,7 @@ RSpec.describe(Comment, type: :model) do
       @comment = create(:comment)
     end
 
-    it 'create comment by factory_bot' do
+    it 'valid comment object' do
       expect(@comment).to(be_valid)
     end
 
