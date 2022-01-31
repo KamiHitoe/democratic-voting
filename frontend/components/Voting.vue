@@ -28,6 +28,7 @@
         ></v-radio>
       </v-radio-group>
     </div>
+
     <v-btn class="vote-btn" color="amber" dark @click="submitVoting"
       >投票する</v-btn
     >
@@ -44,6 +45,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      user: {id: 1} as Object,
       chosenOption: null as string,
     };
   },
@@ -53,6 +55,7 @@ export default Vue.extend({
         await this.$axios.put(`/topics/${this.topics.id}`, {
           chosen_option: this.chosenOption,
         });
+        await this.$axios.post(`votes/${this.user.id}/${this.topics.id}`)
         window.location.reload();
       }
     },
