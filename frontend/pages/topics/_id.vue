@@ -29,16 +29,22 @@
       <p class="topics-description">{{ topics.description }}</p>
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
-      <v-btn
-        v-if="!voting"
-        class="vote-btn"
-        color="amber"
-        dark
-        @click="openVoting"
-        >投票する
-      </v-btn>
 
-      <Voting v-if="voting" :topics="topics" />
+      <div v-if="voted_status">
+        <p class="voted-comment">投票ありがとうございました！</p>
+      </div>
+      <div v-else>
+        <v-btn
+          v-if="!voting"
+          class="vote-btn"
+          color="amber"
+          dark
+          @click="openVoting"
+          >投票する
+        </v-btn>
+
+        <Voting v-if="voting" :topics="topics" />
+      </div>
     </section>
 
     <section class="comment-contents">
@@ -85,12 +91,16 @@ export default {
       },
       commentList: [],
       categoryList,
+      user: {id: 1},
+      voted_status: false,
       voting: false,
     };
   },
   async mounted() {
     await this.getTopics();
     await this.getComments();
+    await this.getVotedStatus();
+
     const ctx = document.getElementById("resultChart");
     new Chart(ctx, {
       type: "pie",
@@ -132,8 +142,12 @@ export default {
     });
   },
   methods: {
+    async getVotedStatus() {
+      const res = await this.$axios.get(`/votes/${this.user.id}/${this.topics.id}`)
+      this.voted_status = res.data.voted_status
+      console.log(this.voted_status);
+    },
     async getTopics() {
-      console.log(this.topic_id);
       const res = await this.$axios.get(`/topics/${this.id}`);
       this.topics = res.data;
       console.log(this.topics);
@@ -167,7 +181,7 @@ export default {
   .vote-body {
     margin-top: 1rem;
   }
-  .vote-btn {
+  .vote-btn, .voted-comment {
     margin: 1rem 0;
   }
 }
