@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { Topic } from "@/types";
+import { User, Topic } from "@/types";
 
 export default Vue.extend({
   props: {
@@ -45,7 +45,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      user: {id: 1} as Object,
+      user: {
+        id: 1,
+        username: 'hitoe',
+        sex: false,
+        age: 20,
+      } as User,
       chosenOption: null as string,
     };
   },

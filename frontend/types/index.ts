@@ -1,4 +1,11 @@
 
+export interface User {
+  id?: number;
+  username: string;
+  sex: boolean;
+  age: number;
+}
+
 export interface Comment {
   id?: number;
   user_id: number;

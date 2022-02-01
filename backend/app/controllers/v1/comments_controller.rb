@@ -2,7 +2,7 @@
 module V1
   class CommentsController < ApplicationController
     # run below function before the action run
-    before_action :get_topic
+    before_action :get_topic, excpet: [:search_by_id]
     before_action :get_topic_comment, only: %i[show update destroy]
 
     # GET /topics/:topic_id/comments
@@ -19,6 +19,14 @@ module V1
     # GET /topics/:topic_id/comments/:id
     def show
       json_response(@comment)
+    end
+
+    # GET /comments/:replied_comment_id
+    def search_by_id
+      puts params[:replied_comment_id]
+      # comments = Comment.where(parent_id: params[:replied_comment_id]).all
+      comments = Comment.find_by(parent_id: 1)
+      json_response(comments)
     end
 
     # PUT /topics/:topic_id/comments/:id

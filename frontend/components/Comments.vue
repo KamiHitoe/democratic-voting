@@ -12,10 +12,12 @@
       </div>
       <p class="comment-text data-margin">{{ comment.text }}</p>
       <div class="d-flex flex-row">
-        <NuxtLink class="replied-messages d-flex flex-row" to="#">
+
+        <NuxtLink v-if="comment.reply_num" class="replied-messages d-flex flex-row" to="#">
           <h5 class="reply_num">{{ comment.reply_num }}件の返信</h5>
           <v-icon color="white" small>mdi-message</v-icon>
         </NuxtLink>
+        <p v-else></p>
 
         <div v-if="liked_status" class="like-btn d-flex flex-row ml-auto">
           <v-btn icon color="pink" @click="unlike">
@@ -38,7 +40,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { Comment } from "@/types";
+import { User, Comment } from "@/types";
 
 export default Vue.extend({
   props: {
@@ -47,10 +49,15 @@ export default Vue.extend({
   },
   data() {
     return {
-      user: {id: 1} as Object,
+      user: {
+        id: 1,
+        username: 'hitoe',
+        sex: false,
+        age: 20,
+      } as User,
       liked_status: false as boolean,
       like_num: 0 as number,
-    }
+    };
   },
   created() {
     this.countLikes();

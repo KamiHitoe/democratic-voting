@@ -29,22 +29,6 @@
       <p class="topics-description">{{ topics.description }}</p>
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
-
-      <div v-if="voted_status">
-        <p class="voted-comment">投票ありがとうございました！</p>
-      </div>
-      <div v-else>
-        <v-btn
-          v-if="!voting"
-          class="vote-btn"
-          color="amber"
-          dark
-          @click="openVoting"
-          >投票する
-        </v-btn>
-
-        <Voting v-if="voting" :topics="topics" />
-      </div>
     </section>
 
     <section class="comment-contents">
@@ -60,8 +44,6 @@
       <CommentBox :topic_id="topics.id" />
     </section>
 
-    <RelatedTopics />
-    <CategorySection />
   </main>
 </template>
 
@@ -85,20 +67,19 @@ export default {
   },
   data() {
     return {
-      topic_id: this.$route.params.id,
+      topic_id: this.$route.params.topic_id,
+      comment_id: this.$route.params.id,
       topics: {
         category_id: 0,
       },
       commentList: [],
       categoryList,
       user: { id: 1 },
-      voted_status: false,
-      voting: false,
     };
   },
   async mounted() {
     await this.getTopics();
-    await this.getComments();
+    await this.getRepliedComments();
     await this.getVotedStatus();
 
     const ctx = document.getElementById("resultChart");
@@ -142,28 +123,18 @@ export default {
     });
   },
   methods: {
-    async getVotedStatus() {
-      const res = await this.$axios.get(
-        `/votes/${this.user.id}/${this.topics.id}`
-      );
-      this.voted_status = res.data.voted_status;
-      console.log(this.voted_status);
-    },
     async getTopics() {
       const res = await this.$axios.get(`/topics/${this.topic_id}`);
       this.topics = res.data;
       console.log(this.topics);
     },
-    async getComments() {
-      const res = await this.$axios.get(`/topics/${this.topic_id}/comments`);
+    async getRepliedComments() {
+      const res = await this.$axios.get(`/comments/${this.comment_id}`);
       this.commentList = res.data;
       console.log(res.data);
     },
-    openVoting() {
-      this.voting = true;
-    },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
