@@ -80,7 +80,6 @@ export default {
   async mounted() {
     await this.getTopics();
     await this.getRepliedComments();
-    await this.getVotedStatus();
 
     const ctx = document.getElementById("resultChart");
     new Chart(ctx, {
@@ -129,7 +128,7 @@ export default {
       console.log(this.topics);
     },
     async getRepliedComments() {
-      const res = await this.$axios.get(`/comments/${this.comment_id}`);
+      const res = await this.$axios.get(`/comments/${this.topic_id}/${this.comment_id}`);
       this.commentList = res.data;
       console.log(res.data);
     },
