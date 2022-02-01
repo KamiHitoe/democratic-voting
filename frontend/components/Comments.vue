@@ -13,8 +13,8 @@
       <p class="comment-text data-margin">{{ comment.text }}</p>
       <div class="d-flex flex-row">
 
-        <NuxtLink v-if="comment.reply_num" class="replied-messages d-flex flex-row" to="#">
-          <h5 class="reply_num">{{ comment.reply_num }}件の返信</h5>
+        <NuxtLink v-if="replyList.length" class="replied-messages d-flex flex-row" :to="`/topics/${topic_id}/${comment.id}`">
+          <h5 class="reply_num">{{ replyList.length }} 件の返信</h5>
           <v-icon color="white" small>mdi-message</v-icon>
         </NuxtLink>
         <p v-else></p>
@@ -46,6 +46,7 @@ export default Vue.extend({
   props: {
     comment: { type: Object as PropType<Comment> },
     order: { type: Number },
+    topic_id: { type: Number },
   },
   data() {
     return {
@@ -57,11 +58,13 @@ export default Vue.extend({
       } as User,
       liked_status: false as boolean,
       like_num: 0 as number,
+      replyList: [] as Comment[],
     };
   },
   created() {
     this.countLikes();
     this.getLikedStatus();
+    this.getReplyList();
   },
   methods: {
     async countLikes() {
@@ -81,6 +84,10 @@ export default Vue.extend({
       this.liked_status = false;
       await this.$axios.delete(`likes/${this.user.id}/${this.comment.id}`);
       this.countLikes();
+    },
+    async getReplyList() {
+      const res = await this.$axios.get(`/comments/${this.topic_id}/${this.comment.id}`);
+      this.replyList = res.data;
     },
   },
 });

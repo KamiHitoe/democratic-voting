@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :topics, only: %i[index create show update] do
       resources :comments, only: %i[index create show update]
     end
-    get 'comments/:replied_comment_id', to: 'comments#search_by_id'
+
+    # must need parent table's id
+    get 'comments/:topic_id/:replied_comment_id', to: 'comments#search_by_id'
   end
 end

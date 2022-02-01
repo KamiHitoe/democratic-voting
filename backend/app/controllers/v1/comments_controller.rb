@@ -21,11 +21,10 @@ module V1
       json_response(@comment)
     end
 
-    # GET /comments/:replied_comment_id
+    # GET /comments/:topic_id/:replied_comment_id
     def search_by_id
       puts params[:replied_comment_id]
-      # comments = Comment.where(parent_id: params[:replied_comment_id]).all
-      comments = Comment.find_by(parent_id: 1)
+      comments = Comment.where(parent_id: params[:replied_comment_id]).all
       json_response(comments)
     end
 
