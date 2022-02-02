@@ -17,7 +17,7 @@
             <v-list-item
               v-for="(menu, i) in menuList"
               :key="i"
-              @click="() => {}"
+              @click="moveUserPage(i)"
             >
               <v-list-item-title>{{ menu }}</v-list-item-title>
             </v-list-item>
@@ -75,6 +75,7 @@ export default {
   data() {
     return {
       menuList: ["ユーザー登録", "ログイン"],
+      pathList: ["/user", "/user"],
     };
   },
   methods: {
@@ -85,6 +86,9 @@ export default {
     moveTop() {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    },
+    moveUserPage(i) {
+      window.location.replace(this.pathList[i]);
     },
   },
 };

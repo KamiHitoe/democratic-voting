@@ -5,7 +5,7 @@
         トップ　＞　{{ categoryList[topics.category_id].category }}
       </h4>
       <v-divider></v-divider>
-      <div class="vote-body d-flex flex-row">
+      <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topics.id}`">
         <img class="topics-img" :src="topics.img_path" />
         <div class="topics-contents d-flex flex-column">
           <div class="d-flex flex-row">
@@ -25,7 +25,7 @@
           </div>
           <h2 class="topics-title">{{ topics.title }}</h2>
         </div>
-      </div>
+      </nuxt-link>
       <p class="topics-description">{{ topics.description }}</p>
 
       <canvas id="resultChart" width="100vw" height="20vw"></canvas>
@@ -152,6 +152,7 @@ export default {
   text-align: center;
   .vote-body {
     margin-top: 1rem;
+    color: $text;
   }
   .vote-btn,
   .voted-comment {
