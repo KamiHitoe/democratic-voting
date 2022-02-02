@@ -1,17 +1,37 @@
 <template>
-  <section>
-    <h4 class="subtitle">コメントを投稿する</h4>
-    <v-textarea
-      v-model="text"
-      outlined
-      color="amber"
-      name="comment-box"
-      placeholder="コメントを投稿してみよう！"
-    >
-    </v-textarea>
-    <v-btn class="post-comment" color="amber" dark @click="submitComment"
-      >コメントを投稿する
-    </v-btn>
+  <section id="comment-box">
+    <div v-if="$store.state.parent_id">
+      <h4 class="subtitle">コメントを投稿する</h4>
+      <h4 class="text-header">{{ text_header }}</h4>
+      <v-textarea
+        v-model="text"
+        outlined
+        color="amber"
+        name="comment-box"
+        placeholder="コメントを投稿してみよう！"
+      >
+      </v-textarea>
+      <v-btn class="post-comment" color="amber" dark @click="submitComment"
+        >コメントを投稿する
+      </v-btn>
+    </div>
+    <div v-else>
+      <h4 class="subtitle">コメントを投稿する</h4>
+      <v-textarea
+        v-model="text"
+        outlined
+        color="amber"
+        name="comment-box"
+        placeholder="コメントを投稿してみよう！"
+      >
+      </v-textarea>
+      <v-btn class="post-comment" color="amber" dark @click="submitComment"
+        >コメントを投稿する
+      </v-btn>
+    </div>
+
+
+
   </section>
 </template>
 
@@ -25,20 +45,38 @@ export default Vue.extend({
   },
   data() {
     return {
+      parent_id: this.$store.state.parent_id as number,
+      text_header: null as string,
       text: null as string,
-      parent_id: null as number,
     };
+  },
+  updated() {
+    this.getParentId()
   },
   methods: {
     async submitComment() {
-      let comment: Comment = {
-        user_id: 1,
-        text: this.text,
-        parent_id: this.parent_id,
+      let comment: Comment;
+      if (this.parent_id) {
+        comment = {
+          user_id: 1,
+          text: `${this.text_header}\n${this.text}`,
+          parent_id: this.parent_id,
+        }
+      } else {
+        comment = {
+          user_id: 1,
+          text: this.text,
+          parent_id: this.parent_id,
+        }
       }
       await this.$axios.post(`/topics/${this.topic_id}/comments`, comment);
       // alert('post comment success!');
       window.location.reload();
+    },
+    getParentId() {
+      this.parent_id = this.$store.state.parent_id;
+      this.text_header = `>> ${this.$store.state.parent_id}`
+      console.log(this.parent_id);
     },
   },
 });
@@ -53,6 +91,11 @@ section {
   }
   .post-comment {
     margin-bottom: 0.3rem;
+  }
+  .text-header {
+    text-align: left;
+    color: $amber;
+    margin-bottom: 0;
   }
 }
 </style>

@@ -5,7 +5,7 @@
         <p class="data-margin">{{ order }}.</p>
         <p class="data-margin">名無しさん</p>
         <p class="data-margin">{{ comment.timestamp }}</p>
-        <button class="reply-btn d-flex flex-row ml-auto">
+        <button class="reply-btn d-flex flex-row ml-auto" @click="reply">
           <v-icon color="amber">mdi-reply</v-icon>
           <p>返信</p>
         </button>
@@ -89,12 +89,22 @@ export default Vue.extend({
       const res = await this.$axios.get(`/comments/${this.topic_id}/${this.comment.id}`);
       this.replyList = res.data;
     },
+    async updateParentId() {
+      await this.$store.commit('updateParentId', this.comment.id)
+    },
+    reply() {
+      this.updateParentId();
+      console.log(this.$store.state.parent_id);
+      window.location.replace(`${this.topic_id}#comment-box`)
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .contents {
+  // enable textarea to break line
+  white-space: pre-wrap;
   padding: 1rem 0;
   .comment-info {
     font-size: 12px;
@@ -121,9 +131,9 @@ export default Vue.extend({
   .like-btn-disabled {
     color: $gray;
   }
-  .comment-text {
-    margin-bottom: 2rem;
-  }
+  // .comment-text {
+  //   margin-bottom: 2rem;
+  // }
   .replied-messages {
     color: #fff;
     background-color: $amber;
