@@ -1,6 +1,9 @@
 
 ## Reference
 
+- Frontend
+  - Vuex
+    - [Working With Nuxt and Vuex](https://langvad.dev/blog/working-with-nuxt-and-vuex/)
 - Backend
   - [Build a RESTful JSON API With Rails 5 - Part One](https://www.digitalocean.com/community/tutorials/build-a-restful-json-api-with-rails-5-part-one)
 - Infra

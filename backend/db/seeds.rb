@@ -9,6 +9,8 @@
 User.create(username: 'hitoe', age: 26, sex: false)
 User.create(username: 'miyuki', age: 14, sex: true)
 User.create(username: 'noiru', age: 16, sex: true)
+User.create(username: 'airi', age: 16, sex: true)
+User.create(username: 'alice', age: 16, sex: true)
 
 Topic.create(user_id: 1, category_id: 1, title: '最強の百合漫画', description: '最強の百合漫画を決めるスレッドです。今宵、史上最強の百合カップリングを決めましょう',
              option_1: 'やがて君になる', option_2: 'マリア様がみてる', option_3: 'ゆるゆり', option_4: 'Citrus',
@@ -27,4 +29,12 @@ Comment.create(user_id: 1, text: 'やっぱりマリア様がみてる一強か�
                topic_id: 1)
 Comment.create(user_id: 2, parent_id: 1, text: 'わかる。聖様が好き', like_num: 8,
                topic_id: 1)
-Comment.create(user_id: 3, text: 'ゆるゆりしか勝たん', like_num: 32, topic_id: 1)
+Comment.create(user_id: 1, text: '白薔薇いいよね', like_num: 32, topic_id: 1, parent_id: 2)
+Comment.create(user_id: 2, text: '私は乃梨子派～', like_num: 32, topic_id: 1, parent_id: 2)
+
+Like.create(user_id: 1, comment_id: 1)
+Like.create(user_id: 1, comment_id: 4)
+Like.create(user_id: 2, comment_id: 3)
+Like.create(user_id: 3, comment_id: 3)
+Like.create(user_id: 4, comment_id: 3)
+
