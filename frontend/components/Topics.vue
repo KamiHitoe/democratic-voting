@@ -58,7 +58,7 @@ export default Vue.extend({
 .contents {
   @extend %section-body;
   margin-top: 0;
-  color: #212121;
+  color: $text;
 }
 .change-color {
   color: $amber;
