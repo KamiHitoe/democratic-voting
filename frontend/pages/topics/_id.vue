@@ -5,6 +5,10 @@
         トップ　＞　{{ categoryList[topics.category_id].category }}
       </h4>
       <v-divider></v-divider>
+      <div class="limited-vote d-flex flex-row">
+        <p class="limited-box">foo</p>
+        <p class="limited-box">bar</p>
+      </div>
       <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topics.id}`">
         <img class="topics-img" :src="topics.img_path" />
         <div class="topics-contents d-flex flex-column">
@@ -187,6 +191,11 @@ export default {
   .vote-btn,
   .voted-comment {
     margin: 1rem 0;
+  }
+  .limited-box {
+    background: $amber;
+    color: white;
+    margin: 1rem 1rem 0 0;
   }
 }
 .comment-contents {
