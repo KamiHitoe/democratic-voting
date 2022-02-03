@@ -1,6 +1,35 @@
 <template>
   <main>
-    <TopicContents :topics="topics" />
+    <section class="vote-contents">
+      <h4 class="subtitle">
+        トップ　＞　{{ categoryList[topics.category_id].category }}
+      </h4>
+      <v-divider></v-divider>
+      <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topics.id}`">
+        <img class="topics-img" :src="topics.img_path" />
+        <div class="topics-contents d-flex flex-column">
+          <div class="d-flex flex-row">
+            <p class="data-margin">
+              {{
+                topics.option_1_num +
+                topics.option_2_num +
+                topics.option_3_num +
+                topics.option_4_num
+              }}
+              votes
+            </p>
+            <p class="data-margin">{{ topics.timestamp }}</p>
+            <p class="data-margin change-color">
+              {{ categoryList[topics.category_id].category }}
+            </p>
+          </div>
+          <h2 class="topics-title">{{ topics.title }}</h2>
+        </div>
+      </nuxt-link>
+      <p class="topics-description">{{ topics.description }}</p>
+
+      <canvas id="resultChart" width="100vw" height="20vw"></canvas>
+    </section>
 
     <section class="comment-contents">
       <h4 class="comment-subtitle">コメント</h4>
@@ -26,7 +55,6 @@ import Comments from "@/components/Comments.vue";
 import CommentBox from "@/components/CommentBox.vue";
 import RelatedTopics from "@/components/RelatedTopics.vue";
 import Voting from "@/components/Voting.vue";
-import TopicContents from "@/components/TopicContents.vue"
 import { categoryList } from "@/data/data";
 
 export default {
@@ -36,7 +64,6 @@ export default {
     CommentBox,
     RelatedTopics,
     Voting,
-    TopicContents,
   },
   data() {
     return {
@@ -53,12 +80,51 @@ export default {
   async mounted() {
     await this.getTopics();
     await this.getRepliedComments();
+
+    const ctx = document.getElementById("resultChart");
+    new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: [
+          this.topics.option_1,
+          this.topics.option_2,
+          this.topics.option_3,
+          this.topics.option_4,
+        ],
+        datasets: [
+          {
+            label: "My First Dataset",
+            data: [
+              this.topics.option_1_num,
+              this.topics.option_2_num,
+              this.topics.option_3_num,
+              this.topics.option_4_num,
+            ],
+            backgroundColor: [
+              "rgb(255, 99, 132)",
+              "rgb(54, 162, 235)",
+              "rgb(255, 205, 86)",
+              "rgb(255, 5, 86)",
+            ],
+            hoverOffset: 4,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: true,
+            position: "right",
+            align: "left",
+          },
+        },
+      },
+    });
   },
   methods: {
     async getTopics() {
       const res = await this.$axios.get(`/topics/${this.topic_id}`);
       this.topics = res.data;
-      this.topic_id = this.topics.id
       console.log(this.topics);
     },
     async getRepliedComments() {

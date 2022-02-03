@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(username: 'hitoe', age: 20, sex: false)
-User.create(username: 'miyuki', age: 10, sex: true)
-User.create(username: 'noiru', age: 30, sex: true)
-User.create(username: 'airi', age: 10, sex: true)
-User.create(username: 'alice', age: 20, sex: true)
+User.create(username: 'hitoe', age: 20, sex: '男性')
+User.create(username: 'miyuki', age: 10, sex: '女性')
+User.create(username: 'noiru', age: 30, sex: '女性')
+User.create(username: 'airi', age: 10, sex: '女性')
+User.create(username: 'alice', age: 20, sex: '女性')
 
 Topic.create(user_id: 1, category_id: 1, title: '最強の百合漫画', description: '最強の百合漫画を決めるスレッドです。今宵、史上最強の百合カップリングを決めましょう',
              option_1: 'やがて君になる', option_2: 'マリア様がみてる', option_3: 'ゆるゆり', option_4: 'Citrus',
@@ -28,12 +28,12 @@ Topic.create(user_id: 1, category_id: 6, title: 'あなたはオタクですか�
              option_1: 'はい', option_2: 'いいえ',
              option_1_num: 80, option_2_num: 60,
              img_path: 'https://images-na.ssl-images-amazon.com/images/I/71P-b69pJWL.jpg',
-             sex: false)
+             sex: '男性')
 Topic.create(user_id: 2, category_id: 6, title: '転職願望はありますか？', description: '20代の男性の人に転職意識調査をしたいと思います',
              option_1: 'はい', option_2: 'いいえ',
              option_1_num: 80, option_2_num: 60,
              img_path: 'https://one-group.jp/media/wp-content/uploads/2021/04/54e71251d4e94d7d3d2e586b8b0c58b0.jpg',
-             sex: false, age: 20)
+             sex: '男性', age: 20)
 
 Comment.create(user_id: 1, text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
                topic_id: 1)
