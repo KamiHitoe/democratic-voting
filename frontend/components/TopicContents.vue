@@ -30,7 +30,16 @@
       </div>
     </nuxt-link>
     <p class="topics-description">{{ topics.description }}</p>
-    <canvas id="resultChart" width="100vw" height="20vw"></canvas>
+
+    <div class="d-flex flex-row">
+      <canvas id="result-chart"></canvas>
+      <div class="d-flex flex-column justify-center">
+        <p><span class="chart-label-1">&nbsp;</span>{{ topics.option_1 }} {{ topics.option_1_num }}票</p>
+        <p><span class="chart-label-2">&nbsp;</span>{{ topics.option_2 }} {{ topics.option_2_num }}票</p>
+        <p v-if="topics.option_3"><span class="chart-label-3">&nbsp;</span>{{ topics.option_3 }} {{ topics.option_3_num }}票</p>
+        <p v-if="topics.option_4"><span class="chart-label-4">&nbsp;</span>{{ topics.option_4 }} {{ topics.option_4_num }}票</p>
+      </div>
+    </div>
 
     <div v-if="!$route.params.topic_id && (!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
       <Voting :topics="topics" />
@@ -60,20 +69,14 @@ export default {
     };
   },
   updated() {
-    const ctx = document.getElementById("resultChart");
+    const ctx = document.getElementById("result-chart");
+    // the number of options == 4
     if (this.topics.option_3 && this.topics.option_4) {
       new Chart(ctx, {
         type: "pie",
         data: {
-          labels: [
-            this.topics.option_1,
-            this.topics.option_2,
-            this.topics.option_3,
-            this.topics.option_4,
-          ],
           datasets: [
             {
-              label: "My First Dataset",
               data: [
                 this.topics.option_1_num,
                 this.topics.option_2_num,
@@ -91,18 +94,13 @@ export default {
           ],
         },
       });
+    // the number of options == 3
     } else if (this.topics.option_3) {
       new Chart(ctx, {
         type: "pie",
         data: {
-          labels: [
-            this.topics.option_1,
-            this.topics.option_2,
-            this.topics.option_3,
-          ],
           datasets: [
             {
-              label: "My First Dataset",
               data: [
                 this.topics.option_1_num,
                 this.topics.option_2_num,
@@ -118,17 +116,13 @@ export default {
           ],
         },
       })
+    // the number of options == 2
     } else {
       new Chart(ctx, {
         type: "pie",
         data: {
-          labels: [
-            this.topics.option_1,
-            this.topics.option_2,
-          ],
           datasets: [
             {
-              label: "My First Dataset",
               data: [
                 this.topics.option_1_num,
                 this.topics.option_2_num,
@@ -192,4 +186,29 @@ export default {
     margin: 2rem 0;
   }
 }
+#result-chart {
+  max-width: 70%;
+  height: auto;
+}
+.chart-label-1,
+.chart-label-2,
+.chart-label-3,
+.chart-label-4 {
+  display: inline-block;
+  width: 40px;
+  margin-right: 10px;
+}
+.chart-label-1 {
+  background: rgb(255, 99, 132);
+}
+.chart-label-2 {
+  background: rgb(54, 162, 235);
+}
+.chart-label-3 {
+  background: rgb(255, 205, 86);
+}
+.chart-label-4 {
+  background: rgb(111, 205, 205);
+}
 </style>
+
