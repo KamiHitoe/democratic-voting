@@ -2,17 +2,8 @@
 export interface User {
   id?: number;
   username: string;
-  sex: boolean;
+  sex: string;
   age: number;
-}
-
-export interface Comment {
-  id?: number;
-  user_id: number;
-  text: string;
-  like_num?: number;
-  parent_id?: number;
-  timestamp?: Date;
 }
 
 export interface Topic {
@@ -20,6 +11,8 @@ export interface Topic {
   category_id: number;
   title: string;
   description: string;
+  sex?: string;
+  age?: number;
   option_1: string;
   option_2: string;
   option_3?: string;
@@ -30,6 +23,15 @@ export interface Topic {
   option_4_num?: number;
   timestamp?: Date;
   img_path?: string;
+}
+
+export interface Comment {
+  id?: number;
+  user_id: number;
+  text: string;
+  like_num?: number;
+  parent_id?: number;
+  timestamp?: Date;
 }
 
 export interface CategoryObj {

@@ -12,6 +12,8 @@ class CreateTopics < ActiveRecord::Migration[7.0]
       t.integer :option_2_num
       t.integer :option_3_num
       t.integer :option_4_num
+      t.string :sex
+      t.integer :age
       t.string :img_path
       t.string :timestamp
       t.references :user, null: false, foreign_key: true

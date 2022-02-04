@@ -4,6 +4,8 @@ FactoryBot.define do
     sequence(:category_id) { |n| n.to_s }
     title { 'test title' }
     description { 'test description' }
+    sex { '女性' }
+    age { 20 }
     option_1 { 'test op1' }
     option_2 { 'test op2' }
     option_3 { 'test op3' }
