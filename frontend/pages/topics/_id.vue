@@ -2,7 +2,6 @@
   <main>
     <TopicContents
       :topics="topics"
-      :voted_status="voted_status"
     />
 
     <section class="comment-contents">
@@ -60,8 +59,10 @@ export default {
       const res = await this.$axios.get(
         `/votes/${this.user.id}/${this.topics.id}`
       );
-      this.voted_status = res.data.voted_status;
-      console.log(this.voted_status);
+      if (res.data.voted_status) {
+        this.$store.commit('updateVotedStatus', true)
+        console.log(this.$store.state.voted_status);
+      }
     },
     async getTopics() {
       const res = await this.$axios.get(`/topics/${this.topic_id}`);

@@ -32,8 +32,8 @@
     <p class="topics-description">{{ topics.description }}</p>
     <canvas id="resultChart" width="100vw" height="20vw"></canvas>
 
-    <div v-if="!topic_id">
-      <div v-if="voted_status">
+    <div v-if="!$route.params.topic_id && !topics.sex && !topics.age">
+      <div v-if="$store.state.voted_status">
         <p class="voted-comment">投票ありがとうございました！</p>
       </div>
       <div v-else>
@@ -65,7 +65,6 @@ export default {
   },
   props: {
     topics: Object,
-    voted_status: Boolean,
   },
   data() {
     return {
