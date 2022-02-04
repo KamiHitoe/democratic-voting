@@ -32,22 +32,8 @@
     <p class="topics-description">{{ topics.description }}</p>
     <canvas id="resultChart" width="100vw" height="20vw"></canvas>
 
-    <div v-if="!$route.params.topic_id && !topics.sex && !topics.age">
-      <div v-if="$store.state.voted_status">
-        <p class="voted-comment">投票ありがとうございました！</p>
-      </div>
-      <div v-else>
-        <v-btn
-          v-if="!voting"
-          class="vote-btn"
-          color="amber"
-          dark
-          @click="openVoting"
-          >投票する
-        </v-btn>
-
-        <Voting v-if="voting" :topics="topics" />
-      </div>
+    <div v-if="!$route.params.topic_id && (!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
+      <Voting :topics="topics" />
     </div>
 
   </section>
@@ -65,53 +51,98 @@ export default {
   },
   props: {
     topics: Object,
+    user: Object,
   },
   data() {
     return {
       categoryList: categoryList,
-      voting: false,
+      chartPattern: 2,
     };
   },
   updated() {
     const ctx = document.getElementById("resultChart");
-    new Chart(ctx, {
-      type: "pie",
-      data: {
-        labels: [
-          this.topics.option_1,
-          this.topics.option_2,
-          this.topics.option_3,
-          this.topics.option_4,
-        ],
-        datasets: [
-          {
-            label: "My First Dataset",
-            data: [
-              this.topics.option_1_num,
-              this.topics.option_2_num,
-              this.topics.option_3_num,
-              this.topics.option_4_num,
-            ],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-              "rgb(111, 205, 205)",
-            ],
-            hoverOffset: 4,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: true,
-            position: "right",
-            align: "left",
-          },
+    if (this.topics.option_3 && this.topics.option_4) {
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: [
+            this.topics.option_1,
+            this.topics.option_2,
+            this.topics.option_3,
+            this.topics.option_4,
+          ],
+          datasets: [
+            {
+              label: "My First Dataset",
+              data: [
+                this.topics.option_1_num,
+                this.topics.option_2_num,
+                this.topics.option_3_num,
+                this.topics.option_4_num,
+              ],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+                "rgb(111, 205, 205)",
+              ],
+              hoverOffset: 4,
+            },
+          ],
         },
-      },
-    });
+      });
+    } else if (this.topics.option_3) {
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: [
+            this.topics.option_1,
+            this.topics.option_2,
+            this.topics.option_3,
+          ],
+          datasets: [
+            {
+              label: "My First Dataset",
+              data: [
+                this.topics.option_1_num,
+                this.topics.option_2_num,
+                this.topics.option_3_num,
+              ],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+                "rgb(255, 205, 86)",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+      })
+    } else {
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: [
+            this.topics.option_1,
+            this.topics.option_2,
+          ],
+          datasets: [
+            {
+              label: "My First Dataset",
+              data: [
+                this.topics.option_1_num,
+                this.topics.option_2_num,
+              ],
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(54, 162, 235)",
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+      })
+    }
   },
   methods: {
     async getVotedStatus() {
@@ -120,9 +151,6 @@ export default {
       );
       this.voted_status = res.data.voted_status;
       console.log(this.voted_status);
-    },
-    openVoting() {
-      this.voting = true;
     },
   },
 };
@@ -144,10 +172,6 @@ export default {
   .vote-body {
     margin-top: 1rem;
     color: $text;
-  }
-  .vote-btn,
-  .voted-comment {
-    margin: 1rem 0;
   }
   .limited-box {
     background: #ff0556;

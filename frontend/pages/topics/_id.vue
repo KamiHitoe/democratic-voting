@@ -2,6 +2,7 @@
   <main>
     <TopicContents
       :topics="topics"
+      :user="user"
     />
 
     <section class="comment-contents">
@@ -29,8 +30,9 @@ import Comments from "@/components/Comments.vue";
 import CommentBox from "@/components/CommentBox.vue";
 import RelatedTopics from "@/components/RelatedTopics.vue";
 import TopicContents from "@/components/TopicContents.vue";
+import { testUser } from "@/data/data"
 
-export default {
+export default Vue.extend({
   components: {
     CategorySection,
     Comments,
@@ -45,7 +47,7 @@ export default {
         category_id: 0,
       },
       commentList: [],
-      user: { id: 1 },
+      user: testUser,
       voted_status: false,
     };
   },
@@ -53,6 +55,7 @@ export default {
     await this.getTopics();
     await this.getComments();
     await this.getVotedStatus();
+    console.log(`voted_status: ${this.voted_status} ${this.$store.state.voted_status}`)
   },
   methods: {
     async getVotedStatus() {
@@ -62,6 +65,8 @@ export default {
       if (res.data.voted_status) {
         this.$store.commit('updateVotedStatus', true)
         console.log(this.$store.state.voted_status);
+      } else {
+        this.$store.commit('updateVotedStatus', false)
       }
     },
     async getTopics() {
@@ -75,7 +80,7 @@ export default {
       console.log(res.data);
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
