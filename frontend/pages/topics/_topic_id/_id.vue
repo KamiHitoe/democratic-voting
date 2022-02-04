@@ -1,6 +1,6 @@
 <template>
   <main>
-    <TopicContents :topics="topics" />
+    <TopicContents :topics="topics" :user="user" />
 
     <section class="comment-contents">
       <h4 class="comment-subtitle">コメント</h4>
@@ -19,17 +19,15 @@
 </template>
 
 <script>
-// import Vue from 'vue'
-import Chart from "chart.js";
+import Vue from 'vue'
 import CategorySection from "@/components/CategorySection.vue";
 import Comments from "@/components/Comments.vue";
 import CommentBox from "@/components/CommentBox.vue";
 import RelatedTopics from "@/components/RelatedTopics.vue";
-import Voting from "@/components/Voting.vue";
 import TopicContents from "@/components/TopicContents.vue"
-import { categoryList } from "@/data/data";
+import { testUser } from "@/data/data"
 
-export default {
+export default Vue.extend({
   components: {
     CategorySection,
     Comments,
@@ -47,10 +45,10 @@ export default {
       },
       commentList: [],
       categoryList,
-      user: { id: 1 },
+      user: testUser,
     };
   },
-  async mounted() {
+  async created() {
     await this.getTopics();
     await this.getRepliedComments();
   },
@@ -67,7 +65,7 @@ export default {
       console.log(res.data);
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>
