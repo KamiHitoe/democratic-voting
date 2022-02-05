@@ -25,6 +25,5 @@ class Comment < ApplicationRecord
     timestamp = timestamp.scan(/\d{4}-\d{2}-\d{2}\s\d+:\d+/)[0]
     timestamp = timestamp.gsub(/-/, '/')
     self.timestamp ||= timestamp
-    self.like_num ||= 0
   end
 end

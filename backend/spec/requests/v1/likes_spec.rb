@@ -8,7 +8,7 @@ RSpec.describe(Like, type: :request) do
       @comment = create(:comment, topic_id: @topic.id)
     end
 
-    it 'get amount of likes' do
+    it 'get the number of likes' do
       get "/v1/likes/#{@comment.id}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))

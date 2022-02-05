@@ -12,8 +12,13 @@ module V1
 
     # POST /topics/:topic_id/comments
     def create
-      @topic.comments.create!(comment_params)
-      json_response(@topic, :created)
+      user = User.find(comment_params[:user_id])
+      if (!@topic.sex || @topic.sex == user.sex) && (!@topic.age || @topic.age == user.age)
+        @topic.comments.create!(comment_params)
+        json_response(@topic, :created)
+      else
+        puts "invalid user"
+      end
     end
 
     # GET /topics/:topic_id/comments/:id
@@ -28,6 +33,7 @@ module V1
       json_response(comments)
     end
 
+    # it's no use
     # PUT /topics/:topic_id/comments/:id
     def update
       @comment.update(comment_params)

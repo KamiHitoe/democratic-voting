@@ -15,9 +15,20 @@ RSpec.describe(Vote, type: :request) do
     end
 
     it 'create a new vote' do
+      male_user = create(:user, sex: "男性")
+      old_user = create(:user, age: 40)
+      # validate user
       expect do
         post("/v1/votes/#{@user.id}/#{@topic.id}")
       end.to(change(Vote, :count).by(1))
+      # invalid sex
+      expect do
+        post("/v1/votes/#{male_user.id}/#{@topic.id}")
+      end.to(change(Vote, :count).by(0))
+      # invalid age
+      expect do
+        post("/v1/votes/#{old_user.id}/#{@topic.id}")
+      end.to(change(Vote, :count).by(0))
     end
 
     it 'destroy a vote' do

@@ -9,8 +9,8 @@ sex:string age:integer ^
 img_path:string timestamp:string user:references ^
 && ^
 rails generate model Comment ^
-parent_id:integer text:text like_num:integer ^
-timestamp:string user:references topic:references ^
+parent_id:integer text:text timestamp:string ^
+user:references topic:references ^
 && ^
 rails generate model Like ^
 user:references comment:references ^

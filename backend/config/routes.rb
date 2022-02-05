@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     # create related endpoint URI
     resources :users, only: %i[create show update]
     resources :topics, only: %i[index create show update] do
-      resources :comments, only: %i[index create show update]
+      resources :comments, only: %i[index create show]
     end
 
     # must need parent table's id

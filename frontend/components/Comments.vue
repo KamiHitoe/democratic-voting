@@ -13,10 +13,10 @@
       <p class="comment-text data-margin">{{ comment.text }}</p>
       <div class="d-flex flex-row">
 
-        <NuxtLink v-if="replyList.length" class="replied-messages d-flex flex-row" :to="`/topics/${topic_id}/${comment.id}`">
+        <nuxt-link v-if="replyList.length" class="replied-messages d-flex flex-row" :to="`/topics/${topic_id}/${comment.id}`">
           <h5 class="reply_num">{{ replyList.length }} 件の返信</h5>
           <v-icon color="white" small>mdi-message</v-icon>
-        </NuxtLink>
+        </nuxt-link>
         <p v-else></p>
 
         <div v-if="liked_status" class="like-btn d-flex flex-row ml-auto">
@@ -53,7 +53,7 @@ export default Vue.extend({
       user: {
         id: 1,
         username: 'hitoe',
-        sex: false,
+        sex: '男性',
         age: 20,
       } as User,
       liked_status: false as boolean,
