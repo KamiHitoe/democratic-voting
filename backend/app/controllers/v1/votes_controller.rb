@@ -14,7 +14,13 @@ module V1
       if @voted_status
         puts 'already voted'
       else
-        Vote.create!(vote_params)
+        user = User.find(vote_params[:user_id])
+        topic = Topic.find(vote_params[:topic_id])
+        if (!topic.sex || topic.sex == user.sex) && (!topic.age || topic.age == user.age)
+          Vote.create!(vote_params)
+        else
+          puts "invalid user"
+        end
       end
     end
 

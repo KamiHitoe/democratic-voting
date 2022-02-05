@@ -12,7 +12,6 @@ RSpec.describe(Comment, type: :model) do
 
     it 'comment has default values' do
       expect(@comment.timestamp).to(be_truthy)
-      expect(@comment.like_num).to(eq(0))
     end
   end
 end
