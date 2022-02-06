@@ -124,4 +124,7 @@ header {
 a {
   text-decoration: none;
 }
+.invalid-user {
+  margin-top: 1rem;
+}
 </style>

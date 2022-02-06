@@ -44,6 +44,7 @@
     <div v-if="!$route.params.topic_id && (!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
       <Voting :topics="topics" />
     </div>
+    <p v-else class="invalid-user">※この投稿の対象ユーザーではないため投票できません。</p>
 
   </section>
 </template>
