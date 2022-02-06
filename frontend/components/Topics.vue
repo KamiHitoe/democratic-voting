@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { Topic, CategoryObj } from "@/types";
+import { Topic, Category } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
@@ -48,7 +48,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      categoryList: categoryList as CategoryObj[],
+      categoryList: categoryList as Category[],
     };
   },
 });
