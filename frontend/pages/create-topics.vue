@@ -125,7 +125,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { CategoryObj } from "@/types";
+import { Category } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
@@ -154,7 +154,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    categoryList: (): CategoryObj[] => {
+    categoryList: (): Category[] => {
       categoryList.shift();
       return categoryList;
     },

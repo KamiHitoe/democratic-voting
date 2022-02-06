@@ -21,6 +21,12 @@ module V1
       json_response(@topic)
     end
 
+    # GET /search_by_category?category_id=:category_id
+    def search_by_category
+      topics = Topic.where(category_id: params[:category_id]).all
+      json_response(topics)
+    end
+
     # PUT /topics/:id
     def update
       chosen_option = params[:chosen_option]

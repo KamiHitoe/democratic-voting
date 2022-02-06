@@ -5,7 +5,7 @@
     <v-container>
       <v-row>
         <v-col v-for="(category, i) in categories" :key="i" cols="4">
-          <p>{{ category }}</p>
+          <a :href="`/search?category_id=${category.id}`" class="category">{{ category.category }}</a>
         </v-col>
       </v-row>
     </v-container>
@@ -14,14 +14,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { CategoryObj } from "@/types";
+import { Category } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
   data() {
     return {
-      orgCategories: categoryList as CategoryObj[],
-      categories: [] as string[],
+      orgCategories: categoryList as Category[],
+      categories: [] as Category[],
     };
   },
   created() {
@@ -31,7 +31,7 @@ export default Vue.extend({
     removeZero() {
       for (const i in this.orgCategories) {
         if (i !== "0") {
-          this.categories.push(this.orgCategories[i].category);
+          this.categories.push(this.orgCategories[i]);
         }
       }
     },
@@ -45,5 +45,8 @@ section {
   .subtitle {
     @extend %subtitle;
   }
+}
+.category {
+  color: #000;
 }
 </style>

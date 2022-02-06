@@ -2,10 +2,10 @@
   <v-app>
     <header>
       <div class="d-flex flex-row justify-space-between amber">
-        <NuxtLink class="header-title d-flex flex-row" to="/">
+        <nuxt-link class="header-title d-flex flex-row" to="/">
           <h1>みんなの投票箱</h1>
           <v-icon color="white" large>mdi-mailbox</v-icon>
-        </NuxtLink>
+        </nuxt-link>
         <v-menu left bottom>
           <template #activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" v-on="on">

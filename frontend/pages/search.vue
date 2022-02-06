@@ -5,21 +5,27 @@
       <v-divider></v-divider>
       <div class="d-flex flex-row">
         <v-select
-          :items="optionItems"
-          label="新着順"
+          :items="sortItems"
+          label="並び替え"
+          item-color="amber"
           solo
           dense
           background-color="amber lighten-4"
         ></v-select>
         <v-select
-          :items="optionItems"
-          label="1年以内"
+          :items="periodItems"
+          label="検索期間"
+          item-color="amber"
           solo
           dense
           background-color="amber lighten-4"
         ></v-select>
       </div>
-      <Topics v-for="topics in topicsList" :key="topics.id" :topics="topics" />
+      <Topics v-for="(topics, i) in topicsList"
+        :key="topics.id"
+        :topics="topics"
+        :order="i+1"
+      />
     </div>
 
     <CategorySection />
@@ -28,9 +34,10 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { topicsList } from "@/data/data";
 import CategorySection from "@/components/CategorySection.vue";
 import Topics from "@/components/Topics.vue";
+import { Topic } from "@/types";
+// import { topicsList } from "@/data/data";
 
 export default Vue.extend({
   components: {
@@ -39,9 +46,21 @@ export default Vue.extend({
   },
   data() {
     return {
-      optionItems: ["foo", "bar", "hoge"],
-      topicsList,
+      sortItems: ["新着順", "投票数順"] as String[],
+      periodItems: ["1年以内", "1ヶ月以内", "1週間以内"] as String[],
+      topicsList: [] as Topic[],
     };
+  },
+  created() {
+    if (this.$route.query.category_id) {
+      this.getTopicsByCategory();
+    }
+  },
+  methods: {
+    async getTopicsByCategory() {
+      const res = await this.$axios.get(`search_by_category?category_id=${this.$route.query.category_id}`)
+      this.topicsList = res.data;
+    },
   },
 });
 </script>

@@ -20,6 +20,12 @@ RSpec.describe(Topic, type: :request) do
       expect(response.status).to(eq(200))
     end
 
+    it 'get topics by category id' do
+      get "/v1/search_by_category?category_id=#{@topic.category_id}"
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+    end
+
     it 'create a new topic' do
       expect do
         post('/v1/topics', params: {

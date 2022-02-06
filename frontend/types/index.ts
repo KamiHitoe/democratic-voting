@@ -34,7 +34,7 @@ export interface Comment {
   timestamp?: Date;
 }
 
-export interface CategoryObj {
+export interface Category {
   id: number;
   category: null | string;
 }
