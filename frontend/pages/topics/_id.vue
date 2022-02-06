@@ -15,7 +15,11 @@
         :topic_id="topics.id"
         :order="i + 1"
       />
-      <CommentBox :topic_id="topics.id" />
+
+      <div v-if="(!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
+        <CommentBox :topic_id="topics.id" />
+      </div>
+      <p v-else class="invalid-user">※この投稿の対象ユーザーではないためコメントできません。</p>
     </section>
 
     <RelatedTopics />
