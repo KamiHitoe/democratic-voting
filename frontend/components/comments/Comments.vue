@@ -13,24 +13,15 @@
       <p class="comment-text data-margin">{{ comment.text }}</p>
       <div class="d-flex flex-row">
 
-        <nuxt-link v-if="replyList.length" class="replied-messages d-flex flex-row" :to="`/topics/${topic_id}/${comment.id}`">
+        <ReplyList :topic_id="topic_id" :comment="comment" />
+        <!-- <nuxt-link v-if="replyList.length" class="replied-messages d-flex flex-row" :to="`/topics/${topic_id}/${comment.id}`">
           <h5 class="reply_num">{{ replyList.length }} 件の返信</h5>
           <v-icon color="white" small>mdi-message</v-icon>
         </nuxt-link>
-        <p v-else></p>
+        <p v-else></p> -->
 
-        <div v-if="liked_status" class="like-btn d-flex flex-row ml-auto">
-          <v-btn icon color="pink" @click="unlike">
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
-          <p>{{ like_num }}</p>
-        </div>
-        <div v-else class="like-btn-disabled d-flex flex-row ml-auto">
-          <v-btn icon color="gray" @click="like">
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
-          <p>{{ like_num }}</p>
-        </div>
+        <Like :user="user" :comment="comment" />
+
       </div>
     </div>
 
@@ -41,12 +32,18 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 import { User, Comment } from "@/types";
+import Like from "@/components/comments/Like.vue";
+import ReplyList from "@/components/comments/ReplyList.vue";
 
 export default Vue.extend({
   props: {
     comment: { type: Object as PropType<Comment> },
     order: { type: Number },
     topic_id: { type: Number },
+  },
+  components: {
+    Like,
+    ReplyList,
   },
   data() {
     return {
@@ -56,35 +53,13 @@ export default Vue.extend({
         sex: '男性',
         age: 20,
       } as User,
-      liked_status: false as boolean,
-      like_num: 0 as number,
-      replyList: [] as Comment[],
+      // replyList: [] as Comment[],
     };
   },
-  created() {
-    this.countLikes();
-    this.getLikedStatus();
-    this.getReplyList();
-  },
+  // created() {
+  //   this.getReplyList();
+  // },
   methods: {
-    async countLikes() {
-      const res = await this.$axios.get(`/likes/${this.comment.id}`);
-      this.like_num = res.data.like_num;
-    },
-    async getLikedStatus() {
-      const res = await this.$axios.get(`/likes/${this.user.id}/${this.comment.id}`);
-      this.liked_status = res.data.liked_status;
-    },
-    async like() {
-      this.liked_status = true;
-      await this.$axios.post(`likes/${this.user.id}/${this.comment.id}`);
-      this.countLikes();
-    },
-    async unlike() {
-      this.liked_status = false;
-      await this.$axios.delete(`likes/${this.user.id}/${this.comment.id}`);
-      this.countLikes();
-    },
     async getReplyList() {
       const res = await this.$axios.get(`/comments/${this.topic_id}/${this.comment.id}`);
       this.replyList = res.data;
@@ -112,8 +87,7 @@ export default Vue.extend({
   .data-margin {
     margin-right: 0.5rem;
   }
-  .reply-btn,
-  .like-btn {
+  .reply-btn {
     margin: auto 0;
     .v-icon {
       margin-right: 0.3rem;
@@ -124,12 +98,6 @@ export default Vue.extend({
   }
   .reply-btn {
     color: $amber;
-  }
-  .like-btn {
-    color: $pink;
-  }
-  .like-btn-disabled {
-    color: $gray;
   }
   // .comment-text {
   //   margin-bottom: 2rem;

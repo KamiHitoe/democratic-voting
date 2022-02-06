@@ -30,10 +30,10 @@
 <script>
 import Vue from 'vue'
 import CategorySection from "@/components/CategorySection.vue";
-import Comments from "@/components/Comments.vue";
-import CommentBox from "@/components/CommentBox.vue";
-import RelatedTopics from "@/components/RelatedTopics.vue";
-import TopicContents from "@/components/TopicContents.vue";
+import Comments from "@/components/comments/Comments.vue";
+import CommentBox from "@/components/comments/CommentBox.vue";
+import RelatedTopics from "@/components/topics/RelatedTopics.vue";
+import TopicContents from "@/components/topics/TopicContents.vue";
 import { testUser } from "@/data/data"
 
 export default Vue.extend({

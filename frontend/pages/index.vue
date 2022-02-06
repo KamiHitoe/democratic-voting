@@ -30,7 +30,7 @@
 <script lang="ts">
 import Vue from "vue";
 import CategorySection from "@/components/CategorySection.vue";
-import Topics from "@/components/Topics.vue";
+import Topics from "@/components/topics/Topics.vue";
 
 export default Vue.extend({
   // name: "IndexPage",
@@ -42,8 +42,8 @@ export default Vue.extend({
     return {
       tab: null,
       tabItems: [
-        { title: "急上昇中のお題" },
         { title: "新着のお題" },
+        { title: "急上昇中のお題" },
         { title: "殿堂入りのお題" },
       ],
       topicsList: [],

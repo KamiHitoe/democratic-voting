@@ -92,7 +92,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .vote-btn,
 .voted-comment {
-    margin: 1rem 0;
+    margin: 2rem 0;
   }
 .contents {
   padding: 1rem 0;
