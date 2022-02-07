@@ -15,11 +15,8 @@ Rails.application.routes.draw do
       resources :comments, only: %i[index create show]
     end
 
-    # category_idを元にtopicsを取得
-    # get 'search_by_category/:category_id', to: 'topics#search_by_category'
-    get 'search_by_category', to: 'topics#search_by_category'
-    # keywordを元にtopicsを取得
-    get 'search_by_keyword/:keyword', to: 'topics#search_by_keyword'
+    # query paramsを元にtopicsを取得
+    get 'search', to: 'topics#search'
 
     # topic_id, parent comment_idを元に子の返信コメントを全て取得
     get 'comments/:topic_id/:replied_comment_id', to: 'comments#search_by_id'

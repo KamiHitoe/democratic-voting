@@ -1,5 +1,6 @@
 <template>
   <section>
+    <LimitedTag :topics="topics" tag_class="limited-tag-sm" />
     <nuxt-link
       class="contents d-flex flex-row"
       :to="`/topics/${topics.id}`"
@@ -38,10 +39,14 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import LimitedTag from "@/components/LimitedTag.vue";
 import { Topic, Category } from "@/types";
 import { categoryList } from "@/data/data";
 
 export default Vue.extend({
+  components: {
+    LimitedTag,
+  },
   props: {
     topics: { type: Object as PropType<Topic> },
     order: { type: Number },
@@ -55,10 +60,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.contents {
+section {
   @extend %section-body;
   margin-top: 0;
+}
+.contents {
   color: $text;
+  margin-bottom: 1rem;
 }
 .change-color {
   color: $amber;
@@ -83,5 +91,8 @@ export default Vue.extend({
   width: 22px;
   height: 22px;
   text-align: center;
+}
+.limited-tag {
+  font-size: 8px;
 }
 </style>

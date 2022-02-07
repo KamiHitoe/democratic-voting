@@ -4,10 +4,7 @@
       トップ　＞　{{ categoryList[topics.category_id].category }}
     </h4>
     <v-divider></v-divider>
-    <div class="limited-vote d-flex flex-row">
-      <p v-if="topics.sex" class="limited-box">{{ topics.sex }}限定投票</p>
-      <p v-if="topics.age" class="limited-box">{{ topics.age }}代限定投票</p>
-    </div>
+    <LimitedTag :topics="topics" tag_class="limited-tag" />
     <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topics.id}`">
       <img class="topics-img" :src="topics.img_path" />
       <div class="topics-contents d-flex flex-column">
@@ -53,11 +50,13 @@
 // import Vue from 'vue'
 import Chart from "chart.js";
 import Voting from "@/components/topics/Voting.vue";
+import LimitedTag from "@/components/LimitedTag.vue";
 import { categoryList } from "@/data/data";
 
 export default {
   components: {
     Voting,
+    LimitedTag,
   },
   props: {
     topics: Object,
