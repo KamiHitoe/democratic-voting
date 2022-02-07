@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { topicsList } from "@/data/data";
+import { topicsList } from "@/data";
 import Topics from "@/components/topics/Topics.vue";
 
 export default Vue.extend({

@@ -1,5 +1,5 @@
 const categoryList = [
-  { id: 0, category: null },
+  // { id: 0, category: null },
   { id: 1, category: "アニメ・漫画" },
   { id: 2, category: "テクノロジー" },
   { id: 3, category: "恋愛" },

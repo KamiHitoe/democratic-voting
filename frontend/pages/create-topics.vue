@@ -126,7 +126,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Category } from "@/types";
-import { categoryList } from "@/data/data";
+import { categoryList } from "@/data";
 
 export default Vue.extend({
   data() {
@@ -153,13 +153,8 @@ export default Vue.extend({
         { value: 40, item: "40代" },
         { value: 50, item: "50代" },
       ],
+      categoryList: categoryList as Category[],
     };
-  },
-  computed: {
-    categoryList: (): Category[] => {
-      categoryList.shift();
-      return categoryList;
-    },
   },
   methods: {
     async submitTopics() {

@@ -1,7 +1,7 @@
 <template>
   <div class="limited-vote d-flex flex-row">
-    <h6 v-if="topics.sex" :class="tag_class">{{ topics.sex }}限定投票</h6>
-    <h6 v-if="topics.age" :class="tag_class">{{ topics.age }}代限定投票</h6>
+    <h5 v-if="topics.sex" :class="tag_class">{{ topics.sex }}限定投票</h5>
+    <h5 v-if="topics.age" :class="tag_class">{{ topics.age }}代限定投票</h5>
   </div>
 
 </template>

@@ -45,7 +45,7 @@
 import Chart from "chart.js";
 import Voting from "@/components/topics/Voting.vue";
 import LimitedTag from "@/components/LimitedTag.vue";
-import { categoryList } from "@/data/data";
+import { categoryList } from "@/data";
 
 export default {
   components: {
