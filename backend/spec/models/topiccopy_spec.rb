@@ -16,6 +16,7 @@ RSpec.describe(Topic, type: :model) do
       expect(@topic.option_2_num).to(eq(0))
       expect(@topic.option_3_num).to(eq(0))
       expect(@topic.option_4_num).to(eq(0))
+      expect(@topic.voted_num).to(eq(0))
     end
   end
 end

@@ -7,9 +7,9 @@ module V1
     # GET /topics
     def index
       if params[:q] == "ranking"
-        topics = Topic.order("option_1_num DESC")
+        topics = Topic.order("voted_num DESC")
       elsif params[:q] == "trend"
-        topics = Topic.where("created_at > ?", 3.days.ago).order("option_1_num DESC")
+        topics = Topic.where("created_at > ?", 3.days.ago).order("voted_num DESC")
       else
         topics = Topic.order("created_at DESC")
       end
@@ -40,6 +40,7 @@ module V1
     def update
       chosen_option = params[:chosen_option]
       @topic.increment!(chosen_option)
+      @topic.increment!(:voted_num)
       head(:no_content)
     end
 

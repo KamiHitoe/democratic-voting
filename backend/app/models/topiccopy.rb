@@ -43,5 +43,6 @@ class Topic < ApplicationRecord
     self.option_2_num ||= 0
     self.option_3_num ||= 0
     self.option_4_num ||= 0
+    self.voted_num ||= 0
   end
 end

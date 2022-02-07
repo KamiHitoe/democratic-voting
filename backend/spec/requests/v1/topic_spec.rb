@@ -8,10 +8,21 @@ RSpec.describe(Topic, type: :request) do
     end
 
     it 'get all topics' do
-      get '/v1/topics'
+      get '/v1/topics?q=DESC'
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      # puts response.body
+    end
+
+    it 'get all topics by trend' do
+      get '/v1/topics?q=trend'
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+    end
+
+    it 'get all topics by ranking' do
+      get '/v1/topics?q=ranking'
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
     end
 
     it 'get a topic by id' do
