@@ -1,16 +1,18 @@
 module.exports = {
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1",
-    "^~/(.*)$": "<rootDir>/$1",
-    "^vue$": "vue/dist/vue.common.js",
-  },
+  // globalSetup: "<rootDir>/test/setup.ts",
+  // globalTeardown: "<rootDir>/test/teardown.ts",
+  // mapCoverage: true,
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+  // moduleNameMapper: {
+  //   "^@/(.*)$": "<rootDir>/$1",
+  //   "^~/(.*)$": "<rootDir>/$1",
+  //   "^vue$": "vue/dist/vue.common.js",
+  // },
   moduleFileExtensions: ["ts", "js", "vue", "json"],
   transform: {
-    "\\.js$": "<rootDir>/node_modules/babel-jest",
-    "\\.[jt]sx?$": "babel-jest",
-    "^.+\\.ts$": "ts-jest",
-    "^.+\\.js$": "babel-jest",
+    "^.+\\.(ts|tsx)$": "ts-jest",
     ".*\\.(vue)$": "vue-jest",
+    "^.+\\.vue$": "vue-jest",
   },
   collectCoverage: true,
   collectCoverageFrom: [

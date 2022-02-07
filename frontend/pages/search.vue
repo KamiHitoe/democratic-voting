@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="contents">
-      <h4>キーワードかカテゴリーからお題を検索しよう！</h4>
+      <h4 class="subtitle">キーワードかカテゴリーからお題を検索しよう！</h4>
       <v-divider></v-divider>
       <div class="d-flex flex-row">
         <v-select
@@ -52,7 +52,7 @@
       </div>
 
       <v-btn class="search-topics" color="amber" dark
-        @click="searchByQuery"
+        @click="searchTopicsByQuery"
         >お題を検索する</v-btn
       >
 
@@ -63,7 +63,7 @@
       />
     </div>
 
-    <CategorySection :removeZero="true" />
+    <CategorySection />
   </section>
 </template>
 
@@ -80,23 +80,39 @@ export default Vue.extend({
     Topics,
   },
   computed: {
-    categoryItems: (): String[] => {
-      const newList: String[] = [];
+    categoryItems: (): Object[] => {
+      const newList: Object[] = [];
       for (let i in categoryList) {
-        newList.push(categoryList[i].category);
+        newList.push({text: categoryList[i].category, value: categoryList[i].id});
       }
       return newList
     }
   },
   data() {
     return {
-      sexItems: ["男性", "女性"] as String[],
-      ageItems: ["10代", "20代", "30代", "40代", "50代"] as String[],
-      sortItems: ["新着順", "投票数順"] as String[],
-      periodItems: ["1年以内", "1ヶ月以内", "1週間以内"] as String[],
-      category: "" as String,
+      sexItems: [
+        {text: "男性", value: "男性"},
+        {text: "女性", value: "女性"},
+      ] as Object[],
+      ageItems: [
+        {text: "10代", value: 10},
+        {text: "20代", value: 20},
+        {text: "30代", value: 30},
+        {text: "40代", value: 40},
+        {text: "50代", value: 50},
+      ] as Object[],
+      sortItems: [
+        {text: "新着順", value: "new"},
+        {text: "投票数順", value: "ranking"},
+      ] as Object[],
+      periodItems: [
+        {text: "1年以内", value: "yearly"},
+        {text: "1ヶ月以内", value: "monthly"},
+        {text: "1週間以内", value: "weekly"},
+      ] as Object[],
+      category: 0 as Number,
       sex: "" as String,
-      age: "" as String,
+      age: 0 as Number,
       sort: "" as String,
       period: "" as String,
       topicsList: [] as Topic[],
@@ -104,26 +120,25 @@ export default Vue.extend({
   },
   created() {
     if (this.$route.query.category_id) {
-      this.getTopicsByCategory();
+      this.searchTopicsByCategory();
     }
   },
   methods: {
-    async getTopicsByCategory() {
+    async searchTopicsByCategory() {
       const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}`)
       this.topicsList = res.data;
     },
-    searchByQuery() {
-      console.log(`category: ${this.category}`);
-      console.log(`age: ${this.age}`);
+    async searchTopicsByQuery() {
+      const res = await this.$axios.get(`search?category=${this.category}&sex=${this.sex}&age=${this.age}&sort=${this.sort}&period=${this.period}`)
+      this.topicsList = res.data;
     }
   },
 });
 </script>
 
 <style lang="scss" scoped>
-h4 {
-  text-align: left;
-  color: #ffc107;
+.subtitle {
+  @extend %subtitle;
 }
 .contents {
   padding: 1rem;
