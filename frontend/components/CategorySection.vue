@@ -4,7 +4,7 @@
     <v-divider></v-divider>
     <v-container>
       <v-row>
-        <v-col v-for="(category, i) in categories" :key="i" cols="4">
+        <v-col v-for="(category, i) in categoryList" :key="i" cols="4">
           <a :href="`/search?category_id=${category.id}`" class="category">{{ category.category }}</a>
         </v-col>
       </v-row>
@@ -15,26 +15,23 @@
 <script lang="ts">
 import Vue from "vue";
 import { Category } from "@/types";
-import { categoryList } from "@/data/data";
+import { categoryList } from "@/data";
 
 export default Vue.extend({
+  props: {
+    removeZero: Boolean,
+  },
+  // computed: {
+  //   categories: (): Category[] => {
+  //     categoryList.shift();
+  //     console.log(categoryList)
+  //     return categoryList;
+  //   }
+  // },
   data() {
     return {
-      orgCategories: categoryList as Category[],
-      categories: [] as Category[],
+      categoryList: categoryList as Category[],
     };
-  },
-  created() {
-    this.removeZero();
-  },
-  methods: {
-    removeZero() {
-      for (const i in this.orgCategories) {
-        if (i !== "0") {
-          this.categories.push(this.orgCategories[i]);
-        }
-      }
-    },
   },
 });
 </script>

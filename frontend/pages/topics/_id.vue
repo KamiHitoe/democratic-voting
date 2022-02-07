@@ -34,7 +34,7 @@ import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
 import RelatedTopics from "@/components/topics/RelatedTopics.vue";
 import TopicContents from "@/components/topics/TopicContents.vue";
-import { testUser } from "@/data/data"
+import { testUser } from "@/data"
 
 export default Vue.extend({
   components: {

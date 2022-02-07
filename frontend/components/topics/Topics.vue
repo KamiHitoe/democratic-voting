@@ -15,7 +15,7 @@
           </p>
           <p class="data-margin">{{ topics.timestamp }}</p>
           <p class="data-margin change-color">
-            {{ categoryList[topics.category_id].category }}
+            {{ categoryList[topics.category_id - 1].category }}
           </p>
         </div>
         <h4 class="topics-title">{{ topics.title }}</h4>
@@ -35,7 +35,7 @@
 import Vue, { PropType } from "vue";
 import LimitedTag from "@/components/LimitedTag.vue";
 import { Topic, Category } from "@/types";
-import { categoryList } from "@/data/data";
+import { categoryList } from "@/data";
 
 export default Vue.extend({
   components: {
