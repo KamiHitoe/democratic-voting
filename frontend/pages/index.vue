@@ -12,7 +12,11 @@
       centered
       fixed-tabs
     >
-      <v-tab v-for="(item, i) in tabItems" :key="i">
+      <v-tab 
+        v-for="(item, i) in tabItems"
+        :key="i"
+        @click="getTopics(item.q)"
+      >
         {{ item.title }}
       </v-tab>
     </v-tabs>
@@ -42,9 +46,9 @@ export default Vue.extend({
     return {
       tab: null,
       tabItems: [
-        { title: "新着のお題" },
-        { title: "急上昇中のお題" },
-        { title: "殿堂入りのお題" },
+        { title: "新着のお題", q: "DESC" },
+        { title: "急上昇中のお題", q: "trend" },
+        { title: "殿堂入りのお題", q: "ranking" },
       ],
       topicsList: [],
     };
@@ -53,8 +57,9 @@ export default Vue.extend({
     this.getTopics();
   },
   methods: {
-    async getTopics() {
-      const res = await this.$axios.get("/topics");
+    async getTopics(q) {
+      // const res = await this.$axios.get("/topics");
+      const res = await this.$axios.get(`/topics?q=${q}`);
       // for (const record of res.data) {
       //   console.log(record.created_at);
       //   console.log(typeof record.created_at);

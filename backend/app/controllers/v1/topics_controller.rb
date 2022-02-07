@@ -6,8 +6,15 @@ module V1
 
     # GET /topics
     def index
-      @topics = Topic.all
-      json_response(@topics)
+      if params[:q] == "ranking"
+        topics = Topic.order("option_1_num DESC")
+      elsif params[:q] == "trend"
+        topics = Topic.where("created_at > ?", 3.days.ago).order("option_1_num DESC")
+      else
+        topics = Topic.order("created_at DESC")
+      end
+      json_response(topics)
+      puts params
     end
 
     # POST /topics
@@ -21,9 +28,11 @@ module V1
       json_response(@topic)
     end
 
-    # GET /search_by_category?category_id=:category_id
-    def search_by_category
-      topics = Topic.where(category_id: params[:category_id]).all
+    # GET /search?query=:query
+    def search
+      if params[:category_id]
+        topics = Topic.where(category_id: params[:category_id]).all
+      end
       json_response(topics)
     end
 

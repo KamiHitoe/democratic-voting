@@ -150,6 +150,8 @@ export default Vue.extend({
         { value: 10, item: "10代" },
         { value: 20, item: "20代" },
         { value: 30, item: "30代" },
+        { value: 40, item: "40代" },
+        { value: 50, item: "50代" },
       ],
     };
   },

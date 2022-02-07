@@ -20,7 +20,24 @@
           dense
           background-color="amber lighten-4"
         ></v-select>
+        <v-select
+          :items="sexItems"
+          label="性別"
+          item-color="amber"
+          solo
+          dense
+          background-color="amber lighten-4"
+        ></v-select>
+        <v-select
+          :items="ageItems"
+          label="年代"
+          item-color="amber"
+          solo
+          dense
+          background-color="amber lighten-4"
+        ></v-select>
       </div>
+
       <Topics v-for="(topics, i) in topicsList"
         :key="topics.id"
         :topics="topics"
@@ -48,6 +65,8 @@ export default Vue.extend({
     return {
       sortItems: ["新着順", "投票数順"] as String[],
       periodItems: ["1年以内", "1ヶ月以内", "1週間以内"] as String[],
+      sexItems: ["男性", "女性"] as String[],
+      ageItems: ["10代", "20代", "30代", "40代", "50代"] as String[],
       topicsList: [] as Topic[],
     };
   },
@@ -58,7 +77,7 @@ export default Vue.extend({
   },
   methods: {
     async getTopicsByCategory() {
-      const res = await this.$axios.get(`search_by_category?category_id=${this.$route.query.category_id}`)
+      const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}`)
       this.topicsList = res.data;
     },
   },

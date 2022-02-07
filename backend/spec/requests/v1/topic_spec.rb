@@ -20,8 +20,8 @@ RSpec.describe(Topic, type: :request) do
       expect(response.status).to(eq(200))
     end
 
-    it 'get topics by category id' do
-      get "/v1/search_by_category?category_id=#{@topic.category_id}"
+    it 'search topics by category id' do
+      get "/v1/search?category_id=#{@topic.category_id}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
     end
