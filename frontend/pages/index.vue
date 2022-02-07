@@ -46,7 +46,7 @@ export default Vue.extend({
     return {
       tab: null,
       tabItems: [
-        { title: "新着のお題", q: "DESC" },
+        { title: "新着のお題", q: "new" },
         { title: "急上昇中のお題", q: "trend" },
         { title: "殿堂入りのお題", q: "ranking" },
       ],

@@ -32,7 +32,9 @@ module V1
     def search
       if params[:category_id]
         topics = Topic.where(category_id: params[:category_id]).all
-      end
+      else
+        topics = Topic.all
+      end      
       json_response(topics)
     end
 
