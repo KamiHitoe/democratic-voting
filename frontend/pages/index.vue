@@ -57,7 +57,7 @@ export default Vue.extend({
     this.getTopics();
   },
   methods: {
-    async getTopics(q) {
+    async getTopics(q: string = "DESC") {
       // const res = await this.$axios.get("/topics");
       const res = await this.$axios.get(`/topics?q=${q}`);
       // for (const record of res.data) {
