@@ -1,7 +1,7 @@
 <template>
   <section class="vote-contents">
     <h4 class="subtitle">
-      トップ　＞　{{ categoryList[topics.category_id].category }}
+      トップ　＞　{{ category }}
     </h4>
     <v-divider></v-divider>
     <LimitedTag :topics="topics" tag_class="limited-tag" />
@@ -12,7 +12,7 @@
           <p class="data-margin">{{ topics.voted_num }} votes</p>
           <p class="data-margin">{{ topics.timestamp }}</p>
           <p class="data-margin change-color">
-            {{ categoryList[topics.category_id].category }}
+            {{ category }}
           </p>
         </div>
         <h2 class="topics-title">{{ topics.title }}</h2>
@@ -77,9 +77,12 @@ export default {
     return {
       categoryList: categoryList,
       chartPattern: 2,
+      category: "",
     };
   },
   updated() {
+    this.category = this.categoryList[this.topics.category_id - 1].category
+    console.log(this.category)
     const ctx = document.getElementById("result-chart");
     // the number of options == 4
     if (this.topics.option_3 && this.topics.option_4) {

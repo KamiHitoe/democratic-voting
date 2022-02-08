@@ -17,7 +17,13 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "stylesheet", type: "text/css", href: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" },
+    ],
+    script: [
+      { src: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js" }
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

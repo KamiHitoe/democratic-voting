@@ -35,6 +35,8 @@
           </v-col>
         </v-row>
 
+        <p class="attention">※性別・年代を登録すると該当する投稿に投票・コメントすることができます</p>
+
         <v-btn class="submit-btn" color="amber" dark type="submit">
           ユーザー情報を登録する
         </v-btn>
@@ -45,6 +47,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import firebase from "@/plugins/firebase";
 
 export default Vue.extend({
   data() {
@@ -73,13 +76,23 @@ export default Vue.extend({
         // console.log(e);
         console.log(e.value);
       }
-      await this.$axios.post("/users", {
-        username: this.username,
-        sex: this.sex,
-        age: this.age,
-      });
-      alert("post user success!");
-      window.location.replace("/");
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // this.$axios.post("/users", {
+          //   uid: user.uid,
+          //   username: this.username,
+          //   sex: this.sex,
+          //   age: this.age,
+          // });
+          // alert("post user success!");
+          // window.location.replace("/");
+          console.log(user)
+        } else {
+          // User is signed out
+          console.log('User is signed out');
+        }
+      })
     },
   },
 });

@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       menuList: ["ユーザー登録", "ログイン"],
-      pathList: ["/user", "/user"],
+      pathList: ["/user", "/login"],
     };
   },
   methods: {
