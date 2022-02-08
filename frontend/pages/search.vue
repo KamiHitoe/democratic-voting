@@ -42,10 +42,10 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Fuse from "fuse.js"
 import CategorySection from "@/components/CategorySection.vue";
 import Topics from "@/components/topics/Topics.vue";
-import { categoryList } from "@/data";
-import { Topic, Category } from "@/types";
+import { Topic } from "@/types";
 
 export default Vue.extend({
   components: {
@@ -94,6 +94,8 @@ export default Vue.extend({
   created() {
     if (this.$route.query.category_id) {
       this.searchTopicsByCategory();
+    } else if (this.$route.query.q) {
+      this.searchTopicsByKeyword();
     }
   },
   methods: {
@@ -104,6 +106,19 @@ export default Vue.extend({
     async searchTopicsByQuery() {
       const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}`)
       this.topicsList = res.data;
+    },
+    async searchTopicsByKeyword() {
+      console.log('start')
+      const options = {
+        includeScore: false,
+        keys: ['title', 'description']
+      }
+      const res = await this.$axios.get("search")
+      const fuse = new Fuse(res.data, options)
+      const topicsObj = fuse.search(this.$route.query.q)
+      const topicsList = topicsObj.map((obj) => obj.item)
+      console.log(topicsList)
+      this.topicsList = topicsList;
     }
   },
 });

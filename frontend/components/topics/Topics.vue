@@ -69,6 +69,7 @@ section {
   width: 100px;
   height: 100px;
   margin-right: 3rem;
+  object-fit: fill;
 }
 .topics-contents {
   text-align: left;

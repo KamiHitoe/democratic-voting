@@ -48,7 +48,7 @@ module V1
           topics = topics.order("created_at DESC")
         end
       else
-        puts "category_id is not found"
+        topics = Topic.all
       end
       json_response(topics)
     end

@@ -27,7 +27,7 @@
 
       <div class="d-flex flex-row justify-space-between header-subtitle">
         <h4 class="subtitle">気になることをみんなの投票で決めよう！</h4>
-        <v-text-field
+        <!-- <v-text-field
           v-model="keyword"
           :append-icon="'mdi-magnify'"
           class="search-bar"
@@ -38,7 +38,8 @@
           type="text"
           required
           @click:append="searchByKeyword"
-        ></v-text-field>
+        ></v-text-field> -->
+        <SearchBar />
       </div>
     </header>
 
@@ -70,8 +71,13 @@
 </template>
 
 <script>
+import SearchBar from '@/components/SearchBar.vue'
+
 export default {
   name: "DefaultLayout",
+  components: {
+    SearchBar,
+  },
   data() {
     return {
       menuList: ["ユーザー登録", "ログイン"],
@@ -117,9 +123,6 @@ header {
 }
 .v-main {
   margin: 0 1rem 3rem;
-}
-.search-bar {
-  max-width: 30rem;
 }
 a {
   text-decoration: none;
