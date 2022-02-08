@@ -1,10 +1,10 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
+  // env: {
+  //   browser: true,
+  //   es2021: true,
+  //   node: true,
+  // },
   extends: [
     "@nuxtjs/eslint-config-typescript",
     "eslint:recommended",
@@ -18,6 +18,7 @@ module.exports = {
   //     "sourceType": "module"
   // },
   plugins: ["prettier"],
+
   // add your custom rules
   rules: {
     "no-console": "off",
