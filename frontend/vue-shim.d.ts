@@ -1,5 +1,7 @@
 // import { Auth } from '@nuxtjs/auth'
-import { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { NuxtAxiosInstance } from '@nuxtjs/axios';
+// import { Store } from 'vuex';
+
 declare module '*.vue' {
   import Vue from 'vue'
   export default Vue
@@ -12,6 +14,21 @@ declare module '*.vue' {
 // }
 declare module '@nuxt/types' {
   interface Context {
-    $axios: NuxtAxiosInstance
+    $axios: NuxtAxiosInstance;
+    $store: Object;
+    $route: Object;
   }
 }
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $store: Object;
+    $route: Object;
+  }
+}
+
+// declare module '@vue/runtime-core' {
+//   interface ComponentCustomProperties {
+//     $store: Store;
+//   }
+// }

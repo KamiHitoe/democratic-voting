@@ -30,11 +30,26 @@ module V1
 
     # GET /search?query=:query
     def search
+      # /:category_idからcategory_idを取得
       if params[:category_id]
-        topics = Topic.where(category_id: params[:category_id]).all
+        topics = Topic.where(category_id: params[:category_id])
+        if params[:period] == "weekly"
+          topics = topics.where("created_at > ?", 1.weeks.ago)
+        elsif params[:period] == "monthly"
+          topics = topics.where("created_at > ?", 1.months.ago)
+        elsif params[:period] == "yearly"
+          topics = topics.where("created_at > ?", 1.years.ago)
+        end
+        
+        if params[:sort] == "ranking"
+          topics = topics.order("voted_num DESC")
+        else
+          # 条件指定がない場合は新着順
+          topics = topics.order("created_at DESC")
+        end
       else
-        topics = Topic.all
-      end      
+        puts "category_id is not found"
+      end
       json_response(topics)
     end
 

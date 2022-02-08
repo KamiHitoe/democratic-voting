@@ -6,6 +6,7 @@
       <v-row>
         <v-col v-for="(category, i) in categoryList" :key="i" cols="4">
           <a :href="`/search?category_id=${category.id}`" class="category">{{ category.category }}</a>
+          <!-- <nuxt-link :to="`/search?category_id=${category.id}`" class="category">{{ category.category }}</nuxt-link> -->
         </v-col>
       </v-row>
     </v-container>
