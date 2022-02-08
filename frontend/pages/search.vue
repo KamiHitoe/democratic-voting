@@ -5,33 +5,6 @@
       <v-divider></v-divider>
       <div class="d-flex flex-row">
         <v-select
-          v-model="category"
-          :items="categoryItems"
-          label="カテゴリー"
-          item-color="amber"
-          solo
-          dense
-          background-color="amber lighten-4"
-        ></v-select>
-        <v-select
-          v-model="sex"
-          :items="sexItems"
-          label="性別"
-          item-color="amber"
-          solo
-          dense
-          background-color="amber lighten-4"
-        ></v-select>
-        <v-select
-          v-model="age"
-          :items="ageItems"
-          label="年代"
-          item-color="amber"
-          solo
-          dense
-          background-color="amber lighten-4"
-        ></v-select>
-        <v-select
           v-model="sort"
           :items="sortItems"
           label="並び替え順"
@@ -79,28 +52,28 @@ export default Vue.extend({
     CategorySection,
     Topics,
   },
-  computed: {
-    categoryItems: (): Object[] => {
-      const newList: Object[] = [];
-      for (let i in categoryList) {
-        newList.push({text: categoryList[i].category, value: categoryList[i].id});
-      }
-      return newList
-    }
-  },
+  // computed: {
+  //   categoryItems: (): Object[] => {
+  //     const newList: Object[] = [];
+  //     for (let i in categoryList) {
+  //       newList.push({text: categoryList[i].category, value: categoryList[i].id});
+  //     }
+  //     return newList
+  //   }
+  // },
   data() {
     return {
-      sexItems: [
-        {text: "男性", value: "男性"},
-        {text: "女性", value: "女性"},
-      ] as Object[],
-      ageItems: [
-        {text: "10代", value: 10},
-        {text: "20代", value: 20},
-        {text: "30代", value: 30},
-        {text: "40代", value: 40},
-        {text: "50代", value: 50},
-      ] as Object[],
+      // sexItems: [
+      //   {text: "男性", value: "男性"},
+      //   {text: "女性", value: "女性"},
+      // ] as Object[],
+      // ageItems: [
+      //   {text: "10代", value: 10},
+      //   {text: "20代", value: 20},
+      //   {text: "30代", value: 30},
+      //   {text: "40代", value: 40},
+      //   {text: "50代", value: 50},
+      // ] as Object[],
       sortItems: [
         {text: "新着順", value: "new"},
         {text: "投票数順", value: "ranking"},
@@ -111,8 +84,8 @@ export default Vue.extend({
         {text: "1週間以内", value: "weekly"},
       ] as Object[],
       category: 0 as Number,
-      sex: "" as String,
-      age: 0 as Number,
+      // sex: "" as String,
+      // age: 0 as Number,
       sort: "" as String,
       period: "" as String,
       topicsList: [] as Topic[],
@@ -129,7 +102,7 @@ export default Vue.extend({
       this.topicsList = res.data;
     },
     async searchTopicsByQuery() {
-      const res = await this.$axios.get(`search?category=${this.category}&sex=${this.sex}&age=${this.age}&sort=${this.sort}&period=${this.period}`)
+      const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}`)
       this.topicsList = res.data;
     }
   },
