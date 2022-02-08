@@ -9,9 +9,7 @@
       <img class="topics-img" :src="topics.img_path" />
       <div class="topics-contents d-flex flex-column">
         <div class="d-flex flex-row">
-          <p class="data-margin">
-            {{ topics.voted_num }} votes
-          </p>
+          <p class="data-margin">{{ topics.voted_num }} votes</p>
           <p class="data-margin">{{ topics.timestamp }}</p>
           <p class="data-margin change-color">
             {{ categoryList[topics.category_id].category }}
@@ -25,18 +23,37 @@
     <div class="d-flex flex-row">
       <canvas id="result-chart"></canvas>
       <div class="d-flex flex-column justify-center">
-        <p><span class="chart-label-1">&nbsp;</span>{{ topics.option_1 }} {{ topics.option_1_num }}票</p>
-        <p><span class="chart-label-2">&nbsp;</span>{{ topics.option_2 }} {{ topics.option_2_num }}票</p>
-        <p v-if="topics.option_3"><span class="chart-label-3">&nbsp;</span>{{ topics.option_3 }} {{ topics.option_3_num }}票</p>
-        <p v-if="topics.option_4"><span class="chart-label-4">&nbsp;</span>{{ topics.option_4 }} {{ topics.option_4_num }}票</p>
+        <p>
+          <span class="chart-label-1">&nbsp;</span>{{ topics.option_1 }}
+          {{ topics.option_1_num }}票
+        </p>
+        <p>
+          <span class="chart-label-2">&nbsp;</span>{{ topics.option_2 }}
+          {{ topics.option_2_num }}票
+        </p>
+        <p v-if="topics.option_3">
+          <span class="chart-label-3">&nbsp;</span>{{ topics.option_3 }}
+          {{ topics.option_3_num }}票
+        </p>
+        <p v-if="topics.option_4">
+          <span class="chart-label-4">&nbsp;</span>{{ topics.option_4 }}
+          {{ topics.option_4_num }}票
+        </p>
       </div>
     </div>
 
-    <div v-if="!$route.params.topic_id && (!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
+    <div
+      v-if="
+        !$route.params.topic_id &&
+        (!topics.sex || topics.sex == user.sex) &&
+        (!topics.age || topics.age == user.age)
+      "
+    >
       <Voting :topics="topics" />
     </div>
-    <p v-else class="invalid-user">※この投稿の対象ユーザーではないため投票できません。</p>
-
+    <p v-else class="invalid-user">
+      ※この投稿の対象ユーザーではないため投票できません。
+    </p>
   </section>
 </template>
 
@@ -88,7 +105,7 @@ export default {
           ],
         },
       });
-    // the number of options == 3
+      // the number of options == 3
     } else if (this.topics.option_3) {
       new Chart(ctx, {
         type: "pie",
@@ -109,27 +126,21 @@ export default {
             },
           ],
         },
-      })
-    // the number of options == 2
+      });
+      // the number of options == 2
     } else {
       new Chart(ctx, {
         type: "pie",
         data: {
           datasets: [
             {
-              data: [
-                this.topics.option_1_num,
-                this.topics.option_2_num,
-              ],
-              backgroundColor: [
-                "rgb(255, 99, 132)",
-                "rgb(54, 162, 235)",
-              ],
+              data: [this.topics.option_1_num, this.topics.option_2_num],
+              backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
               hoverOffset: 4,
             },
           ],
         },
-      })
+      });
     }
   },
   methods: {
@@ -205,4 +216,3 @@ export default {
   background: rgb(111, 205, 205);
 }
 </style>
-

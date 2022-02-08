@@ -13,23 +13,29 @@
         :order="i + 1"
       />
 
-      <div v-if="(!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
+      <div
+        v-if="
+          (!topics.sex || topics.sex == user.sex) &&
+          (!topics.age || topics.age == user.age)
+        "
+      >
         <CommentBox :topic_id="topics.id" />
       </div>
-      <p v-else class="invalid-user">※この投稿の対象ユーザーではないためコメントできません。</p>
+      <p v-else class="invalid-user">
+        ※この投稿の対象ユーザーではないためコメントできません。
+      </p>
     </section>
-
   </main>
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 import CategorySection from "@/components/CategorySection.vue";
 import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
 import RelatedTopics from "@/components/topics/RelatedTopics.vue";
-import TopicContents from "@/components/topics/TopicContents.vue"
-import { testUser } from "@/data"
+import TopicContents from "@/components/topics/TopicContents.vue";
+import { testUser } from "@/data";
 
 export default Vue.extend({
   components: {
@@ -60,16 +66,18 @@ export default Vue.extend({
     async getTopics() {
       const res = await this.$axios.get(`/topics/${this.topic_id}`);
       this.topics = res.data;
-      this.topic_id = this.topics.id
+      this.topic_id = this.topics.id;
       console.log(this.topics);
     },
     async getRepliedComments() {
-      const res = await this.$axios.get(`/comments/${this.topic_id}/${this.comment_id}`);
+      const res = await this.$axios.get(
+        `/comments/${this.topic_id}/${this.comment_id}`
+      );
       this.commentList = res.data;
       console.log(res.data);
     },
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

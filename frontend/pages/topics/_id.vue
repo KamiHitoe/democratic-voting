@@ -1,9 +1,6 @@
 <template>
   <main>
-    <TopicContents
-      :topics="topics"
-      :user="user"
-    />
+    <TopicContents :topics="topics" :user="user" />
 
     <section class="comment-contents">
       <h4 class="comment-subtitle">コメント</h4>
@@ -16,10 +13,17 @@
         :order="i + 1"
       />
 
-      <div v-if="(!topics.sex || topics.sex == user.sex) && (!topics.age || topics.age == user.age)">
+      <div
+        v-if="
+          (!topics.sex || topics.sex == user.sex) &&
+          (!topics.age || topics.age == user.age)
+        "
+      >
         <CommentBox :topic_id="topics.id" />
       </div>
-      <p v-else class="invalid-user">※この投稿の対象ユーザーではないためコメントできません。</p>
+      <p v-else class="invalid-user">
+        ※この投稿の対象ユーザーではないためコメントできません。
+      </p>
     </section>
 
     <RelatedTopics />
@@ -28,13 +32,13 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 import CategorySection from "@/components/CategorySection.vue";
 import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
 import RelatedTopics from "@/components/topics/RelatedTopics.vue";
 import TopicContents from "@/components/topics/TopicContents.vue";
-import { testUser } from "@/data"
+import { testUser } from "@/data";
 
 export default Vue.extend({
   components: {
@@ -59,7 +63,9 @@ export default Vue.extend({
     await this.getTopics();
     await this.getComments();
     await this.getVotedStatus();
-    console.log(`voted_status: ${this.voted_status} ${this.$store.state.voted_status}`)
+    console.log(
+      `voted_status: ${this.voted_status} ${this.$store.state.voted_status}`
+    );
   },
   methods: {
     async getVotedStatus() {
@@ -67,10 +73,10 @@ export default Vue.extend({
         `/votes/${this.user.id}/${this.topics.id}`
       );
       if (res.data.voted_status) {
-        this.$store.commit('updateVotedStatus', true)
+        this.$store.commit("updateVotedStatus", true);
         console.log(this.$store.state.voted_status);
       } else {
-        this.$store.commit('updateVotedStatus', false)
+        this.$store.commit("updateVotedStatus", false);
       }
     },
     async getTopics() {

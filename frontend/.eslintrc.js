@@ -1,12 +1,12 @@
 module.exports = {
   root: true,
-  // env: {
-  //   browser: true,
-  //   es2021: true,
-  //   node: true,
-  // },
+  env: {
+    node: true,
+    browser: true,
+    // es2021: true,
+  },
   extends: [
-    "@nuxtjs/eslint-config-typescript",
+    // "@nuxtjs/eslint-config-typescript",
     "eslint:recommended",
     "prettier",
     "plugin:prettier/recommended",
@@ -34,10 +34,10 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    {
-      files: ["*.vue"],
-      processor: "vue/.vue",
-    },
-  ],
+  // overrides: [
+  //   {
+  //     files: ["*.vue"],
+  //     processor: "vue/.vue",
+  //   },
+  // ],
 };

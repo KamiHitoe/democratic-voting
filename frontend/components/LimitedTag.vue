@@ -3,11 +3,10 @@
     <h5 v-if="topics.sex" :class="tag_class">{{ topics.sex }}限定投票</h5>
     <h5 v-if="topics.age" :class="tag_class">{{ topics.age }}代限定投票</h5>
   </div>
-
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
   props: {
@@ -15,8 +14,7 @@ export default Vue.extend({
     tag_class: String,
   },
   data() {
-    return {
-    };
+    return {};
   },
 });
 </script>
@@ -35,6 +33,4 @@ export default Vue.extend({
   font-size: 14px;
   margin: 1rem 1rem 0 0;
 }
-
 </style>
-
