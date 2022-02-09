@@ -1,8 +1,8 @@
 <template>
   <section>
-    <h1>Please Login</h1>
+    <h1 class="subtitle">ログインページ</h1>
     <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
+    <!-- <div id="loader">Loading...</div> -->
   </section>
 </template>
 
@@ -17,7 +17,16 @@ export default Vue.extend({
     };
   },
   created() {
-    this.firebaseUi();
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        const target: Object = document.getElementById("firebaseui-auth-container");
+        const text: Object = document.createTextNode("すでにログインしています")
+        target.appendChild(text)
+      } else {
+        // User is signed out
+        this.firebaseUi();
+      }
+    })
   },
   methods: {
     firebaseUi() {
@@ -31,7 +40,7 @@ export default Vue.extend({
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
           console.log(authResult, redirectUrl);
-          window.location.replace("/user")
+          window.location.replace("/user-setting")
           return false;
           },
           uiShown: function() {
@@ -66,5 +75,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-
+h1.subtitle {
+  margin-bottom: 2rem;
+}
 </style>

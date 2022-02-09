@@ -17,7 +17,7 @@
             <v-list-item
               v-for="(menu, i) in menuList"
               :key="i"
-              @click="moveUserPage(i)"
+              @click="authAction(i)"
             >
               <v-list-item-title>{{ menu }}</v-list-item-title>
             </v-list-item>
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import firebase from "@/plugins/firebase"
 import SearchBar from '@/components/SearchBar.vue'
 
 export default {
@@ -80,8 +81,8 @@ export default {
   },
   data() {
     return {
-      menuList: ["ユーザー登録", "ログイン"],
-      pathList: ["/user", "/login"],
+      menuList: ["ログイン", "ログアウト"],
+      // pathList: ["/user-setting", "/login"],
     };
   },
   methods: {
@@ -93,8 +94,17 @@ export default {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     },
-    moveUserPage(i) {
-      window.location.replace(this.pathList[i]);
+    authAction(i) {
+      if (i === 0) {
+        // login
+        window.location.replace("/login");
+      } else {
+        // logout
+        const agreement = confirm("ログアウトしてよろしいですか？");
+        if (agreement) {
+          firebase.auth().signOut()
+        }
+      }
     },
   },
 };
@@ -129,5 +139,8 @@ a {
 }
 .invalid-user {
   margin-top: 1rem;
+}
+.subtitle {
+  @extend %subtitle;
 }
 </style>

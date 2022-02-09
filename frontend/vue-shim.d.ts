@@ -1,6 +1,6 @@
 // import { Auth } from '@nuxtjs/auth'
 import { NuxtAxiosInstance } from '@nuxtjs/axios';
-// import { Store } from 'vuex';
+import { Store } from 'vuex';
 
 declare module '*.vue' {
   import Vue from 'vue'
@@ -15,15 +15,15 @@ declare module '*.vue' {
 declare module '@nuxt/types' {
   interface Context {
     $axios: NuxtAxiosInstance;
-    $store: Object;
-    $route: Object;
+    // $store: Object | Store;
+    // $route: Object;
   }
 }
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $store: Object;
-    $route: Object;
+    $store: Object | Store;
+    $route: any;
   }
 }
 

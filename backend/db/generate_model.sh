@@ -1,5 +1,5 @@
 rails generate model User ^
-username:string sex:string age:integer ^
+uid:string sex:string age:integer ^
 && ^
 rails generate model Topic ^
 category_id:integer title:string description:text ^

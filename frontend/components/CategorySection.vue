@@ -40,9 +40,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 section {
   @extend %section-body;
-  .subtitle {
-    @extend %subtitle;
-  }
 }
 .category {
   color: #000;

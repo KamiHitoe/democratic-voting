@@ -86,9 +86,6 @@ export default Vue.extend({
 section {
   text-align: center;
   margin-top: 1rem;
-  .subtitle {
-    @extend %subtitle;
-  }
   .post-comment {
     margin-bottom: 0.3rem;
   }

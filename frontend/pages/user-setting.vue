@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h4 class="subtitle">ユーザー情報登録</h4>
+    <h4 class="subtitle">ユーザー情報を登録します</h4>
     <form id="user-form" action="#" @submit.prevent="submitUser">
       <v-container>
-        <v-text-field
+        <!-- <v-text-field
           v-model="username"
           label="ユーザーネーム"
           outlined
@@ -12,7 +12,7 @@
           type="text"
           maxlength="100"
           required
-        ></v-text-field>
+        ></v-text-field> -->
 
         <v-row>
           <v-col cols="3">
@@ -52,12 +52,12 @@ import firebase from "@/plugins/firebase";
 export default Vue.extend({
   data() {
     return {
-      username: null as string,
-      sex: null as boolean,
+      // username: null as string,
+      sex: null as string,
       age: null as number,
       sexItems: [
-        { value: false, item: "男性" },
-        { value: true, item: "女性" },
+        { value: "男性", item: "男性" },
+        { value: "女性", item: "女性" },
       ],
       ageItems: [
         { value: 10, item: "～20歳" },
@@ -79,15 +79,21 @@ export default Vue.extend({
 
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          // this.$axios.post("/users", {
-          //   uid: user.uid,
-          //   username: this.username,
-          //   sex: this.sex,
-          //   age: this.age,
-          // });
-          // alert("post user success!");
-          // window.location.replace("/");
-          console.log(user)
+          // if user in Postgre is not found
+
+          this.$axios.post("/users", {
+            uid: user.uid,
+          // username: this.username,
+            sex: this.sex,
+            age: this.age,
+          }).then(() => {
+            alert("post user success!");
+            window.location.replace("/");
+            console.log(user)
+          })
+
+          // else user already exist
+
         } else {
           // User is signed out
           console.log('User is signed out');
@@ -102,9 +108,6 @@ export default Vue.extend({
 section {
   text-align: center;
   @extend %section-body;
-  .subtitle {
-    @extend %subtitle;
-  }
   .submit-btn {
     margin-top: 1rem;
   }

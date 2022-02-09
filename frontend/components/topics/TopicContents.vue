@@ -159,7 +159,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.subtitle,
 .topics-title,
 .topics-description {
   text-align: left;

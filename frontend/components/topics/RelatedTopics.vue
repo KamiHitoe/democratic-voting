@@ -33,8 +33,5 @@ export default Vue.extend({
   background-color: #fff;
   padding: 1rem;
   margin-top: 2rem;
-  .subtitle {
-    @extend %subtitle;
-  }
 }
 </style>
