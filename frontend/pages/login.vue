@@ -17,16 +17,16 @@ export default Vue.extend({
     };
   },
   created() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        const target: Object = document.getElementById("firebaseui-auth-container");
-        const text: Object = document.createTextNode("すでにログインしています")
-        target.appendChild(text)
-      } else {
-        // User is signed out
-        this.firebaseUi();
-      }
-    })
+    const user = firebase.auth().currentUser;
+    if (user) {
+      // user is already signed in
+      const target: Object = document.getElementById("firebaseui-auth-container");
+      const text: Object = document.createTextNode("すでにログインしています")
+      target.appendChild(text)
+    } else {
+      // No user is signed in
+      this.firebaseUi();
+    }
   },
   methods: {
     firebaseUi() {
