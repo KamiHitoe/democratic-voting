@@ -16,6 +16,8 @@
   - [How To Use TypeScript with Vue Single File Components](https://www.digitalocean.com/community/tutorials/vuejs-using-typescript-with-vue)
   - [How to properly set up Nuxt with ESLint and Prettier in VSCode](https://medium.com/@gogl.alex/how-to-properly-set-up-eslint-with-prettier-for-vue-or-nuxt-in-vscode-e42532099a9c)
   - [Rubocop Configuration Files for Rails](https://prabinpoudel.com.np/articles/rubocop-configuration-files-for-rails/)
+- Cookies
+  - [Are You Using Cookies? Then This Ultimate Guide Is For You](https://html.com/resources/cookies-ultimate-guide/)
 
 
 ### つまった点
