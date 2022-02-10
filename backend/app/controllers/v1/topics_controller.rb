@@ -72,15 +72,15 @@ module V1
         topics = topics.order("created_at DESC").offset(params[:page])
       end
       
-      if params[:keyword]
-        # キーワード検索の場合、frontendでlimitを指定
-        json_response(topics)
-      else
-        # キーワード検索ではない場合、backendでlimitを指定
-        topics = topics.limit(1)
-        json_response(topics)
-      end
+      # if params[:keyword]
+      #   # キーワード検索の場合、frontendでlimitを指定
+      #   json_response(topics)
+      # else
+      #   # キーワード検索ではない場合、backendでlimitを指定
+      #   topics = topics.limit(1)
+      # end
 
+      json_response(topics)
     end
 
     # PUT /topics/:id
