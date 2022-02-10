@@ -51,6 +51,7 @@
     >
       <Voting :topics="topics" />
     </div>
+    <div v-else-if="$route.params.topic_id"></div>
     <p v-else class="invalid-user">
       ※この投稿の対象ユーザーではないため投票できません。
     </p>

@@ -52,9 +52,10 @@ import firebase from "@/plugins/firebase";
 export default Vue.extend({
   data() {
     return {
+      uid: null as String,
       // username: null as string,
-      sex: null as string,
-      age: null as number,
+      sex: null as String,
+      age: null as Number,
       sexItems: [
         { value: "男性", item: "男性" },
         { value: "女性", item: "女性" },
@@ -68,35 +69,36 @@ export default Vue.extend({
       ],
     };
   },
+  created() {
+    this.getUser();
+  },
   methods: {
     async submitUser() {
-      const userForm: any = document.getElementById("user-form");
-      const userInputs: any = userForm.elements;
-      for (const e of userInputs) {
-        // console.log(e);
-        console.log(e.value);
-      }
-
+      await this.$axios.post("/users", {
+        uid: this.uid,
+      // username: this.username,
+        sex: this.sex,
+        age: this.age,
+      })
+      window.location.replace("/");
+    },
+    getUser() {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          // if user in Postgre is not found
-
-          this.$axios.post("/users", {
-            uid: user.uid,
-          // username: this.username,
-            sex: this.sex,
-            age: this.age,
-          }).then(() => {
-            alert("post user success!");
-            window.location.replace("/");
-            console.log(user)
+          this.uid = user.uid;
+          // すでにuidが登録されている場合はトップページへ
+          this.$axios.get(`/users?uid=${this.uid}`)
+          .then((res) => {
+            if (res.data) {
+              window.location.replace('/')
+            } else {
+              // uid未登録の場合のみ情報登録が可能
+              console.log(res.data)
+            }
           })
-
-          // else user already exist
-
         } else {
-          // User is signed out
-          console.log('User is signed out');
+          // firebase Authに登録されていない場合はトップページへ
+          window.location.replace('/');
         }
       })
     },

@@ -8,11 +8,11 @@ const categoryList = [
   { id: 6, category: "悩み" },
 ];
 
-const testUser = {
-  id: 1,
-  username: 'hitoe',
-  sex: '男性',
-  age: 30,
+const initialUser = {
+  id: 0,
+  uid: 'test',
+  sex: null,
+  age: null,
 };
 
 const topicsList = [
@@ -71,4 +71,4 @@ const topicsList = [
   },
 ];
 
-export { categoryList, testUser, topicsList };
+export { categoryList, initialUser, topicsList };
