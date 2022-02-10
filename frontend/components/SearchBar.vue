@@ -25,7 +25,7 @@ export default Vue.extend({
   },
   methods: {
     toSearchWithKeyword() {
-      window.location.replace(`/search?q=${this.keyword}`);
+      window.location.replace(`/search?keyword=${this.keyword}`);
     },
   },
 })

@@ -27,18 +27,6 @@
 
       <div class="d-flex flex-row justify-space-between header-subtitle">
         <h4 class="subtitle">気になることをみんなの投票で決めよう！</h4>
-        <!-- <v-text-field
-          v-model="keyword"
-          :append-icon="'mdi-magnify'"
-          class="search-bar"
-          color="amber"
-          label="お題を検索する"
-          outlined
-          dense
-          type="text"
-          required
-          @click:append="searchByKeyword"
-        ></v-text-field> -->
         <SearchBar />
       </div>
     </header>
@@ -86,10 +74,6 @@ export default {
     };
   },
   methods: {
-    searchByKeyword() {
-      console.log("search by keyword");
-      window.location.replace("/search");
-    },
     moveTop() {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera

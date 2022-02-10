@@ -7,11 +7,11 @@ module V1
     # GET /topics
     def index
       if params[:q] == "ranking"
-        topics = Topic.order("voted_num DESC")
+        topics = Topic.order("voted_num DESC").limit(30)
       elsif params[:q] == "trend"
-        topics = Topic.where("created_at > ?", 3.days.ago).order("voted_num DESC")
+        topics = Topic.where("created_at > ?", 3.days.ago).order("voted_num DESC").limit(30)
       else
-        topics = Topic.order("created_at DESC")
+        topics = Topic.order("created_at DESC").limit(30)
       end
       json_response(topics)
       puts params
@@ -64,13 +64,23 @@ module V1
       end
 
       if params[:sort] == "ranking"
-        topics = topics.order("voted_num DESC")
+        # topics = topics.order("voted_num DESC").offset(params[:page]).limit(1)
+        topics = topics.order("voted_num DESC").offset(params[:page])
       else
         # 条件指定がない場合は新着順
-        topics = topics.order("created_at DESC")
+        # topics = topics.order("created_at DESC").offset(params[:page]).limit(1)
+        topics = topics.order("created_at DESC").offset(params[:page])
+      end
+      
+      if params[:keyword]
+        # キーワード検索の場合、frontendでlimitを指定
+        json_response(topics)
+      else
+        # キーワード検索ではない場合、backendでlimitを指定
+        topics = topics.limit(1)
+        json_response(topics)
       end
 
-      json_response(topics)
     end
 
     # PUT /topics/:id

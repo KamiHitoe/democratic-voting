@@ -52,6 +52,22 @@
         :topics="topics"
         :order="i+1"
       />
+
+    <v-pagination
+      v-if="(topicsList.length !== 0) && !$route.query.keyword"
+      v-model="page"
+      :length="5"
+      color="amber"
+      @input="searchTopicsByQuery"
+    ></v-pagination>
+    <v-pagination
+      v-else-if="(topicsList.length !== 0)"
+      v-model="page"
+      :length="5"
+      color="amber"
+      @input="searchTopicsByKeyword"
+    ></v-pagination>
+
     </div>
 
     <CategorySection />
@@ -97,23 +113,21 @@ export default Vue.extend({
       sort: "" as String,
       period: "" as String,
       topicsList: [] as Topic[],
+      page: 1 as Number,
     };
   },
   created() {
     if (this.$route.query.category_id) {
-      this.searchTopicsByCategory();
-    } else if (this.$route.query.q) {
+      this.searchTopicsByQuery();
+    } else if (this.$route.query.keyword) {
       this.searchTopicsByKeyword();
     }
   },
   methods: {
-    async searchTopicsByCategory() {
-      const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}`)
-      this.topicsList = res.data;
-    },
     async searchTopicsByQuery() {
-      const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}&sex=${this.sex}&age=${this.age}`)
+      const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}&sex=${this.sex}&age=${this.age}&page=${this.page-1}`)
       this.topicsList = res.data;
+      console.log(res.data)
     },
     async searchTopicsByKeyword() {
       console.log('start')
@@ -121,12 +135,17 @@ export default Vue.extend({
         includeScore: false,
         keys: ['title', 'description']
       }
-      const res = await this.$axios.get("search")
+      // 一度すべての検索結果を受け取る
+      const res = await this.$axios.get(`search?keyword=${this.$route.query.keyword}`)
+      const limit = 1
+      const offset = this.page - 1
       const fuse = new Fuse(res.data, options)
-      const topicsObj: any = fuse.search(this.$route.query.q)
+      console.log(res.data)
+      const topicsObj: any = fuse.search(this.$route.query.keyword)
+      console.log(topicsObj)
       const topicsList: Topic[] = topicsObj.map((obj: any) => obj.item)
-      console.log(topicsList)
-      this.topicsList = topicsList;
+      this.topicsList = topicsList.splice(offset, limit);
+      console.log(this.topicsList)
     }
   },
 });
