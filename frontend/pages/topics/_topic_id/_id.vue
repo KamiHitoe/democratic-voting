@@ -28,37 +28,34 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
-import CategorySection from "@/components/CategorySection.vue";
+import firebase from "@/plugins/firebase"
 import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
-import RelatedTopics from "@/components/topics/RelatedTopics.vue";
 import TopicContents from "@/components/topics/TopicContents.vue";
-import { testUser } from "@/data";
+import { User, Topic, Comment } from "@/types"
+import { initialUser } from "@/data";
 
 export default Vue.extend({
   components: {
-    CategorySection,
     Comments,
     CommentBox,
-    RelatedTopics,
-    Voting,
     TopicContents,
   },
   data() {
     return {
-      topic_id: this.$route.params.topic_id,
-      comment_id: this.$route.params.id,
+      topic_id: this.$route.params.topic_id as Number,
+      comment_id: this.$route.params.id as Number,
       topics: {
         category_id: 0,
-      },
-      commentList: [],
-      categoryList,
-      user: testUser,
+      } as Topic,
+      commentList: [] as Comment[],
+      user: initialUser as User,
     };
   },
   async created() {
+    await this.getUser();
     await this.getTopics();
     await this.getRepliedComments();
   },
@@ -75,6 +72,26 @@ export default Vue.extend({
       );
       this.commentList = res.data;
       console.log(res.data);
+    },
+    async getUser() {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          const uid = user.uid;
+          this.$axios.get(`/users?uid=${uid}`)
+          .then((res) => {
+            if (res.data) {
+              this.user = res.data
+              console.log(this.user)
+            } else {
+              // uid未登録の場合
+              console.log('uid is not registered')
+            }
+          })
+        } else {
+          // firebase Authに登録されていない場合
+          console.log('user is not registered')
+        }
+      })
     },
   },
 });

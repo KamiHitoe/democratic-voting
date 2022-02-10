@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     delete 'votes/:user_id/:topic_id', to: 'votes#destroy'
 
     # create related endpoint URI
-    resources :users, only: %i[create show update]
+    resources :users, only: %i[index create show update]
     resources :topics, only: %i[index create show update] do
       resources :comments, only: %i[index create show]
     end

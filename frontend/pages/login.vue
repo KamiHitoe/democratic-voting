@@ -17,16 +17,17 @@ export default Vue.extend({
     };
   },
   created() {
-    const user = firebase.auth().currentUser;
-    if (user) {
-      // user is already signed in
-      const target: Object = document.getElementById("firebaseui-auth-container");
-      const text: Object = document.createTextNode("すでにログインしています")
-      target.appendChild(text)
-    } else {
-      // No user is signed in
-      this.firebaseUi();
-    }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // user is already signed in
+        const target: Object = document.getElementById("firebaseui-auth-container");
+        const text: Object = document.createTextNode("すでにログインしています")
+        target.appendChild(text)
+      } else {
+        // No user is signed in
+        this.firebaseUi();
+      }
+    })
   },
   methods: {
     firebaseUi() {
@@ -35,7 +36,7 @@ export default Vue.extend({
       let ui = new firebaseui.auth.AuthUI(firebase.auth());
       let uiConfig = {
       callbacks: {
-          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+          signInSuccessWithAuthResult: function(authResult: any, redirectUrl: any) {
           // User successfully signed in.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.

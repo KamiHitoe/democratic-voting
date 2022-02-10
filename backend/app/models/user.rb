@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :likes
   has_many :votes
 
-  validates(:username,
+  validates(:uid,
             :sex,
             :age,
             { presence: true }

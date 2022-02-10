@@ -31,25 +31,45 @@ module V1
     # GET /search?query=:query
     def search
       # /:category_idからcategory_idを取得
-      if params[:category_id]
+      if params[:category_id] && params[:category_id] != "undefined"
         topics = Topic.where(category_id: params[:category_id])
-        if params[:period] == "weekly"
-          topics = topics.where("created_at > ?", 1.weeks.ago)
-        elsif params[:period] == "monthly"
-          topics = topics.where("created_at > ?", 1.months.ago)
-        elsif params[:period] == "yearly"
-          topics = topics.where("created_at > ?", 1.years.ago)
-        end
-        
-        if params[:sort] == "ranking"
-          topics = topics.order("voted_num DESC")
-        else
-          # 条件指定がない場合は新着順
-          topics = topics.order("created_at DESC")
-        end
       else
         topics = Topic.all
       end
+
+      if params[:period] == "weekly"
+        topics = topics.where("created_at > ?", 1.weeks.ago)
+      elsif params[:period] == "monthly"
+        topics = topics.where("created_at > ?", 1.months.ago)
+      elsif params[:period] == "yearly"
+        topics = topics.where("created_at > ?", 1.years.ago)
+      end
+      
+      if params[:sex] == "男性"
+        topics = topics.where(sex: "男性")
+      elsif params[:sex] == "女性"
+        topics = topics.where(sex: "女性")
+      end
+
+      if params[:age] == "10"
+        topics = topics.where(age: 10)
+      elsif params[:age] == "20"
+        topics = topics.where(age: 20)
+      elsif params[:age] == "30"
+        topics = topics.where(age: 30)
+      elsif params[:age] == "40"
+        topics = topics.where(age: 40)
+      elsif params[:age] == "50"
+        topics = topics.where(age: 50)
+      end
+
+      if params[:sort] == "ranking"
+        topics = topics.order("voted_num DESC")
+      else
+        # 条件指定がない場合は新着順
+        topics = topics.order("created_at DESC")
+      end
+
       json_response(topics)
     end
 
