@@ -6,6 +6,7 @@ const categoryList = [
   { id: 4, category: "仕事" },
   { id: 5, category: "ライフスタイル" },
   { id: 6, category: "悩み" },
+  // { id: 50, category: "成人向け" },
 ];
 
 const initialUser = {
