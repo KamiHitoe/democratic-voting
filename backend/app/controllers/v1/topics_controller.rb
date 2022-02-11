@@ -30,7 +30,7 @@ module V1
 
     # GET /search?query=:query
     def search
-      # /:category_idからcategory_idを取得
+
       if params[:category_id] && params[:category_id] != "undefined"
         topics = Topic.where(category_id: params[:category_id])
       else
@@ -45,9 +45,9 @@ module V1
         topics = topics.where("created_at > ?", 1.years.ago)
       end
       
-      if params[:sex] == "男性"
+      if params[:sex] == "male"
         topics = topics.where(sex: "男性")
-      elsif params[:sex] == "女性"
+      elsif params[:sex] == "female"
         topics = topics.where(sex: "女性")
       end
 
@@ -65,13 +65,14 @@ module V1
 
       if params[:sort] == "ranking"
         # topics = topics.order("voted_num DESC").offset(params[:page]).limit(1)
-        topics = topics.order("voted_num DESC").offset(params[:page])
+        topics = topics.order("voted_num DESC")
       else
         # 条件指定がない場合は新着順
         # topics = topics.order("created_at DESC").offset(params[:page]).limit(1)
-        topics = topics.order("created_at DESC").offset(params[:page])
+        topics = topics.order("created_at DESC")
       end
       
+      # ServerSidePaginationとClientSidePaginationを分ける場合に使用
       # if params[:keyword]
       #   # キーワード検索の場合、frontendでlimitを指定
       #   json_response(topics)

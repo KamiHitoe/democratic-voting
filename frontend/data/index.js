@@ -10,7 +10,7 @@ const categoryList = [
 ];
 
 const initialUser = {
-  id: 0,
+  id: 1,
   uid: 'test',
   sex: null,
   age: null,

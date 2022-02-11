@@ -37,7 +37,7 @@ class Topic < ApplicationRecord
   def set_defaults
     timestamp = Time.now.to_formatted_s(:db)
     timestamp = timestamp.scan(/\d{4}-\d{2}-\d{2}\s\d+:\d+/)[0]
-    timestamp = timestamp.gsub(/-/, '/')
+    # timestamp = timestamp.gsub(/-/, '/')
     self.timestamp ||= timestamp
     self.option_1_num ||= 0
     self.option_2_num ||= 0

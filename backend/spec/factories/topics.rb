@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :topic do
+    sequence(:id) { |n| n.to_s }
     association :user
     sequence(:category_id) { |n| n.to_s }
     title { 'test title' }

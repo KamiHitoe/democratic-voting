@@ -23,7 +23,7 @@ class Comment < ApplicationRecord
   def set_defaults
     timestamp = Time.now.to_formatted_s(:db)
     timestamp = timestamp.scan(/\d{4}-\d{2}-\d{2}\s\d+:\d+/)[0]
-    timestamp = timestamp.gsub(/-/, '/')
+    # timestamp = timestamp.gsub(/-/, '/')
     self.timestamp ||= timestamp
   end
 end

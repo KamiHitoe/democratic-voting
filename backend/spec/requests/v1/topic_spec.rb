@@ -4,38 +4,81 @@ RSpec.describe(Topic, type: :request) do
   describe 'test Topic request' do
     before(:each) do
       @user = create(:user)
-      @topic = create(:topic)
+      @topics = create_list(:topic, 33)
     end
 
-    it 'get all topics' do
-      get '/v1/topics?q=DESC'
+    it 'get all topics by newest' do
+      # top pageで新着順にソートしたものを30件ずつ返す
+      get '/v1/topics?q'
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
+      expect(json.length).to(eq(30))
     end
 
     it 'get all topics by trend' do
+      # top pageでトレンド順にソートしたものを30件ずつ返す
       get '/v1/topics?q=trend'
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
+      expect(json.length).to(eq(30))
     end
 
     it 'get all topics by ranking' do
+      # top pageでトレンド順にソートしたものを30件ずつ返す
       get '/v1/topics?q=ranking'
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
+      expect(json.length).to(eq(30))
     end
 
     it 'get a topic by id' do
-      get "/v1/topics/#{@topic.id}"
+      # topic[:id]によって該当topicを取得
+      get "/v1/topics/#{@topics[0][:id]}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
     end
 
     it 'search topics by category id' do
-      get "/v1/search?category_id=#{@topic.category_id}"
+      # category_idで検索した結果が、検索したcategory_idと一致する
+      get "/v1/search?category_id=#{@topics[0][:category_id]}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
+      expect(json[0]["category_id"]).to(eq(@topics[0][:category_id]))
     end
+
+    it 'search topics by period' do
+      # periodで検索した結果が、検索したperiod内に収まる
+      get "/v1/search?period=weekly"
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+      expect(json[0]["created_at"]).to be > 1.weeks.ago
+    end
+
+    it 'search topics by sex' do
+      # sexで検索した結果が、検索したsexと一致する
+      get "/v1/search?sex=female"
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+      expect(json[0]["sex"]).to(eq("女性"))
+    end
+
+    it 'search topics by age' do
+      # ageで検索した結果が、検索したageと一致する
+      get "/v1/search?age=20"
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+      expect(json[0]["age"]).to(eq(20))
+    end
+
+    it 'search topics by sort' do
+      # sortで検索した結果が、新着順になる
+      get "/v1/search?sort"
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+      expect(json[0]["created_at"]).to be > json[30]["created_at"]
+    end
+
+
 
     it 'create a new topic' do
       expect do
@@ -51,7 +94,7 @@ RSpec.describe(Topic, type: :request) do
     end
 
     it 'update topic' do
-      put "/v1/topics/#{@topic.id}", params: { chosen_option: :option_1_num }
+      put "/v1/topics/#{@topics[0].id}", params: { chosen_option: :option_1_num }
       # response.body is not exist
       expect(response).to(be_successful)
     end

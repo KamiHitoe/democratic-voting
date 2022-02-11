@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_131406) do
+ActiveRecord::Schema.define(version: 2022_02_11_040523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,24 @@ ActiveRecord::Schema.define(version: 2022_02_09_131406) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["comment_id"], name: "index_likes_on_comment_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "report_comments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_report_comments_on_comment_id"
+    t.index ["user_id"], name: "index_report_comments_on_user_id"
+  end
+
+  create_table "report_topics", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_report_topics_on_topic_id"
+    t.index ["user_id"], name: "index_report_topics_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -82,6 +100,10 @@ ActiveRecord::Schema.define(version: 2022_02_09_131406) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
+  add_foreign_key "report_comments", "comments"
+  add_foreign_key "report_comments", "users"
+  add_foreign_key "report_topics", "topics"
+  add_foreign_key "report_topics", "users"
   add_foreign_key "topics", "users"
   add_foreign_key "votes", "topics"
   add_foreign_key "votes", "users"

@@ -90,8 +90,8 @@ export default Vue.extend({
     return {
       sexItems: [
         {text: "なし", value: null},
-        {text: "男性", value: "男性"},
-        {text: "女性", value: "女性"},
+        {text: "男性", value: "male"},
+        {text: "女性", value: "female"},
       ] as Object[],
       ageItems: [
         {text: "なし", value: null},

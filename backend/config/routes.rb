@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   namespace :v1, format: 'json' do
     get 'likes/:comment_id', to: 'likes#count_likes'
     get 'likes/:user_id/:comment_id', to: 'likes#check_liked'
-    post 'likes/:user_id/:comment_id', to: 'likes#create'
-    delete 'likes/:user_id/:comment_id', to: 'likes#destroy'
+    # post 'likes/:user_id/:comment_id', to: 'likes#create'
+    post 'likes', to: 'likes#create'
+    # delete 'likes/:user_id/:comment_id', to: 'likes#destroy'
+    delete 'likes', to: 'likes#destroy'
     get 'votes/:user_id/:topic_id', to: 'votes#check_voted'
     post 'votes/:user_id/:topic_id', to: 'votes#create'
     delete 'votes/:user_id/:topic_id', to: 'votes#destroy'
+    get 'report-comments/:comment_id', to: 'report_comments#count_reports'
+
 
     # create related endpoint URI
     resources :users, only: %i[index create show update]

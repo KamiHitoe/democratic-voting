@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    username { Faker::Name.name }
+    uid { 'foo' }
     age { 20 }
     sex { '女性' }
   end

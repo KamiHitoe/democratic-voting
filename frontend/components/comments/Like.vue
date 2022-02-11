@@ -27,6 +27,10 @@ export default Vue.extend({
     return {
       liked_status: false as boolean,
       like_num: 0 as number,
+      params: {
+        user_id: this.user.id,
+        comment_id: this.comment.id,
+      }
     };
   },
   created() {
@@ -44,12 +48,14 @@ export default Vue.extend({
     },
     async like() {
       this.liked_status = true;
-      await this.$axios.post(`likes/${this.user.id}/${this.comment.id}`);
+      await this.$axios.post("likes", this.params);
       this.countLikes();
     },
     async unlike() {
       this.liked_status = false;
-      await this.$axios.delete(`likes/${this.user.id}/${this.comment.id}`);
+      await this.$axios.delete("likes", { 
+        data: this.params
+      });
       this.countLikes();
     },
   },

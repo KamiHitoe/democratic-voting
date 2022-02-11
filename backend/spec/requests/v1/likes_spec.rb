@@ -5,18 +5,18 @@ RSpec.describe(Like, type: :request) do
     before(:each) do
       @user = create(:user)
       @topic = create(:topic)
-      @comment = create(:comment, topic_id: @topic.id)
+      @comment = create(:comment, topic_id: @topic[:id])
     end
 
     it 'get the number of likes' do
-      get "/v1/likes/#{@comment.id}"
+      get "/v1/likes/#{@comment[:id]}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      puts json
+      expect(json["like_num"]).to be_kind_of(Integer)
     end
 
     it 'get a liked status by user' do
-      get "/v1/likes/#{@user.id}/#{@comment.id}"
+      get "/v1/likes/#{@user[:id]}/#{@comment[:id]}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
       puts json
@@ -24,16 +24,24 @@ RSpec.describe(Like, type: :request) do
 
     it 'create a new like' do
       expect do
-        post("/v1/likes/#{@user.id}/#{@comment.id}")
+        # post "/v1/likes/#{@user[:id]}/#{@comment[:id]}"
+        post "/v1/likes", params: {
+          user_id: @user[:id],
+          comment_id: @comment[:id],
+        }
       end.to(change(Like, :count).by(1))
     end
 
     it 'destroy a like' do
       # create like record to be deleted
-      Like.create(user_id: @user.id, comment_id: @comment.id)
+      Like.create(user_id: @user[:id], comment_id: @comment[:id])
 
       expect do
-        delete("/v1/likes/#{@user.id}/#{@comment.id}")
+        # delete "/v1/likes/#{@user[:id]}/#{@comment[:id]}"
+        delete "/v1/likes", params: {
+          user_id: @user[:id],
+          comment_id: @comment[:id],
+        }
       end.to(change(Like, :count).by(-1))
 
       # response.body is not exist
