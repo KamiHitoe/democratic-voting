@@ -1,0 +1,2 @@
+class ReportCommentsController < ApplicationController
+end

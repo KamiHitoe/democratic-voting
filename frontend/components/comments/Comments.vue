@@ -34,6 +34,7 @@ import Vue, { PropType } from "vue";
 import { User, Comment } from "@/types";
 import Like from "@/components/comments/Like.vue";
 import ReplyList from "@/components/comments/ReplyList.vue";
+import { initialUser } from "@/data"
 
 export default Vue.extend({
   props: {
@@ -47,18 +48,9 @@ export default Vue.extend({
   },
   data() {
     return {
-      user: {
-        id: 1,
-        username: 'hitoe',
-        sex: '男性',
-        age: 20,
-      } as User,
-      // replyList: [] as Comment[],
+      user: initialUser as User,
     };
   },
-  // created() {
-  //   this.getReplyList();
-  // },
   methods: {
     async getReplyList() {
       const res = await this.$axios.get(`/comments/${this.topic_id}/${this.comment.id}`);

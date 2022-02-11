@@ -1,7 +1,7 @@
 
 export interface User {
   id?: number;
-  username: string;
+  uid: string;
   sex: string;
   age: number;
 }
