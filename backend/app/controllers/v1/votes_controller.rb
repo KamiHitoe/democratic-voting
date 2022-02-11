@@ -3,13 +3,13 @@ module V1
   class VotesController < ApplicationController
     before_action :get_voted_status
 
-    # GET /votes/:user_id/:topic_id
-    def check_voted
+    # GET /votes
+    def show
       # this makes vote button enable or disable
       json_response(voted_status: @voted_status)
     end
 
-    # POST /votes/:user_id/:topic_id
+    # POST /votes
     def create
       if @voted_status
         puts 'already voted'
@@ -24,7 +24,7 @@ module V1
       end
     end
 
-    # DELETE /votes/:user_id/:topic_id
+    # DELETE /votes
     def destroy
       if @voted_status
         vote = Vote.find_by(vote_params)

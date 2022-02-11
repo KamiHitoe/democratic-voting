@@ -11,6 +11,7 @@
         <div class="d-flex flex-row">
           <p class="data-margin">{{ topics.voted_num }} votes</p>
           <p class="data-margin">{{ topics.timestamp }}</p>
+          <Report class="data-margin" :user="user" :topics="topics" />
           <p class="data-margin change-color">
             {{ category }}
           </p>
@@ -63,16 +64,18 @@
 import Chart from "chart.js";
 import Voting from "@/components/topics/Voting.vue";
 import LimitedTag from "@/components/LimitedTag.vue";
+import Report from "@/components/Report.vue";
 import { categoryList } from "@/data";
 
 export default {
   components: {
     Voting,
     LimitedTag,
+    Report,
   },
   props: {
-    topics: Object,
     user: Object,
+    topics: Object,
   },
   data() {
     return {
@@ -149,9 +152,12 @@ export default {
   },
   methods: {
     async getVotedStatus() {
-      const res = await this.$axios.get(
-        `/votes/${this.user.id}/${this.topics.id}`
-      );
+      const res = await this.$axios.get("/votes", {
+        params: {
+          user_id: this.user.id,
+          topic_id: this.topics.id,
+        }
+      });
       this.voted_status = res.data.voted_status;
       console.log(this.voted_status);
     },

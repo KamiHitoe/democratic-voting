@@ -5,13 +5,13 @@ RSpec.describe(Vote, type: :request) do
     before(:each) do
       @user = create(:user)
       @topic = create(:topic)
+      @params = { user_id: @user[:id], topic_id: @topic[:id] }
     end
 
     it 'get a voted status by user' do
-      get "/v1/votes/#{@user.id}/#{@topic.id}"
+      get "/v1/votes", params: @params
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      puts json
     end
 
     it 'create a new vote' do
@@ -19,15 +19,17 @@ RSpec.describe(Vote, type: :request) do
       old_user = create(:user, age: 40)
       # validate user
       expect do
-        post("/v1/votes/#{@user.id}/#{@topic.id}")
+        post "/v1/votes", params: @params
       end.to(change(Vote, :count).by(1))
+
       # invalid sex
       expect do
-        post("/v1/votes/#{male_user.id}/#{@topic.id}")
+        post "/v1/votes", params: @params
       end.to(change(Vote, :count).by(0))
+
       # invalid age
       expect do
-        post("/v1/votes/#{old_user.id}/#{@topic.id}")
+        post "/v1/votes", params: @params
       end.to(change(Vote, :count).by(0))
     end
 
@@ -36,7 +38,7 @@ RSpec.describe(Vote, type: :request) do
       Vote.create!(user_id: @user.id, topic_id: @topic.id)
 
       expect do
-        delete("/v1/votes/#{@user.id}/#{@topic.id}")
+        delete "/v1/votes", params: @params
       end.to(change(Vote, :count).by(-1))
 
       # response.body is not exist

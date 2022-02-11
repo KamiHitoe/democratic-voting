@@ -1,23 +1,27 @@
 Rails.application.routes.draw do
   # set /v1 as URI prefix
   namespace :v1, format: 'json' do
-    get 'likes/:comment_id', to: 'likes#count_likes'
-    get 'likes/:user_id/:comment_id', to: 'likes#check_liked'
-    # post 'likes/:user_id/:comment_id', to: 'likes#create'
+    get 'count-likes', to: 'likes#count_likes'
+    get 'likes', to: 'likes#show'
     post 'likes', to: 'likes#create'
-    # delete 'likes/:user_id/:comment_id', to: 'likes#destroy'
     delete 'likes', to: 'likes#destroy'
-    get 'votes/:user_id/:topic_id', to: 'votes#check_voted'
-    post 'votes/:user_id/:topic_id', to: 'votes#create'
-    delete 'votes/:user_id/:topic_id', to: 'votes#destroy'
-    get 'report-comments/:comment_id', to: 'report_comments#count_reports'
-
+    get 'votes', to: 'votes#show'
+    post 'votes', to: 'votes#create'
+    delete 'votes', to: 'votes#destroy'
+    get 'report-comments', to: 'report_comments#count_reports'
+    post 'report-comments', to: 'report_comments#create'
+    delete 'report-comments', to: 'report_comments#destroy'
+    get 'report-topics', to: 'report_topics#count_reports'
+    post 'report-topics', to: 'report_topics#create'
+    delete 'report-topics', to: 'report_topics#destroy'
 
     # create related endpoint URI
     resources :users, only: %i[index create show update]
-    resources :topics, only: %i[index create show update] do
-      resources :comments, only: %i[index create show]
+    resources :topics, only: %i[index create show update destroy] do
+      resources :comments, only: %i[index create show destroy]
     end
+
+
 
     # query paramsを元にtopicsを取得
     get 'search', to: 'topics#search'

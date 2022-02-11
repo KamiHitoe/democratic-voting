@@ -39,11 +39,17 @@ export default Vue.extend({
   },
   methods: {
     async countLikes() {
-      const res = await this.$axios.get(`/likes/${this.comment.id}`);
+      const res = await this.$axios.get("/count-likes", {
+        params: {
+          comment_id: this.comment.id,
+        },
+      });
       this.like_num = res.data.like_num;
     },
     async getLikedStatus() {
-      const res = await this.$axios.get(`/likes/${this.user.id}/${this.comment.id}`);
+      const res = await this.$axios.get("/likes", {
+        params: this.params,
+      });
       this.liked_status = res.data.liked_status;
     },
     async like() {

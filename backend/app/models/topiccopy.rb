@@ -3,6 +3,7 @@ class Topic < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :report_topics, dependent: :destroy
 
   # set default value
   after_initialize :set_defaults, unless: :persisted?
