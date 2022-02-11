@@ -72,9 +72,12 @@ export default Vue.extend({
   },
   methods: {
     async getVotedStatus() {
-      const res = await this.$axios.get(
-        `/votes/${this.user.id}/${this.topics.id}`
-      );
+      const res = await this.$axios.get("/votes", {
+        params: {
+          user_id: this.user.id,
+          topic_id: this.topics.id,
+        },
+      });
       if (res.data.voted_status) {
         this.$store.commit("updateVotedStatus", true);
         console.log(this.$store.state.voted_status);

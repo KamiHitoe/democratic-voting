@@ -5,6 +5,7 @@
         <p class="data-margin">{{ order }}.</p>
         <p class="data-margin">名無しさん</p>
         <p class="data-margin">{{ comment.timestamp }}</p>
+        <Report class="data-margin" :user="user" :comment="comment" />
         <button class="reply-btn d-flex flex-row ml-auto" @click="reply">
           <v-icon color="amber">mdi-reply</v-icon>
           <p>返信</p>

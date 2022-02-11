@@ -55,6 +55,7 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 import { User, Topic } from "@/types";
+import { initialUser } from "@/data";
 
 export default Vue.extend({
   props: {
@@ -62,12 +63,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      user: {
-        id: 1,
-        username: 'hitoe',
-        sex: '男性',
-        age: 20,
-      } as User,
+      user: initialUser as User,
       chosenOption: null as string,
       voting: false as boolean,
     };
@@ -78,7 +74,10 @@ export default Vue.extend({
         await this.$axios.put(`/topics/${this.topics.id}`, {
           chosen_option: this.chosenOption,
         });
-        await this.$axios.post(`votes/${this.user.id}/${this.topics.id}`)
+        await this.$axios.post("votes", {
+          user_id: this.user.id,
+          topic_id: this.topics.id,
+        })
         window.location.reload();
       }
     },

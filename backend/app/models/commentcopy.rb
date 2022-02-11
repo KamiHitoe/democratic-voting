@@ -3,6 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :topic
   has_many :likes, dependent: :destroy
+  has_many :report_comments, dependent: :destroy
 
   # set default value
   after_initialize :set_defaults, unless: :persisted?

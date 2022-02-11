@@ -1,21 +1,21 @@
 # start URI from /v1/
 module V1
   class LikesController < ApplicationController
-    before_action :get_liked_status, only: %i[check_liked create destroy]
+    before_action :get_liked_status, except: :count_likes
 
-    # GET /likes/:comment_id
+    # GET /count-likes
     def count_likes
       cnt = Like.where(comment_id: params[:comment_id]).all.count()
       json_response(like_num: cnt)
     end
 
-    # GET /likes/:user_id/:comment_id
-    def check_liked
+    # GET /likes
+    def show
       # this makes like button enable or disable
       json_response(liked_status: @liked_status)
     end
 
-    # POST /likes/:user_id/:comment_id
+    # POST /likes
     def create
       if @liked_status
         puts 'already liked'
@@ -24,7 +24,7 @@ module V1
       end
     end
 
-    # DELETE /likes/:user_id/:comment_id
+    # DELETE /likes
     def destroy
       if @liked_status
         like = Like.find_by(like_params)
@@ -38,7 +38,6 @@ module V1
 
     def like_params
       # whitelist params
-      # params = {user_id: user_id, comment_id: comment_id} given from routes
       params.permit(:user_id, :comment_id)
     end
 
