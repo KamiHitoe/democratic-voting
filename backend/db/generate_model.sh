@@ -17,4 +17,11 @@ user:references comment:references ^
 && ^
 rails generate model Vote ^
 user:references topic:references
+&& ^
+rails generate model ReportComment ^
+user:references comment:references ^
+&& ^
+rails generate model ReportTopic ^
+user:references topic:references
+
 
