@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import CommentBox from "@/components/CommentBox.vue";
+// import CommentBox from "@/components/comments/CommentBox.vue";
 
 describe("unit test Comment Component", () => {
   const wrapper = shallowMount(CommentBox);
