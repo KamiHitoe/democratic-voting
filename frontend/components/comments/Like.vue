@@ -3,13 +3,13 @@
     <v-btn icon color="pink" @click="unlike">
       <v-icon>mdi-heart</v-icon>
     </v-btn>
-    <p>{{ like_num }}</p>
+    <p>{{ liked_num }}</p>
   </div>
   <div v-else class="like-btn-disabled d-flex flex-row ml-auto">
     <v-btn icon color="gray" @click="like">
       <v-icon>mdi-heart</v-icon>
     </v-btn>
-    <p>{{ like_num }}</p>
+    <p>{{ liked_num }}</p>
   </div>
 
 </template>
@@ -26,7 +26,7 @@ export default Vue.extend({
   data() {
     return {
       liked_status: false as boolean,
-      like_num: 0 as number,
+      liked_num: 0 as number,
       params: {
         user_id: this.user.id,
         comment_id: this.comment.id,
@@ -44,7 +44,7 @@ export default Vue.extend({
           comment_id: this.comment.id,
         },
       });
-      this.like_num = res.data.like_num;
+      this.liked_num = res.data.liked_num;
     },
     async getLikedStatus() {
       const res = await this.$axios.get("/likes", {

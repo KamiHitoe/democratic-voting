@@ -15,7 +15,7 @@ RSpec.describe(Like, type: :request) do
       }
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      expect(json["like_num"]).to be_kind_of(Integer)
+      expect(json["liked_num"]).to be_kind_of(Integer)
     end
 
     it 'get a liked status by user' do
