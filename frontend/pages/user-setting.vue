@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="!user">
     <h4 class="subtitle">ユーザー情報を登録します</h4>
     <form id="user-form" action="#" @submit.prevent="submitUser">
       <v-container>
@@ -43,22 +43,26 @@
       </v-container>
     </form>
   </section>
+  <p v-else>ユーザー情報のご登録ありがとうございました</p>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import firebase from "@/plugins/firebase";
+import global from "@/mixins/global";
 
 export default Vue.extend({
+  mixins: [
+    global,
+  ],
   data() {
     return {
+      // username: null as String,
       uid: null as String,
-      // username: null as string,
       sex: null as String,
       age: null as Number,
       sexItems: [
-        { value: "男性", item: "男性" },
-        { value: "女性", item: "女性" },
+        { value: "male", item: "男性" },
+        { value: "female", item: "女性" },
       ],
       ageItems: [
         { value: 10, item: "～20歳" },
@@ -69,38 +73,19 @@ export default Vue.extend({
       ],
     };
   },
-  created() {
-    this.getUser();
+  async created() {
+    await this.getUser();
+    console.log(this.user)
   },
   methods: {
     async submitUser() {
       await this.$axios.post("/users", {
+        // username: this.username,
         uid: this.uid,
-      // username: this.username,
         sex: this.sex,
         age: this.age,
       })
       window.location.replace("/");
-    },
-    getUser() {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.uid = user.uid;
-          // すでにuidが登録されている場合はトップページへ
-          this.$axios.get(`/users?uid=${this.uid}`)
-          .then((res) => {
-            if (res.data) {
-              window.location.replace('/')
-            } else {
-              // uid未登録の場合のみ情報登録が可能
-              console.log(res.data)
-            }
-          })
-        } else {
-          // firebase Authに登録されていない場合はトップページへ
-          window.location.replace('/');
-        }
-      })
     },
   },
 });

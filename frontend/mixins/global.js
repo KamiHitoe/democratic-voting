@@ -1,11 +1,11 @@
 import firebase from "@/plugins/firebase"
-import { initialUser } from "@/data";
+// import { initialUser } from "@/data";
 
 export default {
   data() {
     return {
-      user: initialUser,
-    }
+      user: {},
+    };
   },
   methods: {
     async updateShowModal() {

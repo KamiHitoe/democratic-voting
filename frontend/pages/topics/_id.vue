@@ -19,7 +19,7 @@
           (!topics.age || topics.age == user.age)
         "
       >
-        <CommentBox :topic_id="topics.id" />
+        <CommentBox :user="user" :topic_id="topics.id" />
       </div>
       <p v-else class="invalid-user">
         ※この投稿の対象ユーザーではないためコメントできません。

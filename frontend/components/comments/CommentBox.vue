@@ -37,10 +37,11 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { Comment } from "@/types";
+import { User, Comment } from "@/types";
 
 export default Vue.extend({
   props: {
+    user: { type: Object as PropType<User> },
     topic_id: { type: Number },
   },
   data() {
@@ -58,13 +59,13 @@ export default Vue.extend({
       let comment: Comment;
       if (this.parent_id) {
         comment = {
-          user_id: 1,
+          user_id: this.user.id,
           text: `${this.text_header}\n${this.text}`,
           parent_id: this.parent_id,
         }
       } else {
         comment = {
-          user_id: 1,
+          user_id: this.user.id,
           text: this.text,
           parent_id: this.parent_id,
         }

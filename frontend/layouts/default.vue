@@ -80,8 +80,7 @@ export default {
   },
   data() {
     return {
-      menuList: ["ログイン", "ログアウト"],
-      // pathList: ["/user-setting", "/login"],
+      menuList: ["ログイン", "ユーザー情報確認", "ログアウト"],
     };
   },
   methods: {
@@ -93,6 +92,8 @@ export default {
       if (i === 0) {
         // login
         window.location.replace("/login");
+      } else if (i === 1) {
+        window.location.replace("/user-info")
       } else {
         // logout
         const agreement = confirm("ログアウトしてよろしいですか？");
