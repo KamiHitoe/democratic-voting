@@ -11,11 +11,20 @@ RSpec.describe(ReportComment, type: :request) do
 
     it 'get the number of reports' do
       # コメントに対する通報数を取得
-      get "/v1/report-comments", params: {
+      get "/v1/count-report-comments", params: {
         comment_id: @comment[:id],
       }
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
+      expect(json["reported_num"]).to be_kind_of(Integer)
+    end
+
+    it 'get a reported status by user' do
+      # 任意のユーザに対して通報の有無を取得
+      get "/v1/report-comments", params: @params
+      json = JSON.parse(response.body)
+      expect(response.status).to(eq(200))
+      expect(json["reported_status"]).to be_kind_of(TrueClass) | be_kind_of(FalseClass)
     end
 
     it 'create a new report' do

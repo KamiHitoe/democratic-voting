@@ -1,6 +1,6 @@
 <template>
-  <button v-if="comment" class="comment" @click="reportComment">通報</button>
-  <button v-else-if="topics" class="topics" @click="reportTopic">通報</button>
+  <button v-if="comment" class="report-comment" @click="reportComment">通報</button>
+  <button v-else-if="topics" class="report-topics" @click="reportTopic">通報</button>
 </template>
 
 <script lang="ts">
@@ -15,37 +15,63 @@ export default Vue.extend({
   },
   methods: {
     async reportTopic() {
-      await this.$axios.post("/report-topics", {
+      const params = {
         user_id: this.user.id,
         topic_id: this.topics.id,
+      }
+      const res_status = await this.$axios.get("/report-topics", {
+        params: params,
       })
-      const res = await this.$axios.get("/report-topics", {
-        params: {
-          topic_id: this.topics.id,
-        },
-      })
-      const reportNum = res.data.report_num;
-      console.log(reportNum);
-      // 通報数が5以上かつ投票数の1/10以上の時に当該トピックを削除
-      if (reportNum > 5 && reportNum/this.topics.voted_num > 0.1) {
-        this.$axios.delete(`/topics/${this.topics.id}`)
+      const reported_status = res_status.data.reported_status
+      if (reported_status === false) {
+        // まだ通報していないユーザのみ通報を許可
+        await this.$axios.post("/report-topics", params)
+        const res_count = await this.$axios.get("/count-report-topics", {
+          params: {
+            topic_id: this.topics.id,
+          },
+        })
+        const reported_num = res_count.data.reported_num;
+        console.log(reported_num);
+        // 通報数が5以上かつ投票数の1/10以上の時に当該トピックを削除
+        if (reported_num > 5 && reported_num/this.topics.voted_num > 0.1) {
+          this.$axios.delete(`/topics/${this.topics.id}`)
+        }
+      } else {
+        console.log('this user already reported')
       }
     },
     async reportComment() {
-      await this.$axios.post("/report-comments", {
+      const params = {
         user_id: this.user.id,
         comment_id: this.comment.id,
+      }
+      const res_status = await this.$axios.get("/report-comments", {
+        params: params,
       })
-      const res = await this.$axios.get("/report-comments", {
-        params: {
-          comment_id: this.comment.id,
-        },
-      })
-      const reportNum = res.data;
-      console.log(reportNum);
-      // 通報数が5以上かついいね数の1/10以上の時に当該コメントを削除
-      if (reportNum > 5) {
-        this.$axios.delete(`/comments/${this.comment.id}`)
+      const reported_status = res_status.data.reported_status
+      if (reported_status === false) {
+        // まだ通報していないユーザのみ通報を許可
+        await this.$axios.post("/report-comments", params)
+        const res_count = await this.$axios.get("/count-report-comments", {
+          params: {
+            comment_id: this.comment.id,
+          },
+        })
+        const reported_num = res_count.data.reported_num;
+        console.log(reported_num);
+        // 通報数が5以上かついいね数の1/10以上の時に当該コメントを削除
+        const res_liked = await this.$axios.get("/count-likes", {
+          params: {
+            comment_id: this.comment.id,
+          },
+        })
+        const liked_num = res_liked.data.liked_num
+        if (reported_num > 5 && reported_num/liked_num > 0.1) {
+          this.$axios.delete(`/comments/${this.comment.id}`)
+        }
+      } else {
+        console.log('this user already reported')
       }
     },
 
@@ -54,10 +80,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.topics {
+.report-topics {
   max-height: 24px;
 }
-.comment {
+.report-comment {
   max-height: 18px;
 }
 </style>

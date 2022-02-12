@@ -6,11 +6,11 @@ module V1
     # GET /count-likes
     def count_likes
       cnt = Like.where(comment_id: params[:comment_id]).all.count()
-      json_response(like_num: cnt)
+      json_response(liked_num: cnt)
     end
 
     # GET /likes
-    def show
+    def show_status
       # this makes like button enable or disable
       json_response(liked_status: @liked_status)
     end
@@ -18,7 +18,7 @@ module V1
     # POST /likes
     def create
       if @liked_status
-        puts 'already liked'
+        puts 'already exist'
       else
         Like.create!(like_params)
       end
@@ -30,7 +30,7 @@ module V1
         like = Like.find_by(like_params)
         like.destroy
       else
-        puts 'not existed'
+        puts 'not exist'
       end
     end
 
