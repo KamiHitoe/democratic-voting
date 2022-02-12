@@ -34,6 +34,15 @@
     <v-main>
       <v-container fluid>
         <Nuxt />
+
+        <!-- use the modal component, pass in the prop -->
+        <Teleport to="body">
+          <modal :show="$store.state.show_modal" @close="updateShowModal">
+            <template #header>
+              <h3>ログインのお願い</h3>
+            </template>
+          </modal>
+        </Teleport>
       </v-container>
     </v-main>
 
@@ -61,11 +70,13 @@
 <script>
 import firebase from "@/plugins/firebase"
 import SearchBar from '@/components/SearchBar.vue'
+import Modal from "@/components/Modal.vue"
 
 export default {
   name: "DefaultLayout",
   components: {
     SearchBar,
+    Modal,
   },
   data() {
     return {
@@ -89,6 +100,9 @@ export default {
           firebase.auth().signOut()
         }
       }
+    },
+    async updateShowModal() {
+      await this.$store.commit('updateShowModal', false)
     },
   },
 };

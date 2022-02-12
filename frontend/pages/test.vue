@@ -1,20 +1,27 @@
 <template>
   <section>
-    <p>test</p>
+    <button id="show-modal" @click="updateShowModal">Show Modal</button>
+
   </section>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import global from "@/mixins/global";
 
 export default Vue.extend({
+  mixins: [
+    global
+  ],
   data() {
     return {
-    
     };
   },
-  created() {
-    // this.$hello('foo')
+  async created() {
+    await this.getUser();
+    console.log(this.user);
+  },
+  methods: {
   },
 });
 </script>

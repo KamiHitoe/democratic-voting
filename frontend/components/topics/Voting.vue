@@ -54,31 +54,40 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import global from "@/mixins/global";
 import { User, Topic } from "@/types";
-import { initialUser } from "@/data";
 
 export default Vue.extend({
   props: {
+    user: { type: Object as PropType<User> },
     topics: { type: Object as PropType<Topic> },
   },
+  mixins: [
+    global,
+  ],
   data() {
     return {
-      user: initialUser as User,
       chosenOption: null as string,
       voting: false as boolean,
     };
   },
   methods: {
     async submitVoting() {
-      if (this.chosenOption !== null) {
-        await this.$axios.put(`/topics/${this.topics.id}`, {
-          chosen_option: this.chosenOption,
-        });
-        await this.$axios.post("votes", {
-          user_id: this.user.id,
-          topic_id: this.topics.id,
-        })
-        window.location.reload();
+      if (this.user.uid) {
+        // 登録済ユーザのみ投票可能
+        if (this.chosenOption !== null) {
+          // オプションを選択してから実行
+          await this.$axios.put(`/topics/${this.topics.id}`, {
+            chosen_option: this.chosenOption,
+          });
+          await this.$axios.post("votes", {
+            user_id: this.user.id,
+            topic_id: this.topics.id,
+          })
+          window.location.reload();
+        }
+      } else {
+        this.updateShowModal();
       }
     },
     openVoting() {

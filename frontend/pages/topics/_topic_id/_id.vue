@@ -30,12 +30,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import firebase from "@/plugins/firebase"
 import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
 import TopicContents from "@/components/topics/TopicContents.vue";
+import global from "@/mixins/global";
 import { User, Topic, Comment } from "@/types"
-import { initialUser } from "@/data";
 
 export default Vue.extend({
   components: {
@@ -43,6 +42,9 @@ export default Vue.extend({
     CommentBox,
     TopicContents,
   },
+  mixins: [
+    global,
+  ],
   data() {
     return {
       topic_id: this.$route.params.topic_id as Number,
@@ -51,7 +53,6 @@ export default Vue.extend({
         category_id: 0,
       } as Topic,
       commentList: [] as Comment[],
-      user: initialUser as User,
     };
   },
   async created() {
@@ -72,26 +73,6 @@ export default Vue.extend({
       );
       this.commentList = res.data;
       console.log(res.data);
-    },
-    async getUser() {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          const uid = user.uid;
-          this.$axios.get(`/users?uid=${uid}`)
-          .then((res) => {
-            if (res.data) {
-              this.user = res.data
-              console.log(this.user)
-            } else {
-              // uid未登録の場合
-              console.log('uid is not registered')
-            }
-          })
-        } else {
-          // firebase Authに登録されていない場合
-          console.log('user is not registered')
-        }
-      })
     },
   },
 });

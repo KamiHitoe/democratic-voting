@@ -6,6 +6,8 @@
     - [Working With Nuxt and Vuex](https://langvad.dev/blog/working-with-nuxt-and-vuex/)
   - Pagination
     - [Vuetify Pagination (Server side) example](https://www.bezkoder.com/vuetify-pagination-server-side/)
+    - Mixin
+      - [How to use mixins in Nuxt.js](https://medium.com/@seyijosh44/how-to-use-mixins-in-nuxt-js-826724fa251)
 - Backend
   - [Build a RESTful JSON API With Rails 5 - Part One](https://www.digitalocean.com/community/tutorials/build-a-restful-json-api-with-rails-5-part-one)
 - Infra
