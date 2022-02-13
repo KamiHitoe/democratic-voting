@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_11_040523) do
+ActiveRecord::Schema.define(version: 2022_02_13_062629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,9 @@ ActiveRecord::Schema.define(version: 2022_02_11_040523) do
     t.bigint "topic_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "sex"
+    t.integer "age"
+    t.integer "chosen_option"
     t.index ["topic_id"], name: "index_votes_on_topic_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end

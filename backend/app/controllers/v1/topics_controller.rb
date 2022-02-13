@@ -86,6 +86,7 @@ module V1
 
     # PUT /topics/:id
     def update
+      # 現在は:chosen_optionにそのままoption_1_numのようなカラム名を渡しているからrefactoring要
       chosen_option = params[:chosen_option]
       @topic.increment!(chosen_option)
       @topic.increment!(:voted_num)

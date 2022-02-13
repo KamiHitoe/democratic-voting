@@ -16,7 +16,8 @@ rails generate model Like ^
 user:references comment:references ^
 && ^
 rails generate model Vote ^
-user:references topic:references
+user:references topic:references ^
+sex: string age:integer chosen_option: integer ^
 && ^
 rails generate model ReportComment ^
 user:references comment:references ^

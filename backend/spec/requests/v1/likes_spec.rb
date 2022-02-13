@@ -19,6 +19,7 @@ RSpec.describe(Like, type: :request) do
     end
 
     it 'get a liked status by user' do
+      # user_idとcomment_idを入力するとliked_statusをBooleanで返す
       get "/v1/likes", params: @params
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
