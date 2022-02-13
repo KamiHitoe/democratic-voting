@@ -1,0 +1,70 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+
+$text: #212121;
+$amber: #FFC107;
+$amber-lighten-5: #FFF8E1;
+$pink: #E91E63;
+$gray: #757575;
+// $gray: #bdbdbd;
+
+%subtitle {
+  text-align: left;
+  color: $amber;
+}
+%section-body {
+  background-color: #fff;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+// select for validation
+%select-validation {
+	display: block;
+  color: $gray;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em 0;
+  width: 100%;
+	max-width: 100%;
+	margin: .6em 0;
+	border-bottom: 1px solid $gray;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+  // add arrow
+  background-image:
+    linear-gradient(45deg, transparent 50%, $gray 50%),
+    linear-gradient(135deg, $gray 50%, transparent 50%),
+    linear-gradient(to right, #fff, #fff);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    100% 0;
+  background-size:
+    5px 5px,
+    5px 5px,
+    2.5em 2.5em;
+  background-repeat: no-repeat;
+  &::-ms-expand {
+    display: none;
+  }
+  &:hover {
+    border-color: #000;
+  }
+  &:focus {
+    border-color: $amber;
+    box-shadow: 0 0 1px 1px $amber;
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: $gray;
+    outline: none;
+  }
+  .hidden {
+    display: none;
+    visibility: hidden;
+  }
+  // option {
+  //   background-color: $amber;
+  // }
+}

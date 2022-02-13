@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import Voting from "@/components/Voting.vue";
+import Voting from "@/components/topics/Voting.vue";
 
 describe("unit test Voting Component", () => {
   const wrapper = shallowMount(Voting, {
