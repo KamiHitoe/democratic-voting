@@ -1,11 +1,15 @@
+import Vue, { PropType } from "vue"
 import firebase from "@/plugins/firebase"
-// import { initialUser } from "@/data";
+import { User } from "@/types"
 
-export default {
+export default Vue.extend({
   data() {
     return {
-      user: {},
+      user: {} as User,
     };
+  },
+  async created() {
+    await this.getUser()
   },
   methods: {
     async updateShowModal() {
@@ -24,13 +28,15 @@ export default {
             } else {
               // uid未登録の場合
               console.log('uid is not registered')
+              throw new Error('uid is not registered')
             }
           })
         } else {
           // firebase Authに登録されていない場合
           console.log('user is not registered')
+          throw new Error('user is not registered')
         }
       })
     },
   }
-};
+});

@@ -12,15 +12,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins/global";
+import global from "@/mixins/global.ts";
 
 export default Vue.extend({
   mixins: [
     global,
   ],
-  created() {
-    this.getUser();
-  },
 });
 </script>
 
