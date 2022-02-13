@@ -1,7 +1,7 @@
 <template>
   <section v-if=user_existed>
     <h4 class="subtitle">ユーザー情報</h4>
-    <p>性別: {{ user.sex }}</p>
+    <p>性別: {{ sex }}</p>
     <p>年代: {{ user.age }}代</p>
   </section>
   <div v-else>
@@ -18,11 +18,20 @@ export default Vue.extend({
   mixins: [
     global,
   ],
-  computed: {
-    user_existed(): Boolean {
-      return Boolean(Object.keys(this.user).length)
+  data() {
+    return {
+      sex: null,
     }
-  }
+  },
+  watch: {
+    user() {
+      if (this.user.sex === "male") {
+        this.sex = "男性"
+      } else if (this.user.sex === "female") {
+        this.sex = "女性"
+      }
+    }
+  },
 });
 </script>
 

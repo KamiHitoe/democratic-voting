@@ -142,8 +142,8 @@ export default Vue.extend({
       option_4: null as string,
       sexItems: [
         { value: null, item: "なし" },
-        { value: false, item: "男性" },
-        { value: true, item: "女性" },
+        { value: "male", item: "男性" },
+        { value: "female", item: "女性" },
       ],
       ageItems: [
         { value: null, item: "なし" },

@@ -24,7 +24,7 @@ RSpec.describe(User, type: :request) do
              })
       end.to(change(User, :count).by(1))
       json = JSON.parse(response.body)
-      expect(json["sex"]).to(eq("男性"))
+      expect(json["sex"]).to(eq("male"))
     end
 
 

@@ -16,12 +16,13 @@ module V1
         puts "this user already exists"
       else
         # まだユーザー登録されていない場合のみPOST可能
-        if user_params[:sex] == "male"
-          unicode_params = {uid: user_params[:uid], sex: "男性", age: user_params[:age]}
-        elsif user_params[:sex] == "female"
-          unicode_params = {uid: user_params[:uid], sex: "女性", age: user_params[:age]}
-        end
-        user = User.create!(unicode_params)
+        # if user_params[:sex] == "male"
+        #   unicode_params = {uid: user_params[:uid], sex: "男性", age: user_params[:age]}
+        # elsif user_params[:sex] == "female"
+        #   unicode_params = {uid: user_params[:uid], sex: "女性", age: user_params[:age]}
+        # end
+        # user = User.create!(unicode_params)
+        user = User.create!(user_params)
         json_response(user, :created)
       end
     end

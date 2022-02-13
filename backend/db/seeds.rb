@@ -29,7 +29,7 @@ Topic.create(user_id: 1, category_id: 6, title: 'あなたはオタクですか�
              option_1_num: 80, option_2_num: 60, voted_num: 140,
              img_path: 'https://images-na.ssl-images-amazon.com/images/I/71P-b69pJWL.jpg',
              sex: 'male')
-Topic.create(user_id: 2, category_id: 6, title: '転職願望はありますか？', description: '20代のmaleの人に転職意識調査をしたいと思います',
+Topic.create(user_id: 2, category_id: 6, title: '転職願望はありますか？', description: '20代の男性の人に転職意識調査をしたいと思います',
              option_1: 'はい', option_2: 'いいえ',
              option_1_num: 80, option_2_num: 60, voted_num: 140,
              img_path: 'https://one-group.jp/media/wp-content/uploads/2021/04/54e71251d4e94d7d3d2e586b8b0c58b0.jpg',

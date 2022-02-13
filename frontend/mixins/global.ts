@@ -6,6 +6,8 @@ export default Vue.extend({
   data() {
     return {
       user: {} as User,
+      firebase_user: {} as Object,
+      user_existed: null as Boolean,
     };
   },
   async created() {
@@ -25,17 +27,21 @@ export default Vue.extend({
             if (res.data) {
               this.user = res.data
               console.log(this.user)
+              this.user_existed = true
             } else {
               // uid未登録の場合
+              this.firebase_user = user
               console.log('uid is not registered')
-              throw new Error('uid is not registered')
+              this.user_existed = false
+              // throw new Error('uid is not registered')
             }
           })
         } else {
           // firebase Authに登録されていない場合
           console.log('user is not registered')
-          throw new Error('user is not registered')
+          // throw new Error('user is not registered')
         }
+        this.user_existed = false
       })
     },
   }

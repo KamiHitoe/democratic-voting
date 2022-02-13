@@ -92,7 +92,6 @@
 // import Vue from 'vue'
 import Chart from "chart.js";
 import Voting from "@/components/topics/Voting.vue";
-// import LimitedSelect from "@/components/LimitedSelect.vue";
 import LimitedTag from "@/components/LimitedTag.vue";
 import Report from "@/components/default/Report.vue";
 import { categoryList } from "@/data";
@@ -100,7 +99,6 @@ import { categoryList } from "@/data";
 export default {
   components: {
     Voting,
-    // LimitedSelect,
     LimitedTag,
     Report,
   },
@@ -130,8 +128,13 @@ export default {
       age: 0,
     };
   },
+  watch: {
+    topics() {
+      this.category = this.categoryList[this.topics.category_id - 1].category
+    }
+  },
   updated() {
-    this.category = this.categoryList[this.topics.category_id - 1].category
+    // this.category = this.categoryList[this.topics.category_id - 1].category
     console.log(this.category)
     const ctx = document.getElementById("result-chart");
     // the number of options == 4
@@ -153,9 +156,11 @@ export default {
                 "rgb(255, 205, 86)",
                 "rgb(111, 205, 205)",
               ],
-              hoverOffset: 4,
             },
           ],
+        },
+        options: {
+          events: []
         },
       });
       // the number of options == 3
@@ -175,9 +180,11 @@ export default {
                 "rgb(54, 162, 235)",
                 "rgb(255, 205, 86)",
               ],
-              hoverOffset: 4,
             },
           ],
+        },
+        options: {
+          events: []
         },
       });
       // the number of options == 2
@@ -189,9 +196,11 @@ export default {
             {
               data: [this.topics.option_1_num, this.topics.option_2_num],
               backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
-              hoverOffset: 4,
             },
           ],
+        },
+        options: {
+          events: []
         },
       });
     }

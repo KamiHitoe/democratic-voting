@@ -1,5 +1,5 @@
 <template>
-  <section v-if="!user">
+  <section v-if="user_existed === false">
     <h4 class="subtitle">ユーザー情報を登録します</h4>
     <form id="user-form" action="#" @submit.prevent="submitUser">
       <v-container>
@@ -54,10 +54,15 @@ export default Vue.extend({
   mixins: [
     global,
   ],
+  computed: {
+    uid() {
+      return this.firebase_user.uid
+    },
+  },
   data() {
     return {
       // username: null as String,
-      uid: null as String,
+      // uid: null as String,
       sex: null as String,
       age: null as Number,
       sexItems: [
@@ -65,11 +70,11 @@ export default Vue.extend({
         { value: "female", item: "女性" },
       ],
       ageItems: [
-        { value: 10, item: "～20歳" },
-        { value: 20, item: "20歳～" },
-        { value: 30, item: "30歳～" },
-        { value: 40, item: "40歳～" },
-        { value: 50, item: "50歳～" },
+        { value: 10, item: "10代" },
+        { value: 20, item: "20代" },
+        { value: 30, item: "30代" },
+        { value: 40, item: "40代" },
+        { value: 50, item: "50代" },
       ],
     };
   },
@@ -82,6 +87,7 @@ export default Vue.extend({
         age: this.age,
       })
       window.location.replace("/");
+      // console.log(this.uid, this.sex, this.age)
     },
   },
 });
