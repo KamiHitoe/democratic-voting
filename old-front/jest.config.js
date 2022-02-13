@@ -20,6 +20,5 @@ module.exports = {
     '<rootDir>/components/**/*.vue',
     '<rootDir>/pages/**/*.vue'
   ],
-  testEnvironment: 'jsdom',
-  setupFiles: ['./test/setup.js'],
+  testEnvironment: 'jsdom'
 }

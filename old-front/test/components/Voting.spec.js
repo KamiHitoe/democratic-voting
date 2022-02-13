@@ -1,15 +1,5 @@
-import Vuex from "vuex"
-import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Voting from "@/components/topics/Voting.vue";
-
-// const localVue = createLocalVue()
-// localVue.use(Vuex)
-
-// const store = new Vuex.Store({
-//   state: {
-//     username: "alice"
-//   }
-// })
+import { shallowMount } from "@vue/test-utils";
+import Voting from "@/components/Voting.vue";
 
 describe("unit test Voting Component", () => {
   const wrapper = shallowMount(Voting, {
@@ -20,13 +10,6 @@ describe("unit test Voting Component", () => {
         option_3: "ゆるゆり",
         option_4: "Citrus",
       },
-    },
-    // store,
-    // localVue,
-    mocks: {
-      $store: {
-        state: { username: "alice" }
-      }
     },
   });
   // this is mock function

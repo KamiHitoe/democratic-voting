@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import RelatedTopics from "@/components/topics/RelatedTopics.vue";
+import RelatedTopics from "@/components/RelatedTopics.vue";
 
 describe("unit test RelatedTopics Component", () => {
   const wrapper = shallowMount(RelatedTopics);

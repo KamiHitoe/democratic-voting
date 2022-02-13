@@ -1,9 +1,8 @@
-import { mount } from "@vue/test-utils";
-import CommentBox from "@/components/comments/CommentBox.vue";
-import store from "@/store"
+import { shallowMount } from "@vue/test-utils";
+// import CommentBox from "@/components/comments/CommentBox.vue";
 
 describe("unit test Comment Component", () => {
-  const wrapper = mount(CommentBox);
+  const wrapper = shallowMount(CommentBox);
   // this is mock function
   const submitComment = jest.fn();
 

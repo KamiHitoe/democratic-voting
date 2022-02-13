@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import Comments from "@/components/comments/Comments.vue";
+import Comments from "@/components/Comments.vue";
 
 describe("unit test Comments Component", () => {
   const time = new Date();

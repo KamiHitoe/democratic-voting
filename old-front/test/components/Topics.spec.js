@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
-import Topics from "@/components/topics/Topics.vue";
+import Topics from "@/components/Topics.vue";
 
 describe("unit test Topics Component", () => {
   const time = new Date();
