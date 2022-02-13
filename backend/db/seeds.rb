@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(uid: 'hitoe', age: 20, sex: '男性')
-User.create(uid: 'miyuki', age: 10, sex: '女性')
-User.create(uid: 'noiru', age: 30, sex: '女性')
-User.create(uid: 'airi', age: 10, sex: '女性')
-User.create(uid: 'alice', age: 20, sex: '女性')
+User.create(uid: 'hitoe', age: 20, sex: 'male')
+User.create(uid: 'miyuki', age: 10, sex: 'female')
+User.create(uid: 'noiru', age: 30, sex: 'female')
+User.create(uid: 'airi', age: 10, sex: 'female')
+User.create(uid: 'alice', age: 20, sex: 'female')
 
 Topic.create(user_id: 1, category_id: 1, title: '最強の百合漫画', description: '最強の百合漫画を決めるスレッドです。今宵、史上最強の百合カップリングを決めましょう',
              option_1: 'やがて君になる', option_2: 'マリア様がみてる', option_3: 'ゆるゆり', option_4: 'Citrus',
@@ -28,17 +28,17 @@ Topic.create(user_id: 1, category_id: 6, title: 'あなたはオタクですか�
              option_1: 'はい', option_2: 'いいえ',
              option_1_num: 80, option_2_num: 60, voted_num: 140,
              img_path: 'https://images-na.ssl-images-amazon.com/images/I/71P-b69pJWL.jpg',
-             sex: '男性')
-Topic.create(user_id: 2, category_id: 6, title: '転職願望はありますか？', description: '20代の男性の人に転職意識調査をしたいと思います',
+             sex: 'male')
+Topic.create(user_id: 2, category_id: 6, title: '転職願望はありますか？', description: '20代のmaleの人に転職意識調査をしたいと思います',
              option_1: 'はい', option_2: 'いいえ',
              option_1_num: 80, option_2_num: 60, voted_num: 140,
              img_path: 'https://one-group.jp/media/wp-content/uploads/2021/04/54e71251d4e94d7d3d2e586b8b0c58b0.jpg',
-             sex: '男性', age: 20)
+             sex: 'male', age: 20)
 Topic.create(user_id: 3, category_id: 1, title: '好きな少女漫画の系統', description: '一口に少女漫画と言ってもいろんな系統があると思いますが、皆さんはどんな少女漫画が好きですか？',
              option_1: '「君に届け」みたいな爽やか系', option_2: '「NANA」みたいなドロドロ系', option_3: '「L DK」みたいなオラオラ系', option_4: 'その他',
              option_1_num: 40, option_2_num: 30, option_3_num: 20, option_4_num: 60, voted_num: 150,
              img_path: 'https://m.media-amazon.com/images/M/MV5BZDI2MzAwMmItOTYwNy00ZDg4LTg0YzMtMzcwNjgwYTkwYTcyXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg',
-             sex: '女性')
+             sex: 'female')
 
 
 

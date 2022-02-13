@@ -33,7 +33,7 @@ import Vue from "vue";
 import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
 import TopicContents from "@/components/topics/TopicContents.vue";
-import global from "@/mixins/global.ts";
+import global from "@/mixins/global";
 import { User, Topic, Comment } from "@/types"
 
 export default Vue.extend({

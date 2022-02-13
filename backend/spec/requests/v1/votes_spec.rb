@@ -14,17 +14,18 @@ RSpec.describe(Vote, type: :request) do
     end
 
     it 'get the number of votes grouped by chosen_option' do
+      # 性別・年代でソートされた選択肢ごとの投票数を取得
       get "/v1/count-votes", params: {
         user_id: @user[:id],
-        topic_id: @topic[:id],
+        topic_id: @votes[0][:topic_id],
         sex: @votes[0][:sex],
         age: @votes[0][:age],
       }
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      # 入力した性別・年代と出力した性別・年代が合致することを確認
-      expect(json[0][:sex]).to(eq(votes[0][:sex]))
-      expect(json[0][:age]).to(eq(votes[0][:age]))
+      # 結果が選択肢ごとのHashであることを確認
+      expect(json).to be_kind_of(Hash)
+      puts "result count votes: ", json
     end
 
     it 'get a voted status by user' do
@@ -32,7 +33,7 @@ RSpec.describe(Vote, type: :request) do
       get "/v1/votes", params: @params
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      # 結果がBooleanで返ることを確認
+      # 結果がBooleanであることを確認
       expect(json["voted_status"]).to be_kind_of(TrueClass) | be_kind_of(FalseClass)
     end
 

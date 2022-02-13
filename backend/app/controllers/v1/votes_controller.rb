@@ -4,8 +4,33 @@ module V1
     before_action :get_voted_status
 
     # GET /count-votes
+    # params include :sex, :age, :chosen_option
+    # return ({ 1: 1_num, 2: 2_num, 3: 3_num, 4: 4_num })
     def count_votes
       # write group by chosen_option logic where sex, age
+      result = Vote.where(topic_id: params[:topic_id])
+
+      if params[:sex] == "male"
+        result = result.where(sex: "male")
+      elsif params[:sex] == "female"
+        result = result.where(sex: "female")
+      end
+
+      if params[:age] == "10"
+        result = result.where(age: 10)
+      elsif params[:age] == "20"
+        result = result.where(age: 20)
+      elsif params[:age] == "30"
+        result = result.where(age: 30)
+      elsif params[:age] == "40"
+        result = result.where(age: 40)
+      elsif params[:age] == "50"
+        result = result.where(age: 50)
+      end
+
+      result = result.group(:chosen_option).count()
+      # render Hash
+      json_response(result)
     end
 
     # GET /votes

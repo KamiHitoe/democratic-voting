@@ -69,8 +69,8 @@
 
 <script>
 import firebase from "@/plugins/firebase"
-import SearchBar from '@/components/SearchBar.vue'
-import Modal from "@/components/Modal.vue"
+import SearchBar from '@/components/default/SearchBar.vue'
+import Modal from "@/components/default/Modal.vue"
 
 export default {
   name: "DefaultLayout",

@@ -35,6 +35,7 @@ import Vue, { PropType } from "vue";
 import { User, Comment } from "@/types";
 import Like from "@/components/comments/Like.vue";
 import ReplyList from "@/components/comments/ReplyList.vue";
+import Report from "@/components/default/Report.vue";
 import { initialUser } from "@/data"
 
 export default Vue.extend({
@@ -46,6 +47,7 @@ export default Vue.extend({
   components: {
     Like,
     ReplyList,
+    Report,
   },
   data() {
     return {

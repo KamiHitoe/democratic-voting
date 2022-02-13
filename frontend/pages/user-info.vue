@@ -1,5 +1,5 @@
 <template>
-  <section v-if=user>
+  <section v-if=user_existed>
     <h4 class="subtitle">ユーザー情報</h4>
     <p>性別: {{ user.sex }}</p>
     <p>年代: {{ user.age }}代</p>
@@ -12,12 +12,17 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins/global.ts";
+import global from "@/mixins/global";
 
 export default Vue.extend({
   mixins: [
     global,
   ],
+  computed: {
+    user_existed(): Boolean {
+      return Boolean(Object.keys(this.user).length)
+    }
+  }
 });
 </script>
 

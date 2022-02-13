@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins/global.ts";
+import global from "@/mixins/global";
 
 export default Vue.extend({
   mixins: [

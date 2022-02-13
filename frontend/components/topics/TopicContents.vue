@@ -1,7 +1,9 @@
 <template>
   <section class="vote-contents">
     <h4 class="subtitle">
-      トップ　＞　{{ category }}
+      <nuxt-link class="change-color" to="/">トップ</nuxt-link>
+      <span class="plain-text">　＞　</span>
+      <a class="change-color" :href="`/search?category_id=${topics.category_id}`">{{ category }}</a>
     </h4>
     <v-divider></v-divider>
     <LimitedTag :topics="topics" tag_class="limited-tag" />
@@ -20,6 +22,33 @@
       </div>
     </nuxt-link>
     <p class="topics-description">{{ topics.description }}</p>
+
+    <v-row>
+      <v-col cols="3">
+        <v-select
+          v-model="sex"
+          :items="sexItems"
+          label="性別"
+          item-color="amber"
+          solo
+          dense
+          background-color="amber lighten-4"
+          @change="getLimitedVote"
+        ></v-select>
+      </v-col>
+      <v-col cols="3">
+        <v-select
+          v-model="age"
+          :items="ageItems"
+          label="年代"
+          item-color="amber"
+          solo
+          dense
+          background-color="amber lighten-4"
+          @change="getLimitedVote"
+        ></v-select>
+      </v-col>
+    </v-row>
 
     <div class="d-flex flex-row">
       <canvas id="result-chart"></canvas>
@@ -63,13 +92,15 @@
 // import Vue from 'vue'
 import Chart from "chart.js";
 import Voting from "@/components/topics/Voting.vue";
+// import LimitedSelect from "@/components/LimitedSelect.vue";
 import LimitedTag from "@/components/LimitedTag.vue";
-import Report from "@/components/Report.vue";
+import Report from "@/components/default/Report.vue";
 import { categoryList } from "@/data";
 
 export default {
   components: {
     Voting,
+    // LimitedSelect,
     LimitedTag,
     Report,
   },
@@ -82,6 +113,21 @@ export default {
       categoryList: categoryList,
       chartPattern: 2,
       category: "",
+      sexItems: [
+        {text: "なし", value: null},
+        {text: "男性", value: "male"},
+        {text: "女性", value: "female"},
+      ],
+      ageItems: [
+        {text: "なし", value: null},
+        {text: "10代", value: 10},
+        {text: "20代", value: 20},
+        {text: "30代", value: 30},
+        {text: "40代", value: 40},
+        {text: "50代", value: 50},
+      ],
+      sex: "",
+      age: 0,
     };
   },
   updated() {
@@ -161,6 +207,20 @@ export default {
       this.voted_status = res.data.voted_status;
       console.log(this.voted_status);
     },
+    async getLimitedVote() {
+      // const res = await this.$axios.get("/count-votes", {
+      //   params: {
+      //     topic_id: this.topics.id,
+      //     sex: this.sex,
+      //     age: this.age,
+      //   }
+      // });
+      // this.topics.option_1_num = res.data[1]
+      // this.topics.option_2_num = res.data[2]
+      // this.topics.option_3_num = res.data[3]
+      // this.topics.option_4_num = res.data[4]
+      console.log('pushed')
+    }
   },
 };
 </script>
@@ -172,6 +232,9 @@ export default {
 }
 .change-color {
   color: $amber;
+}
+.plain-text {
+  color: $gray;
 }
 .vote-contents {
   padding: 1rem;
