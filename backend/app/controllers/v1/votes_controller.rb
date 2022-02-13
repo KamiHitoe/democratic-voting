@@ -3,8 +3,13 @@ module V1
   class VotesController < ApplicationController
     before_action :get_voted_status
 
+    # GET /count-votes
+    def count_votes
+      # write group by chosen_option logic where sex, age
+    end
+
     # GET /votes
-    def show
+    def show_status
       # this makes vote button enable or disable
       json_response(voted_status: @voted_status)
     end
@@ -38,8 +43,8 @@ module V1
 
     def vote_params
       # whitelist params
-      params.permit(:user_id, :topic_id)
       # params = {user_id: user_id, topic_id: topic_id} given from routes
+      params.permit(:user_id, :topic_id, :sex, :age, :chosen_option)
     end
 
     def get_voted_status

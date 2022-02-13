@@ -6,5 +6,6 @@ class Vote < ApplicationRecord
   # validate presence
   validates(:user_id,
             :topic_id,
+            :chosen_option,
             { presence: true })
 end
