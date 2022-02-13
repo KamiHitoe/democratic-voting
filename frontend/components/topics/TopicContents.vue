@@ -208,18 +208,34 @@ export default {
       console.log(this.voted_status);
     },
     async getLimitedVote() {
-      // const res = await this.$axios.get("/count-votes", {
-      //   params: {
-      //     topic_id: this.topics.id,
-      //     sex: this.sex,
-      //     age: this.age,
-      //   }
-      // });
-      // this.topics.option_1_num = res.data[1]
-      // this.topics.option_2_num = res.data[2]
-      // this.topics.option_3_num = res.data[3]
-      // this.topics.option_4_num = res.data[4]
-      console.log('pushed')
+      const res = await this.$axios.get("/count-votes", {
+        params: {
+          topic_id: this.topics.id,
+          sex: this.sex,
+          age: this.age,
+        }
+      });
+      if (res.data[1]) {
+        this.topics.option_1_num = res.data[1]
+      } else {
+        this.topics.option_1_num = 0
+      }
+      if (res.data[2]) {
+        this.topics.option_2_num = res.data[2]
+      } else {
+        this.topics.option_2_num = 0
+      }
+      if (res.data[3]) {
+        this.topics.option_3_num = res.data[3]
+      } else {
+        this.topics.option_3_num = 0
+      }
+      if (res.data[4]) {
+        this.topics.option_4_num = res.data[4]
+      } else {
+        this.topics.option_4_num = 0
+      }
+      console.log(res.data)
     }
   },
 };
