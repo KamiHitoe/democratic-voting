@@ -20,24 +20,24 @@
           <v-radio-group v-model="chosenOption">
             <v-radio
               :label="topic.option_1"
-              value="option_1_num"
+              value=1
               color="amber"
             ></v-radio>
             <v-radio
               :label="topic.option_2"
-              value="option_2_num"
+              value=2
               color="amber"
             ></v-radio>
             <v-radio
               v-if="topic.option_3"
               :label="topic.option_3"
-              value="option_3_num"
+              value=3
               color="amber"
             ></v-radio>
             <v-radio
               v-if="topic.option_4"
               :label="topic.option_4"
-              value="option_4_num"
+              value=4
               color="amber"
             ></v-radio>
           </v-radio-group>
@@ -83,6 +83,9 @@ export default Vue.extend({
           await this.$axios.post("votes", {
             user_id: this.user.id,
             topic_id: this.topic.id,
+            sex: this.user.sex,
+            age: this.user.age,
+            chosen_option: this.chosenOption,
           })
           window.location.reload();
         }

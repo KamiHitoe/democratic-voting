@@ -93,8 +93,9 @@ RSpec.describe(Topic, type: :request) do
       end.to(change(Topic, :count).by(1))
     end
 
-    it 'update topic' do
-      put "/v1/topics/#{@topics[0].id}", params: { chosen_option: :option_1_num }
+    it 'update option_num in the topic' do
+      # :chosen_optionを与えるとtopicsが更新されることを確認
+      put "/v1/topics/#{@topics[0].id}", params: { chosen_option: "1" }
       # response.body is not exist
       expect(response).to(be_successful)
     end

@@ -85,10 +85,18 @@ module V1
     end
 
     # PUT /topics/:id
+    # params[:chosen_option] = 1..4
     def update
-      # 現在は:chosen_optionにそのままoption_1_numのようなカラム名を渡しているからrefactoring要
-      chosen_option = params[:chosen_option]
-      @topic.increment!(chosen_option)
+      if params[:chosen_option] == "1"
+        @topic.increment!(:option_1_num)
+      elsif params[:chosen_option] == "2"
+        @topic.increment!(:option_2_num)
+      elsif params[:chosen_option] == "3"
+        @topic.increment!(:option_3_num)
+      elsif params[:chosen_option] == "4"
+        @topic.increment!(:option_4_num)
+      end
+
       @topic.increment!(:voted_num)
       head(:no_content)
     end
