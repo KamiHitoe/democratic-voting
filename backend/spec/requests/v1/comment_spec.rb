@@ -17,30 +17,33 @@ RSpec.describe(Comment, type: :request) do
     end
 
     it 'get a comment by id' do
+      # 任意のCommentが取得できることを確認
       get "/v1/topics/#{@topic[:id]}/comments/#{@comments[0][:id]}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
+      # 一つのHashが返ることを確認
       expect(json).to be_kind_of(Hash)
     end
 
     it 'create a new comment' do
+      # 入力するUserごとにCommentが成功するか否か確認
       male_user = create(:user, sex: "男性")
       old_user = create(:user, age: 40)
-      # valid user
+      # Topicのsex, ageと合致するUserの場合、成功
       expect do
         post("/v1/topics/#{@topic[:id]}/comments", params: {
                user_id: @user[:id],
                text: 'new text'
              })
       end.to(change(Comment, :count).by(1))
-      # invalid sex
+      # TopicとUserのsexが異なる場合、失敗
       expect do
         post("/v1/topics/#{@topic[:id]}/comments", params: {
                user_id: male_user[:id],
                text: 'new text'
              })
       end.to(change(Comment, :count).by(0))
-      # invalid age
+      # TopicとUserのageが異なる場合、失敗
       expect do
         post("/v1/topics/#{@topic[:id]}/comments", params: {
                user_id: old_user[:id],
