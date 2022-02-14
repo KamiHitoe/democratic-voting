@@ -56,8 +56,12 @@ export default Vue.extend({
     async updateParentId() {
       await this.$store.commit('updateParentId', this.comment.id)
     },
+    async updateOrder() {
+      await this.$store.commit('updateOrder', this.order)
+    },
     reply() {
       this.updateParentId();
+      this.updateOrder();
       console.log(this.$store.state.parent_id);
       window.location.replace(`${this.topic_id}#comment-box`)
     },

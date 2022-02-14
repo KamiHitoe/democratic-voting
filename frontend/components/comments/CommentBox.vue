@@ -61,7 +61,7 @@ export default Vue.extend({
   methods: {
     async submitComment() {
       if (this.user.uid) {
-        // 登録済ユーザのみ投票可能
+        // 登録済ユーザのみコメント可能
         let comment: Comment;
         if (this.parent_id) {
           comment = {
@@ -85,7 +85,7 @@ export default Vue.extend({
     },
     getParentId() {
       this.parent_id = this.$store.state.parent_id;
-      this.text_header = `>> ${this.$store.state.parent_id}`
+      this.text_header = `>> ${this.$store.state.order}`
       console.log(this.parent_id);
     },
   },

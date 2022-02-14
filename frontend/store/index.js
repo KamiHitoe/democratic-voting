@@ -2,6 +2,7 @@
 // set state-full object
 export const state = () => ({
   parent_id: null,
+  order: null,
   voted_status: false,
   show_modal: false,
 })
@@ -10,6 +11,9 @@ export const state = () => ({
 export const mutations = {
   updateParentId(state, parent_id) {
     state.parent_id = parent_id
+  },
+  updateOrder(state, order) {
+    state.order = order
   },
   updateVotedStatus(state, voted_status) {
     state.voted_status = voted_status
