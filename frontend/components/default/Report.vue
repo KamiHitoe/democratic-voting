@@ -1,6 +1,6 @@
 <template>
   <button v-if="comment" class="report-comment" @click="reportComment">通報</button>
-  <button v-else-if="topics" class="report-topics" @click="reportTopic">通報</button>
+  <button v-else-if="topic" class="report-topic" @click="reportTopic">通報</button>
 </template>
 
 <script lang="ts">
@@ -10,7 +10,7 @@ import { User, Topic, Comment } from "@/types";
 export default Vue.extend({
   props: {
     user: { type: Object as PropType<User> },
-    topics: { type: Object as PropType<Topic> },
+    topic: { type: Object as PropType<Topic> },
     comment: { type: Object as PropType<Comment> },
   },
   methods: {
@@ -19,7 +19,7 @@ export default Vue.extend({
       if (agreement) {
         const params = {
           user_id: this.user.id,
-          topic_id: this.topics.id,
+          topic_id: this.topic.id,
         }
         const res_status = await this.$axios.get("/report-topics", {
           params: params,
@@ -30,14 +30,14 @@ export default Vue.extend({
           await this.$axios.post("/report-topics", params)
           const res_count = await this.$axios.get("/count-report-topics", {
             params: {
-              topic_id: this.topics.id,
+              topic_id: this.topic.id,
             },
           })
           const reported_num = res_count.data.reported_num;
           console.log(reported_num);
           // 通報数が5以上かつ投票数の1/10以上の時に当該トピックを削除
-          if (reported_num > 5 && reported_num/this.topics.voted_num > 0.1) {
-            this.$axios.delete(`/topics/${this.topics.id}`)
+          if (reported_num > 5 && reported_num/this.topic.voted_num > 0.1) {
+            this.$axios.delete(`/topics/${this.topic.id}`)
           }
         } else {
           console.log('this user already reported')
@@ -86,7 +86,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.report-topics {
+.report-topic {
   max-height: 24px;
 }
 .report-comment {

@@ -59,7 +59,7 @@ RSpec.describe(Topic, type: :request) do
       get "/v1/search?sex=female"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      expect(json[0]["sex"]).to(eq("女性"))
+      expect(json[0]["sex"]).to(eq("female"))
     end
 
     it 'search topics by age' do

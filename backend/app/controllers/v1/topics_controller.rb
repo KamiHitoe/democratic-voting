@@ -46,9 +46,9 @@ module V1
       end
       
       if params[:sex] == "male"
-        topics = topics.where(sex: "男性")
+        topics = topics.where(sex: "male")
       elsif params[:sex] == "female"
-        topics = topics.where(sex: "女性")
+        topics = topics.where(sex: "female")
       end
 
       if params[:age] == "10"

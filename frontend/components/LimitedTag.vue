@@ -1,8 +1,8 @@
 <template>
   <div class="limited-vote d-flex flex-row">
-    <h5 v-if="topics.sex==='male'" :class="tag_class">男性限定投票</h5>
-    <h5 v-else-if="topics.sex==='female'" :class="tag_class">女性限定投票</h5>
-    <h5 v-if="topics.age" :class="tag_class">{{ topics.age }}代限定投票</h5>
+    <h5 v-if="topic.sex==='male'" :class="tag_class">男性限定投票</h5>
+    <h5 v-else-if="topic.sex==='female'" :class="tag_class">女性限定投票</h5>
+    <h5 v-if="topic.age" :class="tag_class">{{ topic.age }}代限定投票</h5>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import Vue from "vue";
 
 export default Vue.extend({
   props: {
-    topics: Object,
+    topic: Object,
     tag_class: String,
   },
   data() {

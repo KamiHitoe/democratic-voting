@@ -19,24 +19,24 @@
           <p>一人一票しか投票できないので、注意して投票してね！</p>
           <v-radio-group v-model="chosenOption">
             <v-radio
-              :label="topics.option_1"
+              :label="topic.option_1"
               value="option_1_num"
               color="amber"
             ></v-radio>
             <v-radio
-              :label="topics.option_2"
+              :label="topic.option_2"
               value="option_2_num"
               color="amber"
             ></v-radio>
             <v-radio
-              v-if="topics.option_3"
-              :label="topics.option_3"
+              v-if="topic.option_3"
+              :label="topic.option_3"
               value="option_3_num"
               color="amber"
             ></v-radio>
             <v-radio
-              v-if="topics.option_4"
-              :label="topics.option_4"
+              v-if="topic.option_4"
+              :label="topic.option_4"
               value="option_4_num"
               color="amber"
             ></v-radio>
@@ -59,7 +59,7 @@ import { User, Topic } from "@/types";
 export default Vue.extend({
   props: {
     user: { type: Object as PropType<User> },
-    topics: { type: Object as PropType<Topic> },
+    topic: { type: Object as PropType<Topic> },
   },
   data() {
     return {
@@ -73,12 +73,12 @@ export default Vue.extend({
         // 登録済ユーザのみ投票可能
         if (this.chosenOption !== null) {
           // オプションを選択してから実行
-          await this.$axios.put(`/topics/${this.topics.id}`, {
+          await this.$axios.put(`/topics/${this.topic.id}`, {
             chosen_option: this.chosenOption,
           });
           await this.$axios.post("votes", {
             user_id: this.user.id,
-            topic_id: this.topics.id,
+            topic_id: this.topic.id,
           })
           window.location.reload();
         }

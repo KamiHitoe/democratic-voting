@@ -47,9 +47,9 @@
         >お題を検索する</v-btn
       >
 
-      <Topics v-for="(topics, i) in topicsList.slice((page-1)*limit, page*limit)"
-        :key="topics.id"
-        :topics="topics"
+      <Topics v-for="(topic, i) in topicsList.slice((page-1)*limit, page*limit)"
+        :key="topic.id"
+        :topic="topic"
         :order="i+1"
       />
 

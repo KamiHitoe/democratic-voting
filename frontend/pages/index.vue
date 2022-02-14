@@ -21,9 +21,9 @@
       </v-tab>
     </v-tabs>
     <Topics
-      v-for="(topics, i) in topicsList"
-      :key="topics.id"
-      :topics="topics"
+      v-for="(topic, i) in topicsList"
+      :key="topic.id"
+      :topic="topic"
       :order="i + 1"
     />
 

@@ -3,25 +3,25 @@
     <h4 class="subtitle">
       <nuxt-link class="change-color" to="/">トップ</nuxt-link>
       <span class="plain-text">　＞　</span>
-      <a class="change-color" :href="`/search?category_id=${topics.category_id}`">{{ category }}</a>
+      <a class="change-color" :href="`/search?category_id=${topic.category_id}`">{{ category }}</a>
     </h4>
     <v-divider></v-divider>
-    <LimitedTag :topics="topics" tag_class="limited-tag" />
-    <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topics.id}`">
-      <img class="topics-img" :src="topics.img_path" />
-      <div class="topics-contents d-flex flex-column">
+    <LimitedTag :topic="topic" tag_class="limited-tag" />
+    <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topic.id}`">
+      <img class="topic-img" :src="topic.img_path" />
+      <div class="topic-contents d-flex flex-column">
         <div class="d-flex flex-row">
-          <p class="data-margin">{{ topics.voted_num }} votes</p>
-          <p class="data-margin">{{ topics.timestamp }}</p>
-          <Report class="data-margin" :user="user" :topics="topics" />
+          <p class="data-margin">{{ topic.voted_num }} votes</p>
+          <p class="data-margin">{{ topic.timestamp }}</p>
+          <Report class="data-margin" :user="user" :topic="topic" />
           <p class="data-margin change-color">
             {{ category }}
           </p>
         </div>
-        <h2 class="topics-title">{{ topics.title }}</h2>
+        <h2 class="topic-title">{{ topic.title }}</h2>
       </div>
     </nuxt-link>
-    <p class="topics-description">{{ topics.description }}</p>
+    <p class="topic-description">{{ topic.description }}</p>
 
     <v-row>
       <v-col cols="3">
@@ -54,20 +54,20 @@
       <canvas id="result-chart"></canvas>
       <div class="d-flex flex-column justify-center">
         <p>
-          <span class="chart-label-1">&nbsp;</span>{{ topics.option_1 }}
-          {{ topics.option_1_num }}票
+          <span class="chart-label-1">&nbsp;</span>{{ topic.option_1 }}
+          {{ topic.option_1_num }}票
         </p>
         <p>
-          <span class="chart-label-2">&nbsp;</span>{{ topics.option_2 }}
-          {{ topics.option_2_num }}票
+          <span class="chart-label-2">&nbsp;</span>{{ topic.option_2 }}
+          {{ topic.option_2_num }}票
         </p>
-        <p v-if="topics.option_3">
-          <span class="chart-label-3">&nbsp;</span>{{ topics.option_3 }}
-          {{ topics.option_3_num }}票
+        <p v-if="topic.option_3">
+          <span class="chart-label-3">&nbsp;</span>{{ topic.option_3 }}
+          {{ topic.option_3_num }}票
         </p>
-        <p v-if="topics.option_4">
-          <span class="chart-label-4">&nbsp;</span>{{ topics.option_4 }}
-          {{ topics.option_4_num }}票
+        <p v-if="topic.option_4">
+          <span class="chart-label-4">&nbsp;</span>{{ topic.option_4 }}
+          {{ topic.option_4_num }}票
         </p>
       </div>
     </div>
@@ -75,11 +75,11 @@
     <div
       v-if="
         !$route.params.topic_id &&
-        (!topics.sex || topics.sex == user.sex) &&
-        (!topics.age || topics.age == user.age)
+        (!topic.sex || topic.sex == user.sex) &&
+        (!topic.age || topic.age == user.age)
       "
     >
-      <Voting :user="user" :topics="topics" />
+      <Voting :user="user" :topic="topic" />
     </div>
     <div v-else-if="$route.params.topic_id"></div>
     <p v-else class="invalid-user">
@@ -104,7 +104,7 @@ export default {
   },
   props: {
     user: Object,
-    topics: Object,
+    topic: Object,
   },
   data() {
     return {
@@ -129,26 +129,26 @@ export default {
     };
   },
   watch: {
-    topics() {
-      this.category = this.categoryList[this.topics.category_id - 1].category
+    topic() {
+      this.category = this.categoryList[this.topic.category_id - 1].category
     }
   },
   updated() {
-    // this.category = this.categoryList[this.topics.category_id - 1].category
+    // this.category = this.categoryList[this.topic.category_id - 1].category
     console.log(this.category)
     const ctx = document.getElementById("result-chart");
     // the number of options == 4
-    if (this.topics.option_3 && this.topics.option_4) {
+    if (this.topic.option_3 && this.topic.option_4) {
       new Chart(ctx, {
         type: "pie",
         data: {
           datasets: [
             {
               data: [
-                this.topics.option_1_num,
-                this.topics.option_2_num,
-                this.topics.option_3_num,
-                this.topics.option_4_num,
+                this.topic.option_1_num,
+                this.topic.option_2_num,
+                this.topic.option_3_num,
+                this.topic.option_4_num,
               ],
               backgroundColor: [
                 "rgb(255, 99, 132)",
@@ -164,16 +164,16 @@ export default {
         },
       });
       // the number of options == 3
-    } else if (this.topics.option_3) {
+    } else if (this.topic.option_3) {
       new Chart(ctx, {
         type: "pie",
         data: {
           datasets: [
             {
               data: [
-                this.topics.option_1_num,
-                this.topics.option_2_num,
-                this.topics.option_3_num,
+                this.topic.option_1_num,
+                this.topic.option_2_num,
+                this.topic.option_3_num,
               ],
               backgroundColor: [
                 "rgb(255, 99, 132)",
@@ -194,7 +194,7 @@ export default {
         data: {
           datasets: [
             {
-              data: [this.topics.option_1_num, this.topics.option_2_num],
+              data: [this.topic.option_1_num, this.topic.option_2_num],
               backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
             },
           ],
@@ -210,7 +210,7 @@ export default {
       const res = await this.$axios.get("/votes", {
         params: {
           user_id: this.user.id,
-          topic_id: this.topics.id,
+          topic_id: this.topic.id,
         }
       });
       this.voted_status = res.data.voted_status;
@@ -219,30 +219,30 @@ export default {
     async getLimitedVote() {
       const res = await this.$axios.get("/count-votes", {
         params: {
-          topic_id: this.topics.id,
+          topic_id: this.topic.id,
           sex: this.sex,
           age: this.age,
         }
       });
       if (res.data[1]) {
-        this.topics.option_1_num = res.data[1]
+        this.topic.option_1_num = res.data[1]
       } else {
-        this.topics.option_1_num = 0
+        this.topic.option_1_num = 0
       }
       if (res.data[2]) {
-        this.topics.option_2_num = res.data[2]
+        this.topic.option_2_num = res.data[2]
       } else {
-        this.topics.option_2_num = 0
+        this.topic.option_2_num = 0
       }
       if (res.data[3]) {
-        this.topics.option_3_num = res.data[3]
+        this.topic.option_3_num = res.data[3]
       } else {
-        this.topics.option_3_num = 0
+        this.topic.option_3_num = 0
       }
       if (res.data[4]) {
-        this.topics.option_4_num = res.data[4]
+        this.topic.option_4_num = res.data[4]
       } else {
-        this.topics.option_4_num = 0
+        this.topic.option_4_num = 0
       }
       console.log(res.data)
     }
@@ -251,8 +251,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topics-title,
-.topics-description {
+.topic-title,
+.topic-description {
   text-align: left;
 }
 .change-color {
@@ -276,7 +276,7 @@ export default {
     padding: 0.2rem 1rem;
     border-radius: 0.3rem;
   }
-  .topics-img {
+  .topic-img {
     width: 100px;
     height: 100px;
     margin-right: 3rem;
@@ -284,7 +284,7 @@ export default {
   .data-margin {
     margin-right: 1rem;
   }
-  .topics-description {
+  .topic-description {
     margin: 2rem 0;
   }
 }

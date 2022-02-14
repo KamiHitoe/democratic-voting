@@ -1,6 +1,6 @@
 <template>
   <main>
-    <TopicContents :topics="topics" :user="user" />
+    <TopicContents :topic="topic" :user="user" />
 
     <section class="comment-contents">
       <h4 class="comment-subtitle">コメント</h4>
@@ -9,17 +9,17 @@
         v-for="(comment, i) in commentList"
         :key="comment.id"
         :comment="comment"
-        :topic_id="topics.id"
+        :topic_id="topic.id"
         :order="i + 1"
       />
 
       <div
         v-if="
-          (!topics.sex || topics.sex == user.sex) &&
-          (!topics.age || topics.age == user.age)
+          (!topic.sex || topic.sex == user.sex) &&
+          (!topic.age || topic.age == user.age)
         "
       >
-        <CommentBox :topic_id="topics.id" />
+        <CommentBox :topic_id="topic.id" />
       </div>
       <p v-else class="invalid-user">
         ※この投稿の対象ユーザーではないためコメントできません。
@@ -49,7 +49,7 @@ export default Vue.extend({
     return {
       topic_id: this.$route.params.topic_id as Number,
       comment_id: this.$route.params.id as Number,
-      topics: {
+      topic: {
         category_id: 0,
       } as Topic,
       commentList: [] as Comment[],
@@ -63,9 +63,9 @@ export default Vue.extend({
   methods: {
     async getTopics() {
       const res = await this.$axios.get(`/topics/${this.topic_id}`);
-      this.topics = res.data;
-      this.topic_id = this.topics.id;
-      console.log(this.topics);
+      this.topic = res.data;
+      this.topic_id = this.topic.id;
+      console.log(this.topic);
     },
     async getRepliedComments() {
       const res = await this.$axios.get(

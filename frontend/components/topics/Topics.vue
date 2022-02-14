@@ -1,29 +1,29 @@
 <template>
   <section>
-    <LimitedTag :topics="topics" tag_class="limited-tag-sm" />
+    <LimitedTag :topic="topic" tag_class="limited-tag-sm" />
     <nuxt-link
       class="contents d-flex flex-row"
-      :to="`/topics/${topics.id}`"
-      :topic_id="topics.id"
+      :to="`/topics/${topic.id}`"
+      :topic_id="topic.id"
     >
-      <img class="topics-img" :src="topics.img_path" />
-      <div class="topics-contents d-flex flex-column">
+      <img class="topic-img" :src="topic.img_path" />
+      <div class="topic-contents d-flex flex-column">
         <div class="d-flex flex-row">
           <p class="id data-margin">{{ order }}</p>
           <p class="data-margin">
-            {{ topics.voted_num }} votes
+            {{ topic.voted_num }} votes
           </p>
-          <p class="data-margin">{{ topics.timestamp }}</p>
+          <p class="data-margin">{{ topic.timestamp }}</p>
           <p class="data-margin change-color">
-            {{ categoryList[topics.category_id - 1].category }}
+            {{ categoryList[topic.category_id - 1].category }}
           </p>
         </div>
-        <h4 class="topics-title">{{ topics.title }}</h4>
+        <h4 class="topic-title">{{ topic.title }}</h4>
         <div class="d-flex flex-row">
-          <h6 class="data-margin">{{ topics.option_1 }}</h6>
-          <h6 class="data-margin">{{ topics.option_2 }}</h6>
-          <h6 class="data-margin">{{ topics.option_3 }}</h6>
-          <h6 class="data-margin">{{ topics.option_4 }}</h6>
+          <h6 class="data-margin">{{ topic.option_1 }}</h6>
+          <h6 class="data-margin">{{ topic.option_2 }}</h6>
+          <h6 class="data-margin">{{ topic.option_3 }}</h6>
+          <h6 class="data-margin">{{ topic.option_4 }}</h6>
         </div>
       </div>
     </nuxt-link>
@@ -42,7 +42,7 @@ export default Vue.extend({
     LimitedTag,
   },
   props: {
-    topics: { type: Object as PropType<Topic> },
+    topic: { type: Object as PropType<Topic> },
     order: { type: Number },
   },
   data() {
@@ -65,16 +65,16 @@ section {
 .change-color {
   color: $amber;
 }
-.topics-img {
+.topic-img {
   width: 100px;
   height: 100px;
   margin-right: 3rem;
   object-fit: fill;
 }
-.topics-contents {
+.topic-contents {
   text-align: left;
 }
-.topics-title {
+.topic-title {
   margin-bottom: 14px;
 }
 .data-margin {
