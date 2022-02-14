@@ -1,5 +1,6 @@
 ## Reference
 
+
 - Frontend
   - Vuex
     - [Working With Nuxt and Vuex](https://langvad.dev/blog/working-with-nuxt-and-vuex/)
