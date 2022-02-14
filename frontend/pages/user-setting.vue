@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins/global";
+import global from "@/mixins";
 
 export default Vue.extend({
   mixins: [
@@ -77,6 +77,9 @@ export default Vue.extend({
         { value: 50, item: "50代" },
       ],
     };
+  },
+  created() {
+    this.getUser();
   },
   methods: {
     async submitUser() {

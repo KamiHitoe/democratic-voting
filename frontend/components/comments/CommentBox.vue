@@ -37,6 +37,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import global from "@/mixins";
 import { User, Comment } from "@/types";
 
 export default Vue.extend({
@@ -44,6 +45,9 @@ export default Vue.extend({
     user: { type: Object as PropType<User> },
     topic_id: { type: Number },
   },
+  mixins: [
+    global,
+  ],
   data() {
     return {
       parent_id: this.$store.state.parent_id as number,
@@ -56,23 +60,28 @@ export default Vue.extend({
   },
   methods: {
     async submitComment() {
-      let comment: Comment;
-      if (this.parent_id) {
-        comment = {
-          user_id: this.user.id,
-          text: `${this.text_header}\n${this.text}`,
-          parent_id: this.parent_id,
+      if (this.user.uid) {
+        // 登録済ユーザのみ投票可能
+        let comment: Comment;
+        if (this.parent_id) {
+          comment = {
+            user_id: this.user.id,
+            text: `${this.text_header}\n${this.text}`,
+            parent_id: this.parent_id,
+          }
+        } else {
+          comment = {
+            user_id: this.user.id,
+            text: this.text,
+            parent_id: this.parent_id,
+          }
         }
+        await this.$axios.post(`/topics/${this.topic_id}/comments`, comment);
+        // alert('post comment success!');
+        window.location.reload();
       } else {
-        comment = {
-          user_id: this.user.id,
-          text: this.text,
-          parent_id: this.parent_id,
-        }
+        this.updateShowModal();
       }
-      await this.$axios.post(`/topics/${this.topic_id}/comments`, comment);
-      // alert('post comment success!');
-      window.location.reload();
     },
     getParentId() {
       this.parent_id = this.$store.state.parent_id;

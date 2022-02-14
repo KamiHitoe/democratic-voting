@@ -15,11 +15,6 @@
       <div class="d-flex flex-row">
 
         <ReplyList :topic_id="topic_id" :comment="comment" />
-        <!-- <nuxt-link v-if="replyList.length" class="replied-messages d-flex flex-row" :to="`/topics/${topic_id}/${comment.id}`">
-          <h5 class="reply_num">{{ replyList.length }} 件の返信</h5>
-          <v-icon color="white" small>mdi-message</v-icon>
-        </nuxt-link>
-        <p v-else></p> -->
 
         <Like :user="user" :comment="comment" />
 
@@ -36,10 +31,10 @@ import { User, Comment } from "@/types";
 import Like from "@/components/comments/Like.vue";
 import ReplyList from "@/components/comments/ReplyList.vue";
 import Report from "@/components/default/Report.vue";
-import { initialUser } from "@/data"
 
 export default Vue.extend({
   props: {
+    user: { type: Object as PropType<User> },
     comment: { type: Object as PropType<Comment> },
     order: { type: Number },
     topic_id: { type: Number },
@@ -51,7 +46,6 @@ export default Vue.extend({
   },
   data() {
     return {
-      user: initialUser as User,
     };
   },
   methods: {

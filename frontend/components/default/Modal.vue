@@ -14,7 +14,7 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              投票・コメント・通報機能を利用する場合は、右上のメニューからログインしよう！
+              この機能を利用する場合は、右上のメニューからログインしよう！
               <button
                 class="modal-default-button"
                 @click="$emit('close')"

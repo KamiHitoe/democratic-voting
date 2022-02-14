@@ -10,9 +10,9 @@ export default Vue.extend({
       user_existed: null as Boolean,
     };
   },
-  async created() {
-    await this.getUser()
-  },
+  // async created() {
+  //   await this.getUser()
+  // },
   methods: {
     async updateShowModal() {
       await this.$store.commit('updateShowModal', true)

@@ -54,6 +54,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import global from "@/mixins";
 import { User, Topic } from "@/types";
 
 export default Vue.extend({
@@ -61,6 +62,9 @@ export default Vue.extend({
     user: { type: Object as PropType<User> },
     topic: { type: Object as PropType<Topic> },
   },
+  mixins: [
+    global,
+  ],
   data() {
     return {
       chosenOption: null as string,

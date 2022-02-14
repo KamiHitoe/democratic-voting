@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins/global";
+import global from "@/mixins";
 
 export default Vue.extend({
   mixins: [
@@ -31,6 +31,9 @@ export default Vue.extend({
         this.sex = "女性"
       }
     }
+  },
+  created() {
+    this.getUser();
   },
 });
 </script>

@@ -11,6 +11,7 @@
         :comment="comment"
         :topic_id="topic.id"
         :order="i + 1"
+        :user="user"
       />
 
       <div
@@ -38,7 +39,7 @@ import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
 import RelatedTopics from "@/components/topics/RelatedTopics.vue";
 import TopicContents from "@/components/topics/TopicContents.vue";
-import global from "@/mixins/global"
+import global from "@/mixins"
 import { User, Topic, Comment } from "@/types"
 
 export default Vue.extend({
@@ -63,7 +64,7 @@ export default Vue.extend({
     };
   },
   async created() {
-    // await this.getUser();
+    await this.getUser();
     await this.getTopics();
     await this.getComments();
     await this.getVotedStatus();

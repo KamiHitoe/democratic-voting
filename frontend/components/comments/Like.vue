@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import global from "@/mixins";
 import { User, Comment } from "@/types";
 
 export default Vue.extend({
@@ -23,6 +24,9 @@ export default Vue.extend({
     user: { type: Object as PropType<User>},
     comment: { type: Object as PropType<Comment> },
   },
+  mixins: [
+    global,
+  ],
   data() {
     return {
       liked_status: false as boolean,
@@ -53,9 +57,14 @@ export default Vue.extend({
       this.liked_status = res.data.liked_status;
     },
     async like() {
-      this.liked_status = true;
-      await this.$axios.post("likes", this.params);
-      this.countLikes();
+      if (this.user.uid) {
+        // 登録済ユーザのみ投票可能
+        this.liked_status = true;
+        await this.$axios.post("likes", this.params);
+        this.countLikes();
+      } else {
+        this.updateShowModal()
+      }
     },
     async unlike() {
       this.liked_status = false;
