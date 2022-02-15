@@ -37,6 +37,12 @@ export default Vue.extend({
       }
     };
   },
+  watch: {
+    user() {
+      // コメント投降後にいいねを押してもuser.idを正常に渡す
+      this.params.user_id = this.user.id
+    },
+  },
   created() {
     this.countLikes();
     this.getLikedStatus();

@@ -48,11 +48,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins";
+import getUser from "@/mixins/getUser";
 
 export default Vue.extend({
   mixins: [
-    global,
+    getUser,
   ],
   computed: {
     uid() {
@@ -78,9 +78,9 @@ export default Vue.extend({
       ],
     };
   },
-  created() {
-    this.getUser();
-  },
+  // created() {
+  //   this.getUser();
+  // },
   methods: {
     async submitUser() {
       await this.$axios.post("/users", {

@@ -12,11 +12,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins";
+import getUser from "@/mixins/getUser";
 
 export default Vue.extend({
   mixins: [
-    global,
+    getUser,
   ],
   data() {
     return {
@@ -32,9 +32,9 @@ export default Vue.extend({
       }
     }
   },
-  created() {
-    this.getUser();
-  },
+  // created() {
+  //   this.getUser();
+  // },
 });
 </script>
 

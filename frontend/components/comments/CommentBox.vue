@@ -86,7 +86,7 @@ export default Vue.extend({
     getParentId() {
       this.parent_id = this.$store.state.parent_id;
       this.text_header = `>> ${this.$store.state.order}`
-      console.log(this.parent_id);
+      // console.log(this.parent_id);
     },
   },
 });

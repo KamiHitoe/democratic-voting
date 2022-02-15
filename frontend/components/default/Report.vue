@@ -39,6 +39,7 @@ export default Vue.extend({
                 topic_id: this.topic.id,
               },
             })
+            alert('通報を受付ました')
             const reported_num = res_count.data.reported_num;
             console.log(reported_num);
             // 通報数が5以上かつ投票数の1/10以上の時に当該トピックを削除
@@ -47,6 +48,7 @@ export default Vue.extend({
             }
           } else {
             console.log('this user already reported')
+            alert('すでに通報しています')
           }
         } else {
           this.updateShowModal();
@@ -74,6 +76,7 @@ export default Vue.extend({
                 comment_id: this.comment.id,
               },
             })
+            alert('通報を受付ました')
             const reported_num = res_count.data.reported_num;
             console.log(reported_num);
             // 通報数が5以上かついいね数の1/10以上の時に当該コメントを削除
@@ -88,6 +91,7 @@ export default Vue.extend({
             }
           } else {
             console.log('this user already reported')
+            alert('すでに通報しています')
           }
         } else {
           this.updateShowModal();
