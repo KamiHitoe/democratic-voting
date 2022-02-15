@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     delete 'report-topics', to: 'report_topics#destroy'
 
     # create related endpoint URI
-    resources :users, only: %i[index create show update]
+    resources :users, only: %i[index create show]
     resources :topics, only: %i[index create show update destroy] do
       resources :comments, only: %i[index create show destroy]
     end
@@ -30,6 +30,6 @@ Rails.application.routes.draw do
     get 'search', to: 'topics#search'
 
     # topic_id, parent comment_idを元に子の返信コメントを全て取得
-    get 'comments/:topic_id/:replied_comment_id', to: 'comments#search_by_id'
+    get 'comments/:topic_id/:replied_comment_id', to: 'comments#get_reply_comments'
   end
 end

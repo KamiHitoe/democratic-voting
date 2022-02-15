@@ -27,7 +27,7 @@ module V1
     end
 
     # GET /comments/:topic_id/:replied_comment_id
-    def search_by_id
+    def get_reply_comments
       puts params[:replied_comment_id]
       comments = Comment.where(parent_id: params[:replied_comment_id]).all
       json_response(comments)
@@ -35,10 +35,10 @@ module V1
 
     # it's no use
     # PUT /topics/:topic_id/comments/:id
-    def update
-      @comment.update(comment_params)
-      head(:no_content)
-    end
+    # def update
+    #   @comment.update(comment_params)
+    #   head(:no_content)
+    # end
 
     # DELETE /topics/:topic_id/comments/:id
     def destroy

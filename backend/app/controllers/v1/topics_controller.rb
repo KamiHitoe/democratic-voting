@@ -14,7 +14,6 @@ module V1
         topics = Topic.order("created_at DESC").limit(30)
       end
       json_response(topics)
-      puts params
     end
 
     # POST /topics

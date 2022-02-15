@@ -11,6 +11,7 @@
         :comment="comment"
         :topic_id="topic.id"
         :order="i + 1"
+        :user="user"
       />
 
       <div

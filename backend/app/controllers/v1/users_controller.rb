@@ -32,11 +32,12 @@ module V1
       json_response(@user)
     end
 
+    # it's no use
     # PUT /users/:id
-    def update
-      @user.update(user_params)
-      head(:no_content)
-    end
+    # def update
+    #   @user.update(user_params)
+    #   head(:no_content)
+    # end
 
     private
 

@@ -6,20 +6,22 @@ RSpec.describe(ReportTopic, type: :request) do
       @user = create(:user)
       @topic = create(:topic)
       @params = { user_id: @user[:id], topic_id: @topic[:id] }
+      ReportTopic.create(@params)
     end
 
     it 'get the number of reports' do
-      # コメントに対する通報数を取得
+      # topic[:id]に対するReportTopicの数をカウントできることを確認
       get "/v1/count-report-topics", params: {
         topic_id: @topic[:id],
       }
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
       expect(json["reported_num"]).to be_kind_of(Integer)
+      expect(json["reported_num"]).not_to be_zero
     end
 
     it 'get a reported status by user' do
-      # 任意のユーザに対して通報の有無を取得
+      # user[:id]とtopic[:id]に対するreported_statusをBooleanで返すことを確認
       get "/v1/report-topics", params: @params
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
@@ -27,18 +29,38 @@ RSpec.describe(ReportTopic, type: :request) do
     end
 
     it 'create a new report' do
-      # 新たな通報を作成
+      # ReportTopicが作成できることを確認
+
+      # すでに作成済のReportTopicが存在するのでReportTopicは増えないことを確認
       expect do
         post "/v1/report-topics", params: @params
-      end.to(change(ReportTopic, :count).by(1))
+      end.to change(ReportTopic, :count).by(0)
+      expect(response).to be_successful
+
+      # すでに作成済のReportTopicを削除
+      report = ReportTopic.find_by(@params)
+      report.destroy
+
+      expect do
+        post "/v1/report-topics", params: @params
+      end.to change(ReportTopic, :count).by(1)
+      expect(response).to be_successful
     end
 
     it 'destroy the report' do
-      ReportTopic.create(@params)
+      # ReportTopicが削除できることを確認
 
+      # すでに作成済のReportTopicを削除できることを確認
       expect do
         delete "/v1/report-topics", params: @params
-      end.to(change(ReportTopic, :count).by(-1))
+      end.to change(ReportTopic, :count).by(-1)
+      expect(response).to be_successful
+
+      # ReportTopicが存在しないので削除できないことを確認
+      expect do
+        delete "/v1/report-topics", params: @params
+      end.to change(ReportTopic, :count).by(0)
+      expect(response).to be_successful
     end
 
   end

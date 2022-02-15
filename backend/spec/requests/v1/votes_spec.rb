@@ -14,7 +14,7 @@ RSpec.describe(Vote, type: :request) do
     end
 
     it 'get the number of votes grouped by chosen_option' do
-      # 性別・年代でソートされた選択肢ごとの投票数を取得
+      # 性別・年代でソートされた選択肢ごとのVoteをカウントできることを確認
       get "/v1/count-votes", params: {
         user_id: @user[:id],
         topic_id: @votes[0][:topic_id],
@@ -22,50 +22,47 @@ RSpec.describe(Vote, type: :request) do
         age: @votes[0][:age],
       }
       json = JSON.parse(response.body)
-      expect(response.status).to(eq(200))
+      expect(response.status).to eq(200)
       # 結果が選択肢ごとのHashであることを確認
       expect(json).to be_kind_of(Hash)
-      puts "result count votes: ", json
     end
 
     it 'get a voted status by user' do
-      # user_idとtopic_idを入力するとvoted_statusをBooleanで返す
+      # :user_idと:topic_idを入力するとvoted_statusをBooleanで返すことを確認
       get "/v1/votes", params: @params
       json = JSON.parse(response.body)
-      expect(response.status).to(eq(200))
+      expect(response.status).to eq(200)
       # 結果がBooleanであることを確認
       expect(json["voted_status"]).to be_kind_of(TrueClass) | be_kind_of(FalseClass)
     end
 
     it 'create a new vote' do
-      # userとtopicの性別・年代が合致した時のみ投票可能
+      # 入力するUserごとにVoteが成功するか否か確認
       male_user = create(:user, sex: "男性")
       old_user = create(:user, age: 40)
-      # validate user
+      # Topicのsex, ageと合致するUserの場合、成功
       expect do
         post "/v1/votes", params: @params
-      end.to(change(Vote, :count).by(1))
+      end.to change(Vote, :count).by(1)
 
-      # invalid sex
+      # TopicとUserのsexが異なる場合、失敗
       expect do
         post "/v1/votes", params: { user_id: male_user[:id], topic_id: @topic[:id] }
-      end.to(change(Vote, :count).by(0))
+      end.to change(Vote, :count).by(0)
 
-      # invalid age
+      # TopicとUserのageが異なる場合、失敗
       expect do
         post "/v1/votes", params: { user_id: old_user[:id], topic_id: @topic[:id] }
-      end.to(change(Vote, :count).by(0))
+      end.to change(Vote, :count).by(0)
     end
 
     it 'destroy a vote' do
-      # create vote record to be deleted
+      # Voteが削除できることを確認
       Vote.create!(@params)
 
       expect do
         delete "/v1/votes", params: @params
-      end.to(change(Vote, :count).by(-1))
-
-      # even though requesit is success, response.body is not exist
+      end.to change(Vote, :count).by(-1)
       expect(response).to(be_successful)
     end
 
