@@ -3,7 +3,7 @@ module V1
   class ReportCommentsController < ApplicationController
     before_action :get_reported_status, except: :count_reports
 
-    # GET /count-report-comments
+    # GET /report/comments/count
     def count_reports
       cnt = ReportComment.where(comment_id: params[:comment_id]).all.count()
       json_response(reported_num: cnt)
@@ -14,7 +14,7 @@ module V1
       json_response(reported_status: @reported_status)
     end
 
-    # POST /report-comments
+    # POST /report/comments
     def create
       if @reported_status
         puts 'already exist'
@@ -23,7 +23,7 @@ module V1
       end
     end
 
-    # DELETE /report-comments
+    # DELETE /report/comments
     def destroy
       if @reported_status
         report = ReportComment.find_by(report_params)

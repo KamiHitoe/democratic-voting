@@ -25,25 +25,33 @@ GET /v1/comments/:topic_id/:replied_comment_id get replies in the parent comment
   params: [replied_comment_id]
 
 - likes
-GET /count-likes get the number of likes
+GET /likes/count get the number of likes
+  params: [comment_id]
 GET /likes get liked status by user
+  params: [user_id, comment_id]
 POST /likes update liked status by user
 DELETE /likes delete liked status by user
 
 - votes
-GET /count-votes get the number of votes
+GET /votes/count get the number of votes
+  params: [topic_id]
 GET /votes get voted status by user
+  params: [user_id, topic_id]
 POST /votes update voted status by user
 DELETE /votes delete voted status by user
 
 - report_topics
-GET /count-report-topics get the number of report-topics
-GET /report-topics get reported status by user
-POST /report-topics update reported status by user
-DELETE /report-topics delete reported status by user
+GET /report/topics/count get the number of report/topics
+  params: [topic_id]
+GET /report/topics get reported status by user
+  params: [user_id, topic_id]
+POST /report/topics update reported status by user
+DELETE /report/topics delete reported status by user
 
 - report_comments
-GET /count-report-comments get the number of report-comments
-GET /report-comments get reported status by user
-POST /report-comments update reported status by user
-DELETE /report-comments delete reported status by user
+GET /report/comments/count get the number of report-comments
+  params: [comment_id]
+GET /report/comments get reported status by user
+  params: [user_id, comment_id]
+POST /report/comments update reported status by user
+DELETE /report/comments delete reported status by user

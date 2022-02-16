@@ -3,7 +3,7 @@ module V1
   class LikesController < ApplicationController
     before_action :get_liked_status, except: :count_likes
 
-    # GET /count-likes
+    # GET /likes/count
     def count_likes
       cnt = Like.where(comment_id: params[:comment_id]).all.count()
       json_response(liked_num: cnt)

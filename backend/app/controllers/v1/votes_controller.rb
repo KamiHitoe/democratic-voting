@@ -3,7 +3,7 @@ module V1
   class VotesController < ApplicationController
     before_action :get_voted_status
 
-    # GET /count-votes
+    # GET /votes/count
     # params include :sex, :age, :chosen_option
     # return ({ 1: 1_num, 2: 2_num, 3: 3_num, 4: 4_num })
     def count_votes

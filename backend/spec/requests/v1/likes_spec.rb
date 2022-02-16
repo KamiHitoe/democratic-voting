@@ -12,7 +12,7 @@ RSpec.describe(Like, type: :request) do
 
     it 'get the number of likes' do
       # comment[:id]に対するLikeの数をカウントできることを確認
-      get "/v1/count-likes", params: {
+      get "/v1/likes/count", params: {
         comment_id: @comment[:id],
       }
       json = JSON.parse(response.body)

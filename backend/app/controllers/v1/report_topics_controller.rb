@@ -3,18 +3,18 @@ module V1
   class ReportTopicsController < ApplicationController
     before_action :get_reported_status, except: :count_reports
 
-    # GET /count-report-topics
+    # GET /report/topics/count
     def count_reports
       cnt = ReportTopic.where(topic_id: params[:topic_id]).all.count()
       json_response(reported_num: cnt)
     end
 
-    # GET /report-topics
+    # GET /report/topics
     def show_status
       json_response(reported_status: @reported_status)
     end
 
-    # POST /report-topics
+    # POST /report/topics
     def create
       if @reported_status
         puts 'already exist'
@@ -23,7 +23,7 @@ module V1
       end
     end
 
-    # DELETE /report-topics
+    # DELETE /report/topics
     def destroy
       if @reported_status
         report = ReportTopic.find_by(report_params)

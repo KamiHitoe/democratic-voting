@@ -15,7 +15,7 @@ RSpec.describe(Vote, type: :request) do
 
     it 'get the number of votes grouped by chosen_option' do
       # 性別・年代でソートされた選択肢ごとのVoteをカウントできることを確認
-      get "/v1/count-votes", params: {
+      get "/v1/votes/count", params: {
         user_id: @user[:id],
         topic_id: @votes[0][:topic_id],
         sex: @votes[0][:sex],

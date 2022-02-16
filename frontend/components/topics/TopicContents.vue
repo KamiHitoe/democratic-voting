@@ -217,7 +217,7 @@ export default {
       console.log(this.voted_status);
     },
     async getLimitedVote() {
-      const res = await this.$axios.get("/count-votes", {
+      const res = await this.$axios.get("/votes/count", {
         params: {
           topic_id: this.topic.id,
           sex: this.sex,

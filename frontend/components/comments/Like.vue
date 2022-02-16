@@ -49,7 +49,7 @@ export default Vue.extend({
   },
   methods: {
     async countLikes() {
-      const res = await this.$axios.get("/count-likes", {
+      const res = await this.$axios.get("/likes/count", {
         params: {
           comment_id: this.comment.id,
         },
