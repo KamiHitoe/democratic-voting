@@ -116,3 +116,7 @@ resource "aws_route_table_association" "democratic-backend-rtb-1c" {
   route_table_id = aws_route_table.democratic-backend-rtb.id
 }
 
+
+# add EIP
+# add NAT-gateway?
+
