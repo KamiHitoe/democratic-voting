@@ -1,119 +1,128 @@
+# global config
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
 provider "aws" {
   region = var.aws_region
 }
 
 # vpc
-resource "aws_vpc" "weworld-vpc" {
-  cidr_block =  "10.0.0.0/16"
-  enable_dns_support = true
+resource "aws_vpc" "democratic-vpc" {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
-    Name = "weworld-vpc"
-  }
-}
-
-# internet gateway that allows user access to resouces
-resource "aws_internet_gateway" "weworld-igw" {
-  vpc_id = aws_vpc.weworld-vpc.id
-
-  tags = {
-    Name = "weworld-igw"
+    Name = "democratic-vpc"
   }
 }
 
 # subnets you have to create a couple of subnets every resouce
-resource "aws_subnet" "weworld-frontend-1a" {
-  vpc_id                  = aws_vpc.weworld-vpc.id
+resource "aws_subnet" "democratic-frontend-1a" {
+  vpc_id                  = aws_vpc.democratic-vpc.id
   cidr_block              = "10.0.0.0/24"
   availability_zone       = "ap-northeast-1a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "weworld-frontend-1a"
+    Name = "democratic-frontend-1a"
   }
 }
-resource "aws_subnet" "weworld-frontend-1c" {
-  vpc_id                  = aws_vpc.weworld-vpc.id
+resource "aws_subnet" "democratic-frontend-1c" {
+  vpc_id                  = aws_vpc.democratic-vpc.id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "weworld-frontend-1c"
+    Name = "democratic-frontend-1c"
   }
 }
-resource "aws_subnet" "weworld-backend-1a" {
-  vpc_id                  = aws_vpc.weworld-vpc.id
+resource "aws_subnet" "democratic-backend-1a" {
+  vpc_id                  = aws_vpc.democratic-vpc.id
   cidr_block              = "10.0.2.0/24"
   availability_zone       = "ap-northeast-1a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "weworld-backend-1a"
+    Name = "democratic-backend-1a"
   }
 }
-resource "aws_subnet" "weworld-backend-1c" {
-  vpc_id                  = aws_vpc.weworld-vpc.id
+resource "aws_subnet" "democratic-backend-1c" {
+  vpc_id                  = aws_vpc.democratic-vpc.id
   cidr_block              = "10.0.3.0/24"
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "weworld-backend-1c"
+    Name = "democratic-backend-1c"
+  }
+}
+
+# internet gateway that allows user access to resouces in public subnet
+resource "aws_internet_gateway" "democratic-igw" {
+  vpc_id = aws_vpc.democratic-vpc.id
+
+  tags = {
+    Name = "democratic-igw"
   }
 }
 
 # route table that contains internet gateway
-## create route table
-resource "aws_route_table" "weworld-frontend-rtb" {
-  vpc_id = aws_vpc.weworld-vpc.id
+resource "aws_route_table" "democratic-frontend-rtb" {
+  vpc_id = aws_vpc.democratic-vpc.id
 
   route {
-    gateway_id = aws_internet_gateway.weworld-igw.id
+    gateway_id = aws_internet_gateway.democratic-igw.id
     cidr_block = "0.0.0.0/0"
   }
 
   tags = {
-    Name = "weworld-frontend-rtb"
+    Name = "democratic-frontend-rtb"
   }
 }
-resource "aws_route_table" "weworld-backend-rtb" {
-  vpc_id = aws_vpc.weworld-vpc.id
+resource "aws_route_table" "democratic-backend-rtb" {
+  vpc_id = aws_vpc.democratic-vpc.id
 
   route {
-    gateway_id = aws_internet_gateway.weworld-igw.id
+    gateway_id = aws_internet_gateway.democratic-igw.id
     cidr_block = "0.0.0.0/0"
   }
 
   tags = {
-    Name = "weworld-backend-rtb"
+    Name = "democratic-backend-rtb"
   }
 }
 ## attach route table to every subnet
-resource "aws_route_table_association" "weworld-frontend-rtb-1a" {
-  subnet_id      = aws_subnet.weworld-frontend-1a.id
-  route_table_id = aws_route_table.weworld-frontend-rtb.id
+resource "aws_route_table_association" "democratic-frontend-rtb-1a" {
+  subnet_id      = aws_subnet.democratic-frontend-1a.id
+  route_table_id = aws_route_table.democratic-frontend-rtb.id
 }
-resource "aws_route_table_association" "weworld-frontend-rtb-1c" {
-  subnet_id      = aws_subnet.weworld-frontend-1c.id
-  route_table_id = aws_route_table.weworld-frontend-rtb.id
+resource "aws_route_table_association" "democratic-frontend-rtb-1c" {
+  subnet_id      = aws_subnet.democratic-frontend-1c.id
+  route_table_id = aws_route_table.democratic-frontend-rtb.id
 }
-resource "aws_route_table_association" "weworld-backend-rtb-1a" {
-  subnet_id      = aws_subnet.weworld-backend-1a.id
-  route_table_id = aws_route_table.weworld-backend-rtb.id
+resource "aws_route_table_association" "democratic-backend-rtb-1a" {
+  subnet_id      = aws_subnet.democratic-backend-1a.id
+  route_table_id = aws_route_table.democratic-backend-rtb.id
 }
-resource "aws_route_table_association" "weworld-backend-rtb-1c" {
-  subnet_id      = aws_subnet.weworld-backend-1c.id
-  route_table_id = aws_route_table.weworld-backend-rtb.id
+resource "aws_route_table_association" "democratic-backend-rtb-1c" {
+  subnet_id      = aws_subnet.democratic-backend-1c.id
+  route_table_id = aws_route_table.democratic-backend-rtb.id
 }
 
 # security group
 ## for RDS
-resource "aws_security_group" "weworld-rds-sg" {
-  # name   = "weworld-rds-sg"
-  vpc_id = aws_vpc.weworld-vpc.id
+resource "aws_security_group" "democratic-rds-sg" {
+  # name   = "democratic-rds-sg"
+  vpc_id = aws_vpc.democratic-vpc.id
 
+  # psql
   ingress {
     from_port   = 5432
     to_port     = 5432
@@ -121,14 +130,22 @@ resource "aws_security_group" "weworld-rds-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # icmp
+  ingress {
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
-    Name = "weworld-rds-sg"
+    Name = "democratic-rds-sg"
   }
 }
