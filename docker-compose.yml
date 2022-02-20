@@ -4,6 +4,7 @@ services:
   db:
     image: postgres:latest
     restart: always
+    # set env variables
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -11,7 +12,7 @@ services:
       - 5432:5432
 
   backend:
-    image: weworld-backend:v1.1.1
+    image: democratic-backend:v0.0.1
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -23,7 +24,7 @@ services:
       - db
 
   frontend:
-    image: weworld-frontend:latest
+    image: democratic-frontend:v0.0.1
     ports:
       - 8080:8080
     depends_on:

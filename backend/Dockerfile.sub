@@ -1,0 +1,38 @@
+# FROM ruby:2.7.5-slim
+FROM ruby:2.7.5-alpine3.15
+
+ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc libc-dev nodejs tzdata postgresql-dev mariadb-client yarn" \
+    DEV_PACKAGES="build-base curl-dev" \
+    LANG=C.UTF-8 \
+    TZ=Asia/Tokyo
+
+# create /app folder and go into that folder
+RUN mkdir /app
+WORKDIR /app
+
+# copy the Gemfile from root directory into /app/ folder
+ADD Gemfile /app/Gemfile
+ADD Gemfile.lock /app/Gemfile.lock
+
+# install rails dependencies
+RUN chmod 777 /usr/local/bundle && \
+    apk update && \
+    apk upgrade && \
+    apk add --update --no-cache ${RUNTIME_PACKAGES} && \
+    apk add --update --virtual build-dependencies --no-cache ${DEV_PACKAGES} && \
+    gem update --system && \
+    gem install bundler --user-install && \
+    bundle update && \
+    bundle install
+
+# Add a script to be executed every time the container starts.
+COPY docker-entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
+EXPOSE 3000
+
+# copy the whole app
+ADD . /app
+
+# run app
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
