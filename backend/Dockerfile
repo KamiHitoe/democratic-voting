@@ -28,8 +28,8 @@ RUN apt-get update -qq && \
     gem install debug -v '1.4.0' --source 'https://rubygems.org/' && \
     gem install ffi -v '1.15.5' --source 'https://rubygems.org/' && \
     gem install pg -v '1.3.2' --source 'https://rubygems.org/' && \
-    gem install puma -v '5.6.2' --source 'https://rubygems.org/' && \
-    bundle update && \
+    gem install puma -v '5.5.2' --source 'https://rubygems.org/' && \
+    # bundle update && \
     bundle install
 
 # Add a script to be executed every time the container starts.
