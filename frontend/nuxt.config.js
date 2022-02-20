@@ -6,10 +6,10 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "DemocraticVoting",
+    title: "democratic-voting",
     // titleTemplate: '%s - frontend',
     htmlAttrs: {
-      lang: "en",
+      lang: "ja",
     },
     meta: [
       { charset: "utf-8" },
@@ -83,5 +83,14 @@ export default {
 
   // proxy: {
   //   '/api/': { target: 'https://api.example.com/', pathRewrite: {'^/api/': ''}, changeOrigin: true }
+  // },
+
+  // typescript: {   
+  //   typeCheck: {  
+  //     typescript: {
+  //       configFile: resolve(__dirname, 'tsconfig.nuxt.json'),   
+  //       extensions: { vue: true },    
+  //     },
+  //   },
   // },
 };
