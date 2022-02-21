@@ -63,6 +63,7 @@ resource "aws_lb_listener" "democratic-frontend-https-listener" {
   load_balancer_arn = aws_lb.democratic-frontend-alb.arn
   port = "443"
   protocol = "HTTPS"
+  # ACM(SSL証明書)の関連付け
   certificate_arn = aws_acm_certificate.democratic-frontend-acm.arn
 
   default_action {
@@ -91,6 +92,7 @@ resource "aws_lb_listener" "democratic-backend-https-listener" {
   load_balancer_arn = aws_lb.democratic-backend-alb.arn
   port = "443"
   protocol = "HTTPS"
+  # ACM(SSL証明書)の関連付け
   certificate_arn = aws_acm_certificate.democratic-backend-acm.arn
 
   default_action {
