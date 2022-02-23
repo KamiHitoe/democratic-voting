@@ -4,7 +4,7 @@ resource "aws_lb" "democratic-frontend-alb" {
   name = "democratic-frontend-alb"
   load_balancer_type = "application"
   internal = false
-  idle_timeout = 60
+  idle_timeout = 300
   enable_deletion_protection = false
 
   subnets = [
@@ -26,7 +26,7 @@ resource "aws_lb" "democratic-backend-alb" {
   name = "democratic-backend-alb"
   load_balancer_type = "application"
   internal = false
-  idle_timeout = 60
+  idle_timeout = 300
   enable_deletion_protection = false
 
   subnets = [
