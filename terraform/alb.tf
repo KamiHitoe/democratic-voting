@@ -16,6 +16,12 @@ resource "aws_lb" "democratic-frontend-alb" {
     aws_security_group.democratic-alb-sg.id,
   ]
 
+  access_logs {
+    bucket = aws_s3_bucket.democratic-alblog-s3.bucket
+    prefix = "democratic-alb-log"
+    enabled = true
+  }
+
   tags = {
     Name = "democratic-frontend-alb"
   }
