@@ -6,7 +6,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    async updateShowModal() {
+    async updateShowModal(): Any {
       await this.$store.commit('updateShowModal', true)
       console.log(this.$store.state.show_modal)
     },
