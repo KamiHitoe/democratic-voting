@@ -12,9 +12,10 @@
 
 <script lang="ts">
 import Vue from "vue";
+import mixins from "vue-typed-mixins";
 import getUser from "@/mixins/getUser";
 
-export default Vue.extend({
+export default mixins(getUser).extend({
   mixins: [
     getUser,
   ],

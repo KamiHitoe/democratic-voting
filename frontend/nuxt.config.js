@@ -63,11 +63,14 @@ export default {
         },
       },
     },
+    treeShake: false,
     optionsPath: "./vuetify.options.js",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    // transpile: ['vuetify'],
+  },
 
   server: {
     port: 8080,

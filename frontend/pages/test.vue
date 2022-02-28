@@ -18,8 +18,6 @@ export default Vue.extend({
     };
   },
   async created() {
-    await this.getUser();
-    console.log(this.user);
   },
   methods: {
   },

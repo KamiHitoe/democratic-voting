@@ -6,8 +6,8 @@ export default Vue.extend({
   data() {
     return {
       user: {} as User,
-      firebase_user: {} as Object,
-      user_existed: null as Boolean,
+      firebase_user: {} as any,
+      user_existed: null as boolean,
     };
   },
   async created() {
