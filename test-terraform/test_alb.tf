@@ -16,12 +16,11 @@ resource "aws_lb" "test-alb" {
     "sg-0dd7ea3f75c49860a",
   ]
 
-  access_logs {
-    bucket = aws_s3_bucket.democratic-alblog-s3.bucket
-    prefix = "democratic-alb-log"
-    enabled = true
-  }
-
+  # access_logs {
+  #   bucket = aws_s3_bucket.democratic-alblog-s3.bucket
+  #   prefix = "democratic-alb-log"
+  #   enabled = true
+  # }
 
   tags = {
     Name = "test-alb"
