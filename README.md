@@ -26,12 +26,10 @@
   - [Are You Using Cookies? Then This Ultimate Guide Is For You](https://html.com/resources/cookies-ultimate-guide/)
 
 
-### つまった点
+## 開発log
 
-- Rails x PostgreSQL
-  1. write correct host in database.yml
-  2. run rails db:create
-  3. run rails db:migrate
-  - AWS
-    - you can specify public access SG that allow all source(0.0.0.0)
+- infra
+  - ECSをprivate subnetにしようとするとECRからimageをpullするためにもNAT gatewayが必要
+  - ELBのListenersからPath based routingが設定可能. health checkのpathは正常にルーティングされるPathを指定する必要あり
+
 
