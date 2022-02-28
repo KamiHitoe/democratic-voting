@@ -37,10 +37,12 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import mixins from "vue-typed-mixins";
 import global from "@/mixins";
 import { User, Comment } from "@/types";
 
-export default Vue.extend({
+// export default Vue.extend({
+export default mixins(global).extend({
   props: {
     user: { type: Object as PropType<User> },
     topic_id: { type: Number },

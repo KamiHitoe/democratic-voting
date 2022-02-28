@@ -21,6 +21,7 @@ export interface Topic {
   option_2_num: number;
   option_3_num?: number;
   option_4_num?: number;
+  voted_num?: number;
   timestamp?: Date;
   img_path?: string;
 }

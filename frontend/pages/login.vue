@@ -8,8 +8,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import firebase from "@/plugins/firebase"
-
+import firebase from "@/plugins/firebase";
 
 export default Vue.extend({
   data() {
@@ -20,8 +19,8 @@ export default Vue.extend({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // user is already signed in
-        const target: Object = document.getElementById("firebaseui-auth-container");
-        const text: Object = document.createTextNode("すでにログインしています")
+        const target: Node = document.getElementById("firebaseui-auth-container");
+        const text: Node = document.createTextNode("すでにログインしています");
         target.appendChild(text)
       } else {
         // No user is signed in

@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import mixins from "vue-typed-mixins";
 import CategorySection from "@/components/CategorySection.vue";
 import Comments from "@/components/comments/Comments.vue";
 import CommentBox from "@/components/comments/CommentBox.vue";
@@ -42,7 +43,7 @@ import TopicContents from "@/components/topics/TopicContents.vue";
 import getUser from "@/mixins/getUser"
 import { User, Topic, Comment } from "@/types"
 
-export default Vue.extend({
+export default mixins(getUser).extend({
   components: {
     CategorySection,
     Comments,
