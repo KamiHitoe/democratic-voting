@@ -73,7 +73,8 @@ export default {
   },
 
   server: {
-    port: 8080,
+    // port: 8080,
+    port: 80,
   },
 
   // you can get endpoint URL as $axios in any vue files
