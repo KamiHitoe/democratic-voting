@@ -80,7 +80,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === "production"
-        ? "https://api_endpoint.com"
+        ? "https://www.miyukimiyuki.com:3000/v1"
         : "http://localhost:3000/v1",
   },
 

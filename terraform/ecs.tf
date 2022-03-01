@@ -3,23 +3,28 @@ resource "aws_ecs_cluster" "democratic-ecs-cluster" {
   name = "democratic-ecs-cluster"
 }
 
+data "aws_iam_role" "ecs_task_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
 # task definition for frontend
 resource "aws_ecs_task_definition" "democratic-frontend-task" {
   family = "democratic-frontend-task"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 512
-  memory                   = 1024
+  cpu                      = 256
+  memory                   = 512
   container_definitions    = file("./tasks/frontend.json")
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
 }
 # task definition for backend
 resource "aws_ecs_task_definition" "democratic-backend-task" {
   family = "democratic-backend-task"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 512
-  memory                   = 1024
+  cpu                      = 256
+  memory                   = 512
   container_definitions    = file("./tasks/backend.json")
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
 }
 
 # service for frontend
