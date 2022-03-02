@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "democratic-voting",
+    title: "Democratic Voting",
     // titleTemplate: '%s - frontend',
     htmlAttrs: {
       lang: "ja",
@@ -41,6 +41,7 @@ export default {
     "@nuxt/typescript-build",
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
+    "@nuxtjs/dotenv",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
