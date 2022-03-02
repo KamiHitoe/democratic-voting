@@ -7,6 +7,7 @@ Rails.application.configure do
     "localhost",
     "miyukimiyuki.com",
     "www.miyukimiyuki.com",
+    IPAddr.new("0.0.0.0/0"),
   ]
 
   # In the development environment your application's code is reloaded any time

@@ -6,6 +6,7 @@ Rails.application.configure do
   config.hosts = [
     "miyukimiyuki.com",
     "www.miyukimiyuki.com",
+    IPAddr.new("0.0.0.0/0"),
   ]
 
   # Code is not reloaded between requests.
