@@ -15,6 +15,9 @@
   - [More than "Hello World" in Docker: Build Rails + Sidekiq web apps in Docker](https://dev.to/raphael_jambalos/more-than-hello-world-in-docker-run-rails-sidekiq-web-apps-in-docker-1b37)
   - ALB
     - [AWS ECSにて、サービスで実行したタスクが3分置きに停止してしまう原因がわからない](https://teratail.com/questions/262962)
+  - S3
+    - [ブラウザから Amazon S3 への写真のアップロード](https://docs.aws.amazon.com/ja_jp/sdk-for-javascript/v2/developer-guide/s3-example-photo-album.html)
+    - [Uploading Files in AWS S3 Bucket through JavaScript SDK with Progress Bar](https://medium.com/@shresthshruti09/uploading-files-in-aws-s3-bucket-through-javascript-sdk-with-progress-bar-d2a4b3ee77b5)
 - Test
   - [How to Test Rails Models with RSpec](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-rspec)
   - [Guide to Unit Testing Vue Components](https://testdriven.io/blog/vue-unit-testing/)
