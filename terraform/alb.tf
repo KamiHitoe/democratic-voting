@@ -56,6 +56,22 @@ resource "aws_lb_listener" "democratic-https-listener" {
     type = "forward"
   }
 }
+# path based routing
+resource "aws_lb_listener_rule" "api" {
+  listener_arn = aws_lb_listener.democratic-https-listener.arn
+  priority = 100
+
+  action {
+    type = "forward"
+    target_group_arn = aws_lb_target_group.democratic-backend-alb-tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/v1/*"]
+    }
+  }
+}
 
 # target group
 resource "aws_lb_target_group" "democratic-frontend-alb-tg" {
@@ -73,7 +89,7 @@ resource "aws_lb_target_group" "democratic-frontend-alb-tg" {
     timeout     = 120
     interval        = 150
     matcher        = 200
-    port              = 8080
+    port              = 80
     protocol        = "HTTP"
   }
 }

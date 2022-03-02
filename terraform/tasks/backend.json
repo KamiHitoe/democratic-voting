@@ -1,14 +1,14 @@
 [
   {
     "name": "democratic-backend-container",
-    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:v0.0.1",
+    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:v0.0.3",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
         "awslogs-region": "ap-northeast-1",
-        "awslogs-stream-prefix": "frontend",
-        "awslogs-group": "/ecs/frontend"
+        "awslogs-stream-prefix": "backend",
+        "awslogs-group": "/ecs/backend"
       }
     },
     "portMappings": [
@@ -17,6 +17,7 @@
         "containerPort": 3000
       }
     ],
+    "workingDirectory": "/app",
     "environment": [
       {
         "name": "WORKDIR",
@@ -33,10 +34,6 @@
       {
         "name": "POSTGRES_HOST",
         "value": "democratic-db.ckfmpkhqnxbu.ap-northeast-1.rds.amazonaws.com"
-      },
-      {
-        "name": "RAILS_ENV",
-        "value": "production"
       }
     ]
   }
