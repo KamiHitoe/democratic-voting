@@ -97,12 +97,12 @@ resource "aws_lb_target_group" "democratic-backend-alb-tg" {
   name = "democratic-backend-alb-tg"
   target_type = "ip"
   vpc_id = aws_vpc.democratic-vpc.id
-  port = 80
+  port = 3000
   protocol = "HTTP"
 
   health_check {
     enabled             = true
-    path                = "/" # /v1
+    path                = "/v1/health_check"
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout     = 120
