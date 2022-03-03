@@ -128,7 +128,7 @@ export default Vue.extend({
   },
   methods: {
     async searchTopicsByQuery() {
-      const res = await this.$axios.get(`search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}&sex=${this.sex}&age=${this.age}&page=${this.page-1}`)
+      const res = await this.$axios.get(`/search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}&sex=${this.sex}&age=${this.age}&page=${this.page-1}`)
       this.topicsList = res.data;
       console.log(res.data)
     },
@@ -139,7 +139,7 @@ export default Vue.extend({
         keys: ['title', 'description']
       }
       // 一度すべての検索結果を受け取る
-      const res = await this.$axios.get(`search?keyword=${this.$route.query.keyword}`)
+      const res = await this.$axios.get(`/search?keyword=${this.$route.query.keyword}`)
       const fuse = new Fuse(res.data, options)
       console.log(res.data)
       const topicsObj: any = fuse.search(this.$route.query.keyword)

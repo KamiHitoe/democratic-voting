@@ -111,7 +111,8 @@ module V1
     def topic_params
       # whitelist params
       params.permit(:user_id, :category_id, :title, :description, :option_1,
-                    :option_2, :option_3, :option_4, :option_1_num, :option_2_num, :option_3_num, :option_4_num, :img_path)
+                    :option_2, :option_3, :option_4, :option_1_num, :option_2_num, :option_3_num, :option_4_num,
+                    :sex, :age, :img_path)
     end
 
     def get_topic

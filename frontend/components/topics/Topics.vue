@@ -6,7 +6,8 @@
       :to="`/topics/${topic.id}`"
       :topic_id="topic.id"
     >
-      <img class="topic-img" :src="topic.img_path" />
+      <img v-if="topic.img_path" class="topic-img" :src="topic.img_path" />
+      <img v-else class="topic-img" src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png">
       <div class="topic-contents d-flex flex-column">
         <div class="d-flex flex-row">
           <p class="id data-margin">{{ order }}</p>

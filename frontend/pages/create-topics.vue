@@ -135,7 +135,7 @@ export default Vue.extend({
     return {
       title: null as string,
       category_id: null as number,
-      sex: null as boolean,
+      sex: null as string,
       age: null as number,
       description: null as string,
       option_1: null as string,
@@ -178,27 +178,39 @@ export default Vue.extend({
         option_2: this.option_2,
         option_3: this.option_3,
         option_4: this.option_4,
+        sex: this.sex,
+        age: this.age,
         img_path: this.fileURL,
       });
-      alert("post topic success!");
+      console.log("post topic success!");
       window.location.replace("/");
     },
     s3upload() {
       const bucketName = 'test-democratic-img';
       const region = 'ap-northeast-1';
-      const s3 = new AWS.S3({
-        params: { Bucket: bucketName },
-        region: region,
-      })
+
+      // const myCredentials = new AWS.CognitoIdentityCredentials({
+      //   IdentityPoolId: process.env.IDENTITY_POOL_ID,
+      // });
+      // const myConfig = new AWS.Config({
+      //   credentials: myCredentials,
+      //   region: region,
+      // });
+      // AWS.config = myConfig;
 
       AWS.config.update({
         accessKeyId: process.env.ACCESS_KEY_ID,
         secretAccessKey: process.env.SECRET_ACCESS_KEY,
       })
 
+      const s3 = new AWS.S3({
+        params: { Bucket: bucketName },
+        region: region,
+      })
+
       const files = document.getElementById('fileUpload').files;
 
-      if (files) {
+      if (files[0]) {
         const file = files[0];
         const fileName = file.name;
         this.fileURL = `https://${bucketName}.s3.${region}.amazonaws.com/${fileName}`
@@ -212,7 +224,7 @@ export default Vue.extend({
           if (err) {
             return alert(err.message);
           }
-          alert('success!');
+          console.log('success!');
         })
       }
     },

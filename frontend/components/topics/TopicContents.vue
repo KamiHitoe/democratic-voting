@@ -8,7 +8,8 @@
     <v-divider></v-divider>
     <LimitedTag :topic="topic" tag_class="limited-tag" />
     <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topic.id}`">
-      <img class="topic-img" :src="topic.img_path" />
+      <img v-if="topic.img_path" class="topic-img" :src="topic.img_path" />
+      <img v-else class="topic-img" src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png">
       <div class="topic-contents d-flex flex-column">
         <div class="d-flex flex-row">
           <p class="data-margin">{{ topic.voted_num }} votes</p>
