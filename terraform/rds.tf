@@ -7,7 +7,7 @@ resource "aws_db_instance" "democratic-db" {
   storage_type = "gp2"
   backup_retention_period = 7
   engine                 = "postgres"
-  engine_version         = "12.5"
+  engine_version         = "12.7"
   username               = var.aws_rds_username
   password               = var.aws_rds_password
   db_subnet_group_name   = aws_db_subnet_group.democratic-rds-subnet-group.name

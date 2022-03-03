@@ -27,7 +27,7 @@
       </p>
     </section>
 
-    <RelatedTopics />
+    <RelatedTopics :topic="topic"/>
     <CategorySection />
   </main>
 </template>
