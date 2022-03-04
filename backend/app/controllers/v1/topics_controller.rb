@@ -85,20 +85,20 @@ module V1
 
     # PUT /topics/:id
     # params[:chosen_option] = 1..4
-    def update
-      if params[:chosen_option] == "1"
-        @topic.increment!(:option_1_num)
-      elsif params[:chosen_option] == "2"
-        @topic.increment!(:option_2_num)
-      elsif params[:chosen_option] == "3"
-        @topic.increment!(:option_3_num)
-      elsif params[:chosen_option] == "4"
-        @topic.increment!(:option_4_num)
-      end
+    # def update
+    #   if params[:chosen_option] == "1"
+    #     @topic.increment!(:option_1_num)
+    #   elsif params[:chosen_option] == "2"
+    #     @topic.increment!(:option_2_num)
+    #   elsif params[:chosen_option] == "3"
+    #     @topic.increment!(:option_3_num)
+    #   elsif params[:chosen_option] == "4"
+    #     @topic.increment!(:option_4_num)
+    #   end
 
-      @topic.increment!(:voted_num)
-      head(:no_content)
-    end
+    #   @topic.increment!(:voted_num)
+    #   head(:no_content)
+    # end
 
     # DELETE /topics/:id
     def destroy

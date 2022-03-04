@@ -48,6 +48,9 @@ module V1
         topic = Topic.find(vote_params[:topic_id])
         if (!topic.sex || topic.sex == user.sex) && (!topic.age || topic.age == user.age)
           Vote.create!(vote_params)
+          # 投票に対してTopicのvoted_numを加算
+          topic.increment!(:voted_num)
+          puts "topic voted_num: #{topic[:voted_num]}"
         else
           puts "invalid user"
         end
@@ -73,7 +76,11 @@ module V1
     end
 
     def get_voted_status
-      @voted_status = !Vote.where(vote_params).empty?
+      if vote_params[:user_id] != nil
+        @voted_status = !Vote.where(vote_params).empty?
+      else
+        @voted_status = false
+      end
     end
 
   end

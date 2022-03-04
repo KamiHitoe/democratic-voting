@@ -77,10 +77,6 @@ export default mixins(global).extend({
       if (this.user.uid) {
         // 登録済ユーザのみ投票可能
         if (this.chosenOption !== null) {
-          // オプションを選択してから実行
-          await this.$axios.put(`/topics/${this.topic.id}`, {
-            chosen_option: this.chosenOption,
-          });
           await this.$axios.post("votes", {
             user_id: this.user.id,
             topic_id: this.topic.id,
