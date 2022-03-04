@@ -12,7 +12,7 @@
         <div class="d-flex flex-row">
           <p class="id data-margin">{{ order }}</p>
           <p class="data-margin">
-            {{ topic.voted_num }} votes
+            {{ topic.voted_num }}投票
           </p>
           <p class="data-margin">{{ topic.timestamp }}</p>
           <p class="data-margin change-color">

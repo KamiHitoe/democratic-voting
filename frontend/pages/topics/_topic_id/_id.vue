@@ -6,13 +6,22 @@
       <h4 class="comment-subtitle">コメント</h4>
       <v-divider></v-divider>
       <Comments
-        v-for="(comment, i) in commentList"
+        v-for="(comment, i) in commentList.slice((page-1)*limit, page*limit)"
         :key="comment.id"
         :comment="comment"
         :topic_id="topic.id"
-        :order="i + 1"
+        :order="i+1 + (page-1)*limit"
         :user="user"
       />
+
+      <v-pagination
+        class="pagination"
+        v-model="page"
+        v-if="(commentList.length !== 0)"
+        :length="Math.ceil(commentList.length / limit)"
+        :total-visible="7"
+        color="amber"
+      ></v-pagination>
 
       <div
         v-if="
@@ -54,6 +63,8 @@ export default Vue.extend({
         category_id: 0,
       } as Topic,
       commentList: [] as Comment[],
+      page: 1 as number,
+      limit: 3 as number,
     };
   },
   async created() {
@@ -117,5 +128,8 @@ export default Vue.extend({
 }
 .topics-description {
   margin: 2rem 0;
+}
+.pagination {
+  padding-top: 1rem;
 }
 </style>
