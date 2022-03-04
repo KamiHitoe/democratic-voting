@@ -44,6 +44,7 @@ RSpec.describe(Vote, type: :request) do
       expect do
         post "/v1/votes", params: @params
       end.to change(Vote, :count).by(1)
+      # expect(@topic[:voted_num]).to eq(1)
 
       # TopicとUserのsexが異なる場合、失敗
       expect do

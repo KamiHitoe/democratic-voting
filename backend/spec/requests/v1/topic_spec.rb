@@ -103,10 +103,12 @@ RSpec.describe(Topic, type: :request) do
       expect(response).to be_successful
     end
 
-    it 'update option_num in the topic' do
-      # :chosen_optionを与えるとtopicsが更新されることを確認
-      put "/v1/topics/#{@topics[0].id}", params: { chosen_option: "1" }
-      expect(response).to(be_successful)
-    end
+    # it 'update option_num in the topic' do
+    #   # :chosen_optionを与えるとtopicsが更新されることを確認
+    #   put "/v1/topics/#{@topics[0].id}", params: { chosen_option: "1" }
+    #   expect(response).to(be_successful)
+    # end
+
+
   end
 end

@@ -42,7 +42,11 @@ module V1
     end
 
     def get_liked_status
-      @liked_status = !Like.where(like_params).empty?
+      if like_params[:user_id] != nil
+        @liked_status = !Like.where(like_params).empty?
+      else
+        @liked_status = false
+      end
     end
 
   end
