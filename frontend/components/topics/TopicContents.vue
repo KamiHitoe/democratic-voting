@@ -53,21 +53,25 @@
 
     <div class="d-flex flex-row">
       <canvas id="result-chart"></canvas>
-      <div class="d-flex flex-column justify-center">
+      <div class="result-option d-flex flex-column justify-center">
         <p>
-          <span class="chart-label-1">&nbsp;</span>{{ topic.option_1 }}
+          {{ topic.option_1 }}<br />
+          <span class="chart-label-1">&nbsp;</span>
           {{ topic.option_1_num }}票
         </p>
         <p>
-          <span class="chart-label-2">&nbsp;</span>{{ topic.option_2 }}
+          {{ topic.option_2 }}<br />
+          <span class="chart-label-2">&nbsp;</span>
           {{ topic.option_2_num }}票
         </p>
         <p v-if="topic.option_3">
-          <span class="chart-label-3">&nbsp;</span>{{ topic.option_3 }}
+          {{ topic.option_3 }}<br />
+          <span class="chart-label-3">&nbsp;</span>
           {{ topic.option_3_num }}票
         </p>
         <p v-if="topic.option_4">
-          <span class="chart-label-4">&nbsp;</span>{{ topic.option_4 }}
+          {{ topic.option_4 }}<br />
+          <span class="chart-label-4">&nbsp;</span>
           {{ topic.option_4_num }}票
         </p>
       </div>
@@ -125,13 +129,14 @@ export default {
         {text: "40代", value: 40},
         {text: "50代", value: 50},
       ],
-      sex: "",
-      age: 0,
+      sex: null,
+      age: null,
     };
   },
   watch: {
     topic() {
       this.category = this.categoryList[this.topic.category_id - 1].category
+      this.getLimitedVote();
     }
   },
   updated() {
@@ -287,6 +292,9 @@ export default {
   }
   .topic-description {
     margin: 2rem 0;
+  }
+  .result-option {
+    text-align: left;
   }
 }
 #result-chart {

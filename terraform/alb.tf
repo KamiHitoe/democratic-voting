@@ -78,7 +78,7 @@ resource "aws_lb_target_group" "democratic-frontend-alb-tg" {
   name = "democratic-frontend-alb-tg"
   target_type = "ip"
   vpc_id = aws_vpc.democratic-vpc.id
-  port = 80
+  port = 8080
   protocol = "HTTP"
 
   health_check {
@@ -89,7 +89,7 @@ resource "aws_lb_target_group" "democratic-frontend-alb-tg" {
     timeout     = 120
     interval        = 150
     matcher        = 200
-    port              = 80
+    port              = 8080
     protocol        = "HTTP"
   }
 }

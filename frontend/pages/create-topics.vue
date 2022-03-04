@@ -129,6 +129,7 @@ import Vue from "vue";
 import { Category } from "@/types";
 import { categoryList } from "@/data";
 import AWS from 'aws-sdk';
+import { PutObjectRequest } from "aws-sdk/clients/s3";
 
 export default Vue.extend({
   data() {
@@ -208,7 +209,7 @@ export default Vue.extend({
         region: region,
       })
 
-      const files = document.getElementById('fileUpload').files;
+      const files = (<HTMLInputElement>document.getElementById('fileUpload')).files;
 
       if (files[0]) {
         const file = files[0];
@@ -220,7 +221,7 @@ export default Vue.extend({
           Key: fileName,
           Body: file,
           ACL: 'public-read',
-        }, function (err, data) {
+        } as any, function (err, data) {
           if (err) {
             return alert(err.message);
           }

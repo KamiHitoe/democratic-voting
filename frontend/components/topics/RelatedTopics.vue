@@ -12,8 +12,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-// import { topicsList } from "@/data";
+import Vue, { PropType } from "vue";
 import Topics from "@/components/topics/Topics.vue";
 import { Topic } from "@/types";
 
@@ -22,7 +21,7 @@ export default Vue.extend({
     Topics,
   },
   props: {
-    topic: Topic,
+    topic: { type: Object as PropType<Topic> },
   },
   data() {
     return {
@@ -45,7 +44,7 @@ export default Vue.extend({
       // topicsListから自分のデータを除外
       for (let i in this.topicsList) {
         if (this.topicsList[i].id === this.topic.id) {
-          this.topicsList.splice(i, 1);
+          this.topicsList.splice(parseInt(i), 1);
         }
       }
     },
