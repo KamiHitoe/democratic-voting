@@ -6,13 +6,22 @@
       <h4 class="comment-subtitle">コメント</h4>
       <v-divider></v-divider>
       <Comments
-        v-for="(comment, i) in commentList"
+        v-for="(comment, i) in commentList.slice((page-1)*limit, page*limit)"
         :key="comment.id"
         :comment="comment"
         :topic_id="topic.id"
-        :order="i + 1"
+        :order="i+1 + (page-1)*limit"
         :user="user"
       />
+
+      <v-pagination
+        class="pagination"
+        v-model="page"
+        v-if="(commentList.length !== 0)"
+        :length="Math.ceil(commentList.length / limit)"
+        :total-visible="7"
+        color="amber"
+      ></v-pagination>
 
       <div
         v-if="
@@ -25,6 +34,7 @@
       <p v-else class="invalid-user">
         ※この投稿の対象ユーザーではないためコメントできません。
       </p>
+
     </section>
 
     <RelatedTopics :topic="topic"/>
@@ -62,6 +72,8 @@ export default mixins(getUser).extend({
       } as Topic,
       commentList: [] as Comment[],
       voted_status: false as Boolean,
+      page: 1 as number,
+      limit: 3 as number,
     };
   },
   async created() {
@@ -113,5 +125,8 @@ export default mixins(getUser).extend({
   margin-top: 2rem;
   background-color: #fff;
   padding: 1rem;
+}
+.pagination {
+  padding-top: 1rem;
 }
 </style>

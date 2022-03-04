@@ -12,7 +12,7 @@
       <img v-else class="topic-img" src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png">
       <div class="topic-contents d-flex flex-column">
         <div class="d-flex flex-row">
-          <p class="data-margin">{{ topic.voted_num }} votes</p>
+          <p class="data-margin">{{ topic.voted_num }}投票</p>
           <p class="data-margin">{{ topic.timestamp }}</p>
           <Report class="data-margin" :user="user" :topic="topic" />
           <p class="data-margin change-color">

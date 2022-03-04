@@ -47,26 +47,19 @@
         >お題を検索する</v-btn
       >
 
-      <Topics v-for="(topic, i) in topicsList.slice((page-1)*limit, page*limit)"
+      <Topics v-for="(topic, i) in topicList.slice((page-1)*limit, page*limit)"
         :key="topic.id"
         :topic="topic"
-        :order="i+1"
+        :order="i+1 + (page-1)*limit"
       />
 
-    <v-pagination
-      v-if="(topicsList.length !== 0) && !$route.query.keyword"
-      v-model="page"
-      :length="Math.ceil(topicsList.length / limit)"
-      :total-visible="7"
-      color="amber"
-    ></v-pagination>
-    <v-pagination
-      v-else-if="(topicsList.length !== 0)"
-      v-model="page"
-      :length="Math.ceil(topicsList.length / limit)"
-      :total-visible="7"
-      color="amber"
-    ></v-pagination>
+      <v-pagination
+        v-model="page"
+        v-if="(topicList.length !== 0)"
+        :length="Math.ceil(topicList.length / limit)"
+        :total-visible="7"
+        color="amber"
+      ></v-pagination>
 
     </div>
 
@@ -114,7 +107,7 @@ export default Vue.extend({
       age: 0 as number,
       sort: "" as string,
       period: "" as string,
-      topicsList: [] as Topic[],
+      topicList: [] as Topic[],
       page: 1 as number,
       limit: 2 as number,
     };
@@ -129,7 +122,7 @@ export default Vue.extend({
   methods: {
     async searchTopicsByQuery() {
       const res = await this.$axios.get(`/search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}&sex=${this.sex}&age=${this.age}&page=${this.page-1}`)
-      this.topicsList = res.data;
+      this.topicList = res.data;
       console.log(res.data)
     },
     async searchTopicsByKeyword() {
@@ -144,10 +137,10 @@ export default Vue.extend({
       console.log(res.data)
       const topicsObj: any = fuse.search(this.$route.query.keyword)
       console.log(topicsObj)
-      const topicsList: Topic[] = topicsObj.map((obj: any) => obj.item)
-      this.topicsList = topicsList;
-      console.log(this.topicsList)
-    }
+      const topicList: Topic[] = topicsObj.map((obj: any) => obj.item)
+      this.topicList = topicList;
+      console.log(this.topicList)
+    },
   },
 });
 </script>
