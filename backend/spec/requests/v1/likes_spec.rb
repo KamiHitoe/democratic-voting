@@ -26,7 +26,13 @@ RSpec.describe(Like, type: :request) do
       get "/v1/likes", params: @params
       json = JSON.parse(response.body)
       expect(response.status).to eq(200)
-      expect(json["liked_status"]).to be_kind_of(TrueClass) | be_kind_of(FalseClass)
+      expect(json["liked_status"]).to be_kind_of(TrueClass)
+
+      # user_idがnilの場合はfalseを返すことを確認
+      get "/v1/likes", params: { comment_id: @comment[:id] }
+      json = JSON.parse(response.body)
+      expect(response.status).to eq(200)
+      expect(json["liked_status"]).to be_kind_of(FalseClass)
     end
 
     it 'create a new like' do

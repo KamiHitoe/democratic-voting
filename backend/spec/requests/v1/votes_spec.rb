@@ -11,6 +11,7 @@ RSpec.describe(Vote, type: :request) do
         topic_id: @topic[:id],
         chosen_option: @votes[0][:chosen_option],
       }
+      Vote.create(@params)
     end
 
     it 'get the number of votes grouped by chosen_option' do
@@ -32,19 +33,36 @@ RSpec.describe(Vote, type: :request) do
       get "/v1/votes", params: @params
       json = JSON.parse(response.body)
       expect(response.status).to eq(200)
-      # 結果がBooleanであることを確認
-      expect(json["voted_status"]).to be_kind_of(TrueClass) | be_kind_of(FalseClass)
+      expect(json["voted_status"]).to be_kind_of(TrueClass)
+
+      get "/v1/votes", params: {
+        topic_id: @topic[:id],
+        chosen_option: @votes[0][:chosen_option],
+      }
+      json = JSON.parse(response.body)
+      expect(response.status).to eq(200)
+      expect(json["voted_status"]).to be_kind_of(FalseClass)
     end
 
     it 'create a new vote' do
       # 入力するUserごとにVoteが成功するか否か確認
       male_user = create(:user, sex: "男性")
       old_user = create(:user, age: 40)
-      # Topicのsex, ageと合致するUserの場合、成功
+
+      # Topicのsex, ageと合致するUserの場合、すでに作成済のVoteが存在するのでVoteは増えないことを確認
+      expect do
+        post "/v1/votes", params: @params
+      end.to change(Vote, :count).by(0)
+      expect(response).to(be_successful)
+
+      # すでに作成済のVoteを削除
+      vote = Vote.find_by(@params)
+      vote.destroy
+
       expect do
         post "/v1/votes", params: @params
       end.to change(Vote, :count).by(1)
-      # expect(@topic[:voted_num]).to eq(1)
+      expect(response).to(be_successful)
 
       # TopicとUserのsexが異なる場合、失敗
       expect do
