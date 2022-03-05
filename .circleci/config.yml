@@ -42,9 +42,10 @@ jobs:
       - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          repo: "democratic-frontend"
+          # aws-access-key-id: AWS_ACCESS_KEY_ID
+          # aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          # repo: "democratic-frontend"
+          repo: "test-frontend"
           region: AWS_DEFAULT_REGION
           tag: "${CIRCLE_SHA1}"
           path: "./frontend"
@@ -69,9 +70,9 @@ workflows:
       # # deploy frontend image to ECS Fargate
       - aws-ecs/deploy-service-update:
           # task-definition family name
-          family: weworld-frontend-td
+          family: democratic-frontend-td
           cluster-name: test-backend
-          service-name: weworld-frontend-service
+          service-name: democratic-frontend-service
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-frontend
