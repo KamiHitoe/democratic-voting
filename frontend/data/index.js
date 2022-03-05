@@ -2,11 +2,20 @@ const categoryList = [
   // { id: 0, category: null },
   { id: 1, category: "アニメ・漫画" },
   { id: 2, category: "テクノロジー" },
-  { id: 3, category: "恋愛" },
+  { id: 3, category: "恋愛・結婚" },
   { id: 4, category: "仕事" },
   { id: 5, category: "ライフスタイル" },
   { id: 6, category: "悩み" },
-  // { id: 50, category: "成人向け" },
+  { id: 7, category: "成人向け" },
+  { id: 8, category: "美容" },
+  { id: 9, category: "趣味" },
+  { id: 10, category: "テレビ・芸能人" },
+  { id: 11, category: "スポーツ" },
+  { id: 12, category: "料理" },
+  { id: 13, category: "健康" },
+  { id: 14, category: "音楽" },
+  { id: 15, category: "政治経済" },
+  { id: 16, category: "その他" },
 ];
 
 const initialUser = {
