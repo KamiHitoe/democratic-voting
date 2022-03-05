@@ -24,9 +24,9 @@ jobs:
           command: yarn install
           working_directory: ~/cicd/frontend
       - save_cache:
-          key: v1-deps-{{ checksum "~/cicd/frontend/package.json" }}
           paths:
             - node_modules
+          key: v1-deps-{{ checksum "~/cicd/frontend/package.json" }}
 
       # - run:
       #     name: run-test-frontend-by-JEST
@@ -37,6 +37,47 @@ jobs:
       #     name: run-lint-frontend-by-ESLint
       #     command: yarn lint
       #     working_directory: ~/cicd/frontend
+
+  test-backend:
+    docker:
+      # backend container
+      - image: cimg/ruby:2.7.5
+        environment:
+          RAILS_ENV: test
+          POSTGRES_HOST: '127.0.0.1'
+      # db container
+      - image: cimg/postgres:12.9
+    working_directory: ~/cicd
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ checksum "~/cicd/backend/Gemfile.lock" }}
+            - gem-cache-v1-
+      - run:
+          name: install bundler and bundle install
+          command: |
+            gem install bundler
+            bundle install
+          working_directory: ~/cicd/backend
+      - save_cache:
+          paths:
+            - ~/cicd/backend/vendor/bundle
+          key: gem-cache-v1-{{ checksum "~/cicd/backend/Gemfile.lock" }}
+
+      # setup db
+      - run:
+          name: create db and table
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:migrate RAILS_ENV=test
+          working_directory: ~/cicd/backend
+
+      # run test
+      - run:
+          name: run RSpec
+          command: bundle exec rspec
+          working_directory: ~/cicd/backend
 
   build-and-push-image-frontend:
     machine:
@@ -54,11 +95,32 @@ jobs:
           path: "./frontend"
           dockerfile: Dockerfile
 
+  build-and-push-image-backend:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          # repo: "democratic-backend"
+          repo: "test-backend"
+          region: AWS_DEFAULT_REGION
+          tag: "${CIRCLE_SHA1}" # CircliCI default env var
+          path: "./backend"
+          dockerfile: Dockerfile
+
+
 workflows:
   version: 2
   test:
     jobs:
       - test-frontend:
+          filters:
+            branches:
+              only: master
+      - test-backend:
           filters:
             branches:
               only: master
@@ -70,6 +132,13 @@ workflows:
           filters:
             branches:
               only: master
+      - build-and-push-image-backend:
+          requires:
+            - test-backend
+          filters:
+            branches:
+              only: master
+
       # # deploy frontend image to ECS Fargate
       - aws-ecs/deploy-service-update:
           # task-definition family name
@@ -79,6 +148,17 @@ workflows:
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-frontend
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          # task-definition family name
+          family: td-backend
+          cluster-name: test-cluster
+          service-name: democratic-backend-service
+          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+          requires:
+            - build-and-push-image-backend
           filters:
             branches:
               only: master

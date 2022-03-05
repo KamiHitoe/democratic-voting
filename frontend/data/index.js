@@ -15,8 +15,9 @@ const categoryList = [
   { id: 13, category: "スポーツ" },
   { id: 14, category: "料理" },
   { id: 15, category: "健康" },
-  { id: 16, category: "政治経済" },
-  { id: 17, category: "その他" },
+  { id: 16, category: "家族・子育て" },
+  { id: 17, category: "政治経済" },
+  { id: 18, category: "その他" },
 ];
 
 const initialUser = {
