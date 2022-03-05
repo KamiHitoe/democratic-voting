@@ -20,6 +20,7 @@
         {{ item.title }}
       </v-tab>
     </v-tabs>
+
     <Topics
       v-for="(topic, i) in topicsList"
       :key="topic.id"
@@ -37,19 +38,36 @@ import CategorySection from "@/components/CategorySection.vue";
 import Topics from "@/components/topics/Topics.vue";
 
 export default Vue.extend({
-  // name: "IndexPage",
   components: {
     CategorySection,
     Topics,
   },
+  computed: {
+    tabItems() {
+      const mediaQuery = window.matchMedia('(max-width: 600px)')
+      if (mediaQuery.matches) {
+        return [
+        { title: "新着", q: "new" },
+        { title: "急上昇中", q: "trend" },
+        { title: "殿堂入り", q: "ranking" },
+        ]
+      } else {
+        return [
+          { title: "新着のお題", q: "new" },
+          { title: "急上昇中のお題", q: "trend" },
+          { title: "殿堂入りのお題", q: "ranking" },
+        ]
+      }
+    }
+  },
   data() {
     return {
       tab: null,
-      tabItems: [
-        { title: "新着のお題", q: "new" },
-        { title: "急上昇中のお題", q: "trend" },
-        { title: "殿堂入りのお題", q: "ranking" },
-      ],
+      // tabItems: [
+      //   { title: "新着のお題", q: "new" },
+      //   { title: "急上昇中のお題", q: "trend" },
+      //   { title: "殿堂入りのお題", q: "ranking" },
+      // ],
       topicsList: [],
     };
   },
