@@ -80,7 +80,6 @@ jobs:
           name: create db and table
           command: |
             bundle exec rails db:create
-            bundle exec db:schema:load --trace
             bundle exec rails db:migrate
           working_directory: ~/cicd/backend
           environment:
@@ -147,6 +146,7 @@ workflows:
       - build-and-push-image-frontend:
           requires:
             - test-frontend
+            - test-backend
           filters:
             branches:
               only: master
@@ -166,6 +166,7 @@ workflows:
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-frontend
+            - build-and-push-image-backend
           filters:
             branches:
               only: master
