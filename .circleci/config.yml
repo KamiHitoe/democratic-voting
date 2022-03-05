@@ -51,7 +51,7 @@ jobs:
           # repo: "democratic-frontend"
           repo: "test-frontend"
           region: AWS_DEFAULT_REGION
-          tag: "${CIRCLE_SHA1}"
+          tag: "${CIRCLE_SHA1}" # CircliCI default env var
           path: "./frontend"
           dockerfile: Dockerfile
 
@@ -74,8 +74,8 @@ workflows:
       # # deploy frontend image to ECS Fargate
       - aws-ecs/deploy-service-update:
           # task-definition family name
-          family: democratic-frontend-td
-          cluster-name: test-backend
+          family: democratic-frontend-task
+          cluster-name: test-frontend
           service-name: democratic-frontend-service
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
