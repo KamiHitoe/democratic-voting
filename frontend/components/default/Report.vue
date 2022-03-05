@@ -107,8 +107,12 @@ export default mixins(global).extend({
 <style lang="scss">
 .report-topic {
   max-height: 24px;
+  color: $gray;
+  font-size: 12px;
 }
 .report-comment {
   max-height: 18px;
+  color: $gray;
+  font-size: 10px;
 }
 </style>

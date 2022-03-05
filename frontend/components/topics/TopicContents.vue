@@ -7,15 +7,17 @@
     </h4>
     <v-divider></v-divider>
     <LimitedTag :topic="topic" tag_class="limited-tag" />
-    <nuxt-link class="vote-body d-flex flex-row" :to="`/topics/${topic.id}`">
+    <nuxt-link class="vote-body" :to="`/topics/${topic.id}`">
       <img v-if="topic.img_path" class="topic-img" :src="topic.img_path" />
       <img v-else class="topic-img" src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png">
-      <div class="topic-contents d-flex flex-column">
-        <div class="d-flex flex-row">
-          <p class="data-margin">{{ topic.voted_num }}投票</p>
-          <p class="data-margin">{{ topic.timestamp }}</p>
-          <Report class="data-margin" :user="user" :topic="topic" />
-          <p class="data-margin change-color">
+      <div class="topic-contents">
+        <div class="topic-information">
+          <div class="topic-data">
+            <p class="data-margin">{{ topic.voted_num }}投票</p>
+            <p class="data-margin">{{ topic.timestamp }}</p>
+            <Report class="data-margin" :user="user" :topic="topic" />
+          </div>
+          <p class="topic-category data-margin change-color">
             {{ category }}
           </p>
         </div>
@@ -24,36 +26,32 @@
     </nuxt-link>
     <p class="topic-description">{{ topic.description }}</p>
 
-    <v-row>
-      <v-col cols="3">
-        <v-select
-          v-model="sex"
-          :items="sexItems"
-          label="性別"
-          item-color="amber"
-          solo
-          dense
-          background-color="amber lighten-4"
-          @change="getLimitedVote"
-        ></v-select>
-      </v-col>
-      <v-col cols="3">
-        <v-select
-          v-model="age"
-          :items="ageItems"
-          label="年代"
-          item-color="amber"
-          solo
-          dense
-          background-color="amber lighten-4"
-          @change="getLimitedVote"
-        ></v-select>
-      </v-col>
-    </v-row>
+    <div class="grid-container">
+      <v-select
+        v-model="sex"
+        :items="sexItems"
+        label="性別"
+        item-color="amber"
+        solo
+        dense
+        background-color="amber lighten-4"
+        @change="getLimitedVote"
+      ></v-select>
+      <v-select
+        v-model="age"
+        :items="ageItems"
+        label="年代"
+        item-color="amber"
+        solo
+        dense
+        background-color="amber lighten-4"
+        @change="getLimitedVote"
+      ></v-select>
+    </div>
 
-    <div class="d-flex flex-row">
+    <div class="result-container">
       <canvas id="result-chart"></canvas>
-      <div class="result-option d-flex flex-column justify-center">
+      <div class="result-option flex-column justify-center">
         <p>
           {{ topic.option_1 }}<br />
           <span class="chart-label-1">&nbsp;</span>
@@ -117,12 +115,12 @@ export default {
       chartPattern: 2,
       category: "",
       sexItems: [
-        {text: "なし", value: null},
+        {text: "なし", value: ""},
         {text: "男性", value: "male"},
         {text: "女性", value: "female"},
       ],
       ageItems: [
-        {text: "なし", value: null},
+        {text: "なし", value: 0},
         {text: "10代", value: 10},
         {text: "20代", value: 20},
         {text: "30代", value: 30},
@@ -267,6 +265,40 @@ export default {
 .plain-text {
   color: $gray;
 }
+.result-container {
+  display: flex;
+}
+@media (min-width: 600px) {
+  .vote-body,
+  .topic-information,
+  .topic-data {
+    display: flex;
+  }
+  .topic-img {
+    margin-right: 3rem;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 30%);
+    column-gap: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .topic-data {
+    display: flex;
+  }
+  .topic-img {
+    margin: 1rem 0;
+  }
+  .topic-category {
+    text-align: left;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 1rem;
+  }
+}
 .vote-contents {
   padding: 1rem;
   background-color: #fff;
@@ -285,7 +317,6 @@ export default {
   .topic-img {
     width: 100px;
     height: 100px;
-    margin-right: 3rem;
   }
   .data-margin {
     margin-right: 1rem;

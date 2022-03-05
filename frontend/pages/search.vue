@@ -1,9 +1,10 @@
 <template>
   <section>
     <div class="contents">
-      <h4 class="subtitle">キーワードかカテゴリーからお題を検索しよう！</h4>
+      <h4 v-if="$route.query.category_id" class="subtitle">{{ category }}の検索結果</h4>
+      <h4 v-else class="subtitle">キーワードかカテゴリーからお題を検索しよう！</h4>
       <v-divider></v-divider>
-      <div class="d-flex flex-row">
+      <div class="grid-container">
         <v-select
           v-model="sort"
           :items="sortItems"
@@ -25,7 +26,7 @@
         <v-select
           v-model="sex"
           :items="sexItems"
-          label="性別"
+          label="性別限定"
           item-color="amber"
           solo
           dense
@@ -34,7 +35,7 @@
         <v-select
           v-model="age"
           :items="ageItems"
-          label="年代"
+          label="年代限定"
           item-color="amber"
           solo
           dense
@@ -73,21 +74,27 @@ import Fuse from "fuse.js"
 import CategorySection from "@/components/CategorySection.vue";
 import Topics from "@/components/topics/Topics.vue";
 import { Topic } from "@/types";
+import { categoryList } from "@/data";
 
 export default Vue.extend({
   components: {
     CategorySection,
     Topics,
   },
+  computed: {
+    category() {
+      return categoryList[this.$route.query.category_id - 1].category
+    }
+  },
   data() {
     return {
       sexItems: [
-        {text: "なし", value: null},
+        {text: "なし", value: ""},
         {text: "男性", value: "male"},
         {text: "女性", value: "female"},
       ] as object[],
       ageItems: [
-        {text: "なし", value: null},
+        {text: "なし", value: 0},
         {text: "10代", value: 10},
         {text: "20代", value: 20},
         {text: "30代", value: 30},
@@ -149,14 +156,31 @@ export default Vue.extend({
 .subtitle {
   @extend %subtitle;
 }
+@media (min-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    margin-top: 1rem;
+  }
+  .v-select {
+    max-width: 150px;
+  }
+}
+@media (max-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    margin-top: 1rem;
+  }
+  .v-select {
+    max-width: 130px;
+  }
+}
 .contents {
   padding: 1rem;
   background-color: #fff;
 }
-.v-select {
-  max-width: 150px;
-  margin: 1rem 2rem 0 0;
-}
+
 .search-topics {
   margin-bottom: 1rem;
 }

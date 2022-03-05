@@ -2,14 +2,12 @@
   <section>
     <h4 class="subtitle">カテゴリー一覧</h4>
     <v-divider></v-divider>
-    <v-container>
-      <v-row>
-        <v-col v-for="(category, i) in categoryList" :key="i" cols="4">
-          <a :href="`/search?category_id=${category.id}`" class="category">{{ category.category }}</a>
-          <!-- <nuxt-link :to="`/search?category_id=${category.id}`" class="category">{{ category.category }}</nuxt-link> -->
-        </v-col>
-      </v-row>
-    </v-container>
+    <div class="grid-container">
+      <div class="grid-item" v-for="(category, i) in categoryList" :key="i" cols="4">
+        <a class="category" :href="`/search?category_id=${category.id}`">{{ category.category }}</a>
+        <!-- <nuxt-link :to="`/search?category_id=${category.id}`" class="category">{{ category.category }}</nuxt-link> -->
+      </div>
+    </div>
   </section>
 </template>
 
@@ -22,13 +20,6 @@ export default Vue.extend({
   props: {
     removeZero: Boolean,
   },
-  // computed: {
-  //   categories: (): Category[] => {
-  //     categoryList.shift();
-  //     console.log(categoryList)
-  //     return categoryList;
-  //   }
-  // },
   data() {
     return {
       categoryList: categoryList as Category[],
@@ -40,6 +31,25 @@ export default Vue.extend({
 <style lang="scss" scoped>
 section {
   @extend %section-body;
+}
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(2, auto);
+  }
+  .category {
+    font-size: 14px;
+  }
+}
+@media (min-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+.grid-container {
+  display: grid;
+}
+.grid-item {
+  margin: 0.5rem 0;
 }
 .category {
   color: #000;
