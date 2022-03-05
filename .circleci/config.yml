@@ -42,18 +42,18 @@ jobs:
     docker:
       # backend container
       - image: cimg/ruby:2.7.5
-        auth:
-          username: user
-          password: foobar
+        # auth:
+        #   username: user
+        #   password: foobar
         environment:
           RAILS_ENV: test
           POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
       # db container
       - image: cimg/postgres:12.9
-        auth:
-          username: user
-          password: foobar
+        # auth:
+        #   username: user
+        #   password: foobar
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: democratic_voting_test
