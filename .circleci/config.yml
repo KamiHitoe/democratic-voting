@@ -38,7 +38,6 @@ jobs:
       #     command: yarn lint
       #     working_directory: ~/cicd/frontend
 
-
   build-and-push-image-frontend:
     machine:
       image: ubuntu-2004:202010-01
