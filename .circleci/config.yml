@@ -42,11 +42,21 @@ jobs:
     docker:
       # backend container
       - image: cimg/ruby:2.7.5
+        auth:
+          username: user
+          password: foobar
         environment:
           RAILS_ENV: test
-          POSTGRES_HOST: '127.0.0.1'
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
       # db container
       - image: cimg/postgres:12.9
+        auth:
+          username: user
+          password: foobar
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: democratic_voting_test
     working_directory: ~/cicd
     steps:
       - checkout
@@ -70,14 +80,22 @@ jobs:
           name: create db and table
           command: |
             bundle exec rails db:create
-            bundle exec rails db:migrate RAILS_ENV=test
+            bundle exec db:schema:load --trace
+            bundle exec rails db:migrate
           working_directory: ~/cicd/backend
+          environment:
+            DATABASE_URL: "postgres://postgres@localhost:5432/democratic_voting_test"
+
 
       # run test
       - run:
           name: run RSpec
           command: bundle exec rspec
           working_directory: ~/cicd/backend
+
+      # store artifacts
+      - store_artifacts:
+          path: /tmp/test-results
 
   build-and-push-image-frontend:
     machine:
