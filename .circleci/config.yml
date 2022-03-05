@@ -28,16 +28,15 @@ jobs:
           paths:
             - node_modules
 
-      # run JEST
-      - run:
-          name: run-test-frontend-by-JEST
-          command: echo yarn test
-          working_directory: ~/cicd/frontend
+      # - run:
+      #     name: run-test-frontend-by-JEST
+      #     command: yarn test
+      #     working_directory: ~/cicd/frontend
 
-      - run:
-          name: run-lint-frontend-by-ESLint
-          command: yarn lint
-          working_directory: ~/cicd/frontend
+      # - run:
+      #     name: run-lint-frontend-by-ESLint
+      #     command: yarn lint
+      #     working_directory: ~/cicd/frontend
 
 
   build-and-push-image-frontend:
@@ -47,8 +46,8 @@ jobs:
       - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
-          # aws-access-key-id: AWS_ACCESS_KEY_ID
-          # aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           # repo: "democratic-frontend"
           repo: "test-frontend"
           region: AWS_DEFAULT_REGION
