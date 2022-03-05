@@ -28,10 +28,15 @@ jobs:
           paths:
             - node_modules
 
-      # run test code
+      # run JEST
       - run:
-          name: run-test-frontend-by-jest
+          name: run-test-frontend-by-JEST
           command: echo yarn test
+          working_directory: ~/cicd/frontend
+
+      - run:
+          name: run-lint-frontend-by-ESLint
+          command: yarn lint
           working_directory: ~/cicd/frontend
 
 
