@@ -85,22 +85,15 @@ jobs:
           environment:
             DATABASE_URL: "postgres://postgres@localhost:5432/democratic_voting_test"
 
-
       # run test
-      - run:
-          name: run RSpec
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            bundle exec rspec --format progress \
-                --out /tmp/test-results/rspec.xml \
-                --format progress \
-                $TEST_FILES
-          working_directory: ~/cicd/backend
+      # - run:
+      #     name: run RSpec
+      #     command: bundle exec rspec
+      #     working_directory: ~/cicd/backend
 
       # store artifacts
-      - store_artifacts:
-          path: /tmp/test-results
+      # - store_artifacts:
+      #     path: /tmp/test-results
 
   build-and-push-image-frontend:
     machine:
