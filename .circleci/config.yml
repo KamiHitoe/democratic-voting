@@ -90,7 +90,12 @@ jobs:
       - run:
           name: run RSpec
           command: |
-            bundle exec rspec $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format progress \
+                --out /tmp/test-results/rspec.xml \
+                --format progress \
+                $TEST_FILES
           working_directory: ~/cicd/backend
 
       # store artifacts
