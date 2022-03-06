@@ -5,9 +5,9 @@ WORKDIR /app
 
 ENV LANG C.UTF-8 \
     TZ Asia/Tokyo \
-    NUXT_HOST=0.0.0.0 \
-    ACCESS_KEY_ID=${ACCESS_KEY_ID} \
-    SECRET_ACCESS_KEY=${SECRET_ACCESS_KEY}
+    NUXT_HOST 0.0.0.0 \
+    ACCESS_KEY_ID ${ACCESS_KEY_ID} \
+    SECRET_ACCESS_KEY ${SECRET_ACCESS_KEY}
 
 # first, copy package to container
 ADD package.json /app/package.json

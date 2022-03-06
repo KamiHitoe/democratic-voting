@@ -74,6 +74,27 @@ Vote.create(user_id: 3, topic_id: 8, chosen_option: 2, age: 10, sex: 'female')
 Vote.create(user_id: 4, topic_id: 8, chosen_option: 1, age: 20, sex: 'female')
 topic = Topic.find(8)
 topic.update(voted_num: 4)
+Topic.create(user_id: 1, category_id: 4, title: 'どの程度の間、恋人がいませんか？', description: '皆さんはどの程度の間、恋人がいませんか？',
+             option_1: '3ヶ月以内', option_2: '1年以内', option_3: '5年以内', option_4: 'いたことがない',
+             img_path: 'https://pbs.twimg.com/profile_images/504619719161155584/2X8doCLf_400x400.png')
+Vote.create(user_id: 1, topic_id: 9, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 9, chosen_option: 2, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 9, chosen_option: 3, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 9, chosen_option: 4, age: 20, sex: 'female')
+topic = Topic.find(9)
+topic.update(voted_num: 4)
+Topic.create(user_id: 1, category_id: 5, title: '皆さんの初体験はいつですか？', description: '実際のところいつ頃なのかが気になります',
+             option_1: '中学生以下', option_2: '高校生', option_3: '大学生', option_4: 'それ以外',
+             img_path: 'https://cdn-prod.medicalnewstoday.com/content/images/articles/321/321428/couple-having-sex.jpg')
+Vote.create(user_id: 1, topic_id: 10, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 10, chosen_option: 2, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 10, chosen_option: 3, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 10, chosen_option: 4, age: 20, sex: 'female')
+topic = Topic.find(10)
+topic.update(voted_num: 4)
+
+
+
 
 Comment.create(user_id: 1, text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
                topic_id: 1)
