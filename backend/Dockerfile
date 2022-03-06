@@ -2,8 +2,8 @@
 FROM ruby:2.7.5
 
 ENV LANG=C.UTF-8 \
-    TZ=Asia/Tokyo
-    # RAILS_ENV=production
+    TZ=Asia/Tokyo \
+    RAILS_ENV=production
 
 # create /app folder and go into that folder
 RUN mkdir /app

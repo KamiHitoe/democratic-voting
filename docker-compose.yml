@@ -13,7 +13,7 @@ services:
 
   backend:
     # image: democratic-backend:v0.0.1
-    image: test-backend:v0.0.3
+    image: test-backend:v0.1.0
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
