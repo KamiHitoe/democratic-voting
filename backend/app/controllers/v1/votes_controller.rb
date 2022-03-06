@@ -10,25 +10,25 @@ module V1
       # write group by chosen_option logic where sex, age
       result = Vote.where(topic_id: params[:topic_id])
 
-      if params[:sex] == "male"
-        result = result.where(sex: "male")
-      elsif params[:sex] == "female"
-        result = result.where(sex: "female")
+      if params[:sex] == 'male'
+        result = result.where(sex: 'male')
+      elsif params[:sex] == 'female'
+        result = result.where(sex: 'female')
       end
 
-      if params[:age] == "10"
+      if params[:age] == '10'
         result = result.where(age: 10)
-      elsif params[:age] == "20"
+      elsif params[:age] == '20'
         result = result.where(age: 20)
-      elsif params[:age] == "30"
+      elsif params[:age] == '30'
         result = result.where(age: 30)
-      elsif params[:age] == "40"
+      elsif params[:age] == '40'
         result = result.where(age: 40)
-      elsif params[:age] == "50"
+      elsif params[:age] == '50'
         result = result.where(age: 50)
       end
 
-      result = result.group(:chosen_option).count()
+      result = result.group(:chosen_option).count
       # render Hash
       json_response(result)
     end
@@ -42,7 +42,7 @@ module V1
     # POST /votes
     def create
       if @voted_status
-        puts 'already voted'
+        puts('already voted')
       else
         user = User.find(vote_params[:user_id])
         topic = Topic.find(vote_params[:topic_id])
@@ -50,9 +50,9 @@ module V1
           Vote.create!(vote_params)
           # 投票に対してTopicのvoted_numを加算
           topic.increment!(:voted_num)
-          puts "topic voted_num: #{topic[:voted_num]}"
+          puts("topic voted_num: #{topic[:voted_num]}")
         else
-          puts "invalid user"
+          puts('invalid user')
         end
       end
     end
@@ -63,7 +63,7 @@ module V1
         vote = Vote.find_by(vote_params)
         vote.destroy
       else
-        puts 'not existed'
+        puts('not existed')
       end
     end
 
@@ -76,12 +76,11 @@ module V1
     end
 
     def get_voted_status
-      if vote_params[:user_id] != nil
-        @voted_status = !Vote.where(vote_params).empty?
-      else
-        @voted_status = false
-      end
+      @voted_status = if !vote_params[:user_id].nil?
+                        !Vote.where(vote_params).empty?
+                      else
+                        false
+                      end
     end
-
   end
 end

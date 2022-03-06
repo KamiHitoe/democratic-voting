@@ -5,7 +5,7 @@ module V1
 
     # GET /report/topics/count
     def count_reports
-      cnt = ReportTopic.where(topic_id: params[:topic_id]).all.count()
+      cnt = ReportTopic.where(topic_id: params[:topic_id]).all.count
       json_response(reported_num: cnt)
     end
 
@@ -17,7 +17,7 @@ module V1
     # POST /report/topics
     def create
       if @reported_status
-        puts 'already exist'
+        puts('already exist')
       else
         ReportTopic.create!(report_params)
       end
@@ -29,7 +29,7 @@ module V1
         report = ReportTopic.find_by(report_params)
         report.destroy
       else
-        puts 'not exist'
+        puts('not exist')
       end
     end
 
@@ -42,6 +42,5 @@ module V1
     def get_reported_status
       @reported_status = !ReportTopic.where(report_params).empty?
     end
-
   end
 end

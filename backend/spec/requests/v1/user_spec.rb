@@ -10,9 +10,9 @@ RSpec.describe(User, type: :request) do
       # uidに合致したUserを取得できることを確認
       get "/v1/users?uid=#{@users[0][:uid]}"
       json = JSON.parse(response.body)
-      expect(response.status).to eq(200)
-      expect(json["uid"]).to eq(@users[0][:uid])
-      expect(json).to be_kind_of(Hash)
+      expect(response.status).to(eq(200))
+      expect(json['uid']).to(eq(@users[0][:uid]))
+      expect(json).to(be_kind_of(Hash))
     end
 
     it 'create a new user' do
@@ -21,13 +21,11 @@ RSpec.describe(User, type: :request) do
         post('/v1/users', params: {
                uid: 'xxx',
                sex: 'male',
-               age: 30,
+               age: 30
              })
-      end.to change(User, :count).by(1)
+      end.to(change(User, :count).by(1))
       json = JSON.parse(response.body)
-      expect(response).to be_successful
+      expect(response).to(be_successful)
     end
-
-
   end
 end

@@ -8,6 +8,5 @@ class User < ApplicationRecord
   validates(:uid,
             :sex,
             :age,
-            { presence: true }
-  )
+            { presence: true })
 end

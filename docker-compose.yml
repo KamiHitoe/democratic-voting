@@ -12,7 +12,8 @@ services:
       - 5432:5432
 
   backend:
-    image: democratic-backend:v0.0.1
+    # image: democratic-backend:v0.0.1
+    image: test-backend:v0.0.3
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -24,9 +25,10 @@ services:
       - db
 
   frontend:
-    image: democratic-frontend:v0.0.1
+    image: democratic-frontend:v0.0.4
     ports:
-      - 8080:8080
+      # - 8080:8080
+      - 80:80
     depends_on:
       - backend
 

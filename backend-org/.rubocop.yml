@@ -1,0 +1,355 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+
+# inherit_from:
+#   - '.rubocop-rails.yml'
+#   - '.rubocop-rspec.yml'
+
+# require:
+#   - rubocop-rails
+#   - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+  Exclude:
+    - '**/db/migrate/*'
+    - '**/Gemfile.lock'
+    - '**/Rakefile'
+    - '**/rails'
+    - '**/vendor/**/*'
+    - '**/spec_helper.rb'
+    - 'node_modules/**/*'
+    - 'bin/*'
+
+###########################################################
+###################### Rubocop ############################
+###########################################################
+
+# You can find all configuration options for rubocop here: https://docs.rubocop.org/rubocop/cops_bundler.html
+
+# ============== Layout =================
+
+Layout/ClassStructure:
+  ExpectedOrder:
+    - module_inclusion
+    - constants
+    - association
+    - public_attribute_macros
+    - public_delegate
+    - macros
+    - initializer
+    - public_class_methods
+    - public_methods
+    - protected_attribute_macros
+    - protected_methods
+    - private_attribute_macros
+    - private_delegate
+    - private_methods
+
+# 複数条件後に改行する
+Layout/EmptyLineAfterMultilineCondition:
+  Enabled: true
+
+# アクセサ後のメソッドは改行する
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+# Arrayの引数の位置にインデントを設ける
+Layout/FirstArrayElementIndentation:
+  Enabled: true
+  # EnforcedStyle: consistent
+
+# Arrayの第一変数は改行しなくてもよい
+Layout/FirstArrayElementLineBreak:
+  Enabled: false
+
+# Hashの引数の位置にインデントを設ける
+Layout/FirstHashElementIndentation:
+  Enabled: true
+  # EnforcedStyle: consistent
+
+# Hashの第一変数は改行しなくてもよい
+Layout/FirstHashElementLineBreak:
+  Enabled: false
+
+# 最長列数
+Layout/LineLength:
+  Max: 80
+  Exclude:
+    - '**/spec/**/*'
+
+# 複数行Arrayの最後の変数の後は改行する
+Layout/MultilineArrayBraceLayout:
+  EnforcedStyle: new_line
+
+# Layout/MultilineOperationIndentation:
+#   EnforcedStyle: indented
+
+# 複数行Hashの最後の変数の後は改行する
+Layout/MultilineHashBraceLayout:
+  EnforcedStyle: new_line
+
+# 複数行Hashの全ての変数の後は改行する
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+# Layout/MultilineMethodCallBraceLayout:
+#   EnforcedStyle: new_line
+
+# Layout/MultilineMethodDefinitionBraceLayout:
+#   EnforcedStyle: new_line
+
+# メソッドの呼び出しに空白を開けない
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+# 無名関数=> の後に空白を開ける
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - '**/spec/**/*'
+
+# if文の条件に()をつけなくてもよい
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: false
+
+# Lint/BinaryOperatorWithIdenticalOperands:
+#   Enabled: true
+
+# Lint/DeprecatedOpenSSLConstant:
+#   Enabled: true
+
+# 重複するelsif条件の排除
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+# 重複するrequire文の排除
+Lint/DuplicateRequire:
+  Enabled: true
+
+# 重複するrescue文の排除
+Lint/DuplicateRescueException:
+  Enabled: true
+
+# 命令がemptyなif文の排除
+Lint/EmptyConditionalBody:
+  Enabled: true
+
+# 空ファイルの排除
+Lint/EmptyFile:
+  Enabled: true
+
+# Lint/FloatComparison:
+#   Enabled: true
+
+# 親クラスのメソッドを継承する時、必ずsuper()を呼び出す
+Lint/MissingSuper:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+# 数値の型キャストにto_i等のメソッドを許可する
+Lint/NumberConversion:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: true
+
+# 等値の値の代入を排除
+Lint/SelfAssignment:
+  Enabled: true
+
+# アクセサの後にコンマを入れない
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+# 使わないブロック変数は_プライベート引数にする
+Lint/UnusedBlockArgument:
+  Enabled: true
+  # IgnoreEmptyBlocks: false
+
+# 使わない引数は_プライベート引数にする
+Lint/UnusedMethodArgument:
+  Enabled: true
+  # IgnoreEmptyMethods: false
+
+# Lint/UselessMethodDefinition:
+#   Enabled: true
+
+# ============== Metric =================
+
+Metrics/AbcSize:
+  Max: 45
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 30
+  Exclude:
+    - '**/spec/**/*'
+    - '**/*.rake'
+    - '**/factories/**/*'
+    - '**/config/routes.rb'
+
+Metrics/ClassLength:
+  CountAsOne: ['array', 'hash']
+  Max: 80
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  CountAsOne: ['array', 'hash']
+  Max: 30
+
+Metrics/ModuleLength:
+  CountAsOne: ['array', 'hash']
+  Max: 250
+  Exclude:
+    - '**/spec/**/*'
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# ============== Variable ==================
+
+# Most of the Naming configurations are enabled by default, we should enable or disable configuration depending on what the team needs
+
+### Example
+##
+#  Naming/VariableNumber:
+#    Enabled: false
+##
+###
+
+# ============== Style ================
+
+# 複数のアクセサを統一する
+Style/AccessorGrouping:
+  Enabled: true
+
+# Style/ArrayCoercion:
+#   Enabled: true
+
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+
+# プロセスを使うブロックのクロージャ ex, File.open()
+Style/AutoResourceCleanup:
+  Enabled: true
+
+# アクセサのreader, writerを統一
+Style/BisectedAttrAccessor:
+  Enabled: true
+
+# Style/CaseLikeIf:
+#   Enabled: true
+
+# 子クラスにおけるインデント
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Style/CollectionMethods:
+#   Enabled: true
+
+# 重複ループを統一
+Style/CombinableLoops:
+  Enabled: true
+
+# 文字列リテラルの使用
+Style/CommandLiteral:
+  Enabled: true
+  # EnforcedStyle: percent_x
+
+Style/ConstantVisibility:
+  Enabled: true
+
+# ドキュメントの無いpublic classを許可する
+Style/Documentation:
+  Enabled: false
+
+# !!を許可する
+Style/DoubleNegation:
+  Enabled: false
+
+# Style/ExplicitBlockArgument:
+#   Enabled: true
+
+# Style/GlobalStdStream:
+#   Enabled: true
+
+# Hashのeachメソッドを許可する
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashLikeCase:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+# raise文にErrorObjectを返す
+Style/ImplicitRuntimeError:
+  Enabled: true
+
+# コメント文は行を分けなくてもよい
+Style/InlineComment:
+  Enabled: false
+
+Style/IpAddresses:
+  Enabled: true
+
+Style/KeywordParametersOrder:
+  Enabled: true
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+
+# elseがなくてもよい
+Style/MissingElse:
+  Enabled: false
+
+Style/MultilineMethodSignature:
+  Enabled: true
+
+Style/OptionalBooleanParameter:
+  Enabled: true
+
+# 変数の再定義を禁止
+Style/RedundantAssignment:
+  Enabled: true
+
+Style/RedundantBegin:
+  Enabled: true
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+# 右辺に自変数をもつ代入を許可する
+Style/RedundantSelfAssignment:
+  Enabled: false
+
+# Style/SingleArgumentDig:
+#   Enabled: true
+
+# 文字列の変数代入は#{}を使わなくてもよい
+Style/StringConcatenation:
+  Enabled: false
+

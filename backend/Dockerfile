@@ -2,7 +2,8 @@
 FROM ruby:2.7.5
 
 ENV LANG=C.UTF-8 \
-    TZ=Asia/Tokyo
+    TZ=Asia/Tokyo \
+    RAILS_ENV=production
 
 # create /app folder and go into that folder
 RUN mkdir /app
@@ -18,17 +19,17 @@ RUN apt-get update -qq && \
     apt-get install -y build-essential libpq-dev nodejs libsqlite3-dev && \
     apt-get install -y ruby2.7-dev && \
     gem install bundler && \
-    gem install nio4r -v '2.5.8' --source 'https://rubygems.org/' && \
-    gem install websocket-driver -v '0.7.5' --source 'https://rubygems.org/' && \
-    gem install digest -v '3.1.0' --source 'https://rubygems.org/' && \
-    gem install io-wait -v '0.2.1' --source 'https://rubygems.org/' && \
-    gem install strscan -v '3.0.1' --source 'https://rubygems.org/' && \
-    gem install racc -v '1.6.0' --source 'https://rubygems.org/' && \
-    gem install io-console -v '0.5.11' --source 'https://rubygems.org/' && \
-    gem install debug -v '1.4.0' --source 'https://rubygems.org/' && \
-    gem install ffi -v '1.15.5' --source 'https://rubygems.org/' && \
-    gem install pg -v '1.3.2' --source 'https://rubygems.org/' && \
-    gem install puma -v '5.5.2' --source 'https://rubygems.org/' && \
+    # gem install nio4r -v '2.5.8' --source 'https://rubygems.org/' && \
+    # gem install websocket-driver -v '0.7.5' --source 'https://rubygems.org/' && \
+    # gem install digest -v '3.1.0' --source 'https://rubygems.org/' && \
+    # gem install io-wait -v '0.2.1' --source 'https://rubygems.org/' && \
+    # gem install strscan -v '3.0.1' --source 'https://rubygems.org/' && \
+    # gem install racc -v '1.6.0' --source 'https://rubygems.org/' && \
+    # gem install io-console -v '0.5.11' --source 'https://rubygems.org/' && \
+    # gem install debug -v '1.4.0' --source 'https://rubygems.org/' && \
+    # gem install ffi -v '1.15.5' --source 'https://rubygems.org/' && \
+    # gem install pg -v '1.3.2' --source 'https://rubygems.org/' && \
+    # gem install puma -v '5.5.2' --source 'https://rubygems.org/' && \
     # bundle update && \
     bundle install
 

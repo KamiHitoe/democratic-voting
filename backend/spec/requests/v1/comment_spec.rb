@@ -12,45 +12,45 @@ RSpec.describe(Comment, type: :request) do
       # Topicに対してCommentsのArrayが取得できることを確認
       get "/v1/topics/#{@topic[:id]}/comments"
       json = JSON.parse(response.body)
-      expect(response.status).to eq(200)
-      expect(json).to be_kind_of(Array)
-      expect(json).not_to be_empty
+      expect(response.status).to(eq(200))
+      expect(json).to(be_kind_of(Array))
+      expect(json).not_to(be_empty)
     end
 
     it 'get a comment by id' do
       # 任意のCommentが取得できることを確認
       get "/v1/topics/#{@topic[:id]}/comments/#{@comments[0][:id]}"
       json = JSON.parse(response.body)
-      expect(response.status).to eq(200)
+      expect(response.status).to(eq(200))
       # 一つのHashが返ることを確認
-      expect(json).to be_kind_of(Hash)
+      expect(json).to(be_kind_of(Hash))
     end
 
     it 'create a new comment' do
       # 入力するUserごとにCommentが成功するか否か確認
-      male_user = create(:user, sex: "男性")
+      male_user = create(:user, sex: '男性')
       old_user = create(:user, age: 40)
       # Topicのsex, ageと合致するUserの場合、成功
       expect do
-        post "/v1/topics/#{@topic[:id]}/comments", params: {
+        post("/v1/topics/#{@topic[:id]}/comments", params: {
                user_id: @user[:id],
                text: 'new text'
-             }
-      end.to change(Comment, :count).by(1)
+             })
+      end.to(change(Comment, :count).by(1))
       # TopicとUserのsexが異なる場合、失敗
       expect do
-        post "/v1/topics/#{@topic[:id]}/comments", params: {
+        post("/v1/topics/#{@topic[:id]}/comments", params: {
                user_id: male_user[:id],
                text: 'new text'
-             }
-      end.to change(Comment, :count).by(0)
+             })
+      end.to(change(Comment, :count).by(0))
       # TopicとUserのageが異なる場合、失敗
       expect do
-        post "/v1/topics/#{@topic[:id]}/comments", params: {
+        post("/v1/topics/#{@topic[:id]}/comments", params: {
                user_id: old_user[:id],
                text: 'new text'
-             }
-      end.to change(Comment, :count).by(0)
+             })
+      end.to(change(Comment, :count).by(0))
     end
 
     # it 'update the comment' do
@@ -62,11 +62,10 @@ RSpec.describe(Comment, type: :request) do
     it 'destroy the comment' do
       # comment[:id]によって対象のCommentが削除できることを確認
       expect do
-        delete "/v1/topics/#{@topic[:id]}/comments/#{@comments[0][:id]}"
-      end.to change(Comment, :count).by(-1)
+        delete("/v1/topics/#{@topic[:id]}/comments/#{@comments[0][:id]}")
+      end.to(change(Comment, :count).by(-1))
       expect(response).to(be_successful)
     end
-
 
     it 'get reply comments by parent comment id' do
       # 親のcomment[:id]によって、返信CommentがArrayで返ってくることを確認
@@ -75,10 +74,8 @@ RSpec.describe(Comment, type: :request) do
       get "/v1/comments/#{@topic[:id]}/#{@comments[0][:id]}"
       json = JSON.parse(response.body)
       expect(response.status).to(eq(200))
-      expect(json).to be_kind_of(Array)
-      expect(json).not_to be_empty
+      expect(json).to(be_kind_of(Array))
+      expect(json).not_to(be_empty)
     end
-
-
   end
 end

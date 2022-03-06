@@ -24,6 +24,10 @@
         "value": "/app"
       },
       {
+        "name": "RAILS_ENV",
+        "value": "production"
+      },
+      {
         "name": "POSTGRES_USER",
         "value": "postgres"
       },
