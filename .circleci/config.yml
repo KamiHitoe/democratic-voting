@@ -158,8 +158,9 @@ workflows:
 
       # # deploy frontend image to ECS Fargate
       - aws-ecs/deploy-service-update:
-          # task-definition family name
+          # family: democratic-frontend-task
           family: td-frontend
+          # cluster-name: democratic-ecs-cluster
           cluster-name: test-cluster
           service-name: democratic-frontend-service
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
@@ -170,8 +171,9 @@ workflows:
             branches:
               only: master
       - aws-ecs/deploy-service-update:
-          # task-definition family name
+          # family: democratic-backend-task
           family: td-backend
+          # cluster-name: democratic-ecs-cluster
           cluster-name: test-cluster
           service-name: democratic-backend-service
           container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
