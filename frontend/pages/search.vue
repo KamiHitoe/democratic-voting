@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="contents">
-      <h4 v-if="$route.query.category_id" class="subtitle">{{ category }}の検索結果</h4>
+      <h4 v-if="$route.query.category_id" class="subtitle">{{ category }}カテゴリーの検索結果</h4>
       <h4 v-else class="subtitle">キーワードかカテゴリーからお題を検索しよう！</h4>
       <v-divider></v-divider>
       <div class="grid-container">

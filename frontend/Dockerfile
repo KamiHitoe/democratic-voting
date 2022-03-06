@@ -4,7 +4,10 @@ FROM node:16.14
 WORKDIR /app
 
 ENV LANG C.UTF-8 \
-    TZ Asia/Tokyo
+    TZ Asia/Tokyo \
+    NUXT_HOST=0.0.0.0 \
+    ACCESS_KEY_ID=${ACCESS_KEY_ID} \
+    SECRET_ACCESS_KEY=${SECRET_ACCESS_KEY}
 
 # first, copy package to container
 ADD package.json /app/package.json
@@ -29,7 +32,6 @@ ADD . /app
 # create build files
 RUN yarn build
 
-ENV NUXT_HOST=0.0.0.0
 # EXPOSE 8080
 EXPOSE 80
 
