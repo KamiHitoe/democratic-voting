@@ -28,7 +28,8 @@ Rails.application.routes.draw do
     get 'search', to: 'topics#search'
 
     # topic_id, parent comment_idを元に子の返信コメントを全て取得
-    get 'comments/:topic_id/:replied_comment_id', to: 'comments#get_reply_comments'
+    get 'comments/:topic_id/:replied_comment_id',
+        to: 'comments#get_reply_comments'
 
     # AWS ELB health check用
     get 'health_check', to: 'health_check#index'

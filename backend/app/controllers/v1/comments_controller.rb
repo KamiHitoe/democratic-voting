@@ -17,7 +17,7 @@ module V1
         @topic.comments.create!(comment_params)
         json_response(@topic, :created)
       else
-        puts "invalid user"
+        puts('invalid user')
       end
     end
 
@@ -28,7 +28,7 @@ module V1
 
     # GET /comments/:topic_id/:replied_comment_id
     def get_reply_comments
-      puts params[:replied_comment_id]
+      puts(params[:replied_comment_id])
       comments = Comment.where(parent_id: params[:replied_comment_id]).all
       json_response(comments)
     end
@@ -62,4 +62,3 @@ module V1
     end
   end
 end
-

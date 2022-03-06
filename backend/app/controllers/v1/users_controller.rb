@@ -13,7 +13,7 @@ module V1
     # POST /users
     def create
       if @current_user
-        puts "this user already exists"
+        puts('this user already exists')
       else
         # まだユーザー登録されていない場合のみPOST可能
         # if user_params[:sex] == "male"
@@ -53,6 +53,5 @@ module V1
     def get_current_user
       @current_user = User.find_by(uid: params[:uid])
     end
-
   end
 end

@@ -5,7 +5,7 @@ module V1
 
     # GET /report/comments/count
     def count_reports
-      cnt = ReportComment.where(comment_id: params[:comment_id]).all.count()
+      cnt = ReportComment.where(comment_id: params[:comment_id]).all.count
       json_response(reported_num: cnt)
     end
 
@@ -17,7 +17,7 @@ module V1
     # POST /report/comments
     def create
       if @reported_status
-        puts 'already exist'
+        puts('already exist')
       else
         ReportComment.create!(report_params)
       end
@@ -29,7 +29,7 @@ module V1
         report = ReportComment.find_by(report_params)
         report.destroy
       else
-        puts 'not exist'
+        puts('not exist')
       end
     end
 
@@ -42,6 +42,5 @@ module V1
     def get_reported_status
       @reported_status = !ReportComment.where(report_params).empty?
     end
-
   end
 end

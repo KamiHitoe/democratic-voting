@@ -40,7 +40,7 @@ topic.update(voted_num: 2)
 Topic.create(user_id: 1, category_id: 2, title: 'あなたはオタクですか？', description: '実のところ、オタクな人は結構多いんじゃないかと思っています',
              option_1: 'はい', option_2: 'いいえ',
              img_path: 'https://images-na.ssl-images-amazon.com/images/I/71P-b69pJWL.jpg',
-sex: 'male')
+             sex: 'male')
 Vote.create(user_id: 1, topic_id: 4, chosen_option: 2, age: 20, sex: 'male')
 topic = Topic.find(4)
 topic.update(voted_num: 1)
@@ -75,9 +75,6 @@ Vote.create(user_id: 4, topic_id: 8, chosen_option: 1, age: 20, sex: 'female')
 topic = Topic.find(8)
 topic.update(voted_num: 4)
 
-
-
-
 Comment.create(user_id: 1, text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
                topic_id: 1)
 Comment.create(user_id: 2, parent_id: 1, text: 'わかる。聖様が好き', topic_id: 1)
@@ -90,7 +87,3 @@ Like.create(user_id: 1, comment_id: 4)
 Like.create(user_id: 2, comment_id: 3)
 Like.create(user_id: 3, comment_id: 3)
 Like.create(user_id: 4, comment_id: 3)
-
-
-
-
