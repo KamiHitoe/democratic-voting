@@ -27,6 +27,8 @@
   - [Rubocop Configuration Files for Rails](https://prabinpoudel.com.np/articles/rubocop-configuration-files-for-rails/)
 - Cookies
   - [Are You Using Cookies? Then This Ultimate Guide Is For You](https://html.com/resources/cookies-ultimate-guide/)
+- Twitter API
+  - [ポートフォリオにTwitterAPIを使ってツイートする機能を実装する（アカウント申請した後の流れ）](https://qiita.com/naota7118/items/b3d50d9719e2dcb63e7c)
 
 
 ## 開発log

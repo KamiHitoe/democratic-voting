@@ -13,7 +13,8 @@ resource "aws_db_instance" "democratic-db" {
   db_subnet_group_name   = aws_db_subnet_group.democratic-rds-subnet-group.name
   vpc_security_group_ids = [aws_security_group.democratic-rds-sg.id]
   # parameter_group_name   = aws_db_parameter_group.education.name
-  publicly_accessible = true # prod => false
+  # publicly_accessible = true # prod => false
+  publicly_accessible = false
   skip_final_snapshot = true
   # Postgres Port
   port                = 5432

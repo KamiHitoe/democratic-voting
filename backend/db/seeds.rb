@@ -58,6 +58,25 @@ Topic.create(user_id: 3, category_id: 2, title: '好きな少女漫画の系統'
 Vote.create(user_id: 3, topic_id: 6, chosen_option: 3, age: 10, sex: 'female')
 topic = Topic.find(6)
 topic.update(voted_num: 1)
+Topic.create(user_id: 4, category_id: 2, title: '好きなVtuber', description: '皆さんの好きなVtuberを教えてください',
+             option_1: 'Gawr Gura', option_2: '桐生ココ', option_3: '月ノ美兎', option_4: 'キズナアイ',
+             img_path: 'https://images.microcms-assets.io/assets/08e9ffa2c9d94cf88900071dfa1879e9/bea0bf53b6eb46f79bb54c65a01bfadf/liver-cropped_Mito_Tsukino.png?w=657')
+Vote.create(user_id: 1, topic_id: 7, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 7, chosen_option: 3, age: 30, sex: 'male')
+topic = Topic.find(7)
+topic.update(voted_num: 2)
+Topic.create(user_id: 5, category_id: 15, title: 'コロナワクチン打ちましたか？', description: '皆さんは3回目のワクチンをもう摂取しましたか？',
+             option_1: 'はい', option_2: 'いいえ',
+             img_path: 'https://www.city.akashi.lg.jp/kansentaisaku/wakutin/images/3kaime.png')
+Vote.create(user_id: 1, topic_id: 8, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 8, chosen_option: 1, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 8, chosen_option: 2, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 8, chosen_option: 1, age: 20, sex: 'female')
+topic = Topic.find(8)
+topic.update(voted_num: 4)
+
+
+
 
 Comment.create(user_id: 1, text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう',
                topic_id: 1)

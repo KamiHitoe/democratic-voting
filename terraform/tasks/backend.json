@@ -1,7 +1,7 @@
 [
   {
     "name": "democratic-backend-container",
-    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:v0.0.3",
+    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:bcbe4c292ab026a8337f1b40b4866275b9fd06e4",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",

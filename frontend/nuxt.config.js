@@ -82,7 +82,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === "production"
-        ? "https://www.miyukimiyuki.com/v1"
+        ? "https://www.democratic-voting.com/v1"
         : "http://localhost:3000/v1",
   },
 
