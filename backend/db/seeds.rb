@@ -110,15 +110,23 @@ Vote.create(user_id: 3, topic_id: 12, chosen_option: 2, age: 10, sex: 'female')
 Vote.create(user_id: 4, topic_id: 12, chosen_option: 2, age: 20, sex: 'female')
 topic = Topic.find(12)
 topic.update(voted_num: 4)
-Topic.create(user_id: 1, category_id: 10, title: '好きな音楽のジャンルは何ですか？', description: '最近は日本人でもJ-POP以外を聞いてる人は多いと思うので質問です',
+Topic.create(user_id: 1, category_id: 10, title: '好きな音楽のジャンルは何ですか？', description: '最近は日本人でもJ-POP以外を聞いてる人は多いと思うので私と同じ20代の人に質問です',
              option_1: 'J-POP', option_2: 'ロック', option_3: 'サブカル系', option_4: 'その他',
-             img_path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGyA8ZoKw88EBgm0P1iiskMvIJJmthSe7ukr-IwrNW0zZDqJVDYvPN7zhyWFVTXEmyF5g&usqp=CAU')
+             img_path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGyA8ZoKw88EBgm0P1iiskMvIJJmthSe7ukr-IwrNW0zZDqJVDYvPN7zhyWFVTXEmyF5g&usqp=CAU',
+             age: 20)
 Vote.create(user_id: 1, topic_id: 13, chosen_option: 1, age: 20, sex: 'male')
-Vote.create(user_id: 2, topic_id: 13, chosen_option: 2, age: 30, sex: 'male')
-Vote.create(user_id: 3, topic_id: 13, chosen_option: 3, age: 10, sex: 'female')
 Vote.create(user_id: 4, topic_id: 13, chosen_option: 4, age: 20, sex: 'female')
 topic = Topic.find(13)
-topic.update(voted_num: 4)
+topic.update(voted_num: 2)
+Topic.create(user_id: 1, category_id: 10, title: '脱門してますか？', description: '脱毛サロンに通おうか悩んでいるので質問です',
+             option_1: 'はい', option_2: 'いいえ',
+             img_path: 'https://imgbp.hotp.jp/CSP/IMG_SRC_K/13/49/C021211349/C021211349_419-314.jpg',
+             sex: 'female')
+        Vote.create(user_id: 3, topic_id: 14, chosen_option: 1, age: 10, sex: 'female')
+        Vote.create(user_id: 4, topic_id: 14, chosen_option: 1, age: 20, sex: 'female')
+        Vote.create(user_id: 5, topic_id: 14, chosen_option: 2, age: 30, sex: 'female')
+topic = Topic.find(14)
+topic.update(voted_num: 3)
 
 
 
