@@ -92,6 +92,24 @@ Vote.create(user_id: 3, topic_id: 10, chosen_option: 3, age: 10, sex: 'female')
 Vote.create(user_id: 4, topic_id: 10, chosen_option: 4, age: 20, sex: 'female')
 topic = Topic.find(10)
 topic.update(voted_num: 4)
+Topic.create(user_id: 1, category_id: 8, title: '何かしらの投資をやっていますか？', description: '株式でも不動産でもいいので、皆さんは何か投資をやっていますか？',
+             option_1: 'はい', option_2: 'いいえ',
+             img_path: 'https://booklive.jp/bkmr/wp-content/uploads/2015/12/equity-investment-comic-1.jpg')
+Vote.create(user_id: 1, topic_id: 11, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 11, chosen_option: 1, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 11, chosen_option: 1, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 11, chosen_option: 2, age: 20, sex: 'female')
+topic = Topic.find(11)
+topic.update(voted_num: 4)
+Topic.create(user_id: 1, category_id: 9, title: 'これと言った趣味がない人', description: '私はYoutube視聴や睡眠以外のこれと言った趣味がありません。でも、案外私と同じような人って多いと思うんです',
+             option_1: 'これと言った趣味がない', option_2: '打ち込んでいる趣味がある',
+             img_path: 'https://kinarino.k-img.com/system/press_images/001/313/474/1fb90657328052a72f37b1451971606c7ee6191c.jpg?1539448905')
+Vote.create(user_id: 1, topic_id: 12, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 12, chosen_option: 1, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 12, chosen_option: 2, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 12, chosen_option: 2, age: 20, sex: 'female')
+topic = Topic.find(12)
+topic.update(voted_num: 4)
 
 
 
