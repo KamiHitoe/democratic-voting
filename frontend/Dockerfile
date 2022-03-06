@@ -30,8 +30,8 @@ ADD . /app
 RUN yarn build
 
 ENV NUXT_HOST=0.0.0.0
-EXPOSE 8080
-# EXPOSE 80
+# EXPOSE 8080
+EXPOSE 80
 
 # start prod with host specified
 # CMD ["yarn", "start", "-H", "0.0.0.0"]
