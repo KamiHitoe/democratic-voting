@@ -49,7 +49,7 @@ resource "aws_lb_listener" "democratic-https-listener" {
   port = "443"
   protocol = "HTTPS"
   # ACM(SSL証明書)の関連付け
-  certificate_arn = "arn:aws:acm:ap-northeast-1:716145811673:certificate/ce9779f5-4a3f-47d9-8bf7-217db83aa108"
+  certificate_arn = "arn:aws:acm:ap-northeast-1:716145811673:certificate/3ab6b5c9-3950-4924-9bb5-73b54287edd1"
 
   default_action {
     target_group_arn = aws_lb_target_group.democratic-frontend-alb-tg.arn

@@ -133,8 +133,26 @@ Topic.create(user_id: 1, category_id: 15, title: '皆さんどの程度お酒を
         Vote.create(user_id: 3, topic_id: 15, chosen_option: 1, age: 10, sex: 'female')
         Vote.create(user_id: 4, topic_id: 15, chosen_option: 2, age: 20, sex: 'female')
         Vote.create(user_id: 5, topic_id: 15, chosen_option: 4, age: 30, sex: 'female')
-topic = Topic.find(14)
+topic = Topic.find(15)
 topic.update(voted_num: 3)
+Topic.create(user_id: 1, category_id: 16, title: '子どもは何人欲しいですか？', description: '少子化の世の中ですが、皆さんは子どもは何人欲しいですか？',
+             option_1: '0人', option_2: '1人', option_3: '2人', option_4: '3人以上',
+             img_path: 'https://public.potaufeu.asahi.com/2b91-p/picture/22484021/9d6aa9fdc47b29b0cacc7845bdb41c41_640px.jpg')
+             Vote.create(user_id: 1, topic_id: 16, chosen_option: 1, age: 20, sex: 'male')
+             Vote.create(user_id: 2, topic_id: 16, chosen_option: 1, age: 30, sex: 'male')
+             Vote.create(user_id: 3, topic_id: 16, chosen_option: 2, age: 10, sex: 'female')
+             Vote.create(user_id: 4, topic_id: 16, chosen_option: 2, age: 20, sex: 'female')
+topic = Topic.find(16)
+topic.update(voted_num: 4)
+Topic.create(user_id: 1, category_id: 17, title: 'ウクライナからの移民を受け入れることについてどう思いますか？', description: '今一番話題のネタについて皆さんの意見を聞かせてください',
+             option_1: '賛成', option_2: '反対',
+             img_path: 'https://newsatcl-pctr.c.yimg.jp/r/iwiz-amd/20220216-00010000-socra-000-1-view.jpg?pri=l&w=640&h=540&exp=10800')
+             Vote.create(user_id: 1, topic_id: 17, chosen_option: 1, age: 20, sex: 'male')
+             Vote.create(user_id: 2, topic_id: 17, chosen_option: 1, age: 30, sex: 'male')
+             Vote.create(user_id: 3, topic_id: 17, chosen_option: 2, age: 10, sex: 'female')
+             Vote.create(user_id: 4, topic_id: 17, chosen_option: 2, age: 20, sex: 'female')
+topic = Topic.find(17)
+topic.update(voted_num: 4)
 
 
 

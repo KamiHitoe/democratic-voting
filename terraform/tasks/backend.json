@@ -28,10 +28,6 @@
         "value": "postgres"
       },
       {
-        "name": "POSTGRES_PASSWORD",
-        "value": "postpass"
-      },
-      {
         "name": "POSTGRES_HOST",
         "value": "democratic-db.ckfmpkhqnxbu.ap-northeast-1.rds.amazonaws.com"
       }
