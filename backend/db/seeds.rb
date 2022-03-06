@@ -127,6 +127,14 @@ Topic.create(user_id: 1, category_id: 11, title: '脱門してますか？', des
         Vote.create(user_id: 5, topic_id: 14, chosen_option: 2, age: 30, sex: 'female')
 topic = Topic.find(14)
 topic.update(voted_num: 3)
+Topic.create(user_id: 1, category_id: 15, title: '皆さんどの程度お酒を飲んでますか？', description: '二極化しそうなお題ですが投降させてもらいました',
+             option_1: '毎日', option_2: '一週間に数回', option_3: '月に数回', option_4: '月に数回以下',
+             img_path: 'https://img1.kakaku.k-img.com/images/maga/15290/pixta_54452015_M.jpg')
+        Vote.create(user_id: 3, topic_id: 15, chosen_option: 1, age: 10, sex: 'female')
+        Vote.create(user_id: 4, topic_id: 15, chosen_option: 2, age: 20, sex: 'female')
+        Vote.create(user_id: 5, topic_id: 15, chosen_option: 4, age: 30, sex: 'female')
+topic = Topic.find(14)
+topic.update(voted_num: 3)
 
 
 
