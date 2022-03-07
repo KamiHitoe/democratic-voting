@@ -80,11 +80,14 @@ export default Vue.extend({
       console.log(this.topic);
     },
     async getRepliedComments() {
-      const res = await this.$axios.get(
+      const resParent = await this.$axios.get(
+        `/topics/${this.topic_id}/comments/${this.comment_id}`
+      );
+      const resReply = await this.$axios.get(
         `/comments/${this.topic_id}/${this.comment_id}`
       );
-      this.commentList = res.data;
-      console.log(res.data);
+      this.commentList = resReply.data;
+      this.commentList.unshift(resParent.data);
     },
   },
 });
