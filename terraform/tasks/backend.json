@@ -1,7 +1,7 @@
 [
   {
     "name": "democratic-backend-container",
-    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:d0b38f549a75e9129b018212e07d7f8620354639",
+    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:3ca2283eb4d4e9c8b7bb5d5fd7aa18c36a830dde",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
@@ -20,8 +20,8 @@
     "workingDirectory": "/app",
     "environment": [
       {
-        "name": "WORKDIR",
-        "value": "/app"
+        "name": "RAILS_ENV",
+        "value": "production"
       },
       {
         "name": "POSTGRES_USER",
@@ -30,6 +30,16 @@
       {
         "name": "POSTGRES_HOST",
         "value": "democratic-db.ckfmpkhqnxbu.ap-northeast-1.rds.amazonaws.com"
+      }
+    ],
+    "secrets": [
+      {
+        "name": "SECRET_KEY_BASE",
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key_base-zS7Nos"
+      },
+      {
+        "name": "POSTGRES_PASSWORD",
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:postgres_password-nSazRr"
       }
     ]
   }

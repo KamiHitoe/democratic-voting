@@ -89,9 +89,8 @@ Topic.create(user_id: 1, category_id: 5, title: '皆さんの初体験はいつ�
 Vote.create(user_id: 1, topic_id: 10, chosen_option: 1, age: 20, sex: 'male')
 Vote.create(user_id: 2, topic_id: 10, chosen_option: 2, age: 30, sex: 'male')
 Vote.create(user_id: 3, topic_id: 10, chosen_option: 3, age: 10, sex: 'female')
-Vote.create(user_id: 4, topic_id: 10, chosen_option: 4, age: 20, sex: 'female')
 topic = Topic.find(10)
-topic.update(voted_num: 4)
+topic.update(voted_num: 3)
 Topic.create(user_id: 1, category_id: 8, title: '何かしらの投資をやっていますか？', description: '株式でも不動産でもいいので、皆さんは何か投資をやっていますか？',
              option_1: 'はい', option_2: 'いいえ',
              img_path: 'https://booklive.jp/bkmr/wp-content/uploads/2015/12/equity-investment-comic-1.jpg')

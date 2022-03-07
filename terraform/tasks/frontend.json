@@ -1,7 +1,7 @@
 [
   {
     "name": "democratic-frontend-container",
-    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-frontend:d0b38f549a75e9129b018212e07d7f8620354639",
+    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-frontend:v0.0.6",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
@@ -20,8 +20,8 @@
     "workingDirectory": "/app",
     "environment": [
       {
-        "name": "WORKDIR",
-        "value": "/app"
+        "name": "NODE_ENV",
+        "value": "production"
       }
     ]
   }
