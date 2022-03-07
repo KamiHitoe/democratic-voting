@@ -149,6 +149,7 @@ export default Vue.extend({
   methods: {
     async submitTopics() {
       await this.s3upload();
+      await setTimeout(() => console.log('wait'), 1000);
       const topicsForm: any = document.getElementById("topics-form");
       const topicsInputs: any = topicsForm.elements;
       for (const e of topicsInputs) {
