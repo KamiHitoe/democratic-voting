@@ -164,8 +164,8 @@ workflows:
       - aws-ecs/deploy-service-update:
           # family: democratic-frontend-task
           family: td-frontend
-          # cluster-name: democratic-ecs-cluster
-          cluster-name: test-cluster
+          cluster-name: democratic-ecs-cluster
+          # cluster-name: test-cluster
           service-name: democratic-frontend-service
           container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
           requires:
