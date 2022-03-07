@@ -98,9 +98,7 @@ jobs:
   build-and-push-image-frontend:
     machine:
       image: ubuntu-2004:202010-01
-    environment:
-      ACCESS_KEY_ID: AKIA2NPM54DMQQADPEVZ
-      SECRET_ACCESS_KEY: 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
+    # environment: failed
     steps:
       - checkout
       - aws-ecr/build-and-push-image:
@@ -146,13 +144,13 @@ workflows:
               only: master
 
       # push frontend-docker-image to ECR
-      - build-and-push-image-frontend:
-          requires:
-            - test-frontend
-            - test-backend
-          filters:
-            branches:
-              only: master
+      # - build-and-push-image-frontend:
+      #     requires:
+      #       - test-frontend
+      #       - test-backend
+      #     filters:
+      #       branches:
+      #         only: master
       - build-and-push-image-backend:
           requires:
             - test-backend
@@ -161,19 +159,19 @@ workflows:
               only: master
 
       # deploy frontend image to ECS Fargate
-      - aws-ecs/deploy-service-update:
-          # family: democratic-frontend-task
-          family: td-frontend
-          cluster-name: democratic-ecs-cluster
-          # cluster-name: test-cluster
-          service-name: democratic-frontend-service
-          container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
-          requires:
-            - build-and-push-image-frontend
-            - build-and-push-image-backend
-          filters:
-            branches:
-              only: master
+      # - aws-ecs/deploy-service-update:
+      #     # family: democratic-frontend-task
+      #     family: td-frontend
+      #     cluster-name: democratic-ecs-cluster
+      #     # cluster-name: test-cluster
+      #     service-name: democratic-frontend-service
+      #     container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
+      #     requires:
+      #       - build-and-push-image-frontend
+      #       - build-and-push-image-backend
+      #     filters:
+      #       branches:
+      #         only: master
       - aws-ecs/deploy-service-update:
           # family: democratic-backend-task
           family: td-backend
