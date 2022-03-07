@@ -2,45 +2,33 @@
   <section v-if="user_existed === false">
     <h4 class="subtitle">ユーザー情報を登録します</h4>
     <form id="user-form" action="#" @submit.prevent="submitUser">
-      <v-container>
-        <!-- <v-text-field
-          v-model="username"
-          label="ユーザーネーム"
-          outlined
-          dense
-          color="amber"
-          type="text"
-          maxlength="100"
-          required
-        ></v-text-field> -->
+      <div class="grid-container">
 
-        <v-row>
-          <v-col cols="3">
-            <label for="sex">性別</label>
-            <select id="sex" v-model="sex">
-              <option class="hidden" value="">性別</option>
-              <option v-for="sex in sexItems" :value="sex.value">
-                {{ sex.item }}
-              </option>
-            </select>
-          </v-col>
-          <v-col cols="3">
-            <label for="age">年代</label>
-            <select id="age" v-model="age">
-              <option class="hidden" value="">年代</option>
-              <option v-for="age in ageItems" :value="age.value">
-                {{ age.item }}
-              </option>
-            </select>
-          </v-col>
-        </v-row>
+        <div class="grid-item">
+          <label for="sex">性別</label>
+          <select id="sex" v-model="sex">
+            <option class="hidden" value="">性別</option>
+            <option v-for="sex in sexItems" :value="sex.value">
+              {{ sex.item }}
+            </option>
+          </select>
+        </div>
+        <div class="grid-item">
+          <label for="age">年代</label>
+          <select id="age" v-model="age">
+            <option class="hidden" value="">年代</option>
+            <option v-for="age in ageItems" :value="age.value">
+              {{ age.item }}
+            </option>
+          </select>
+        </div>
 
+      </div>
         <p class="attention">※性別・年代を登録すると該当する投稿に投票・コメントすることができます</p>
 
         <v-btn class="submit-btn" color="amber" dark type="submit">
           ユーザー情報を登録する
         </v-btn>
-      </v-container>
     </form>
   </section>
   <p v-else>ユーザー情報のご登録ありがとうございました</p>
@@ -52,6 +40,7 @@ import mixins from "vue-typed-mixins";
 import getUser from "@/mixins/getUser";
 
 export default mixins(getUser).extend({
+// export default Vue.extend({
   mixins: [
     getUser,
   ],
@@ -111,5 +100,15 @@ select {
 label {
   color: $gray;
   float: left;
+}
+@media (min-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 30% 30%;
+  }
+}
+.grid-item {
+  max-width: 200px;
+  margin: 1rem 0;
 }
 </style>
