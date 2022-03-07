@@ -2,124 +2,110 @@
   <section>
     <h4 class="subtitle">気になることを聞いてみよう！</h4>
     <form id="topics-form" action="#" @submit.prevent="submitTopics">
-      <v-container>
+      <v-text-field
+        v-model="title"
+        label="タイトル"
+        outlined
+        dense
+        color="amber"
+        type="text"
+        maxlength="100"
+        required
+      ></v-text-field>
+
+      <div class="grid-container-category">
+        <div class="grid-item">
+          <label for="category">カテゴリー</label>
+          <select id="category" v-model="category_id" required>
+            <option class="hidden" value="">カテゴリー</option>
+            <option v-for="category in categoryList" :value="category.id">
+              {{ category.category }}
+            </option>
+          </select>
+        </div>
+        <div class="grid-item">
+          <label for="sex">性別の特定</label>
+          <select id="sex" v-model="sex">
+            <option class="hidden" value="">性別の特定</option>
+            <option v-for="sex in sexItems" :value="sex.value">
+              {{ sex.item }}
+            </option>
+          </select>
+        </div>
+        <div class="grid-item">
+          <label for="age">年代の特定</label>
+          <select id="age" v-model="age">
+            <option class="hidden" value="">年代の特定</option>
+            <option v-for="age in ageItems" :value="age.value">
+              {{ age.item }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-container-description">
+        <v-file-input
+          color="amber"
+          label="画像を選択"
+          prepend-icon="mdi-camera"
+          id="fileUpload"
+        ></v-file-input>
+        <v-textarea
+          v-model="description"
+          class=""
+          auto-grow
+          color="amber"
+          label="内容説明"
+          rows="5"
+          max-length="500"
+          required
+        ></v-textarea>
+      </div>
+
+      <div class="grid-container-option">
         <v-text-field
-          v-model="title"
-          label="タイトル"
+          v-model="option_1"
+          label="候補１"
           outlined
           dense
           color="amber"
           type="text"
-          maxlength="100"
+          max-length="100"
           required
         ></v-text-field>
+        <v-text-field
+          v-model="option_2"
+          label="候補２"
+          outlined
+          dense
+          color="amber"
+          type="text"
+          max-length="100"
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="option_3"
+          label="候補３"
+          outlined
+          dense
+          color="amber"
+          type="text"
+          max-length="100"
+        ></v-text-field>
+        <v-text-field
+          v-model="option_4"
+          label="候補４"
+          outlined
+          dense
+          color="amber"
+          type="text"
+          max-length="100"
+        ></v-text-field>
+      </div>
 
-        <v-row>
-          <v-col cols="3">
-            <label for="category">カテゴリー</label>
-            <select id="category" v-model="category_id" required>
-              <option class="hidden" value="">カテゴリー</option>
-              <option v-for="category in categoryList" :value="category.id">
-                {{ category.category }}
-              </option>
-            </select>
-          </v-col>
-          <v-col cols="3">
-            <label for="sex">性別の特定</label>
-            <select id="sex" v-model="sex">
-              <option class="hidden" value="">性別の特定</option>
-              <option v-for="sex in sexItems" :value="sex.value">
-                {{ sex.item }}
-              </option>
-            </select>
-          </v-col>
-          <v-col cols="3">
-            <label for="age">年代の特定</label>
-            <select id="age" v-model="age">
-              <option class="hidden" value="">年代の特定</option>
-              <option v-for="age in ageItems" :value="age.value">
-                {{ age.item }}
-              </option>
-            </select>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col>
-            <v-file-input
-              color="amber"
-              label="画像を選択"
-              prepend-icon="mdi-camera"
-              id="fileUpload"
-            ></v-file-input>
-          </v-col>
-          <v-col>
-            <v-textarea
-              v-model="description"
-              class=""
-              auto-grow
-              color="amber"
-              label="内容説明"
-              rows="5"
-              max-length="500"
-              required
-            ></v-textarea>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="3">
-            <v-text-field
-              v-model="option_1"
-              label="候補１"
-              outlined
-              dense
-              color="amber"
-              type="text"
-              max-length="100"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="3">
-            <v-text-field
-              v-model="option_2"
-              label="候補２"
-              outlined
-              dense
-              color="amber"
-              type="text"
-              max-length="100"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="3">
-            <v-text-field
-              v-model="option_3"
-              label="候補３"
-              outlined
-              dense
-              color="amber"
-              type="text"
-              max-length="100"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="3">
-            <v-text-field
-              v-model="option_4"
-              label="候補４"
-              outlined
-              dense
-              color="amber"
-              type="text"
-              max-length="100"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
-        <v-btn class="submit-btn" color="amber" dark type="submit">
-          お題を作成する
-        </v-btn>
-      </v-container>
+      <v-btn class="submit-btn" color="amber" dark type="submit">
+        お題を作成する
+      </v-btn>
     </form>
   </section>
 </template>
@@ -241,12 +227,36 @@ section {
     @extend %subtitle;
   }
 }
-
 select {
   @extend %select-validation;
+}
+form {
+  margin-top: 1rem;
 }
 label {
   color: $gray;
   float: left;
+}
+@media (min-width: 600px) {
+  .grid-container-category {
+    display:grid;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 2rem;
+  }
+  .grid-container-description {
+    display:grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 5rem;
+  }
+  .grid-container-option {
+    display:grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .grid-item {
+    margin: 1rem 0;
+  }
 }
 </style>
