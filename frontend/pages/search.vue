@@ -89,17 +89,17 @@ export default Vue.extend({
   data() {
     return {
       sexItems: [
-        {text: "なし", value: ""},
-        {text: "男性", value: "male"},
-        {text: "女性", value: "female"},
+        {text: "なし", value: null},
+        {text: "男性限定", value: "male"},
+        {text: "女性限定", value: "female"},
       ] as object[],
       ageItems: [
-        {text: "なし", value: 0},
-        {text: "10代", value: 10},
-        {text: "20代", value: 20},
-        {text: "30代", value: 30},
-        {text: "40代", value: 40},
-        {text: "50代", value: 50},
+        {text: "なし", value: null},
+        {text: "10代限定", value: 10},
+        {text: "20代限定", value: 20},
+        {text: "30代限定", value: 30},
+        {text: "40代限定", value: 40},
+        {text: "50代限定", value: 50},
       ] as object[],
       sortItems: [
         {text: "新着順", value: "new"},

@@ -1,14 +1,18 @@
 # Democratic Voting
 
-URL: https://democratic-voting.com/
+URL: https://www.democratic-voting.com/
 
 ## アプリ概要
 
-「すべての投票を、民主化したい！」
+**「すべての投票を、民主化したい！」**
+
 という思いからこの投票アプリを制作しました。
+
 きっかけはTwitter等の投票機能を使った時に、フォロワーが少ない人(信用経済弱者)は多くの人に投票してもらいたくてもシステム的に無理なことに違和感を覚えたからです。
+
 聞きたいこと、調査したいことはもっと気軽に、誰にでもできたって良いじゃないか。
 そうして生まれたのがこのアプリです。
+
 ですので、このアプリは匿名性で誰でも好きにお題の投稿・投票ができる一方で、性別や年代を入力してもらうことで調査結果はより情報量の多いものにできるよう工夫しました。
 
 ![gif](https://github.com/KamiHitoe/img/blob/master/democratic-voting/democratic-voting.gif)
