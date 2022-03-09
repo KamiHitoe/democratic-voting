@@ -35,11 +35,11 @@
     "secrets": [
       {
         "name": "SECRET_KEY_BASE",
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key_base-zS7Nos"
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key-PxpA32"
       },
       {
         "name": "POSTGRES_PASSWORD",
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:postgres_password-nSazRr"
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:pg_password-lBSJG4"
       }
     ]
   }

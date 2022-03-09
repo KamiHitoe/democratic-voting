@@ -116,7 +116,7 @@ export default Vue.extend({
       period: "" as string,
       topicList: [] as Topic[],
       page: 1 as number,
-      limit: 10 as number,
+      limit: 30 as number,
     };
   },
   created() {

@@ -64,7 +64,7 @@ export default Vue.extend({
       } as Topic,
       commentList: [] as Comment[],
       page: 1 as number,
-      limit: 10 as number,
+      limit: 50 as number,
     };
   },
   async created() {
