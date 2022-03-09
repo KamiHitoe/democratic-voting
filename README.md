@@ -102,10 +102,4 @@ URL: https://democratic-voting.com/
   - [ポートフォリオにTwitterAPIを使ってツイートする機能を実装する（アカウント申請した後の流れ）](https://qiita.com/naota7118/items/b3d50d9719e2dcb63e7c)
 
 
-## 開発log
-
-- infra
-  - ECSをprivate subnetにしようとするとECRからimageをpullするためにもNAT gatewayが必要
-  - ELBのListenersからPath based routingが設定可能. health checkのpathは正常にルーティングされるPathを指定する必要あり
-
 
