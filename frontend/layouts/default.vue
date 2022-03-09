@@ -67,12 +67,13 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import firebase from "@/plugins/firebase"
 import SearchBar from '@/components/default/SearchBar.vue'
 import Modal from "@/components/default/Modal.vue"
 
-export default {
+export default Vue.extend({
   name: "DefaultLayout",
   components: {
     SearchBar,
@@ -88,7 +89,7 @@ export default {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     },
-    authAction(i) {
+    authAction(i: number) {
       if (i === 0) {
         // login
         window.location.replace("/login");
@@ -96,17 +97,34 @@ export default {
         window.location.replace("/user-info")
       } else {
         // logout
-        const agreement = confirm("ログアウトしてよろしいですか？");
-        if (agreement) {
-          firebase.auth().signOut()
-        }
+        // login済か確認
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            const uid: string = user.uid;
+            this.$axios.get(`/users?uid=${uid}`)
+            .then((res) => {
+              if (res.data) {
+                const agreement: boolean = confirm("ログアウトしてよろしいですか？");
+                if (agreement) {
+                  firebase.auth().signOut()
+                }
+              } else {
+                // uid未登録の場合
+                window.alert('まだログインしていません')
+              }
+            })
+          } else {
+            // firebase Authに登録されていない場合
+            window.alert('まだログインしていません')
+          }
+        })
       }
     },
     async updateShowModal() {
       await this.$store.commit('updateShowModal', false)
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

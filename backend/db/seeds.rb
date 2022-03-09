@@ -121,37 +121,119 @@ Topic.create(user_id: 1, category_id: 11, title: '脱毛してますか？', des
              option_1: 'はい', option_2: 'いいえ',
              img_path: 'https://imgbp.hotp.jp/CSP/IMG_SRC_K/13/49/C021211349/C021211349_419-314.jpg',
              sex: 'female')
-        Vote.create(user_id: 3, topic_id: 14, chosen_option: 1, age: 10, sex: 'female')
-        Vote.create(user_id: 4, topic_id: 14, chosen_option: 1, age: 20, sex: 'female')
-        Vote.create(user_id: 5, topic_id: 14, chosen_option: 2, age: 30, sex: 'female')
+Vote.create(user_id: 3, topic_id: 14, chosen_option: 1, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 14, chosen_option: 1, age: 20, sex: 'female')
+Vote.create(user_id: 5, topic_id: 14, chosen_option: 2, age: 30, sex: 'female')
 topic = Topic.find(14)
 topic.update(voted_num: 3)
 Topic.create(user_id: 1, category_id: 15, title: '皆さんどの程度お酒を飲んでますか？', description: '二極化しそうなお題ですが投降させてもらいました',
              option_1: '毎日', option_2: '一週間に数回', option_3: '月に数回', option_4: '月に数回以下',
              img_path: 'https://img1.kakaku.k-img.com/images/maga/15290/pixta_54452015_M.jpg')
-        Vote.create(user_id: 3, topic_id: 15, chosen_option: 1, age: 10, sex: 'female')
-        Vote.create(user_id: 4, topic_id: 15, chosen_option: 2, age: 20, sex: 'female')
-        Vote.create(user_id: 5, topic_id: 15, chosen_option: 4, age: 30, sex: 'female')
+Vote.create(user_id: 3, topic_id: 15, chosen_option: 1, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 15, chosen_option: 2, age: 20, sex: 'female')
+Vote.create(user_id: 5, topic_id: 15, chosen_option: 4, age: 30, sex: 'female')
 topic = Topic.find(15)
 topic.update(voted_num: 3)
 Topic.create(user_id: 1, category_id: 16, title: '子どもは何人欲しいですか？', description: '少子化の世の中ですが、皆さんは子どもは何人欲しいですか？',
              option_1: '0人', option_2: '1人', option_3: '2人', option_4: '3人以上',
              img_path: 'https://public.potaufeu.asahi.com/2b91-p/picture/22484021/9d6aa9fdc47b29b0cacc7845bdb41c41_640px.jpg')
-             Vote.create(user_id: 1, topic_id: 16, chosen_option: 1, age: 20, sex: 'male')
-             Vote.create(user_id: 2, topic_id: 16, chosen_option: 1, age: 30, sex: 'male')
-             Vote.create(user_id: 3, topic_id: 16, chosen_option: 2, age: 10, sex: 'female')
-             Vote.create(user_id: 4, topic_id: 16, chosen_option: 2, age: 20, sex: 'female')
+Vote.create(user_id: 1, topic_id: 16, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 16, chosen_option: 1, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 16, chosen_option: 2, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 16, chosen_option: 2, age: 20, sex: 'female')
 topic = Topic.find(16)
 topic.update(voted_num: 4)
 Topic.create(user_id: 1, category_id: 17, title: 'ウクライナからの移民を受け入れることについてどう思いますか？', description: '今一番話題のネタについて皆さんの意見を聞かせてください',
              option_1: '賛成', option_2: '反対',
              img_path: 'https://newsatcl-pctr.c.yimg.jp/r/iwiz-amd/20220216-00010000-socra-000-1-view.jpg?pri=l&w=640&h=540&exp=10800')
-             Vote.create(user_id: 1, topic_id: 17, chosen_option: 1, age: 20, sex: 'male')
-             Vote.create(user_id: 2, topic_id: 17, chosen_option: 1, age: 30, sex: 'male')
-             Vote.create(user_id: 3, topic_id: 17, chosen_option: 2, age: 10, sex: 'female')
-             Vote.create(user_id: 4, topic_id: 17, chosen_option: 2, age: 20, sex: 'female')
+Vote.create(user_id: 1, topic_id: 17, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 17, chosen_option: 1, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 17, chosen_option: 2, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 17, chosen_option: 2, age: 20, sex: 'female')
 topic = Topic.find(17)
 topic.update(voted_num: 4)
+Topic.create(user_id: 1, category_id: 1, title: '結婚したいと思いますか？', description: '20代の人に質問です。日本経済も低迷していて未婚率も過去最高を記録する今、結婚したいと思っていますか？',
+             option_1: 'はい', option_2: 'いいえ',
+             img_path: 'https://images-na.ssl-images-amazon.com/images/I/413W4G870GL._SX318_BO1,204,203,200_.jpg',
+             age: 20)
+Vote.create(user_id: 1, topic_id: 18, chosen_option: 2, age: 20, sex: 'male')
+Vote.create(user_id: 4, topic_id: 18, chosen_option: 1, age: 20, sex: 'female')
+topic = Topic.find(18)
+topic.update(voted_num: 2)
+Topic.create(user_id: 1, category_id: 2, title: '好みの少年誌は何ですか？', description: '私はマガジンのラブコメが好きです',
+             option_1: 'ジャンプ', option_2: 'サンデー', option_3: 'マガジン', option_4: 'その他',
+             img_path: 'https://ogre.natalie.mu/media/pp/static/comic/kanokano/photo03.jpg?impolicy=pp_image')
+Vote.create(user_id: 1, topic_id: 19, chosen_option: 3, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 19, chosen_option: 4, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 19, chosen_option: 1, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 19, chosen_option: 1, age: 20, sex: 'female')
+Vote.create(user_id: 4, topic_id: 19, chosen_option: 2, age: 30, sex: 'female')
+topic = Topic.find(19)
+topic.update(voted_num: 5)
+Topic.create(user_id: 1, category_id: 3, title: '皆さんは仕事に何を求めますか？', description: '皆さんが仕事で一番大事だと思う要素を知りたいです',
+             option_1: '年収', option_2: 'やりがい', option_3: '労働環境', option_4: 'その他',
+             img_path: 'https://president.ismcdn.jp/mwimgs/7/c/450wm/img_7c784b1ad90740566390b815fe37dda22939964.jpg')
+Vote.create(user_id: 1, topic_id: 20, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 20, chosen_option: 2, age: 30, sex: 'male')
+Vote.create(user_id: 3, topic_id: 20, chosen_option: 3, age: 10, sex: 'female')
+Vote.create(user_id: 4, topic_id: 20, chosen_option: 2, age: 20, sex: 'female')
+Vote.create(user_id: 4, topic_id: 20, chosen_option: 4, age: 30, sex: 'female')
+topic = Topic.find(20)
+topic.update(voted_num: 5)
+Topic.create(user_id: 1, category_id: 4, title: '自分の顔にコンプレックスがある人', description: '私は自分の顔にコンプレックスがあり自信がもてません。皆さんはどうでしょうか？',
+             option_1: 'コンプレックスがある', option_2: 'コンプレックスはない',
+             img_path: 'https://d2oe4hwshyef6j.cloudfront.net/production/uploads/image/post_body_picture/image/327889/picture_mobile_b074b1ccc9a58c704027d14087d3be8c9b1f071e')
+Vote.create(user_id: 1, topic_id: 21, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 4, topic_id: 21, chosen_option: 2, age: 20, sex: 'female')
+Vote.create(user_id: 4, topic_id: 21, chosen_option: 1, age: 30, sex: 'female')
+topic = Topic.find(21)
+topic.update(voted_num: 3)
+Topic.create(user_id: 1, category_id: 5, title: '自分のイチモツに自信がある人', description: '日本人は海外の人に比べて短小だと言われていますが、自分のイチモツに自信がない人ばかりなのか調査したいです',
+             option_1: '自信がある', option_2: '自信がない',
+             img_path: 'https://asset.watch.impress.co.jp/img/ktw/docs/1147/210/2_m.jpg',
+             sex: 'male')
+Vote.create(user_id: 1, topic_id: 22, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 22, chosen_option: 2, age: 30, sex: 'male')
+topic = Topic.find(22)
+topic.update(voted_num: 2)
+Topic.create(user_id: 1, category_id: 6, title: '陰キャですか？　陽キャですか？', description: '私は陰キャです',
+             option_1: '陰キャ', option_2: '陽キャ',
+             img_path: 'https://zukan.pokemon.co.jp/zukan-api/up/images/index/f8617a1e47fbc5fc2b5a53cd5a5989df.png')
+Vote.create(user_id: 1, topic_id: 23, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 23, chosen_option: 2, age: 30, sex: 'male')
+Vote.create(user_id: 4, topic_id: 23, chosen_option: 1, age: 20, sex: 'female')
+topic = Topic.find(23)
+topic.update(voted_num: 3)
+Topic.create(user_id: 1, category_id: 7, title: 'はじめに学習したプログラミング言語は何ですか？', description: '私はPythonです！',
+             option_1: 'JavaScript', option_2: 'Ruby', option_3: 'Python', option_4: 'その他',
+             img_path: 'https://prtimes.jp/i/1348/1873/resize/d1348-1873-724362-2.png')
+Vote.create(user_id: 1, topic_id: 24, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 24, chosen_option: 2, age: 30, sex: 'male')
+Vote.create(user_id: 4, topic_id: 24, chosen_option: 3, age: 20, sex: 'female')
+topic = Topic.find(24)
+topic.update(voted_num: 3)
+Topic.create(user_id: 1, category_id: 8, title: '稼いだ分そのまま使ってる人ww', description: '私は20代ですが稼いだ給料をそのまま支出してますw',
+             option_1: '稼いだ分使ってる', option_2: '貯金してる', option_3: '投資してる',
+             img_path: 'https://meaning-book.com/blog-images/1570243627386566.jpg')
+Vote.create(user_id: 1, topic_id: 25, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 4, topic_id: 25, chosen_option: 2, age: 20, sex: 'female')
+topic = Topic.find(25)
+topic.update(voted_num: 2)
+Topic.create(user_id: 1, category_id: 9, title: '人には言えない趣味を持っている人', description: '私は自分の体毛を抜いて保存するのが趣味です',
+             option_1: '人に言えない趣味がある', option_2: '人に言えない趣味はない',
+             img_path: 'https://i0.wp.com/cocorolabo.com/wp-content/uploads/2019/10/20191101_01.jpeg?fit=1024%2C768&ssl=1')
+Vote.create(user_id: 1, topic_id: 26, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 4, topic_id: 26, chosen_option: 2, age: 20, sex: 'female')
+topic = Topic.find(26)
+topic.update(voted_num: 2)
+Topic.create(user_id: 1, category_id: 10, title: 'バンドのパート', description: '皆さんバンドでどのパートですか？',
+             option_1: 'ギター', option_2: 'ベース', option_3: 'ドラム', option_4: 'キーボード',
+             img_path: 'https://realsound.jp/wp-content/uploads/2020/09/20200929-beck.jpg')
+Vote.create(user_id: 1, topic_id: 27, chosen_option: 1, age: 20, sex: 'male')
+Vote.create(user_id: 2, topic_id: 27, chosen_option: 2, age: 30, sex: 'male')
+Vote.create(user_id: 4, topic_id: 27, chosen_option: 3, age: 20, sex: 'female')
+topic = Topic.find(27)
+topic.update(voted_num: 3)
 
 
 
@@ -162,6 +244,7 @@ Comment.create(user_id: 2, parent_id: 1, text: 'わかる。聖様が好き', to
 Comment.create(user_id: 3, text: 'ゆるゆりしか勝たん', topic_id: 1)
 Comment.create(user_id: 1, text: '白薔薇いいよね', topic_id: 1, parent_id: 2)
 Comment.create(user_id: 2, text: '私は乃梨子派～', topic_id: 1, parent_id: 2)
+Comment.create(user_id: 1, text: 'ドヒドイデww', topic_id: 23)
 
 Like.create(user_id: 1, comment_id: 1)
 Like.create(user_id: 1, comment_id: 4)

@@ -1,10 +1,7 @@
 <template>
-  <section>
-    <div>        
-      <input type="file" id="fileUpload">    
-    </div>    
+  <section>  
     <div> 
-      <button @click="s3upload">Submit</button>
+      <button @click="foo">foo</button>
     </div>
     <img src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/chika01.jpg">
 
@@ -13,13 +10,13 @@
 
 <script lang="ts">
 import Vue from "vue";
-import global from "@/mixins";
-import AWS from "aws-sdk";
+import mixins from "vue-typed-mixins";
 
 export default Vue.extend({
   mixins: [
-    global
+    // topicsPage
   ],
+  template: 'hey',
   data() {
     return {
     };

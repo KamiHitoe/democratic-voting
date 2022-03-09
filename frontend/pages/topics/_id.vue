@@ -73,7 +73,7 @@ export default mixins(getUser).extend({
       commentList: [] as Comment[],
       voted_status: false as Boolean,
       page: 1 as number,
-      limit: 3 as number,
+      limit: 10 as number,
     };
   },
   async created() {
