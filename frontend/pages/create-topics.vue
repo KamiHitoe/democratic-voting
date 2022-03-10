@@ -174,7 +174,7 @@ export default Vue.extend({
       window.location.replace("/");
     },
     s3upload() {
-      const bucketName = 'test-democratic-img';
+      const bucketName = 'democratic-image-s3';
       const region = 'ap-northeast-1';
 
       // const myCredentials = new AWS.CognitoIdentityCredentials({
