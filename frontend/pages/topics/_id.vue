@@ -3,7 +3,7 @@
     <TopicContents :topic="topic" :user="user" />
 
     <section class="comment-contents">
-      <h4 class="comment-subtitle">コメント</h4>
+      <h4 class="subtitle">コメント</h4>
       <v-divider></v-divider>
       <Comments
         v-for="(comment, i) in commentList.slice((page-1)*limit, page*limit)"
@@ -77,7 +77,8 @@ export default mixins(getUser).extend({
     };
   },
   async created() {
-    // await this.getUser();
+    await this.getUser();
+    await setTimeout(() => console.log('wait'), 1000);
     await this.getTopics();
     await this.getComments();
     await this.getVotedStatus();
@@ -117,9 +118,6 @@ export default mixins(getUser).extend({
 <style lang="scss" scoped>
 .subtitle {
   text-align: left;
-}
-.comment-subtitle {
-  color: $amber;
 }
 .comment-contents {
   margin-top: 2rem;

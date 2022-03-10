@@ -34,8 +34,7 @@
         item-color="amber"
         solo
         dense
-        background-color="amber lighten-4"
-        @change="getLimitedVote"
+        @change="voteAndChangeColor(1)"
       ></v-select>
       <v-select
         v-model="age"
@@ -44,8 +43,7 @@
         item-color="amber"
         solo
         dense
-        background-color="amber lighten-4"
-        @change="getLimitedVote"
+        @change="voteAndChangeColor(2)"
       ></v-select>
     </div>
 
@@ -116,8 +114,8 @@ export default {
       category: "",
       sexItems: [
         {text: "なし", value: ""},
-        {text: "男性", value: "male"},
-        {text: "女性", value: "female"},
+        {text: "男性", value: "male", backgroundColor: "amber", color: "amber"},
+        {text: "女性", value: "female", backgroundColor: "amber"},
       ],
       ageItems: [
         {text: "なし", value: 0},
@@ -249,7 +247,16 @@ export default {
         this.topic.option_4_num = 0
       }
       console.log(res.data)
-    }
+    },
+    changeOptionColor(i) {
+      const target = document.querySelectorAll('.v-input__slot')[i];
+      target.classList.add('amber');
+      target.classList.add('lighten-4');
+    },
+    voteAndChangeColor(i) {
+      this.getLimitedVote();
+      this.changeOptionColor(i);
+    },
   },
 };
 </script>
@@ -260,7 +267,7 @@ export default {
   text-align: left;
 }
 .change-color {
-  color: $amber;
+  color: $scarlet;
 }
 .plain-text {
   color: $gray;

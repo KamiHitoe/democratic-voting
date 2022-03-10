@@ -87,7 +87,7 @@ section {
   margin-bottom: 1rem;
 }
 .change-color {
-  color: $amber;
+  color: $scarlet;
 }
 .data-margin {
   margin-right: 1rem;

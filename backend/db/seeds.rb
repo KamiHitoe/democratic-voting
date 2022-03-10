@@ -83,14 +83,13 @@ Vote.create(user_id: 3, topic_id: 9, chosen_option: 3, age: 10, sex: 'female')
 Vote.create(user_id: 4, topic_id: 9, chosen_option: 4, age: 20, sex: 'female')
 topic = Topic.find(9)
 topic.update(voted_num: 4)
-Topic.create(user_id: 1, category_id: 5, title: '皆さんの初体験はいつですか？', description: '実際のところいつ頃なのかが気になります',
-             option_1: '中学生以下', option_2: '高校生', option_3: '大学生', option_4: 'それ以外',
-             img_path: 'https://cdn-prod.medicalnewstoday.com/content/images/articles/321/321428/couple-having-sex.jpg')
+Topic.create(user_id: 1, category_id: 5, title: '好きな文豪はいますか？', description: '私は三島由紀夫です',
+             option_1: 'いる', option_2: 'いない',
+             img_path: 'https://upload.wikimedia.org/wikipedia/commons/c/c5/Yukio_Mishima.jpg')
 Vote.create(user_id: 1, topic_id: 10, chosen_option: 1, age: 20, sex: 'male')
-Vote.create(user_id: 2, topic_id: 10, chosen_option: 2, age: 30, sex: 'male')
 Vote.create(user_id: 3, topic_id: 10, chosen_option: 3, age: 10, sex: 'female')
 topic = Topic.find(10)
-topic.update(voted_num: 3)
+topic.update(voted_num: 2)
 Topic.create(user_id: 1, category_id: 8, title: '何かしらの投資をやっていますか？', description: '株式でも不動産でもいいので、皆さんは何か投資をやっていますか？',
              option_1: 'はい', option_2: 'いいえ',
              img_path: 'https://booklive.jp/bkmr/wp-content/uploads/2015/12/equity-investment-comic-1.jpg')
@@ -188,10 +187,9 @@ Vote.create(user_id: 4, topic_id: 21, chosen_option: 2, age: 20, sex: 'female')
 Vote.create(user_id: 4, topic_id: 21, chosen_option: 1, age: 30, sex: 'female')
 topic = Topic.find(21)
 topic.update(voted_num: 3)
-Topic.create(user_id: 1, category_id: 5, title: '自分のイチモツに自信がある人', description: '日本人は海外の人に比べて短小だと言われていますが、自分のイチモツに自信がない人ばかりなのか調査したいです',
-             option_1: '自信がある', option_2: '自信がない',
-             img_path: 'https://asset.watch.impress.co.jp/img/ktw/docs/1147/210/2_m.jpg',
-             sex: 'male')
+Topic.create(user_id: 1, category_id: 5, title: '自分を不器用だと思う人', description: '私は不器用なので美術の成績が最低でした。皆さんは自分を器用だと思いますか？　それとも不器用だと思いますか？',
+             option_1: '器用だと思う', option_2: '不器用だと思う',
+             img_path: 'https://www.hakusensha.co.jp/wp_hakusensha/postimage/2016/09/9784592146988.jpg')
 Vote.create(user_id: 1, topic_id: 22, chosen_option: 1, age: 20, sex: 'male')
 Vote.create(user_id: 2, topic_id: 22, chosen_option: 2, age: 30, sex: 'male')
 topic = Topic.find(22)
@@ -301,8 +299,8 @@ Comment.create(user_id: 2, topic_id: 7, text: 'これは宗教戦争の予感w')
 Comment.create(user_id: 1, topic_id: 8, text: 'この間接種してきました～')
 Comment.create(user_id: 1, topic_id: 9, text: '恋人は二次元ですね')
 Comment.create(user_id: 2, topic_id: 9, text: '完全に同意', parent_id: 18)
-Comment.create(user_id: 1, topic_id: 10, text: '中学生以下で経験ある人って、世界観中世なのw')
-Comment.create(user_id: 2, topic_id: 10, text: '最近は未経験の平均年齢上がってそうね')
+Comment.create(user_id: 1, topic_id: 10, text: '人間失格')
+Comment.create(user_id: 2, topic_id: 10, text: '月が綺麗ですね')
 Comment.create(user_id: 1, topic_id: 11, text: '投信ってどうなん？')
 Comment.create(user_id: 1, topic_id: 12, text: 'まんま私の事で草')
 Comment.create(user_id: 1, topic_id: 13, text: 'サブカル系って何？')

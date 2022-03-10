@@ -1,7 +1,7 @@
 [
   {
     "name": "democratic-backend-container",
-    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:3ca2283eb4d4e9c8b7bb5d5fd7aa18c36a830dde",
+    "image": "716145811673.dkr.ecr.ap-northeast-1.amazonaws.com/test-backend:v0.1.2",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
@@ -35,11 +35,11 @@
     "secrets": [
       {
         "name": "SECRET_KEY_BASE",
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key-PxpA32"
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key-19j7ct"
       },
       {
         "name": "POSTGRES_PASSWORD",
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:pg_password-lBSJG4"
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:pg_password-wGhPaf"
       }
     ]
   }

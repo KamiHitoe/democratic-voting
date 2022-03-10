@@ -5,6 +5,7 @@
       <h4 v-else class="subtitle">キーワードかカテゴリーからお題を検索しよう！</h4>
       <v-divider></v-divider>
       <div class="grid-container">
+
         <v-select
           v-model="sort"
           :items="sortItems"
@@ -12,7 +13,7 @@
           item-color="amber"
           solo
           dense
-          background-color="amber lighten-4"
+          @change="changeOptionColor(1)"
         ></v-select>
         <v-select
           v-model="period"
@@ -21,7 +22,7 @@
           item-color="amber"
           solo
           dense
-          background-color="amber lighten-4"
+          @change="changeOptionColor(2)"
         ></v-select>
         <v-select
           v-model="sex"
@@ -30,7 +31,7 @@
           item-color="amber"
           solo
           dense
-          background-color="amber lighten-4"
+          @change="changeOptionColor(3)"
         ></v-select>
         <v-select
           v-model="age"
@@ -39,8 +40,10 @@
           item-color="amber"
           solo
           dense
-          background-color="amber lighten-4"
+          @change="changeOptionColor(4)"
         ></v-select>
+
+
       </div>
 
       <v-btn class="search-topics" color="amber" dark
@@ -88,28 +91,30 @@ export default Vue.extend({
   },
   data() {
     return {
-      sexItems: [
-        {text: "なし", value: null},
-        {text: "男性限定", value: "male"},
-        {text: "女性限定", value: "female"},
-      ] as object[],
-      ageItems: [
-        {text: "なし", value: null},
-        {text: "10代限定", value: 10},
-        {text: "20代限定", value: 20},
-        {text: "30代限定", value: 30},
-        {text: "40代限定", value: 40},
-        {text: "50代限定", value: 50},
-      ] as object[],
-      sortItems: [
-        {text: "新着順", value: "new"},
-        {text: "投票数順", value: "ranking"},
-      ] as object[],
-      periodItems: [
-        {text: "1年以内", value: "yearly"},
-        {text: "1ヶ月以内", value: "monthly"},
-        {text: "1週間以内", value: "weekly"},
-      ] as object[],
+        sexItems: [
+          {text: "なし", value: null, model: "sex"},
+          {text: "男性限定", value: "male", model: "sex"},
+          {text: "女性限定", value: "female", model: "sex"},
+        ] as object[],
+        ageItems: [
+          {text: "なし", value: null},
+          {text: "10代限定", value: 10},
+          {text: "20代限定", value: 20},
+          {text: "30代限定", value: 30},
+          {text: "40代限定", value: 40},
+          {text: "50代限定", value: 50},
+        ] as object[],
+        sortItems: [
+          {text: "新着順", value: "new"},
+          {text: "投票数順", value: "ranking"},
+        ] as object[],
+        periodItems: [
+          {text: "1年以内", value: "yearly"},
+          {text: "1ヶ月以内", value: "monthly"},
+          {text: "1週間以内", value: "weekly"},
+        ] as object[],
+      // modelList: ['sex', 'age', 'sort', 'period'],
+      // labelList: ['性別限定', '年代限定', '並び替え順', '検索期間'],
       sex: "" as string,
       age: 0 as number,
       sort: "" as string,
@@ -130,6 +135,7 @@ export default Vue.extend({
     async searchTopicsByQuery() {
       const res = await this.$axios.get(`/search?category_id=${this.$route.query.category_id}&sort=${this.sort}&period=${this.period}&sex=${this.sex}&age=${this.age}&page=${this.page-1}`)
       this.topicList = res.data;
+      console.log(this.sex, this.age, this.sort, this.period)
       console.log(res.data)
     },
     async searchTopicsByKeyword() {
@@ -148,14 +154,16 @@ export default Vue.extend({
       this.topicList = topicList;
       console.log(this.topicList)
     },
+    changeOptionColor(i: number) {
+      const target = document.querySelectorAll('.v-input__slot')[i];
+      target.classList.add('amber');
+      target.classList.add('lighten-4');
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
-.subtitle {
-  @extend %subtitle;
-}
 @media (min-width: 600px) {
   .grid-container {
     display: grid;
@@ -180,7 +188,6 @@ export default Vue.extend({
   padding: 1rem;
   background-color: #fff;
 }
-
 .search-topics {
   margin-bottom: 1rem;
 }

@@ -6,10 +6,10 @@
           <h1>みんなの投票箱</h1>
           <v-icon color="white" large>mdi-mailbox</v-icon>
         </nuxt-link>
-        <v-menu left bottom>
+        <v-menu class="menu">
           <template #activator="{ on, attrs }">
             <v-btn icon v-bind="attrs" v-on="on">
-              <v-icon large color="white">mdi-menu</v-icon>
+              <v-icon class="menu-icon" large color="white">mdi-menu</v-icon>
             </v-btn>
           </template>
 
@@ -56,7 +56,7 @@
       fab
       @click="moveTop"
     >
-      ∧
+      <v-icon large color="white">mdi-chevron-up</v-icon>
     </v-btn>
 
     <v-footer :absolute="!fixed" app color="amber" dark>
@@ -131,12 +131,15 @@ export default Vue.extend({
 .v-application--wrap {
   background-color: $amber-lighten-5;
 }
+.menu-icon {
+  margin: 1rem 1rem 0 0;
+}
 header {
   .header-title {
     margin-bottom: 0.3rem;
     text-decoration: none;
     h1 {
-      color: $amber-lighten-5;
+      color: #fff;
       margin-left: 0.5rem;
     }
   }
@@ -145,7 +148,6 @@ header {
   }
 }
 .header-subtitle {
-  color: $amber;
   margin: 0.5rem 1rem 0;
 }
 .v-main {
@@ -158,6 +160,6 @@ a {
   margin-top: 1rem;
 }
 .subtitle {
-  @extend %subtitle;
+  @extend %scarlet-subtitle;
 }
 </style>

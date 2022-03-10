@@ -91,7 +91,7 @@ export default Vue.extend({
     }
   }
   .reply-btn {
-    color: $amber;
+    color: $gray;
   }
   // .comment-text {
   //   margin-bottom: 2rem;

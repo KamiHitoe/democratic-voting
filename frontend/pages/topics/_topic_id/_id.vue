@@ -3,7 +3,7 @@
     <TopicContents :topic="topic" :user="user" />
 
     <section class="comment-contents">
-      <h4 class="comment-subtitle">コメント</h4>
+      <h4 class="subtitle">コメント</h4>
       <v-divider></v-divider>
       <Comments
         v-for="(comment, i) in commentList.slice((page-1)*limit, page*limit)"
@@ -99,8 +99,7 @@ export default Vue.extend({
 .topics-description {
   text-align: left;
 }
-.change-color,
-.comment-subtitle {
+.change-color {
   color: $amber;
 }
 .vote-contents {

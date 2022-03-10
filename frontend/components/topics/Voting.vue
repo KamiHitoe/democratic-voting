@@ -85,6 +85,7 @@ export default mixins(global).extend({
             chosen_option: this.chosenOption,
           })
           window.location.reload();
+          // window.location.replace(`/topics/${this.topic.id}`);
         }
       } else {
         this.updateShowModal();
