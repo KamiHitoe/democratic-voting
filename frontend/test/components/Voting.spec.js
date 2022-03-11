@@ -1,4 +1,4 @@
-import Vuex from "vuex"
+import Vuex from "vuex";
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Voting from "@/components/topics/Voting.vue";
 
@@ -25,8 +25,8 @@ describe("unit test Voting Component", () => {
     // localVue,
     mocks: {
       $store: {
-        state: { username: "alice" }
-      }
+        state: { username: "alice" },
+      },
     },
   });
   // this is mock function

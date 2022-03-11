@@ -15,10 +15,9 @@
           <div class="modal-footer">
             <slot name="footer">
               この機能を利用する場合は、右上のメニューからログインしよう！
-              <button
-                class="modal-default-button"
-                @click="$emit('close')"
-              >OK</button>
+              <button class="modal-default-button" @click="$emit('close')">
+                OK
+              </button>
             </slot>
           </div>
         </div>
@@ -30,9 +29,9 @@
 <script lang="ts">
 export default {
   props: {
-    show: Boolean
-  }
-}
+    show: Boolean,
+  },
+};
 </script>
 
 <style lang="scss" scoped>

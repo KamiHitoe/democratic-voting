@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import CommentBox from "@/components/comments/CommentBox.vue";
-import store from "@/store"
+import store from "@/store";
 
 describe("unit test Comment Component", () => {
   const wrapper = mount(CommentBox);

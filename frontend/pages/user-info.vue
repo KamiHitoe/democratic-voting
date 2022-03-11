@@ -1,5 +1,5 @@
 <template>
-  <section v-if=user_existed>
+  <section v-if="user_existed">
     <h4 class="subtitle">ユーザー情報</h4>
     <p>性別: {{ sex }}</p>
     <p>年代: {{ user.age }}代</p>
@@ -16,22 +16,20 @@ import mixins from "vue-typed-mixins";
 import getUser from "@/mixins/getUser";
 
 export default mixins(getUser).extend({
-  mixins: [
-    getUser,
-  ],
+  mixins: [getUser],
   data() {
     return {
       sex: null,
-    }
+    };
   },
   watch: {
     user() {
       if (this.user.sex === "male") {
-        this.sex = "男性"
+        this.sex = "男性";
       } else if (this.user.sex === "female") {
-        this.sex = "女性"
+        this.sex = "女性";
       }
-    }
+    },
   },
   // created() {
   //   this.getUser();
