@@ -77,14 +77,15 @@ export default mixins(getUser).extend({
     };
   },
   async created() {
-    await this.getUser();
-    await setTimeout(() => console.log('wait'), 1000);
+    // await this.getUser();
     await this.getTopics();
     await this.getComments();
     await this.getVotedStatus();
-    console.log(
-      `voted_status: ${this.voted_status} ${this.$store.state.voted_status}`
-    );
+  },
+  watch: {
+    user() {
+      this.getVotedStatus();
+    }
   },
   methods: {
     async getVotedStatus() {
@@ -96,10 +97,10 @@ export default mixins(getUser).extend({
       });
       if (res.data.voted_status) {
         this.$store.commit("updateVotedStatus", true);
-        console.log(this.$store.state.voted_status);
       } else {
         this.$store.commit("updateVotedStatus", false);
       }
+      console.log(`voted_status: ${this.$store.state.voted_status}`);
     },
     async getTopics() {
       const res = await this.$axios.get(`/topics/${this.topic_id}`);
