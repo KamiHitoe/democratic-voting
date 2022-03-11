@@ -149,7 +149,6 @@ export default Vue.extend({
   methods: {
     async submitTopics() {
       await this.s3upload();
-      await setTimeout(() => console.log('wait'), 1000);
       const topicsForm: any = document.getElementById("topics-form");
       const topicsInputs: any = topicsForm.elements;
       for (const e of topicsInputs) {
@@ -171,7 +170,8 @@ export default Vue.extend({
         img_path: this.fileURL,
       });
       console.log("post topic success!");
-      window.location.replace("/");
+      // 念のため1秒待つ
+      await setTimeout(() => window.location.replace("/"), 1000);
     },
     s3upload() {
       const bucketName = 'democratic-image-s3';

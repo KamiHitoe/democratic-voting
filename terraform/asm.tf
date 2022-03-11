@@ -1,5 +1,5 @@
 # 一度消せば7日間同じ名前のkeyは作れないので注意
-# aws secretsmanager delete-secret --secret-id your-secret --force-delete-without-recovery --region your-region
+# aws secretsmanager delete-secret --secret-id your-secret --force-delete-without-recovery --region ap-northeast-1
 
 resource "aws_secretsmanager_secret" "pg_password" {
   name = "pg_password"

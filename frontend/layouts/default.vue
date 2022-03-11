@@ -94,7 +94,7 @@ export default Vue.extend({
         // login
         window.location.replace("/login");
       } else if (i === 1) {
-        window.location.replace("/user-info")
+        window.location.replace("/user-info");
       } else {
         // logout
         // login済か確認
@@ -107,15 +107,16 @@ export default Vue.extend({
                 const agreement: boolean = confirm("ログアウトしてよろしいですか？");
                 if (agreement) {
                   firebase.auth().signOut()
+                  window.location.replace("/");
                 }
               } else {
                 // uid未登録の場合
-                window.alert('まだログインしていません')
+                window.alert('ユーザ情報登録が完了していません')
               }
             })
           } else {
             // firebase Authに登録されていない場合
-            window.alert('まだログインしていません')
+            // window.alert('まだログインしていません')
           }
         })
       }
