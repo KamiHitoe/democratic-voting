@@ -278,8 +278,6 @@ Vote.create(user_id: 4, topic_id: 33, chosen_option: 2, age: 20, sex: 'female')
 topic = Topic.find(33)
 topic.update(voted_num: 2)
 
-
-
 Comment.create(user_id: 1, topic_id: 1, text: 'やっぱりマリア様がみてる一強か～そうだよね～～ごきげんよう')
 Comment.create(user_id: 2, topic_id: 1, text: 'わかる。聖様が好き', parent_id: 1)
 Comment.create(user_id: 3, topic_id: 1, text: 'ゆるゆりしか勝たん')
@@ -353,4 +351,3 @@ Like.create(user_id: 1, comment_id: 42)
 Like.create(user_id: 1, comment_id: 49)
 Like.create(user_id: 1, comment_id: 50)
 Like.create(user_id: 1, comment_id: 52)
-

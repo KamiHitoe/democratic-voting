@@ -19,10 +19,16 @@ export default {
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "stylesheet", type: "text/css", href: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" },
+      {
+        rel: "stylesheet",
+        type: "text/css",
+        href: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css",
+      },
     ],
     script: [
-      { src: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js" }
+      {
+        src: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js",
+      },
     ],
   },
 
@@ -90,11 +96,11 @@ export default {
   //   '/api/': { target: 'https://api.example.com/', pathRewrite: {'^/api/': ''}, changeOrigin: true }
   // },
 
-  // typescript: {   
-  //   typeCheck: {  
+  // typescript: {
+  //   typeCheck: {
   //     typescript: {
-  //       configFile: resolve(__dirname, 'tsconfig.nuxt.json'),   
-  //       extensions: { vue: true },    
+  //       configFile: resolve(__dirname, 'tsconfig.nuxt.json'),
+  //       extensions: { vue: true },
   //     },
   //   },
   // },

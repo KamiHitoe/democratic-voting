@@ -3,13 +3,21 @@
     <h4 class="subtitle">
       <nuxt-link class="change-color" to="/">トップ</nuxt-link>
       <span class="plain-text">　＞　</span>
-      <a class="change-color" :href="`/search?category_id=${topic.category_id}`">{{ category }}</a>
+      <a
+        class="change-color"
+        :href="`/search?category_id=${topic.category_id}`"
+        >{{ category }}</a
+      >
     </h4>
     <v-divider></v-divider>
     <LimitedTag :topic="topic" tag_class="limited-tag" />
     <nuxt-link class="vote-body" :to="`/topics/${topic.id}`">
       <img v-if="topic.img_path" class="topic-img" :src="topic.img_path" />
-      <img v-else class="topic-img" src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png">
+      <img
+        v-else
+        class="topic-img"
+        src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png"
+      />
       <div class="topic-contents">
         <div class="topic-information">
           <div class="topic-data">
@@ -113,17 +121,22 @@ export default {
       chartPattern: 2,
       category: "",
       sexItems: [
-        {text: "なし", value: ""},
-        {text: "男性", value: "male", backgroundColor: "amber", color: "amber"},
-        {text: "女性", value: "female", backgroundColor: "amber"},
+        { text: "なし", value: "" },
+        {
+          text: "男性",
+          value: "male",
+          backgroundColor: "amber",
+          color: "amber",
+        },
+        { text: "女性", value: "female", backgroundColor: "amber" },
       ],
       ageItems: [
-        {text: "なし", value: 0},
-        {text: "10代", value: 10},
-        {text: "20代", value: 20},
-        {text: "30代", value: 30},
-        {text: "40代", value: 40},
-        {text: "50代", value: 50},
+        { text: "なし", value: 0 },
+        { text: "10代", value: 10 },
+        { text: "20代", value: 20 },
+        { text: "30代", value: 30 },
+        { text: "40代", value: 40 },
+        { text: "50代", value: 50 },
       ],
       sex: null,
       age: null,
@@ -131,13 +144,13 @@ export default {
   },
   watch: {
     topic() {
-      this.category = this.categoryList[this.topic.category_id - 1].category
+      this.category = this.categoryList[this.topic.category_id - 1].category;
       this.getLimitedVote();
-    }
+    },
   },
   updated() {
     // this.category = this.categoryList[this.topic.category_id - 1].category
-    console.log(this.category)
+    console.log(this.category);
     const ctx = document.getElementById("result-chart");
     // the number of options == 4
     if (this.topic.option_3 && this.topic.option_4) {
@@ -162,7 +175,7 @@ export default {
           ],
         },
         options: {
-          events: []
+          events: [],
         },
       });
       // the number of options == 3
@@ -186,7 +199,7 @@ export default {
           ],
         },
         options: {
-          events: []
+          events: [],
         },
       });
       // the number of options == 2
@@ -202,7 +215,7 @@ export default {
           ],
         },
         options: {
-          events: []
+          events: [],
         },
       });
     }
@@ -213,7 +226,7 @@ export default {
         params: {
           user_id: this.user.id,
           topic_id: this.topic.id,
-        }
+        },
       });
       this.voted_status = res.data.voted_status;
       console.log(this.voted_status);
@@ -224,34 +237,34 @@ export default {
           topic_id: this.topic.id,
           sex: this.sex,
           age: this.age,
-        }
+        },
       });
       if (res.data[1]) {
-        this.topic.option_1_num = res.data[1]
+        this.topic.option_1_num = res.data[1];
       } else {
-        this.topic.option_1_num = 0
+        this.topic.option_1_num = 0;
       }
       if (res.data[2]) {
-        this.topic.option_2_num = res.data[2]
+        this.topic.option_2_num = res.data[2];
       } else {
-        this.topic.option_2_num = 0
+        this.topic.option_2_num = 0;
       }
       if (res.data[3]) {
-        this.topic.option_3_num = res.data[3]
+        this.topic.option_3_num = res.data[3];
       } else {
-        this.topic.option_3_num = 0
+        this.topic.option_3_num = 0;
       }
       if (res.data[4]) {
-        this.topic.option_4_num = res.data[4]
+        this.topic.option_4_num = res.data[4];
       } else {
-        this.topic.option_4_num = 0
+        this.topic.option_4_num = 0;
       }
-      console.log(res.data)
+      console.log(res.data);
     },
     changeOptionColor(i) {
-      const target = document.querySelectorAll('.v-input__slot')[i];
-      target.classList.add('amber');
-      target.classList.add('lighten-4');
+      const target = document.querySelectorAll(".v-input__slot")[i];
+      target.classList.add("amber");
+      target.classList.add("lighten-4");
     },
     voteAndChangeColor(i) {
       this.getLimitedVote();
