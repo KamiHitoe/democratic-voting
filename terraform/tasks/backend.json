@@ -35,11 +35,11 @@
     "secrets": [
       {
         "name": "SECRET_KEY_BASE",
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key-VfiRX7"
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:secret_key-c0HdMF"
       },
       {
         "name": "POSTGRES_PASSWORD",
-        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:pg_password-4Wjo2X"
+        "valueFrom": "arn:aws:secretsmanager:ap-northeast-1:716145811673:secret:pg_password-fU2JMC"
       }
     ]
   }
