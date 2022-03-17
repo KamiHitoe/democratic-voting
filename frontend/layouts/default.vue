@@ -163,4 +163,7 @@ a {
 .subtitle {
   @extend %scarlet-subtitle;
 }
+.twitter-share-button {
+  max-width: 100px;
+}
 </style>

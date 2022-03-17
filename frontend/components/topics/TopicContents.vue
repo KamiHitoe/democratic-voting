@@ -94,6 +94,11 @@
     <p v-else class="invalid-user">
       ※この投稿の対象ユーザーではないため投票できません。
     </p>
+
+    <a target="_blank" :href="`https://twitter.com/intent/tweet?text=投票をみんなに共有しよう！ https://www.democratic-voting.com/topics/${topic.id}`">
+      <img class="twitter-share-button" :src="require('@/static/twitter-share-button.png')">
+    </a>
+
   </section>
 </template>
 

@@ -54,7 +54,7 @@ section {
 .category {
   color: #000;
   &:hover {
-    color: $amber;
+    color: $scarlet;
   }
 }
 </style>

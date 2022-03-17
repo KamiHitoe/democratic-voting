@@ -1,26 +1,22 @@
 <template>
   <main>
-  <a target="_blank" href="https://twitter.com/intent/tweet?text=test">test twitter post</a>
-  <button>
-    <ShareNetwork
-        network="twitter"
-        url="https://lindaojo.com/blog/another-awesome-article"
-        title="Another Awesome Article"
-        description="This is another awesome article for awesome readers"
-        twitter-user="LindaOjo_">
-        <span>Share on Twitter</span>
-    </ShareNetwork>
-  </button>
+    <a class="twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=投票をみんなに共有しよう！ https://www.democratic-voting.com">a</a>
+    <a target="_blank" href="https://twitter.com/intent/tweet?text=投票をみんなに共有しよう！ https://www.democratic-voting.com">
+      <img class="twitter-share-button" :src="require('@/static/twitter-share-button.png')">
+    </a>
 
   </main>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import VueSocialSharing from "vue-social-sharing"
 
-Vue.use(VueSocialSharing)
 export default Vue.extend({
 
 })
 </script>
+
+<style lang="scss" scoped>
+
+</style>
+

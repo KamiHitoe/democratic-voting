@@ -26,9 +26,8 @@ export default {
       },
     ],
     script: [
-      {
-        src: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js",
-      },
+      { src: "https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js" },
+      // { src: "https://platform.twitter.com/widgets.js" },
     ],
   },
 
@@ -55,7 +54,6 @@ export default {
     // you can use axios as this.$axios in any vue files
     "@nuxtjs/axios",
     "@nuxtjs/google-gtag",
-    "vue-social-sharing/nuxt",
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
