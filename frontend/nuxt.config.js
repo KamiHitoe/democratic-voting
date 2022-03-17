@@ -54,6 +54,7 @@ export default {
   modules: [
     // you can use axios as this.$axios in any vue files
     "@nuxtjs/axios",
+    "@nuxtjs/google-gtag",
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -90,6 +91,11 @@ export default {
       process.env.NODE_ENV === "production"
         ? "https://www.democratic-voting.com/v1"
         : "http://localhost:3000/v1",
+  },
+
+  "google-gtag": {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    // debug: false,
   },
 
   // proxy: {

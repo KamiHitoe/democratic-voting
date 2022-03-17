@@ -1,7 +1,0 @@
-.terraform
-.terraform/
-.terraform*
-terraform.*
-
-# mask variables
-variables.tf
