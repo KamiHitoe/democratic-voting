@@ -55,6 +55,7 @@ export default {
     // you can use axios as this.$axios in any vue files
     "@nuxtjs/axios",
     "@nuxtjs/google-gtag",
+    "vue-social-sharing/nuxt",
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
