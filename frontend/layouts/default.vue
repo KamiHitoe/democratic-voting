@@ -59,10 +59,18 @@
       <v-icon large color="white">mdi-chevron-up</v-icon>
     </v-btn>
 
-    <v-footer :absolute="!fixed" app color="amber" dark>
-      <span class="footer-text"
-        >DemocraticVoting.com &copy; {{ new Date().getFullYear() }}</span
+    <!-- <v-footer :absolute="!fixed" app color="amber" dark> -->
+    <v-footer class="d-flex flex-column" color="amber">
+      <nuxt-link to="/information/terms">
+        <v-btn color="white" text>利用規約</v-btn>
+      </nuxt-link>
+      <nuxt-link to="/information/contact">
+        <v-btn color="white" text>お問い合せ</v-btn>
+      </nuxt-link>
+      <span class="footer-content"
+        >&copy; {{ new Date().getFullYear() }} みんなの投票箱</span
       >
+
     </v-footer>
   </v-app>
 </template>
@@ -165,5 +173,10 @@ a {
 }
 .twitter-share-button {
   max-width: 100px;
+}
+.footer-content {
+  margin: 0.3rem 0 0.5rem 0;
+  color: #fff;
+  font-size: 14px;
 }
 </style>

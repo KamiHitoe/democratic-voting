@@ -16,7 +16,7 @@
       <img
         v-else
         class="topic-img"
-        src="https://test-democratic-img.s3.ap-northeast-1.amazonaws.com/no_image.png"
+        src="https://democratic-image-s3.s3.ap-northeast-1.amazonaws.com/no_image.png"
       />
       <div class="topic-contents">
         <div class="topic-information">

@@ -18,7 +18,7 @@ resource "aws_lb" "democratic-alb" {
 
   # access_logs {
   #   bucket = aws_s3_bucket.democratic-alblog-s3.bucket
-  #   prefix = "democratic-alb-log"
+  #   prefix = "democratic-alblog-s3"
   #   enabled = true
   # }
 
