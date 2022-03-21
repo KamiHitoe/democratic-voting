@@ -165,7 +165,7 @@ workflows:
       #     cluster-name: democratic-ecs-cluster
       #     # cluster-name: test-cluster
       #     service-name: democratic-frontend-service
-      #     container-image-name-updates: "container=frontend-container,tag=${CIRCLE_SHA1}"
+      #     container-image-name-updates: "container=democratic-frontend-container,tag=${CIRCLE_SHA1}"
       #     requires:
       #       - build-and-push-image-frontend
       #       - build-and-push-image-backend
@@ -178,7 +178,7 @@ workflows:
           cluster-name: democratic-ecs-cluster
           # cluster-name: test-cluster
           service-name: democratic-backend-service
-          container-image-name-updates: "container=backend-container,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=democratic-backend-container,tag=${CIRCLE_SHA1}"
           requires:
             - build-and-push-image-backend
           filters:
