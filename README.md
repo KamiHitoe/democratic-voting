@@ -2,7 +2,7 @@
 
 URL: https://www.democratic-voting.com/
 
-**現在はサービス停止しております**
+**※現在はサービス停止しております**
 
 ## アプリ概要
 
